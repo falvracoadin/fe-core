@@ -1,0 +1,360 @@
+<div
+  [ngStyle]="{ right: rightSidebarOpen ? '0' : '-300px' }"
+  style="
+    position: absolute;
+    width: 300px;
+    top: 0;
+    min-height: 100vh;
+    background-color: white;
+    z-index: 1003;
+    padding: 30px;
+  "
+  class="custom-transition"
+>
+  <ng-container
+    [ngTemplateOutlet]="
+      page === 'main'
+        ? mainPage
+        : page === 'edit-profile'
+        ? editProfile
+        : changePassword
+    "
+  ></ng-container>
+</div>
+
+<ng-template #mainPage>
+  <div
+    style="height: calc(100vh - 60px)"
+    class="d-flex flex-column justify-content-between"
+  >
+    <div class="d-flex flex-column align-items-center mt-4">
+      <img
+        style="
+          width: 90px;
+          height: 90px;
+          border-radius: 90px;
+          border: 4.5px solid #f6f6f6;
+        "
+        src="{{
+          profile.Image
+            ? profile.Image
+            : 'https://dummyimage.com/450x450/45BF7C/fff&text=' +
+              profile.Fullname.at(0)
+        }}"
+        [alt]="profile.Fullname"
+      />
+      <p class="mt-3" style="font-weight: bold; font-size: 1rem">
+        {{ profile.Fullname }}
+      </p>
+      <p class="mt-2" style="font-size: 14px">{{ profile.Email }}</p>
+
+      <div
+        class="d-flex align-items-center justify-content-between py-3 mt-3"
+        style="width: 100%; cursor: pointer"
+        (click)="page = 'edit-profile'"
+      >
+        <p style="font-size: 1rem; font-weight: 500">Edit Profil</p>
+        <i
+          class="fa-chevron-right fas icon-style"
+          style="font-size: 1rem; margin-top: 2px"
+        ></i>
+      </div>
+
+      <div
+        class="d-flex align-items-center justify-content-between py-3"
+        style="width: 100%; cursor: pointer"
+        (click)="isKeycloak ? changePasswordKeycloak() : (page = 'main')"
+      >
+        <p style="font-size: 1rem; font-weight: 500">Ganti Password</p>
+        <i
+          class="fa-chevron-right fas icon-style"
+          style="font-size: 1rem; margin-top: 2px"
+        ></i>
+      </div>
+    </div>
+    <div class="d-grid">
+      <button
+        type="submit"
+        tabIndex="-1"
+        class="btn btn-danger btn-lg"
+        (click)="logOut()"
+      >
+        Logout
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #editProfile>
+  <form
+    style="height: calc(100vh - 60px)"
+    class="d-flex flex-column justify-content-between"
+    [formGroup]="editProfileForm"
+    (submit)="onSubmitEditProfileForm()"
+  >
+    <div>
+      <div
+        class="d-flex align-items-center mb-3"
+        style="cursor: pointer"
+        (click)="page = 'main'"
+      >
+        <i class="fas fa-chevron-left" style="font-size: 1rem"></i>
+        <p class="ms-3" style="font-size: 1rem; font-weight: 600">
+          Edit Profil
+        </p>
+      </div>
+
+      <div class="my-4 d-flex justify-content-center">
+        <div
+          class="position-relative"
+          style="width: fit-content; cursor: pointer"
+        >
+          <img
+            style="
+              width: 90px;
+              height: 90px;
+              border-radius: 90px;
+              border: 4.5px solid #f6f6f6;
+            "
+            src="{{
+              profile.Image
+                ? profile.Image
+                : 'https://dummyimage.com/450x450/45BF7C/fff&text=' +
+                  profile.Fullname.at(0)
+            }}"
+            [alt]="profile.Fullname"
+          />
+
+          <img
+            style="position: absolute; bottom: -6px; right: -6px; width: 50%"
+            src="assets/icon/camera.svg"
+            alt="Camera Circled Icon"
+          />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="Fullname" class="form-label">Nama Depan</label>
+        <input
+          type="text"
+          class="form-control form-control-lg{{
+            editProfileForm.controls['Fistname'].invalid
+              ? ' is-invalid'
+              : editProfileForm.controls['Fistname'].valid
+              ? ' is-valid'
+              : ''
+          }}"
+          id="Fistname"
+          placeholder="Masukkan nama depan Anda"
+          formControlName="Fistname"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="Lastname" class="form-label">Nama Belakang</label>
+        <input
+          type="text"
+          class="form-control form-control-lg{{
+            editProfileForm.controls['Lastname'].invalid
+              ? ' is-invalid'
+              : editProfileForm.controls['Lastname'].valid
+              ? ' is-valid'
+              : ''
+          }}"
+          id="Lastname"
+          placeholder="Masukkan nama belakang anda"
+          formControlName="Lastname"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="Email" class="form-label">Email</label>
+        <input
+          type="email"
+          [value]="profile.Email"
+          [disabled]="true"
+          class="form-control form-control-lg"
+          id="Email"
+          placeholder="Masukkan email Anda"
+          autocomplete="Email"
+        />
+      </div>
+    </div>
+
+    <div class="d-grid">
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg mb-3"
+        [disabled]="loadingState"
+      >
+        <div
+          *ngIf="loadingState"
+          class="spinner-border spinner-border-sm text-light me-2"
+          role="status"
+        >
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <span>Konfirmasi</span>
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-primary btn-lg"
+        (click)="toggleRightSidebarOpen()"
+      >
+        Batal
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #changePassword>
+  <form
+    style="height: calc(100vh - 60px)"
+    class="d-flex flex-column justify-content-between"
+    [formGroup]="changePasswordForm"
+    (submit)="onSubmitChangePasswordForm()"
+  >
+    <div>
+      <div
+        class="d-flex align-items-center mb-3"
+        style="cursor: pointer"
+        (click)="page = 'main'"
+      >
+        <i class="fas fa-chevron-left" style="font-size: 1rem"></i>
+        <p class="ms-3" style="font-size: 1rem; font-weight: 600">
+          Ganti Password
+        </p>
+      </div>
+
+      <alert
+        *ngIf="dangerAlert"
+        type="danger"
+        [dismissible]="true"
+        (onClosed)="dangerAlert = false"
+        ><span style="font-size: 1rem; font-weight: bold">{{
+          errorMessage
+        }}</span></alert
+      >
+
+      <div class="mt-4 mb-3" style="position: relative">
+        <label for="OldPassword" class="form-label">Password Lama</label>
+        <input
+          [type]="showOldPassword ? 'text' : 'password'"
+          class="pe-5 form-control form-control-lg{{
+            changePasswordForm.controls['OldPassword'].invalid &&
+            (changePasswordForm.get('OldPassword')?.dirty ||
+              changePasswordForm.get('OldPassword')?.touched)
+              ? ' is-invalid'
+              : changePasswordForm.controls['OldPassword'].valid &&
+                (changePasswordForm.get('OldPassword')?.dirty ||
+                  changePasswordForm.get('OldPassword')?.touched)
+              ? ' is-valid'
+              : ''
+          }}"
+          id="OldPassword"
+          placeholder="Masukkan password lama Anda"
+          formControlName="OldPassword"
+        />
+
+        <div class="position-absolute" style="top: 55%; right: 1rem">
+          <i
+            class="far{{
+              showOldPassword ? ' fa-eye ' : ' fa-eye-slash '
+            }}fa-1x"
+            style="cursor: pointer"
+            (click)="showOldPassword = !showOldPassword"
+          ></i>
+        </div>
+      </div>
+
+      <div class="mb-3" style="position: relative">
+        <label for="NewPassword" class="form-label">Password Baru</label>
+        <input
+          [type]="showNewPassword ? 'text' : 'password'"
+          class="pe-5 form-control form-control-lg{{
+            changePasswordForm.controls['NewPassword'].invalid &&
+            (changePasswordForm.get('NewPassword')?.dirty ||
+              changePasswordForm.get('NewPassword')?.touched)
+              ? ' is-invalid'
+              : changePasswordForm.controls['NewPassword'].valid &&
+                (changePasswordForm.get('NewPassword')?.dirty ||
+                  changePasswordForm.get('NewPassword')?.touched)
+              ? ' is-valid'
+              : ''
+          }}"
+          id="NewPassword"
+          placeholder="Masukkan password baru Anda"
+          formControlName="NewPassword"
+        />
+
+        <div class="position-absolute" style="top: 55%; right: 1rem">
+          <i
+            class="far{{
+              showNewPassword ? ' fa-eye ' : ' fa-eye-slash '
+            }}fa-1x"
+            style="cursor: pointer"
+            (click)="showNewPassword = !showNewPassword"
+          ></i>
+        </div>
+      </div>
+
+      <div class="mb-3" style="position: relative">
+        <label for="NewPasswordConfirmation" class="form-label"
+          >Konfirmasi Password Baru</label
+        >
+        <input
+          [type]="showPasswordConfirmation ? 'text' : 'password'"
+          class="pe-5 form-control form-control-lg{{
+            changePasswordForm.controls['NewPasswordConfirmation'].invalid &&
+            (changePasswordForm.get('NewPasswordConfirmation')?.dirty ||
+              changePasswordForm.get('NewPasswordConfirmation')?.touched)
+              ? ' is-invalid'
+              : changePasswordForm.controls['NewPasswordConfirmation'].valid &&
+                (changePasswordForm.get('NewPasswordConfirmation')?.dirty ||
+                  changePasswordForm.get('NewPasswordConfirmation')?.touched)
+              ? ' is-valid'
+              : ''
+          }}"
+          id="NewPasswordConfirmation"
+          placeholder="Masukkan password lama Anda"
+          formControlName="NewPasswordConfirmation"
+        />
+
+        <div class="position-absolute" style="top: 55%; right: 1rem">
+          <i
+            class="far{{
+              showPasswordConfirmation ? ' fa-eye ' : ' fa-eye-slash '
+            }}fa-1x"
+            style="cursor: pointer"
+            (click)="showPasswordConfirmation = !showPasswordConfirmation"
+          ></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-grid">
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg mb-3"
+        [disabled]="loadingState"
+      >
+        <div
+          *ngIf="loadingState"
+          class="spinner-border spinner-border-sm text-light me-2"
+          role="status"
+        >
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <span>Konfirmasi</span>
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-primary btn-lg"
+        (click)="toggleRightSidebarOpen()"
+      >
+        Batal
+      </button>
+    </div>
+  </form>
+</ng-template>

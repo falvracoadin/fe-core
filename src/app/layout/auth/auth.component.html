@@ -1,0 +1,29 @@
+<div style="min-height: 100vh; position: relative; overflow: hidden; background-color: #fff"
+     class="row align-items-center">
+  <a routerLink="/login" style="position: absolute; left: 2.5rem; top: 2.5rem;z-index: 1;" class="d-flex align-items-center">
+    <!-- <img class="img-login-header" src="assets/image/logo.svg" alt="Company Logo"/> -->
+    <img src="assets/image/DH_Logo/HealthID%20-%20logo%202.svg" alt="Company Logo Model 3" style="width:4%" />
+    <div class="ms-3">
+      <p class="login-header" style="font-size: 36px; font-weight: bold; color: #101010">Health ID Admin</p>
+      <img class="line-login-header" src="assets/image/auth/line-decoration.svg" alt="Auth Line Decoration"/>
+    </div>
+  </a>
+
+  <div style="position: absolute; right: 1.5rem; top: 1.5rem; width: fit-content" class="d-none d-lg-block">
+    <img src="assets/image/auth/triangle-shape-decoration.svg" alt="Auth Triangle Shape Decoration"/>
+  </div>
+
+  <div class="col d-none d-lg-flex justify-content-center auth-lottie">
+    <!-- <ng-lottie
+      [options]="lottieOptions"
+      width="600px" height="auto"
+    ></ng-lottie> -->
+    <img class="left-img" src="assets/image/auth/auth-image.svg" alt="">
+  </div>
+
+  <div class="col d-flex justify-content-center">
+    <div style="width: 60%;">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

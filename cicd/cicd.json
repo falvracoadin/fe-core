@@ -1,0 +1,10 @@
+{
+    "IMAGE": "lazis-fe-webadmin",
+    "DEVDOMAIN": "dev-digid-lazisnu-admin.loyalto.id",
+    "STADOMAIN": "staging-digid-lazisnu-admin.loyalto.id",
+    "PRODOMAIN": "admin.digitallazisnu.id",
+    "DEVHOST": "10.12.3.3",
+    "STAHOST": "10.13.3.3",
+    "PROHOST": "10.80.3.3",
+    "PORT": "80"
+}

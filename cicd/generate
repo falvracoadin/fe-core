@@ -1,0 +1,79 @@
+# sh -c "$(curl -fsSL https://bitbucket.org/newrahmat/newrahmat.bitbucket.org/raw/cicd-fe/cicd/generate )"
+# check existing k8s and cicd.json
+    # if [ -d "cicd/k8s" ]; then
+    #     echo "cicd/k8s exists."
+    #     cp -rf cicd/k8s .
+    #  fi
+
+   if [ -f "cicd/cicd.json" ]; then
+        echo "cicd.json exists."
+        cp -rf cicd/cicd.json .
+     fi
+
+
+echo "download Makefile "
+curl https://bitbucket.org/newrahmat/newrahmat.bitbucket.org/raw/cicd-fe/Makefile -o Makefile
+
+rm -rf cicd
+mkdir -p cicd
+mkdir -p cicd/jenkinsfile
+mkdir -p cicd/jenkinsfile/development
+mkdir -p cicd/jenkinsfile/staging
+# mkdir -p cicd/k8s 
+
+echo "download script cicd "
+# donwload script cicd --> cicd/cicd
+curl https://bitbucket.org/newrahmat/newrahmat.bitbucket.org/raw/cicd-fe/cicd/cicd -o cicd/cicd
+echo "download script slack "
+# donwload script slack --> cicd/slack
+curl https://bitbucket.org/newrahmat/newrahmat.bitbucket.org/raw/cicd-fe/cicd/slack -o cicd/slack
+echo "download generate "
+curl https://bitbucket.org/newrahmat/newrahmat.bitbucket.org/raw/cicd-fe/cicd/generate -o cicd/generate
+
+
+echo "download sample-cicd.json "
+   if [ -f "cicd.json" ]; then
+        echo "set existing cicd.json."
+        cp -rf cicd.json cicd/cicd.json
+        rm -rf cicd.json
+    else 
+        curl https://bitbucket.org/newrahmat/newrahmat.bitbucket.org/raw/master/cicd-fe/sample-cicd.json -o cicd/sample-cicd.json
+    fi
+
+
+# echo "download sample-k8s-values.yaml "
+#     if [ -d "k8s" ]; then
+#         echo "set existing k8s."
+#         cp -rf k8s cicd/
+#         rm -rf k8s
+#     else 
+#         helm show values loyaltolpi/qoin > cicd/k8s/sample-develop-values.yaml
+#         helm show values loyaltolpi/qoin > cicd/k8s/sample-staging-values.yaml
+#         # curl https://bitbucket.org/newrahmat/newrahmat.bitbucket.org/raw/cicd-fe/cicd/sample-k8s-values.yaml -o cicd/k8s/sample-develop-values.yaml        
+#         # curl https://bitbucket.org/newrahmat/newrahmat.bitbucket.org/raw/cicd-fe/cicd/sample-k8s-values.yaml -o cicd/k8s/sample-staging-values.yaml        
+#      fi
+
+
+
+echo "download Jenkinsfile "
+
+# donwload script template.jenkinsfile --> cicd/jenkinsfile/develop.Jenkinsfile
+curl https://bitbucket.org/newrahmat/newrahmat.bitbucket.org/raw/master/cicd-fe/template.Jenkinsfile -o cicd/jenkinsfile/development/Jenkinsfile
+# donwload script Jenkinsfile --> cicd/jenkinsfile/staging.Jenkinsfile
+# curl https://bitbucket.org/newrahmat/newrahmat.bitbucket.org/raw/cicd-fe/cicd/template.Jenkinsfile -o cicd/jenkinsfile/staging.Jenkinsfile
+cp cicd/jenkinsfile/development/Jenkinsfile cicd/jenkinsfile/staging/Jenkinsfile
+
+REPO=$(basename -s .git `git config --get remote.origin.url`)
+# BRANCH=$(git rev-parse --abbrev-ref HEAD)
+# echo "make directory jenkinsfile"
+# mkdir -p cicd/jenkinsfile && mkdir -p cicd/jenkinsfile/${BRANCH}
+echo "set Jenkinsfile "
+sed -i "s/#REPO_NAME/${REPO}/" cicd/jenkinsfile/development/Jenkinsfile && \
+sed -i "s/#BRANCH/development/" cicd/jenkinsfile/development/Jenkinsfile
+
+sed -i "s/#REPO_NAME/${REPO}/" cicd/jenkinsfile/staging/Jenkinsfile && \
+sed -i "s/#BRANCH/staging/" cicd/jenkinsfile/staging/Jenkinsfile
+
+
+chmod +x -R cicd
+rm -f .*_result.log
