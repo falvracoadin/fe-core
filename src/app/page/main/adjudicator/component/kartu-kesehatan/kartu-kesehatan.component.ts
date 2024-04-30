@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataTableDirective } from 'angular-datatables';
-import { AuthService } from 'src/app/feature/auth/services/auth.service';
 import { DigitalIdService } from '../../services/digital-id/digital-id.service';
+import { AuthService } from 'src/app/core/service/auth.service';
 
 @Component({
   selector: 'app-kartu-kesehatan',
@@ -12,8 +12,7 @@ import { DigitalIdService } from '../../services/digital-id/digital-id.service';
 export class KartuKesehatanComponent implements OnInit {
 
   @ViewChild(DataTableDirective)
-  dtElement: DataTableDirective;
-  dtInstance: Promise<DataTables.Api>;
+  dtElement !: DataTableDirective;
   dtOptions: any;
 
   filter: any;
@@ -30,7 +29,7 @@ export class KartuKesehatanComponent implements OnInit {
   ngOnInit(): void {
     this.limit = 10;
     this.reset();
-    this.role = this.authService.getUserRole();
+    this.role = this.authService.GetUserRole();
     this.getDocuments();
   }
 
@@ -66,8 +65,8 @@ export class KartuKesehatanComponent implements OnInit {
         },
         info: '',
       },
-      ajax: (dtParams: any, callback) => {
-        const params = {
+      ajax: (dtParams: any, callback:any) => {
+        const params :any= {
           pageSize: this.limit,
           page: (dtParams.start / dtParams.length) + 1,
           DocCardType: 7
@@ -94,7 +93,7 @@ export class KartuKesehatanComponent implements OnInit {
     });
   }
 
-  changeLimit(val) {
+  changeLimit(val: number) {
     if (val === 10 || val === 25 || val === 50 || val === 100) {
       this.limit = val;
       this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
@@ -103,7 +102,7 @@ export class KartuKesehatanComponent implements OnInit {
     }
   }
 
-  filterKTP(args) {
+  filterKTP(args: any) {
     this.filter.value = args.target.value;
     this.reloadDataTable();
   }
