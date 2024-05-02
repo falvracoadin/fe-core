@@ -173,12 +173,12 @@
 <ng-template #formUser let-modal>
     <div class="modal-header">
         <h5 class="modal-title mt-0">{{titleModal}}</h5>
-        <button type="button" class="close" (click)="ModalRef?.hide()" aria-label="Close">
+        <button type="button" class="close" (click)="closeModal()" aria-label="Close">
             <i class="mdi mdi-close-thick"></i>
         </button>
     </div>
     <div class="modal-body">
-        <app-form-user (batal)="ModalRef?.hide(); reloadDataTable()" [userId]="userId" (afterSave)="modal.close(); reloadDataTable()"></app-form-user>
+        <app-form-user (batal)="closeModal(); reloadDataTable()" [userId]="userId" (afterSave)="modal.close(); reloadDataTable()"></app-form-user>
     </div>
 </ng-template>
 

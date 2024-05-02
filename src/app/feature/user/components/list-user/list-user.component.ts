@@ -39,6 +39,7 @@ export class ListUserComponent implements OnInit {
   ];
   totalRecord = 0;
   ModalRef?: BsModalRef;
+  modalId : any = null;
 
   exportPDF : any = {
     title: '',
@@ -122,12 +123,18 @@ export class ListUserComponent implements OnInit {
     this.titleModal = 'Tambah Pengguna Baru';
     this.userId = 0;
     this.modalService.show(modalId, { class: 'modal-lg' });
+    this.modalId = modalId;
   }
 
   updateUser(modalId : any, user : any) {
     this.titleModal = 'Edit Pengguna: ' + user.name;
     this.userId = user.id;
     this.modalService.show(modalId,  { class: 'modal-lg' });
+    this.modalId = modalId;
+  }
+  
+  closeModal(){
+    this.modalService.hide()
   }
 
   deleteUser(userId :any) {
