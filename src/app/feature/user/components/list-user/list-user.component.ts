@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 // //import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { DataTableDirective } from 'angular-datatables';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
@@ -37,6 +38,7 @@ export class ListUserComponent implements OnInit {
     'Email'
   ];
   totalRecord = 0;
+  ModalRef?: BsModalRef;
 
   exportPDF : any = {
     title: '',
@@ -47,7 +49,7 @@ export class ListUserComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private userService: UserService,
-    // //private modalService: NgbModal,
+    private modalService: BsModalService,
     private router: Router,
     private decryptionService: DecryptionService
 
@@ -61,6 +63,7 @@ export class ListUserComponent implements OnInit {
     } else {
       this.saasMode = false;
     }
+    console.log(this.saasMode)
   }
 
   getUser() {
@@ -118,13 +121,13 @@ export class ListUserComponent implements OnInit {
   createUser(modalId : any) {
     this.titleModal = 'Tambah Pengguna Baru';
     this.userId = 0;
-    // //this.modalService.open(modalId, { size: 'lg', centered: true });
+    this.modalService.show(modalId, { class: 'modal-lg' });
   }
 
   updateUser(modalId : any, user : any) {
     this.titleModal = 'Edit Pengguna: ' + user.name;
     this.userId = user.id;
-    // //this.modalService.open(modalId, { size: 'lg', centered: true });
+    this.modalService.show(modalId,  { class: 'modal-lg' });
   }
 
   deleteUser(userId :any) {

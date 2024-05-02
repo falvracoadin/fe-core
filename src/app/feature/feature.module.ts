@@ -6,6 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 // import { ChartsModule } from 'ng2-charts';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { FeatureRoutingModule } from './feature-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserModule } from './user/user.module';
@@ -42,6 +44,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ],
     imports: [
         ReactiveFormsModule,
+        ModalModule.forRoot(),
         // NgbAlertModule,
         CommonModule,
         FeatureRoutingModule,

@@ -11,10 +11,10 @@
                             User List
                         </div>
                         <div class="mx-1">
-                            <!-- <button type="button" class="btn btn-primary rounded-8" (click)="createUser(formUser)">
+                            <button type="button" class="btn btn-primary rounded-8" (click)="createUser(formUser)">
                                 <i class="fa fa-plus mr-2"></i>
                                 <span class="text-button">Tambah</span>
-                            </button> -->
+                            </button>
                         </div>
                     </div>
                     <hr>
@@ -62,7 +62,7 @@
                 </div>
                 <div class="card-body px-0">
                     <div class="table-responsive">
-                        <!-- <table class="table table-striped table-hover" id="userList" datatable [dtOptions]="dtOptions">
+                        <table class="table table-striped table-hover" id="userList" datatable [dtOptions]="dtOptions">
                             <thead style="background-color: #E2E8F0">
                                 <tr>
                                     <th class="text-center" style="width: 5%;">No</th>
@@ -76,8 +76,8 @@
                                       </ng-container>
                                     <th class="text-center">No. HP</th>
                                     <th class="text-center">Email</th>
-<!--                                    <th class="text-center" style="width: 5%;">Source</th>-->
-                                    <!-- <th class="text-center">Status</th>
+                                  <th class="text-center" style="width: 5%;">Source</th>
+                                    <th class="text-center">Status</th>
                                     <th class="text-center" style="width: 5%;">Aksi</th>
                                 </tr>
                             </thead>
@@ -112,12 +112,12 @@
                                         <span *ngIf="user.Email == '' || user.Email == null">-</span>
                                         <span>{{user.Email}}</span>
                                     </td>
-<!--                                    <td class="align-middle text-center">-->
-<!--                                        <button class="btn btn-outline-primary" ngbTooltip="{{ user.Source === 'web' ? 'Website' : user.Source === 'office' ? 'Office' : 'Application' }}">-->
-<!--                                            <i class="fa fa-{{ user.Source === 'web' ? 'globe' : user.Source === 'office' ? 'building' : 'mobile' }}" aria-hidden="true"></i>-->
-<!--                                        </button>-->
-<!--                                    </td>-->
-                                    <!-- <td class="align-middle">
+                                   <td class="align-middle text-center">
+                                        <button class="btn btn-outline-primary">
+                                            <i class="fa fa-{{ user.Source === 'web' ? 'globe' : user.Source === 'office' ? 'building' : 'mobile' }}" aria-hidden="true"></i>-->
+                                        </button>
+                                    </td>
+                                    <td class="align-middle">
                                         <div class="text-center py-2" [ngClass]="{'status-success': user.Status, 'status-danger': !user.Status}">
                                             <span class="text-success" *ngIf="user.Status">Aktif</span>
                                             <span class="text-danger" *ngIf="!user.Status">Tidak Aktif</span>
@@ -135,7 +135,7 @@
                                     </td>
                                 </tr>
                             </tbody>
-                        </table> -->
+                        </table>
                         <div class="info-wrap-imi" *ngIf="totalRecord != 0">
                             <div class="info-1">Tampilkan</div>
                             <select
@@ -149,7 +149,7 @@
                                 <option value="50">50</option>
                                 <option value="100">100</option>
                             </select>
-                            <!-- <select
+                            <select
                                 [(ngModel)]="nowShowsNUmber"
                                 id="inputLimit"
                                 class="form-control info-2"
@@ -160,7 +160,7 @@
                                 <option value="25">25</option>
                                 <option value="50">50</option>
                                 <option value="100">100</option>
-                            </select> -->
+                            </select>
                             <div class="info-3">dari {{ totalRecord }} data</div>
                         </div>
                     </div>
@@ -170,17 +170,17 @@
     </div>
 </div>
 
-<!-- <ng-template #formUser let-modal>
+<ng-template #formUser let-modal>
     <div class="modal-header">
         <h5 class="modal-title mt-0">{{titleModal}}</h5>
-        <button type="button" class="close" (click)="modal.close()" aria-label="Close">
+        <button type="button" class="close" (click)="ModalRef?.hide()" aria-label="Close">
             <i class="mdi mdi-close-thick"></i>
         </button>
     </div>
     <div class="modal-body">
-        <app-form-user (batal)="modal.close(); reloadDataTable()" [userId]="userId" (afterSave)="modal.close(); reloadDataTable()"></app-form-user>
+        <app-form-user (batal)="ModalRef?.hide(); reloadDataTable()" [userId]="userId" (afterSave)="modal.close(); reloadDataTable()"></app-form-user>
     </div>
-</ng-template> -->
+</ng-template>
 
 <div id="exportPDF">
     <p class="exportTitle">{{ exportPDF.title }}</p>
