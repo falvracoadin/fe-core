@@ -1,0 +1,145 @@
+.title-page {
+  font-size: 28px;
+  font-weight: 700;
+  font-stretch: normal;
+  color: #231f20;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  width: 100%;
+  height: 29px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #191a1f;
+  margin: 16px 0 16px 16px;
+  letter-spacing: 2.1px;
+}
+
+.title2 {
+  font-size: 15px;
+  font-weight: 100;
+}
+
+.role-title {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: #191a1f;
+  margin-bottom: 10px;
+  margin-left: 16px;
+}
+
+.permission-list {
+  font-size: 15.2px;
+  font-weight: normal;
+  letter-spacing: -0.3px;
+  color: #191a1f;
+}
+
+.list-perm {
+  max-height: 50px;
+}
+
+.list-perm span, .list-perm label, .list-perm input, .list-perm button {
+  line-height: 50px;
+}
+
+.list-perm label {
+  margin: 0;
+}
+
+.list-perm .btn img {
+  height: 24px;
+}
+
+.key {
+  text-transform: uppercase;
+  color: black;
+  font-size: 16px;
+}
+
+.text-black {
+  color: #000;
+}
+
+.panel-style {
+  border: 1px solid #21409a;
+  border-radius: 8px;
+  padding: 0 1rem;
+  cursor: pointer;
+
+  .color-white {
+    color: #21409a !important;
+  }
+}
+
+.panel-style:hover {
+  background-color: #21409a;
+  border: 1px solid white;
+  color: white !important;
+  border-radius: 8px;
+  padding: 0 1rem;
+  transition: all ease-in-out 0.3s;
+
+  .color-white {
+    color: white !important;
+    transition: all ease-in-out 0.3s;
+  }
+}
+
+.btn-outline-custom {
+  border-radius: 8px 8px 0 0 !important;
+  border: 1px solid #cbd5e1;
+  transition: all ease-in-out 0.3s;
+}
+
+::ng-deep div:has(.collapsed) {
+  ::ng-deep .btn-outline-custom {
+    border-radius: 8px !important;
+  }
+}
+
+.btn-outline-custom:hover, .btn-outline-custom:focus {
+  border: 1px solid #21409a;
+  background-color: #21409a;
+  color: white;
+}
+
+.btn-outline-custom:hover .key, .btn-outline-custom:focus .key {
+  color: white;
+}
+
+.btn-outline-custom:hover>div:nth-child(2)>i, .btn-outline-custom:focus>div:nth-child(2)>i {
+  color: white !important;
+}
+
+.dataTables_processing>div:last-child>div {
+  background-color: #21409A;
+}
+
+.ngbContent {
+  outline: 1px solid #cbd5e1;
+  flex-wrap: wrap;
+  align-content: center;
+
+  input {
+    // display: none;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    right: 23px;
+    top: 4px;
+    opacity: 0;
+  }
+}
+
+
+
+::ng-deep .collapse .card-body {
+  padding: 3px 6px !important;
+}
+
+::ng-deep .card .card-header {
+  padding-bottom: 0 !important;
+}

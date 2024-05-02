@@ -1,0 +1,86 @@
+{
+    "code": 200,
+    "status": "success",
+    "message": "roles have been successfully acquired",
+    "data": {
+        "limit": 10,
+        "next_page": 2,
+        "offset": 0,
+        "page": 1,
+        "prev_page": 1,
+        "records": [
+            {
+                "ClientId": 2,
+                "ClientName": "Korlantas-Reserved",
+                "Id": 1125,
+                "RoleName": "Super Admin",
+                "RoleType": "web"
+            },
+            {
+                "ClientId": 2,
+                "ClientName": "Korlantas-Reserved",
+                "Id": 1126,
+                "RoleName": "Customer",
+                "RoleType": "app"
+            },
+            {
+                "ClientId": 3,
+                "ClientName": "Inisa NTT",
+                "Id": 1127,
+                "RoleName": "Administrator",
+                "RoleType": "web"
+            },
+            {
+                "ClientId": 3,
+                "ClientName": "Inisa NTT",
+                "Id": 1128,
+                "RoleName": "Customer",
+                "RoleType": "app"
+            },
+            {
+                "ClientId": 1,
+                "ClientName": "Qoin-Reserved",
+                "Id": 1129,
+                "RoleName": "Administrator",
+                "RoleType": "web"
+            },
+            {
+                "ClientId": 1,
+                "ClientName": "Qoin-Reserved",
+                "Id": 1130,
+                "RoleName": "Customer",
+                "RoleType": "app"
+            },
+            {
+                "ClientId": 4,
+                "ClientName": "Mukti Malik",
+                "Id": 1131,
+                "RoleName": "Administrator",
+                "RoleType": "web"
+            },
+            {
+                "ClientId": 4,
+                "ClientName": "Mukti Malik",
+                "Id": 1132,
+                "RoleName": "Customer",
+                "RoleType": "app"
+            },
+            {
+                "ClientId": 5,
+                "ClientName": "Mukti Malik",
+                "Id": 1133,
+                "RoleName": "Administrator",
+                "RoleType": "web"
+            },
+            {
+                "ClientId": 5,
+                "ClientName": "Mukti Malik",
+                "Id": 1134,
+                "RoleName": "Customer",
+                "RoleType": "app"
+            }
+        ],
+        "total_page": 3,
+        "total_record": 25
+    }
+}

@@ -1,0 +1,566 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="title-page">CMS - Formulir</div>
+      <div class="card" style="border-radius: 8px !important;">
+        <div class="card-header pb-0 px-0">
+          <div class="px-3 d-flex justify-content-between align-items-center">
+            <div class="card-title">Daftar Formulir</div>
+            <a (click)="open(form)" class="btn btn-primary font-size-14 button-dukcapil d-flex align-items-center justify-content-center rounded-8">
+              <i class="fa fa-plus mr-2"></i> Tambah
+            </a>
+          </div>
+          <hr />
+          <div class="px-3 d-flex justify-content-between" style="padding-top: .5rem;">
+            <div class="d-flex justify-content-start">
+              <div class="row limit pl-3">
+                <div class="d-flex">
+                  <!-- <ng-select class="custom" bindLabel="title" bindValue="param" [(ngModel)]="filter2.param" [items]="filterParam" placeholder="Pilih Parameter"></ng-select> -->
+                  <div class="relative">
+                    <!-- <input type="text" placeholder="Cari berdasarkan parameter" [(ngModel)]="filter.value" class="search-input" /> -->
+                    <i class="fa fa-search icon-search"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="btn btn-secondary ml-4 rounded-8 d-flex align-items-center" style="min-height: 48px; min-width: 48px; justify-content: center">
+                <i class="fa fa-filter"></i>
+              </div>
+            </div>
+          </div>
+
+<!--          <div class="px-3 d-flex justify-content-between" style="padding: 0">-->
+<!--            <div class="d-flex justify-content-start">-->
+<!--              <div class="input-container">-->
+<!--                <ng-select-->
+<!--                  [items]="filterParam"-->
+<!--                  bindLabel="title"-->
+<!--                  bindValue="param"-->
+<!--                  [(ngModel)]="filter2.param">-->
+<!--                </ng-select>-->
+<!--              </div>-->
+<!--              <div-->
+<!--                class="input-container mr-2"-->
+<!--                style="width: 309px"-->
+<!--                *ngIf="-->
+<!--                  !(filter.param == 'tglDiterima');-->
+<!--                  else tanggal_diterima_search-->
+<!--                ">-->
+<!--                <img-->
+<!--                  src="https://cdn-icons-png.flaticon.com/32/149/149852.png"-->
+<!--                  alt="" />-->
+<!--                <input-->
+<!--                  style="width: 259px"-->
+<!--                  [(ngModel)]="filter.value"-->
+<!--                  type="text"-->
+<!--                  placeholder="Cari berdasarkan parameter"-->
+<!--                  class="filter-input" />-->
+<!--              </div>-->
+<!--              <div-->
+<!--                (click)="reloadDataTable()"-->
+<!--                class="btn btn-primary btn-filter">-->
+<!--                <svg-->
+<!--                  focusable="false"-->
+<!--                  aria-hidden="true"-->
+<!--                  viewBox="0 0 24 24"-->
+<!--                  style="-->
+<!--                    user-select: none;-->
+<!--                    width: 1em;-->
+<!--                    height: 1em;-->
+<!--                    display: inline-block;-->
+<!--                    fill: rgb(255, 255, 255);-->
+<!--                    flex-shrink: 0;-->
+<!--                    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;-->
+<!--                    font-size: 1.5rem;-->
+<!--                  ">-->
+<!--                  <path-->
+<!--                    d="M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39c.51-.66.04-1.61-.79-1.61H5.04c-.83 0-1.3.95-.79 1.61z"></path>-->
+<!--                </svg>-->
+<!--                <span-->
+<!--                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+        </div>
+        <div class="row mt-3">
+          <div class="col-12">
+            <div class="">
+              <!-- <table
+                class="table table-hover"
+                datatable
+                [dtOptions]="dtOptions">
+                <thead>
+                  <tr style="background-color: #E2E8F0 !important">
+                    <th class="text-center" style="width: 5%">No</th>
+                    <th class="text-center" style="min-width: 300px">Nama Dokumen</th>
+                    <th class="text-center" style="min-width: 140px">Tipe</th>
+                    <th class="text-center" style="min-width: 120px">Tgl. Dibuat</th>
+                    <th class="text-center" style="min-width: 80px">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of listUser; index as i" [class.bg-white]="(i % 2) == 0" [class.bg-second]="(i % 2) == 1">
+                    <td class="align-middle text-center">{{ i + 1 }}</td>
+                    <td class="align-middle">
+                      <span
+                        *ngIf="user.form_title == '' || user.form_title == null"
+                        >-</span
+                      >
+                      <span>{{ user.form_title }}</span>
+                      <span
+                        *ngIf="user.is_draft == 1"
+                        class="ml-2 badge badge-primary" style="background-color: #E9ECF5 !important; color: #64748B !important;"
+                        >Draft</span
+                      >
+                    </td>
+                    <td class="align-middle">
+                      <span *ngIf="user.is_multi == 1">Multi Halaman</span>
+                      <span *ngIf="user.is_multi == 0">Satu Halaman</span>
+                    </td>
+                    <td class="align-middle">
+                      <span *ngIf="user.created_at == '' || user.created_at == null">-</span>
+                      <span>{{ user.created_at | date : "dd / MM / yyyy" }}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <button style="min-width: 44px; min-height: 44px" class="mr-2 btn btn-outline-primary" routerLink="/cms/formulir/{{ user.is_multi == 0 ? 'single' : 'multi' }}/{{ user.id }}">
+                        <i class="fa fa-eye"></i>
+                      </button>
+                      <button style="min-width: 44px; min-height: 44px" (click)="previewForm(previewMobile, user.id)" class="btn btn-outline-primary">
+                        <i class="fa fa-mobile-alt"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr class="table-danger" *ngIf="total_record == 0">
+                    <td [attr.colspan]="5" class="text-center">
+                      Data tidak ditemukan
+                    </td>
+                  </tr>
+                </tbody>
+              </table> -->
+              <div class="info-wrap-imi" *ngIf="total_record != 0">
+                <div class="info-1">Tampilkan</div>
+                <!-- <select
+                  [(ngModel)]="limit"
+                  id="inputLimit"
+                  class="form-control info-2"
+                  style="padding: 0.47rem 0.75rem !important; background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important;"
+                  name="showFilter"
+                  (change)="clickLimit()">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select> -->
+                <div class="info-3">dari {{ total_record }} data</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #form let-modal>
+  <div class="modal-body p-4">
+    <button
+      type="button"
+      class="close"
+      (click)="modal.close()"
+      aria-label="Close">
+      <i class="mdi mdi-close-thick"></i>
+    </button>
+    <h3 class="modal-title mt-0 tipe-formulir">Tipe Formulir</h3>
+
+    <h6 class="modal-title mt-0 pilih-formulir">Pilih formulir sesuai kebutuhan kamu</h6>
+    <br />
+    <div class="row d-flex">
+      <div class="col-md-6">
+        <div
+          class="card btn-form"
+          routerLink="/cms/formulir/single"
+          (click)="close()">
+          <img
+            src="assets/images/formulir/scrollDown.svg"
+            alt=""
+            class="card-img-top" />
+          <div class="card-body text-center">
+            <h3 class="pilih-formulir">Satu Halaman</h3>
+            <p class="deskripsi-halaman">
+              Menampilkan isian formulir dalam satu halaman yang bisa digulir
+              dari atas ke bawah
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div
+          class="card btn-form"
+          routerLink="/cms/formulir/multi"
+          (click)="close()">
+          <img
+            src="assets/images/formulir/stepping.svg"
+            alt=""
+            class="card-img-top" />
+          <div class="card-body text-center">
+            <h3 class="pilih-formulir">Multi Halaman</h3>
+            <p class="deskripsi-halaman">
+              Menampilkan isian formulir dalam bentuk lebih dari satu halaman
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #formFilter let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">{{ titleModal }}</h5>
+    <button
+      type="button"
+      class="close"
+      (click)="modal.dismiss('Cross click')"
+      aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <span>Tipe</span>
+        <div class="d-flex justify-content-between">
+          <!-- <button
+            type="button"
+            class="btn btn-light px-3"
+            style="border-radius: 15px"
+            [ngClass]="
+              filter.is_multi === 0 ? 'btn-outline-primary' : 'btn-light'
+            "
+            (click)="filter.is_multi = 0">
+            Single Page
+          </button> -->
+          <!-- <button
+            type="button"
+            class="btn btn-light px-3"
+            style="border-radius: 15px"
+            [ngClass]="
+              filter.is_multi === 1 ? 'btn-outline-primary' : 'btn-light'
+            "
+            (click)="filter.is_multi = 1">
+            Multi Page
+          </button> -->
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <span>Draft</span>
+
+        <div class="d-flex justify-content-between">
+          <div class="col-md-6 px-0">
+            <!-- <button
+              type="button"
+              class="btn btn-light w-100"
+              style="border-radius: 15px"
+              [ngClass]="
+                filter.is_draft === 0 ? 'btn-outline-primary' : 'btn-light'
+              "
+              (click)="filter.is_draft = 0">
+              Tidak
+            </button> -->
+          </div>
+          <div class="col-md-6 pr-0">
+            <!-- <button
+              type="button"
+              class="btn btn-light w-100"
+              style="border-radius: 15px"
+              [ngClass]="
+                filter.is_draft === 1 ? 'btn-outline-primary' : 'btn-light'
+              "
+              (click)="filter.is_draft = 1">
+              Ya
+            </button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer d-flex justify-content-center">
+    <div class="d-flex justify-content-center">
+      <div class="btn btn-light mr-2" (click)="modal.dismiss('Cross click')">
+        Batal
+      </div>
+      <div
+        class="btn btn-light mr-2"
+        (click)="cleanAll(); modal.dismiss('Cross click')">
+        Bersihkan
+      </div>
+      <div
+        class="btn btn-primary"
+        (click)="reloadDataTable(); modal.dismiss('Cross click')">
+        Terapkan
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- PREVIEW MOBILE -->
+<ng-template #previewMobile let-modal>
+  <div class="modal-header bg-light-primary py-2 d-flex align-items-center">
+    <h5 class="modal-title text-white" id="modal-basic-title">
+      Tampilan Mobile
+    </h5>
+    <i
+      class="fa fa-times text-white cursor-pointer"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"></i>
+  </div>
+  <div class="modal-body shadow-sm p-0" style="overflow-y: auto">
+    <div class="col-12 text-center py-2 shadow-sm">
+      <span class="font-weight-bold font-size-16">{{ formulirStructure.form_title ? formulirStructure.form_title : "PageTitle" }}</span>
+      <br />
+      <span class="font-size-16">
+        Tahap {{ sectionIndex + 1 }}/{{ list.length }}
+      </span>
+    </div>
+    <div class="col-12 px-3 py-2">
+      <span class="font-weight-bold font-size-18">{{
+        detail[sectionIndex].title
+          ? detail[sectionIndex].title
+          : "Label formulir"
+      }}</span>
+      <br />
+      <span class="font-size-14">{{
+        detail[sectionIndex].desc
+          ? detail[sectionIndex].desc
+          : "Ini adalah bagian dari keterangan formulir"
+      }}</span>
+    </div>
+    <div
+      class="col-12 px-3 py-2"
+      *ngFor="let content of list[sectionIndex]; index as i">
+      <div class="row">
+        <div class="col" *ngFor="let data of content; index as j">
+          <div *ngIf="data != null">
+            <ng-template
+              [ngTemplateOutlet]="FormMobile"
+              [ngTemplateOutletContext]="{
+                data: data,
+                i: i,
+                j: j
+              }">
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="row w-100">
+      <div class="col-md-6">
+        <button
+          class="btn btn-outline-secondary btn-block"
+          (click)="prevSection()"
+          [disabled]="sectionIndex == 0">
+          Sebelumnya
+        </button>
+      </div>
+      <div class="col-md-6">
+        <button
+          class="btn btn-primary btn-block"
+          (click)="nextSection()"
+          [disabled]="sectionIndex == list.length - 1">
+          Selanjutnya
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #FormMobile let-data="data" let-i="i" let-j="j">
+  <label for="{{ i }}-{{ j }}" class=""
+    >{{ data.property.label.value == "" ? data.name : data.property.label.value
+    }}<span *ngIf="data.tampilan.wajib_diisi" class="after"> * </span>
+  </label>
+  <ng-template [ngIf]="data.type == 'media' || data.type == 'media-capture'">
+    <div class="dropzone-placeholder py-3">
+      <i class="fa fa-camera mr-2"></i>Unggah Media Disini
+    </div>
+  </ng-template>
+  <ng-template
+    [ngIf]="
+      data.type != 'multiple-line' &&
+      data.type != 'select' &&
+      data.type != 'multi-select' &&
+      data.type != 'media' &&
+      data.type != 'media-capture'
+    ">
+    <div class="relative">
+      <!-- <input
+        disabled
+        [required]="data.tampilan.wajib_diisi"
+        [type]="data.type"
+        [(ngModel)]="data.data"
+        [placeholder]="
+          data.property.keterangan.value == ''
+            ? data.property.keterangan.placeholder
+            : data.property.keterangan.value
+        "
+        id="{{ i }}-{{ j }}"
+        maxlength="{{
+          data.batasi_karakter ? data.property.batasi_karakter.value : ''
+        }}"
+        class="form-control" /> -->
+      <i
+        class="fa {{
+          data.type === 'password'
+            ? ' fa-eye '
+            : data.type === 'date'
+            ? ' fa-calendar-alt '
+            : data.type === 'time'
+            ? ' fa-clock '
+            : ''
+        }} icon-input"></i>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]="data.type == 'multiple-line'">
+    <textarea
+      disabled
+      class="form-control"
+      [required]="data.tampilan.wajib_diisi"
+      rows="3">
+    {{
+        data.property.keterangan.value != ""
+          ? data.property.keterangan.value
+          : data.property.keterangan.placeholder
+      }}
+    </textarea>
+  </ng-template>
+  <ng-template [ngIf]="data.type == 'select'">
+    <!-- <ng-select
+      *ngIf="data.format.select.value.value == 'dropdown'"
+      [items]="data.option"
+      bindLabel="label"
+      bindValue="id"
+      [(ngModel)]="data.value">
+      <ng-template ng-option-tmp let-item="item" let-index="index">
+        <div class="d-flex align-items-center">
+          <img
+            *ngIf="data.value == item.id"
+            class="icon-check"
+            src="assets/images/adjudicator/radio_button_checked.svg"
+            alt="" />
+          <img
+            *ngIf="data.value != item.id"
+            class="icon-check"
+            src="assets/images/adjudicator/radio_button_unchecked.svg"
+            alt="" />
+          <span class="font-size-12">{{ item.label }}</span>
+        </div>
+      </ng-template>
+    </ng-select> -->
+    <div
+      class="form-check d-flex flex-column pl-1"
+      *ngIf="data.format.select.value.value == 'list'">
+      <label
+        class="form-check-label my-1"
+        for="{{ option.label }}"
+        *ngFor="let option of data.option; index as ido">
+        <img
+          *ngIf="data.value == option.id"
+          class="icon-check"
+          src="assets/images/adjudicator/radio_button_checked.svg"
+          alt="" />
+        <img
+          *ngIf="data.value != option.id"
+          class="icon-check"
+          src="assets/images/adjudicator/radio_button_unchecked.svg"
+          alt="" />
+        <!-- <input
+          disabled
+          style="display: none"
+          type="radio"
+          class="form-check-input"
+          id="{{ option.label }}"
+          name="{{ option.label }}"
+          value="{{ option.id }}"
+          [(ngModel)]="data.value" /> -->
+          {{ option.label }}
+      </label>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="data.type == 'multi-select'">
+    <!-- <ng-select
+      *ngIf="data.format.multi_select.value.value == 'dropdown'"
+      [items]="data.option"
+      bindLabel="label"
+      bindValue="id"
+      [multiple]="true"
+      [(ngModel)]="data.value">
+      <ng-template ng-option-tmp let-item="item" let-index="index">
+        <div class="d-flex align-items-center">
+          <img
+            *ngIf="item.selected"
+            class="icon-check"
+            src="assets/images/check-box-checked.svg"
+            alt="" />
+          <img
+            *ngIf="!item.selected"
+            class="icon-check"
+            src="assets/images/check-box-unchecked.svg"
+            alt="" />
+          <span class="font-size-12">{{ item.label }}</span>
+        </div>
+      </ng-template>
+    </ng-select> -->
+    <div
+      class="form-check d-flex flex-column pl-1"
+      *ngIf="data.format.multi_select.value.value == 'list'">
+      <label
+        class="form-check-label my-1"
+        for="{{ option.label }}"
+        *ngFor="let option of data.option; index as ido">
+        <img
+          *ngIf="option.selected"
+          class="icon-check"
+          src="assets/images/check-box-checked.svg"
+          alt="" />
+        <img
+          *ngIf="!option.selected"
+          class="icon-check"
+          src="assets/images/check-box-unchecked.svg"
+          alt="" />
+        <!-- <input
+          disabled
+          style="display: none"
+          type="checkbox"
+          class="form-check-input"
+          id="{{ option.label }}"
+          name="{{ option.label }}"
+          value="{{ option.id }}"
+          [(ngModel)]="option.selected" /> -->
+          {{ option.label }}
+      </label>
+    </div>
+  </ng-template>
+  <div *ngIf="data.tampilan.deskripsi" class="form-text mt-2">
+    {{
+      data.property.deskripsi.value != ""
+        ? data.property.deskripsi.value
+        : data.property.deskripsi.placeholder
+    }}
+  </div>
+</ng-template>
+
+<ng-template #tanggal_diterima_search>
+  <div class="input-container mr-2" style="width: 309px">
+    <img src="https://cdn-icons-png.flaticon.com/512/833/833593.png" alt="" />
+    <!-- <input
+      style="width: 259px"
+      [(ngModel)]="filter.value"
+      type="date"
+      placeholder="Cari berdasarkan tanggal"
+      class="filter-input" /> -->
+  </div>
+</ng-template>

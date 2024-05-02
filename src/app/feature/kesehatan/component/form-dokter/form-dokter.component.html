@@ -1,0 +1,98 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title-page"> Tambah Dokter</div>
+            <div class="card">
+                <div class="card-header pb-0 px-0">
+                    <div class="card-header pb-0 px-0">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-8 col-md-6 col-12">
+                                    <div class="px-3">
+                                        <div class="card-title">Form Dokter</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="container">
+                        <div id="stepper1" class="bs-stepper">
+                            <div class="bs-stepper-header">
+                                <!-- <div class="line" [ngClass]="{'active-line': currentStep >= 1}"></div> -->
+                                <div class="step" data-target="#stepper-1">
+                                    <button class="step-trigger">
+                                        <span class="bs-stepper-circle">1</span>
+                                        <br>
+                                        <span class="bs-stepper-label">Data Dokter</span>
+                                    </button>
+                                </div>
+                                <div class="line"></div>
+                                <div class="step" data-target="#stepper-2">
+                                    <button class="step-trigger">
+                                        <span class="bs-stepper-circle">2</span>
+                                        <br>
+                                        <span class="bs-stepper-label">Riwayat Pendidikan</span>
+                                    </button>
+                                </div>
+                                <div class="line"></div>
+                                <div class="step" data-target="#stepper-3">
+                                    <button class="step-trigger">
+                                        <span class="bs-stepper-circle">3</span>
+                                        <br>
+                                        <span class="bs-stepper-label">Unggah Gambar</span>
+                                    </button>
+                                </div>
+                                <div class="line"></div>
+                                <div class="step" data-target="#stepper-4">
+                                    <button class="step-trigger">
+                                        <span class="bs-stepper-circle">4</span>
+                                        <br>
+                                        <span class="bs-stepper-label">Selesai</span>
+                                    </button>
+                                </div>
+                                <div class="line"></div>
+                                <div class="line-progress"></div>
+                                <div class="line-progress" style="background-color: #21409A;" [style.width]="stepWidths[currentStep - 1] + '%'"></div>
+                            </div>
+                            <div class="bs-stepper-content">
+                                <form (ngSubmit)="onSubmit()">
+                                    <div id="stepper-1" class="content">
+                                        <div class="form-group">
+                                            <label for="email">Email address</label>
+                                            <input type="email" class="form-control" id="email"
+                                                placeholder="Masukkan Email" />
+                                        </div>
+                                        <button (click)="nextStep(2)" class="btn btn-primary">Next</button>
+                                    </div>
+                                    <div id="stepper-2" class="content">
+                                        <div class="form-group">
+                                            <label for="education">Riwayat Pendidikan</label>
+                                            <input type="input" class="form-control" id="education"
+                                                placeholder="Masukkan Riwayat Pendidikan" />
+                                        </div>
+                                        <button (click)="prevStep(1)" class="btn btn-primary">Prev</button>
+                                        <button (click)="nextStep(3)" class="btn btn-primary">Next</button>
+                                    </div>
+                                    <div id="stepper-3" class="content">
+                                        <div class="form-group">
+                                            <label for="image">Unggah Gambar</label>
+                                            <input type="input" class="form-control" id="image"
+                                                placeholder="Massukan Unggah Gambar" />
+                                        </div>
+                                        <button (click)="prevStep(2)" class="btn btn-primary">Prev</button>
+                                        <button (click)="nextStep(4)" class="btn btn-primary">Next</button>
+                                    </div>
+                                    <div id="stepper-4" class="content text-center">
+                                        <button (click)="prevStep(3)" class="btn btn-primary">Prev</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

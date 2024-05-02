@@ -1,0 +1,195 @@
+#card-login {
+    box-shadow: 0 0 36px rgba(74, 74, 74, 0.3);
+    border-radius: 15px;
+}
+
+#card-login .card-body {
+    padding: 50px 35px;
+}
+
+#card-login .card-body h1 {
+    color: #009aad;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+#card-login .card-body h2 {
+    color: #4a4a4a;
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.text-input input {
+    width: 100%;
+    border: 1px solid #CBD5E1;
+    padding: 14px;
+    border-radius: 8px;
+    height: 40px;
+    font-size: 16px;
+}
+
+.text-input input::placeholder {
+    color: #64748B;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.rounded-8 {
+    border-radius: 8px;
+}
+
+.text-input label {
+    display: block;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    color: #111;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+#form-login {
+    margin-top: 30px;
+}
+
+#form-login button {
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 0 21px rgba(0, 154, 173, 0.36);
+}
+
+#form-login .form-group label {
+    color: #009aad;
+}
+
+#form-login .form-group input {
+    border: none;
+    border-bottom: 1px solid #a7a7a7;
+    padding: 15px 0;
+}
+
+#form-login .form-group input:focus {
+    border-bottom: 2px solid #80bdff !important;
+}
+
+.content {
+    min-width: 420px;
+}
+
+#btn-login {
+    background-color: #cc1d15;
+    color: #fff;
+}
+
+.ab {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+    padding-right: 10px;
+}
+
+.image {
+    width: 100%;
+    position: relative;
+}
+
+label {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.remember-me {
+    font-weight: 700;
+}
+
+.alert-danger {
+    font-size: 16px;
+    font-weight: 700;
+    color: #EB5757 !important;
+}
+
+.forgot-password {
+    font-size: 16px;
+    font-weight: 700;
+    color: #21409A !important;
+}
+
+.close-alert {
+    position: absolute;
+    right: 0;
+    top: .25rem;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    border-radius: 3px;
+    top: 7px;
+    left: 0;
+    height: 12px;
+    width: 12px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked~.checkmark {
+    background-color: #21409A;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 3px;
+    top: 0;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

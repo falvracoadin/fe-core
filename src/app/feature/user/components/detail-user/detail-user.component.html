@@ -1,0 +1,487 @@
+<div class="container-fluid">
+    <div class="d-flex justify-content-between">
+        <h2 class="my-auto page-title">
+            <span style="cursor: pointer" (click)="goingBack()">
+                <i class="fa fa-chevron-left mr-3"></i>
+            </span> User Detail - {{user?.Fullname}}
+        </h2>
+        <!-- <button *ngIf="!saasMode" class="button-red py-3 m-1 rounded-8" (click)="openModal(activityLog)">
+            <div class="val">
+                <i class="fa fa-user mr-2"></i>
+                View Activity Log
+            </div>
+        </button> -->
+    </div>
+    <div class="row mt-3">
+        <div class="col-8">
+            <!-- button nav -->
+            <div *ngIf="!saasMode" class="card">
+                <div class="card-body p-0" id="menu-head" >
+                    <button class="rounded-8 headerButton{{ active === 'general' ? ' active ' : ' nonActive ' }}" (click)="active = 'general'">General</button>
+                    <button class="rounded-8 headerButton{{ active === 'other' ? ' active ' : ' nonActive ' }}" (click)="active = 'other'">Other</button>
+                </div>
+            </div>
+            <!-- <div *ngIf="active == 'general'; else otherDetail">   
+                <ng-container *ngIf="!saasMode">
+                    <div class="card">
+                        <div class="card-body table-responsive px-0 pb-0">
+                            <div class="d-flex align-items-center justify-content-between px-3 mb-3">
+                                <p class="card-title">General Info</p> -->
+                                <!-- <button class="btn btn-outline-primary rounded-8" (click)="openEditModal(editGeneral, 'Ubah Informasi Umum')">
+                                    <i class="fas fa-pen mr-2"></i>
+                                    Edit
+                                </button> -->
+                            <!-- </div>
+                            <table class="table">
+                                <tr class="bg-second">
+                                    <td style="width: 45%" class="pl-3">Name</td>
+                                    <td class="fit"> : </td>
+                                    <td *ngIf="!(user?.Fullname == null || user?.Fullname == ''); else noData">{{user?.Fullname}}</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td style="width: 45%" class="pl-3">Phone</td>
+                                    <td> : </td>
+                                    <td *ngIf="!(user?.Phone == null || user?.Phone == ''); else noData">{{user?.Phone}}</td>
+                                </tr>
+                                <tr class="bg-second">
+                                    <td style="width: 45%" class="pl-3">NIK</td>
+                                    <td> : </td>
+                                    <td *ngIf="!(user?.NIK == null || user?.NIK == ''); else noData">{{user?.NIK}}</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td style="width: 45%" class="pl-3">Email</td>
+                                    <td> : </td>
+                                    <td *ngIf="!(user?.Email == null || user?.Email == ''); else noData">{{user?.Email}}</td>
+                                </tr>
+                                <tr class="bg-second">
+                                    <td style="width: 45%" class="pl-3">Referral Code</td>
+                                    <td> : </td>
+                                    <td *ngIf="!(user?.Referral == null || user?.Referral == ''); else noData">{{user?.Referral}}</td>
+                                    <td *ngIf="!(user?.Referral == null || user?.Referral == '')">✔️</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td style="width: 45%" class="pl-3">Member Type</td>
+                                    <td> : </td>
+                                    <td *ngIf="!(user?.Member == null || user?.Member == ''); else noData">{{user?.Member}}</td>
+                                    <td *ngIf="!(user?.Member == null || user?.Member == '')">✔️</td>
+                                </tr>
+                                <tr class="bg-second">
+                                    <td style="width: 45%" class="pl-3">Registration Date</td>
+                                    <td> : </td>
+                                    <td *ngIf="!(user?.RegDate == null || user?.RegDate == ''); else noData">{{user?.RegDate}}</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td style="width: 45%" class="pl-3">Failed Verification</td>
+                                    <td> : </td>
+                                    <td *ngIf="!(user?.FailedDate == null || user?.FailedDate == ''); else noData">{{user?.FailedDate}}</td>
+                                </tr>
+                                <tr class="bg-second">
+                                    <td style="width: 45%" class="pl-3">Success Verification</td>
+                                    <td> : </td>
+                                    <td *ngIf="!(user?.SuccessDate == null || user?.SuccessDate == ''); else noData">{{user?.SuccessDate}}</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td style="width: 45%" class="pl-3">Status</td>
+                                    <td> : </td>
+                                    <span *ngFor="let stat of status">
+                                        <td class="{{ stat.id === 'active' ? 'text-success' : stat.id === 'not-active' ? 'text-danger' : stat.id === 'blacklist' ? '' : stat.id === 'suspend' ? 'text-warning' : stat.id === 'expired' ? 'text-danger' : stat.id === 'paid' ? 'text-primary' : '' }}" style="font-weight: 400;" *ngIf="(user?.Status == stat.id)">{{ stat.name }}</td>
+                                    </span>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </ng-container> -->
+                <!-- <ng-container *ngIf="saasMode">
+                    <div class="card">
+                        <div class="card-body table-responsive px-0 pb-0">
+                            <div class="d-flex align-items-center justify-content-between px-3 mb-3">
+                                <p class="card-title">General Info</p> -->
+                                <!-- <button *ngIf="roleUser?.superadmin" class="btn btn-outline-primary rounded-8" (click)="openEditModal(editGeneral, 'Ubah Informasi Umum')">
+                                    <i class="fas fa-pen mr-2"></i>
+                                    Edit
+                                </button> -->
+                            <!-- </div> -->
+                            <!-- <table class="table">
+                                <tr class="bg-second">
+                                    <td style="width: 45%" class="pl-3">Fullname</td>
+                                    <td class="fit"> : </td>
+                                    <td *ngIf="!(user?.Fullname == null || user?.Fullname == ''); else noData">{{user?.Fullname}}</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td style="width: 45%" class="pl-3">Username</td>
+                                    <td class="fit"> : </td>
+                                    <td *ngIf="!(user?.Username == null || user?.Username == ''); else noData">{{user?.Username}}</td>
+                                </tr>
+                                <tr class="bg-second">
+                                    <td style="width: 45%" class="pl-3">Phone</td>
+                                    <td> : </td>
+                                    <td *ngIf="!(user?.Phone == null || user?.Phone == ''); else noData">{{user?.Phone}}</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td style="width: 45%" class="pl-3">Email</td>
+                                    <td> : </td>
+                                    <td *ngIf="!(user?.Email == null || user?.Email == ''); else noData">{{user?.Email}}</td>
+                                </tr>
+                                <tr class="bg-second">
+                                    <td style="width: 45%" class="pl-3">Install Id</td>
+                                    <td> : </td>
+                                    <td *ngIf="!(user?.InstallId == null || user?.InstallId == ''); else noData">{{user?.InstallId}}</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td style="width: 45%" class="pl-3">Device Id</td>
+                                    <td> : </td>
+                                    <td *ngIf="!(user?.DeviceId == null || user?.DeviceId == ''); else noData">{{user?.DeviceId}}</td>
+                                </tr>
+                                <tr class="bg-second">
+                                    <td style="width: 45%" class="pl-3">Status</td>
+                                    <td> : </td>
+                                    <span *ngFor="let stat of status">
+                                        <td class="{{ stat.id === 'active' ? 'text-success' : stat.id === 'not-active' ? 'text-danger' : stat.id === 'blacklist' ? '' : stat.id === 'suspend' ? 'text-warning' : stat.id === 'expired' ? 'text-danger' : stat.id === 'paid' ? 'text-primary' : '' }}" style="font-weight: 400;" *ngIf="(user?.Status == stat.id)">{{ stat.name }}</td>
+                                    </span>
+                                </tr>
+                            </table> -->
+                        <!-- </div>
+                    </div>
+                </ng-container> -->
+            <!-- </div> -->
+        </div>
+        <div class="col-4">
+            <!-- ktp -->
+            <div class="card">
+                <!-- <div class="card-body" *ngIf="user?.KTP; else noKtp">
+                    <h3>ID Card Photo</h3>
+                    <img [src]="user.KTP" alt="">
+                </div> -->
+            </div>
+
+            <!-- submitted selfie -->
+            <div class="card">
+                <!-- <div class="card-body" *ngIf="user?.Selfie; else noSelfie">
+                    <h3>Submitted Selfie</h3>
+                    <img [src]="user.Selfie" alt="">
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <ng-template #noKtp>
+    <div class="card-body">
+        <h3>ID Card</h3>
+        <img src="assets/images/blank-ktp.png" alt="" srcset="" class="img-fluid w-100" >
+    </div>
+</ng-template> -->
+<!-- 
+<ng-template #noSelfie>
+    <div class="card-body">
+        <h3>Submitted Selfie</h3>
+        <img src="assets/images/blank-photo.jpg" alt="Default User Photo" class="img-fluid" />
+    </div>
+</ng-template> -->
+
+<!-- <ng-template #otherDetail>
+    <div class="card">
+        <div class="card-body px-0 pb-0">
+            <div class="d-flex align-items-center justify-content-between px-3 mb-3">
+                <p class="card-title">Social Media</p>
+                <button class="btn btn-outline-primary rounded-8" (click)="openEditModal(editSocial, 'Ubah Sosial Media')">
+                    <i class="fas fa-pen mr-2"></i>
+                    Edit
+                </button>
+            </div>
+            <table class="table table-borderless">
+                <tr class="bg-second">
+                    <td style="width: 45%" class="pl-3">Instagram</td>
+                    <td class="fit"> : </td>
+                    <td *ngIf="!(user?.Instagram == null || user?.Instagram == ''); else noData">{{user?.Instagram}}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td style="width: 45%" class="pl-3">Facebook</td>
+                    <td> : </td>
+                    <td *ngIf="!(user?.Facebook == null || user?.Facebook == ''); else noData">{{user?.Facebook}}</td>
+                </tr>
+                <tr class="bg-second">
+                    <td style="width: 45%" class="pl-3">Twitter</td>
+                    <td> : </td>
+                    <td *ngIf="!(user?.Twitter == null || user?.Twitter == ''); else noData">{{user?.Twitter}}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td style="width: 45%" class="pl-3">Line</td>
+                    <td> : </td>
+                    <td *ngIf="!(user?.Line == null || user?.Line == ''); else noData">{{user?.Line}}</td>
+            </table>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body px-0 pb-0">
+            <div class="d-flex align-items-center justify-content-between px-3 mb-3">
+                <p class="card-title">Financial Info</p>
+            </div>
+            <table class="table table-borderless">
+                <tr class="bg-second">
+                    <td style="width: 45%" class="pl-3">Qoin Balance</td>
+                    <td class="fit"> : </td>
+                    <td *ngIf="!(user?.QoinBalance == null || user?.QoinBalance == ''); else noData">{{user?.QoinBalance}}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td style="width: 45%" class="pl-3">Qoin Poin</td>
+                    <td> : </td>
+                    <td *ngIf="!(user?.QoinPoint == null || user?.QoinPoint == ''); else noData">{{user?.QoinPoint}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body px-0 pb-0">
+            <div class="d-flex align-items-center justify-content-between px-3 mb-3">
+                <p class="card-title">Bill Info</p>
+            </div>
+            <table class="table table-borderless">
+                <tr class="bg-second">
+                    <td style="width: 45%" class="pl-3">Id Pelanggan PLN</td>
+                    <td class="fit"> : </td>
+                    <td *ngIf="!(user?.PLN == null || user?.PLN == ''); else noData">{{user?.PLN}}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td style="width: 45%" class="pl-3">Id Pelanggan PDAM</td>
+                    <td> : </td>
+                    <td *ngIf="!(user?.PDAM == null || user?.PDAM == ''); else noData">{{user?.PDAM}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body px-0 pb-0">
+            <div class="d-flex align-items-center justify-content-between px-3 mb-3">
+                <p class="card-title">Card Info</p>
+            </div>
+            <table class="table table-borderless">
+                <tr class="bg-second">
+                    <td style="width: 45%" class="pl-3">Debit Card</td>
+                    <td class="fit"> : </td>
+                    <td *ngIf="!(user?.Debit == null || user?.Debit == ''); else noData">{{user?.Debit}}</td>
+                </tr>
+                <tr class="bg-white">
+                    <td style="width: 45%" class="pl-3">Credit Card</td>
+                    <td> : </td>
+                    <td *ngIf="!(user?.Credit == null || user?.Credit == ''); else noData">{{user?.Credit}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</ng-template> -->
+
+<!-- <ng-template #noData>
+    <td>-</td>
+</ng-template> -->
+<!-- 
+<ng-template #activityLog let-modal>
+    <div class="modal-header" style="font-size: 18px !important; font-weight: 700;">
+        <h4 class="modal-title mt-0">{{titleModal}}</h4>
+        <button type="button" class="close" (click)="modal.close()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body p-0">
+        <table class="table">
+            <thead style="background-color: #E2E8F0;">
+                <tr>
+                    <th class="text-center" scope="col">Last Update</th>
+                    <th class="text-center" scope="col">Information</th>
+                    <th class="text-center" scope="col">Reason Update</th>
+                    <th class="text-center" scope="col">Update By</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">-</td>
+                    <td class="text-center">-</td>
+                    <td class="text-center">-</td>
+                    <td class="text-center">-</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-template> -->
+
+<!-- <ng-template #editGeneral let-modal>
+    <ng-container *ngIf="!saasMode">
+        <div class="modal-header" style="font-size: 18px !important; font-weight: 700;">
+            <h4 class="modal-title mt-0">{{ titleModal }}</h4>
+            <button type="button" class="close" (click)="modal.close()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body p-0">
+            <form class="px-3 mt-3" [formGroup]="generalForm" (submit)="saveGeneral(); modal.close()">
+                <div class="form-group row">
+                    <label class="col-md-4 d-flex align-items-center mb-0">Nama Lengkap</label>
+                    <div class="col-md-8">
+                            <input formControlName="Fullname" type="text" name="name" class="form-control form-control-lg" style="background: none !important">
+                        <div class="invalid-feedback">
+                            <!-- <div *ngFor="let error of validation.Fullname">{{ error }}</div> -->
+                        <!-- </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 d-flex align-items-center mb-0">No HP</label>
+                    <div class="col-md-8">
+                            <input formControlName="Phone" type="text" name="NIK" class="form-control form-control-lg" style="background: none !important" />
+                        <div class="invalid-feedback">
+                            <!-- <div *ngFor="let error of validation.NIK">{{ error }}</div> -->
+                        <!-- </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 d-flex align-items-center mb-0">Email</label>
+                    <div class="col-md-8">
+                            <input formControlName="Email" type="text" name="Phone" class="form-control form-control-lg" style="background: none !important" />
+                        <div class="invalid-feedback"> -->
+                            <!-- <div *ngFor="let error of validation.Phone">{{ error }}</div> -->
+                        <!-- </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 d-flex align-items-center mb-0">Status</label>
+                    <div class="col-md-8">
+                        <ng-select class="custom" [items]="status" bindLabel="name" bindValue="id" formControlName="Status"></ng-select>
+                        <div class="invalid-feedback"> -->
+                            <!-- <div *ngFor="let error of validation.Status">{{ error }}</div> -->
+                        <!-- </div>
+                    </div>
+                </div>
+                <hr style="border-top: 1px solid #CBD5E1 !important" />
+                <div class="form-group row justify-content-center">
+                    <button type="button" class="btn custom btn-outline-primary mr-3" (click)="modal.close(); resetForm()">Batal</button>
+                    <button type="submit" class="btn custom btn-primary">Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="saasMode">
+        <div class="modal-header" style="font-size: 18px !important; font-weight: 700;">
+            <h4 class="modal-title mt-0">{{ titleModal }}</h4>
+            <button type="button" class="close" (click)="modal.close()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body p-0">
+            <form class="px-3 mt-3" [formGroup]="generalForm" (submit)="saveGeneral(); modal.close()">
+                <div class="form-group row">
+                    <label class="col-md-4 d-flex align-items-center mb-0">Fullname</label>
+                    <div class="col-md-8">
+                            <input formControlName="Fullname" type="text" class="form-control form-control-lg" (disabled)="true">
+                        <div class="invalid-feedback"> -->
+                            <!-- <div *ngFor="let error of validation.Fullname">{{ error }}</div> -->
+                        <!-- </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 d-flex align-items-center mb-0">Username</label>
+                    <div class="col-md-8">
+                            <input formControlName="Username" type="text" class="form-control form-control-lg" style="background: none !important">
+                        <div class="invalid-feedback">
+                            <!-- <div *ngFor="let error of validation.Fullname">{{ error }}</div> -->
+                        <!-- </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 d-flex align-items-center mb-0">No HP</label>
+                    <div class="col-md-8">
+                            <input formControlName="Phone" type="text" class="form-control form-control-lg" style="background: none !important"/>
+                        <div class="invalid-feedback"> -->
+                            <!-- <div *ngFor="let error of validation.NIK">{{ error }}</div> -->
+                        <!-- </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 d-flex align-items-center mb-0">Email</label>
+                    <div class="col-md-8">
+                            <input formControlName="Email" type="text" class="form-control form-control-lg" (disabled)="true"/>
+                        <div class="invalid-feedback"> -->
+                            <!-- <div *ngFor="let error of validation.Phone">{{ error }}</div> -->
+                        <!-- </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 d-flex align-items-center mb-0">Status</label>
+                    <div class="col-md-8"> -->
+                        <!-- <ng-select class="custom" [items]="status" bindLabel="name" bindValue="id" formControlName="Status"></ng-select> -->
+                        <!-- <div class="invalid-feedback"> -->
+                            <!-- <div *ngFor="let error of validation.Status">{{ error }}</div> -->
+                        <!-- </div>
+                    </div>
+                </div>
+                <hr style="border-top: 1px solid #CBD5E1 !important" />
+                <div class="form-group row justify-content-center">
+                    <button type="button" class="btn custom btn-outline-primary mr-3" (click)="modal.close(); resetForm()">Batal</button>
+                    <button type="submit" class="btn custom btn-primary">Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
+    </ng-container> -->
+    
+<!-- </ng-template> -->
+
+<!-- <ng-template #editSocial let-modal>
+    <div class="modal-header" style="font-size: 18px !important; font-weight: 700;">
+        <h4 class="modal-title mt-0">{{ titleModal }}</h4>
+        <button type="button" class="close" (click)="modal.close()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body p-0">
+        <form class="px-3 mt-3" [formGroup]="socialForm" (submit)="saveSocial(); modal.close()">
+            <div class="form-group row">
+                <label class="col-md-4 d-flex align-items-center mb-0">Instagram</label>
+                <div class="col-md-8">
+                        <input formControlName="instagram" type="text" name="name" class="form-control form-control-lg" style="background: none !important">
+                    <div class="invalid-feedback"> -->
+                        <!-- <div *ngFor="let error of validation.Fullname">{{ error }}</div> -->
+                    <!-- </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 d-flex align-items-center mb-0">Facebook</label>
+                <div class="col-md-8">
+                        <input formControlName="facebook" type="text" name="NIK" class="form-control form-control-lg" style="background: none !important" />
+                    <div class="invalid-feedback"> -->
+                        <!-- <div *ngFor="let error of validation.NIK">{{ error }}</div> -->
+                    <!-- </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 d-flex align-items-center mb-0">Twitter</label>
+                <div class="col-md-8">
+                        <input formControlName="twitter" type="text" name="Phone" class="form-control form-control-lg" style="background: none !important" />
+                    <div class="invalid-feedback"> -->
+                        <!-- <div *ngFor="let error of validation.Phone">{{ error }}</div> -->
+                    <!-- </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 d-flex align-items-center mb-0">Line</label>
+                <div class="col-md-8">
+                        <input formControlName="line" type="email" name="email" class="form-control form-control-lg" style="background: none !important" />
+                    <div class="invalid-feedback"> -->
+                        <!-- <div *ngFor="let error of validation.Email">{{ error }}</div> -->
+                    <!-- </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 d-flex align-items-center mb-0 required">Alasan mengubah</label>
+                <div class="col-md-8">
+                        <input formControlName="reason" type="email" name="email" class="form-control form-control-lg" style="background: none !important" placeholder="Tuliskan alasan Anda" />
+                    <div class="invalid-feedback"> -->
+                        <!-- <div *ngFor="let error of validation.Email">{{ error }}</div> -->
+                    <!-- </div>
+                </div>
+            </div>
+            <hr style="border-top: 1px solid #CBD5E1 !important" />
+            <div class="form-group row justify-content-center">
+                <button type="button" class="btn custom btn-outline-primary mr-3" (click)="modal.close(); resetForm()">Batal</button>
+                <button type="submit" class="btn custom btn-primary">Simpan Perubahan</button>
+            </div>
+        </form>
+    </div>
+</ng-template> -->

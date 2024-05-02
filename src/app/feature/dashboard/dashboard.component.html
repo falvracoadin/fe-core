@@ -1,0 +1,217 @@
+<div class="breadcrumb">Dashboard</div>
+<div class="tab d-flex justify-content-end">
+  <div class="tab-item" (click)="openTab('User')" [class.active]="currentTab == 'User'">
+    <span class="btn btn-tab rounded-8"
+      [ngClass]="{'btn-primary': currentTab == 'User', 'btn-outline-primary': currentTab != 'User'}">Pengguna
+      Terdaftar</span>
+  </div>
+  <div class="tab-item" (click)="openTab('Service')" [class.active]="currentTab == 'Service'">
+    <span class="btn btn-tab rounded-8"
+      [ngClass]="{'btn-primary': currentTab == 'Service', 'btn-outline-primary': currentTab != 'Service'}">Layanan
+      Kesehatan</span>
+  </div>
+</div>
+<div class="container-fluid" *ngIf="currentTab == 'User'">
+  <div class="title-tab">Data Pengguna</div>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let stat of statsCard">
+      <app-stats-card *ngIf="checkRoles(stat.role)" [props]="stat"></app-stats-card>
+    </div>
+
+    <div class="col-md-4" *ngIf="checkRoles('web:dashboard:transactionbytype:read')">
+      <div class="card">
+        <h4 class="card-title">Transaction by Type</h4>
+        <div class="card-body" style="position: relative">
+          <img placement="auto"
+            ngbTooltip="Total user dihitung berdasarkan jumlah nomor handphone yang telah terverifikasi"
+            class="attention-icon" src="assets/icons/attention.svg" [height]="24" [width]="24" alt="Attention Icon" />
+          <div class="chartjs-chart">
+            <!-- <canvas baseChart [data]="pieChartData1" [labels]="pieChartLabels1" [chartType]="pieChartType1"
+              [options]="pieChartOptions1" [legend]="pieChartLegend1" [colors]="pieChartColors1"
+              [plugins]="chartPlugins" height="260">
+            </canvas> -->
+          </div>
+          <div class="legend-container">
+            <!-- <ng-container *ngFor="let label of pieChartLabels1; let i = index">
+              <div class="legend-item" *ngIf="pieChartData1 && pieChartData1[i] > 0">
+                <span class="legend-dot" [ngStyle]="{'background-color': pieChartColors1[0].backgroundColor[i]}"></span>
+                {{ label }}
+              </div>
+            </ng-container> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4" *ngIf="checkRoles('web:dashboard:transactionbystatus:read')">
+      <div class="card">
+        <h4 class="card-title">Transaction KTP by Status</h4>
+        <div class="card-body" style="position: relative">
+          <img placement="auto" ngbTooltip="Total digitalisasi KTP berdasarkan status ajudikasinya"
+            class="attention-icon" src="assets/icons/attention.svg" [height]="24" [width]="24" alt="Attention Icon" />
+          <div class="chartjs-chart">
+            <!-- <canvas baseChart [data]="pieChartData2" [labels]="pieChartLabels2" [chartType]="pieChartType2"
+              [options]="pieChartOptions2" [legend]="pieChartLegend2" [colors]="pieChartColors2"
+              [plugins]="chartPlugins" height="260">
+            </canvas> -->
+          </div>
+          <div class="legend-container">
+            <!-- <ng-container *ngFor="let label of pieChartLabels2; let i = index">
+              <div class="legend-item" *ngIf="pieChartData2 && pieChartData2[i] > 0">
+                <span class="legend-dot" [ngStyle]="{'background-color': pieChartColors2[0].backgroundColor[i]}"></span>
+                {{ label }}
+              </div>
+            </ng-container> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4" *ngIf="checkRoles('web:dashboard:digitizedcardsbytype:read')">
+      <div class="card">
+        <h4 class="card-title">Digitized Cards by Type</h4>
+        <div class="card-body" style="position: relative">
+          <img placement="auto" ngbTooltip="Total digitalisasi kartu berdasarkan jenis/tipe kartu"
+            class="attention-icon" src="assets/icons/attention.svg" [height]="24" [width]="24" alt="Attention Icon" />
+          <div class="chartjs-chart">
+            <!-- <canvas baseChart [data]="pieChartData3" [labels]="pieChartLabels3" [chartType]="pieChartType3"
+              [options]="pieChartOptions3" [legend]="pieChartLegend3" [colors]="pieChartColors3"
+              [plugins]="chartPlugins" height="260">
+            </canvas> -->
+          </div>
+          <div class="legend-container">
+            <!-- <ng-container *ngFor="let label of pieChartLabels3; let i = index">
+              <div class="legend-item" *ngIf="pieChartData3 && pieChartData3[i] > 0">
+                <span class="legend-dot" [ngStyle]="{'background-color': pieChartColors3[0].backgroundColor[i]}"></span>
+                {{ label }}
+              </div>
+            </ng-container> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12" *ngIf="checkRoles('web:dashboard:top10product:read')">
+      <div class="card">
+        <h4 class="card-title mb-4 mr-3">TOP 10 Products <span class="ml-2"><img placement="auto"
+              ngbTooltip="10 produk teratas yang memiliki jumlah transaksi terbanyak" src="assets/icons/attention.svg"
+              [height]="24" [width]="24" alt="Attention Icon" /></span></h4>
+        <div class="card-body">
+          <div class="chartjs-chart">
+            <!-- <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+              [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType"
+              [colors]="barChartColors">
+              >
+            </canvas> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" *ngIf="currentTab == 'Service'">
+
+  <div class="title-tab">Transaksi dan Pendapatan</div>
+  <div class="row">
+    <div class="col-md-6" *ngFor="let stat of statsService">
+      <app-stats-card *ngIf="checkRoles(stat.role)" [props]="stat"></app-stats-card>
+    </div>
+  </div>
+
+  <div *ngIf="checkRoles('web:dashboard:transaksipendapatan:read')">
+    <div class="title-tab">Transaksi dan Pendapatan</div>
+    <div class="col-md-12" id="chart-pendapatan">
+      <app-chart-pendapatan [request]="requestPendapatan"></app-chart-pendapatan>
+    </div>
+  </div>
+
+  <div *ngIf="checkRoles('web:dashboard:trendtransaksi:read')">
+    <div class="title-tab">Trend Transaksi</div>
+    <div class="col-md-12" id="chart-trend">
+      <app-chart-trend [request]="requestTrend"></app-chart-trend>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6" *ngIf="checkRoles('web:dashboard:doktertersedia:read')">
+      <div class="title-tab">Dokter Tersedia</div>
+      <div class="card card-doctor">
+        <div class="card-body">
+          <div class="doctor-card-container">
+            <div class="doctor-card" *ngFor="let doctor of listDoctors">
+              <img src="{{ doctor.imageUrl }}" class="doctor-image" alt="Doctor Image">
+              <div class="doctor-details">
+                <div class="doctor-name">{{ doctor.name }}</div>
+                <div class="doctor-specialist">{{ doctor.specialist }}</div>
+              </div>
+              <div class="status-circle"
+                [ngClass]="{ 'available': doctor.status === 'Available', 'unavailable': doctor.status === 'Unavailable' }">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" *ngIf="checkRoles('web:dashboard:pasien:read')">
+      <div class="title-tab">Pasien</div>
+      <div class="row">
+        <div class="col-md-12" *ngFor="let stat of statsPatient">
+          <app-stats-card [props]="stat"></app-stats-card>
+        </div>
+        <div class="col-md-6" *ngFor="let stat of statsGender">
+          <app-stats-card [props]="stat"></app-stats-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="checkRoles('web:dashboard:konsultasi:read')">
+    <div class="title-tab">Konsultasi</div>
+    <div class="col-md-12" *ngFor="let stat of statsTotalKonsultasi">
+      <app-stats-card [props]="stat"></app-stats-card>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="title-semi-tab">Jumlah Konsultasi Berdasarkan Dokter</div>
+        <table class="table table-hover" datatable [dtOptions]="dtOptions">
+          <thead>
+            <tr style="background-color: #E2E8F0 !important">
+              <th class="pl-3">Nama Dokter</th>
+              <th>Jumlah</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let logs of listConsultDoctor; index as i" [class.bg-white]="(i % 2) == 0"
+              [class.bg-second]="(i % 2) == 1">
+              <td class="align-middle pl-3">{{ logs.nameDoctor ? logs.nameDoctor : "-" }}</td>
+              <td class="align-middle">{{ logs.totalConsultation ? logs.totalConsultation : "-"}}</td>
+            </tr>
+          </tbody>
+          <tr class="table-danger" *ngIf="totalRecord == 0">
+            <td [attr.colspan]="10" class="text-center">
+              Data tidak ditemukan
+            </td>
+          </tr>
+        </table>
+        <div class="info-wrap-imi" *ngIf="totalRecord != 0">
+          <div class="info-1">Tampilkan</div>
+          <select [(ngModel)]="limit" id="inputLimit" class="form-control info-2"
+            style=" background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; padding: 0.47rem 0.75rem"
+            name="showFilter" (change)="clickLimit()">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+          <div class="info-3">dari {{ totalRecord }} data</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="title-semi-tab">Jumlah Konsultasi Berdasarkan Spesialis</div>
+      </div>
+    </div>
+  </div>
+
+</div>

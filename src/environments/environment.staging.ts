@@ -1,51 +1,44 @@
-export const environment = {
-  production: true,
-  apiUrl:
-    'U2FsdGVkX196K+uTZAZEnJEvpHQI+INXLFLUzA1s8PZkMlGRo3FDSFfTppGClpETtD5eXTAqS/cKuF/hSnSHxA==',
+/* tslint:disable:max-line-length */
+export const environment : any = {
+  sentry_mode: true,
+  sentry_environment: "U2FsdGVkX1/lYxDqJHGRud+p4Y7AiW6muBNKa6yHTP4=",
+  sentry_dns:
+    "U2FsdGVkX18XTL5ND6wwnuYaFF090KOucrqfVtB4xTIFXwWD4zrySo1VgbNUFMj0Om2Pi68DxGM0hIkWpO/60Ch9k5tGI6wUae3pQvMWbzk=",
+
+  production: false,
+  apiURL:
+    "U2FsdGVkX19RrYmI5o9U9bHBDkPiCdICsBHN4BWb1QnbpywvcMFh7RVjJIAeRvybS62VzwRClYBsaowdQ+22aQ==",
   baseUrl:
-    'U2FsdGVkX1+oEw9sHAMZoLqoIC3Y2gXy+I6reYQdA9lMCR0Zz8iRP/POuJYsRouHjsa3iLhpWLPWElRKzVBoQA==',
+    "U2FsdGVkX19dWSB+hp7IKtk5yNiVYTrDyww8mHtMNLOQB2OTfP/UMj97NH6v9JhSOJUO/xnhIqIi89PyXms3iQ==",
+  appId:
+    "U2FsdGVkX19YPtzwzYTfgNAyKzHMW5bVWEOUznWxBCaIYAFnnS3jpPj7BwWBRMs7QtRvgTMBpd81QqmYQPYHD8hg8Ah13sI4MbheZiPpD3gdhGuNJHBLnyGj66K+egJTATJR2g12RnKJJc9SN16v7hfBLSZ6SRY2jWPPXEGlv9m2LVq792gfTVu9mdl+XIgoxwD5+N0YbXzo/+VDJMBs+yDl53WlfSNJkKtm0XquR7ZYQCXmExcPa+ik12Ph3bU0VGmJIbApBKOrs2WGdt22YwXsyqXcp0nIv2flXsoU2SicYmaRn8Y44rnDVWPlcmKpiFp2MkD8cgSux6TzKWbjHxoHqUtVg8lQNEvAQamUTchdPfe2K0bvU9xB/IdvodDHHE4o6Vjp1MPPV4tu4iJOnOQi9pzFs3gqoT16M1Y9UIoUzfzU57aVvTGnKMYgoCo80DgZ61UD9qtRBPbjcWig4QML+BtFrPSZsO98uM5gVX7hG99RCc+eOS0vFWKoNsADqrYXQCOTS0JN5tdfYWdX1YsVtJdAyhBPv3hUjY1CWNH7ERm7XvPm4Mz0YEWfQJJ0RERQT758QDzprm7K2c/YX5lywJiBD0BQPQ+ApnTLJIq+2J9lmw66RzTkdzKNBjH/YO2vLleUSfQgdS5JQF5fe4R+l1udgJM7GceH5nkeWAnMjzvGO605yYJsq6X1FgUSVF5EwmX/5fysPX1INPANBvcE10PbseSADVpxTTFVwcjljTgAVVFU+jlRtK3BpSI84bm4ohq3rGsoG8L78UT/6f8ljsfrg9dCLl5XZs/pk0dCyWTC0Vo/YNIpGgmrU5O/CFtTMjeFMeyyn3ubwzazeZ95SYwlr972oYRZxt9fDNZ0WBeRMTvTzbNEsHmm/NAnZ4oJkE7tqaNJ9CDH9ayJuKOPaDOhgZQHWkzgeNEgBDrU9iSkrwXgDtdUwRXU90IoNDCZfGuWNw/HHw06bIWfRGDXMTFR+gYzkjx8kNPCWapUoNgBUrgxy4crQTFK/OhjeDoHUzha3WL68ZXTH1pcedhGsQBFFsC8T39ZIhATjtFaqmUGiATMaCyRD76NsgHTGrRfkKMApkm42hBXICo5FxrPhaWUs6uu5axgOG3VCIssdH+JBg9MkUxbDBQkhQw8Y+IyITWRmTznSjhDDMNtG0Fvv0/Wesudo3LwmjYyDkniwdm4dNG1Ty8XzJBvUCgYsLXcWzpBGtqhcsNVIUlrpugVVuUKxg/pJG7Fs26HgwDxu3PmuBDhxQsNN2COhiVGY5BMOoMGnzMn4+KdPQuBHYyco+wW4ETFgfyRcZTc4xkZefE98UOeygpS5HbWF1NoesoNfo6dXdZPmeNuFyuNwmFhB3Wva8TJM74Eix6YnNQYCW4OEPZ/bcv/wrh+2O5Lw7FzsGQpQeGsHcStAmjrqvncl/4bnbB0So5PT6ylnYw/TtSGyE2klQbsFj0e9wam",
 
+  // mode: "U2FsdGVkX1/Si7Eqqg0X4AIuFvdup2+EEA7yiR1DDJA=", // This use for auth process, Using Saas
+  mode: "U2FsdGVkX19mdcqlI09ghKZxDfFGleTyjmrtXcvOlDQ=", // Keycloak
+  defaultMode: "U2FsdGVkX1/PMN4UiIZj2kDtpP0dbkNpXYzyk1y+3j8=", // This use for anything else, Using Default
   saasUrl:
-    'U2FsdGVkX1+vTsQ2zzTm+NleRLirX0pOq/smreD512beJ7i7ScPN1uuoEja2pK99K1z8KscwZ1rcTcaCh9+Jqw==',
-  roleId: 'U2FsdGVkX191nRQrYMCPtF3Bf8Tanf87t8eTxikTTjs=',
-  platform: 'U2FsdGVkX1+UKQXDfWmOoIz26Vz9eI7Q4KFMLFEh5ZA=',
-  secret: 'U2FsdGVkX19qc4MGKnwUerFktnn5dPERfqpe+H6G9tWVAnOnYCuoQlkt2PswW7R3',
+    "U2FsdGVkX19uj9Cak4sGaHppOjOT7LcHyAvzHBlNv9pZr+trkJAlsREq3DkyyBg2PZtH4KdwCMBVWfXly8OKSg==", // https://staging-saas-apipg.qoin.id
+  roleId: "U2FsdGVkX19vl90lqtGOrdIbqpRxSbGY6Xe20L7oL/I=", // 243
+  platform: "U2FsdGVkX1/70cgN90fjcHonl6Y620T456rXj1YA9Vo=", // health-web
+  secret: "U2FsdGVkX1+d3ssimSRd52CidgOxy/jrRmHvO5j31f1MKCWhouAO7AthipGamlu7",
 
-  saasMinioUrl:
-    'U2FsdGVkX18SW5b4LEAawtgmDA016Daim8/oAtFKmpeJTYesn/nn5li2wh7UOL5RtImQQvgDfxfcG+wohEKcuw==',
-  saasMinioBucket: 'U2FsdGVkX1/Pepnf/qjWUDRh/dsvHiGgoFcmoWVUXgg=',
-  saasMinioApiKey:
-    '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',
+  saasMinioUrl: "https://staging-saas-apipg.qoin.id/workspace",
+  saasMinioBucket: "",
+  saasMinioApiKey: "",
 
-  idleTimeout: 'U2FsdGVkX19ZDUzl5XLh900TYQ+YM1oiDxibXnszPYc=',
-  countAutoLogout: 'U2FsdGVkX1/xr4mME5qKj7l/m7Ek7HnUUYqOhJ4+Dl0=',
-  idleMode: true,
-
-  sentryMode: false,
-  sentryEnvironment: 'U2FsdGVkX18hNYjxdx+I4sAMtuNX/HALPXdSB3gtz7Q=',
-  sentryDns:
-    'U2FsdGVkX1/AY2kshOiEZ5zMgayJnCeSb8tpJXzy2RBMJOw8jj9gsVOOnOjD2oNgW0m9Y8vJjADJmw0rE+QUgcc+qW/Z8CSmSk8dD9H9xQk=',
-
-  rsaPublicKey:
-    'U2FsdGVkX18PnMxrAGHE7XbIpC1szR7rZUUgTbhvCefKmU5Z4ta/haNap5aLUtBHET4OT2ykRmfMHT8mXuYJ1TgHYXVtYV2QQE/apO5E9VefSdM3maNCPb3k9lnjXcppN/e1Y6NXxfFegLWA32mkJV+OfkTXmQeevQ0JrL6MDH2H8j1lgyFlMt4/N1aiaJkC00UyWuC2GHicZrR9EDXHal40gO6P1MyejnWdyaaevSju9rRGHsgIxUwxSN7Hd15HXwHhfagiE2H9m/sMHrS1oQ==',
-  rsaPrivateKey:
-    'U2FsdGVkX1+gkn9etV0gK/I/QU3BAlKdPbe+nVWzTFBXE9dbqaR54D43dKTwAg++1SHTm83j9M1mf1uL3F4hi9F5Ym8UEiJqyARX3mQGfyW05ZrPcQiQs5RDJyZ3wMDMMEm0n4/g6i4UWpLx25DXex2AOko6NbYbSA77Jqz7AIB3SjRvrOjhx2JbTCF7dxr81Mysf0o2HuVaF0BdULvEQo+VEJoDz1kTrYfEUZaAADWZkY0vflU3NS2VTR8K9s+tyUty6CE/Hd8mNX3UaGnDnyzLXCjmuON9kgpcM7QCmcGHTYlU0vmY6BhgIHf8WVa0/qHyyRn3bQJ3STx7l30gSDMMUWxWkKF6eya07SUsDlrsEDmIfzIx8dDO8kaziOQ9sTuqhkFBrKVUwNL7RK1cK1ptvgo9Bs7H3lPxAzmHPSanq4nbb7vcGuqoyvVq4000dnvPd/mS7/57qISuN54sTXp77TkvXUXBuEL9QvNX2gTa5zJ0Yh1CO5FOdH2k32JXh5EAVTxeZXx080JRe1Q2dQliaxUuRHxfmIQQ35yn1sV9uve3zKgI4VEBnZjx5Asgs9OVdYHevYNsJEPlhgHk9Nx01LsrkknMyDxjEOJC6N2xjnnbv+45bAnmxoJ6rJFLZOYRyY8zisDYfQ0srKM4Ukv+ggXcz7EJq+CXsea/W1NSDWi4wbOs4I3h91n8CfPT',
-
-  secretHashKey: 'NzgMZmu2hwtvWARUr1gWKgj9vokH1YG8',
-  secretHashKeyAdj: 'e4g*4*_>^2^(s0^=)^^7%s3<',
-
-  // authMode: 'NzgMZmu2hwtvWARUr1gWKgj9vokH1YG8',
-  authMode: 'U2FsdGVkX189LvYgp3QopDqqlYpm6vtIvQNcH81gsI8=',
+  oidc_url: "https://keycloak.qoin.id/realms/venturoRND",
+  oidc_clientId: "health-dev",
+  apiURLKeycloak:
+    "U2FsdGVkX18FJq6APyUwMnWKk/HREmYiGCbJKy38wrJIfX2XV46P3kEWcfsUtui8/gfWMqd+Qtzz4dwlXQrcQURMMXVXIHUQV9528G7psjM=",
+  update_password_keycloak:
+    "U2FsdGVkX182gFzzJTaTd58w0igtLoe9xGanNzaok5P+HLiaPYIECAZyMO7bypvr+DqGz0d5aEV3jswrZTrPp35gwzbv3ZMWHkJmcinWRHOZGV43F6QScXjUP/ANN6LmzmmpLVik93USxGXGidie4jz5HDns24xOL0WllnyfuHE+7I7PIKXg33GrT8GDDcUdQX2D5ps2fzqdNz1kjRV2zNQa6tec8sG2nFKwWTQ6Y0IwzKyXI4StLA0yGxaH65KRNmDBvHcOUsqtWcu/ErdVW12O6lK8/XZwD+ooxpFMn1flyrZjJWvnCSdi1/JqFFa0I0QUmKccT1IW+MgMbMgyEQ==",
   keycloakAuthority:
-    'U2FsdGVkX1+c7C4NSF+251y81iXiS9SllWDirzIZME+LBGSuUwwpqkvdYXPOuQ2wKuIC5kOrub+MCiLu0noGOA==',
-  keycloakClientId: 'U2FsdGVkX1+FFfNN3qk9h3cko8M2bLIymVFvxx8pPPY=',
+    "U2FsdGVkX1+c7C4NSF+251y81iXiS9SllWDirzIZME+LBGSuUwwpqkvdYXPOuQ2wKuIC5kOrub+MCiLu0noGOA==",
+  keycloakClientId: "U2FsdGVkX1/bp7GGwoCtu7hF+T/jCjaKzvGE88X8nRU=",
   keycloakUrl:
-    'U2FsdGVkX1+nvOUYMKI0xicHGwfj4CTe5E9mclC82OfDFPsm3RTTfHLQFkAJo/W+',
+    "U2FsdGVkX1+nvOUYMKI0xicHGwfj4CTe5E9mclC82OfDFPsm3RTTfHLQFkAJo/W+",
   apiUrlKeycloak:
-    'U2FsdGVkX1+dHml6ISA5HmCK/NlEe+qkLT83DmMGXuwk9uM2cnSqbw3ErjIdNh5FcRrsMF0c5C6q0ix/ms8XWUAoiTdunHltbX17mZPXvXQ=',
-  // updatePasswordKeycloak:
-  //   'U2FsdGVkX19pQskIxDh43kPF0yI09B6YHdThlf+yTb3GQ+u9zcpm0/XiE0Hiq+kQ1ws09NvBb/x4Cbk4/dmNql9duAT9Aazlu0J4+1PgaMKFmFJ2C6Dfatk9+y7zRMiJ9Q7rRs/9nRK7Ke+DthpuiRaz5Pe/6D5up+jQqYaK58FdUu+STT4veCsJRS8L1wcaA7HPtmxpLEJ2VL3FPyOQlybk+enbpeTa0tbUbLn86EYB4YeCDXfr7cIbIsrY6/m0e5nYkRrHTU2FQmd8uRnk+x1tRjftaChGNlZf14eFKYJwYaFvgmj3h6WgL5KeAu0D',
+    "U2FsdGVkX1+dHml6ISA5HmCK/NlEe+qkLT83DmMGXuwk9uM2cnSqbw3ErjIdNh5FcRrsMF0c5C6q0ix/ms8XWUAoiTdunHltbX17mZPXvXQ=",
   updatePasswordKeycloak:
-    'U2FsdGVkX18vT4MEwgXC+ujfhn4B/4a2UBrH4xuR3h7ScsIPddZYcRayPOv6/Qxhw9F7sTqZi0QnSso+TlegohuIlpefxhOtTop0RAxk9/3UmIW3McHiJg2qjeB4V2cUpV4jeTyFHd0qnvLmMLf0gI9BqbkO1TxIqB4WxLeBPEzTdQdYJOCF7JdhuB1aSn06WmSEkbiS06yiCA9dqV4zvCEMptHL5sU/ZL527FIKbNl7mlWhIznQUo05ATcYsvyznYBRCgvM5lmVOu8uVatveXShifFKAJL8nC9+c4W5SiS/EPhOcAnXBPaXWDunEjSk0n7bDjsE52MyptKVEkjwGg==',
-  // updatePasswordKeycloak:"U2FsdGVkX189J9cqkA/NW02R3nTkXm3I6Kwa28EHuMmBtXgQFUX6VHBd/FDP2ajJZb43g3AnTg0N2d//t2Us/kAhXZrMTMs55cl7lIwcByzVzyeXH6+xhm8j5BrhDkMiGQJAWqTMPbZl6PZxQUNXtfUz95WUyIsnIMywUHpuHyF0xWC8WiAOpWAAetAA8IiPvYtqPTcHNKVEfMav+mbazTeRjZES2BVhRkuVFJni6uuttNjsZQp6YJ+0KGrO9fGjRINW6asYk+KohBO1igAtgO7WjRQsAJ4WrFIFjq+4hY0CFYSSaEkgD/IogqLs8/Vj"
+    "U2FsdGVkX19pQskIxDh43kPF0yI09B6YHdThlf+yTb3GQ+u9zcpm0/XiE0Hiq+kQ1ws09NvBb/x4Cbk4/dmNql9duAT9Aazlu0J4+1PgaMKFmFJ2C6Dfatk9+y7zRMiJ9Q7rRs/9nRK7Ke+DthpuiRaz5Pe/6D5up+jQqYaK58FdUu+STT4veCsJRS8L1wcaA7HPtmxpLEJ2VL3FPyOQlybk+enbpeTa0tbUbLn86EYB4YeCDXfr7cIbIsrY6/m0e5nYkRrHTU2FQmd8uRnk+x1tRjftaChGNlZf14eFKYJwYaFvgmj3h6WgL5KeAu0D",
 };

@@ -1,0 +1,1455 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-between top-header">
+    <div class="d-flex justify-content-start align-items-center">
+      <svg (click)="back(saveForm)"
+           class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-33gu9c-MuiSvgIcon-root" focusable="false"
+           viewBox="0 0 24 24" aria-hidden="true" data-testid="ChevronLeftIcon">
+        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+      </svg>
+      <p class="title-page">Buat Formulir</p>
+    </div>
+  </div>
+  <div class="px-3">
+    <div class="row mt-4" *ngIf="formType == 'multi'">
+      <div class="col">
+        <div class="card w-100">
+          <div class="card-body">
+            <div class="d-flex flex-column border-b">
+              <!-- <input
+                type="text"
+                placeholder="File Title"
+                class="p-0"
+                name="file-title"
+                id="file-title"
+                [(ngModel)]="formulirStructure.form_title" /> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-sm-8">
+        <div class="row">
+          <div class="col d-flex justify-content-between">
+            <div class="card w-100">
+              <nav aria-label="Page navigation" *ngIf="formType == 'multi'">
+                <ul class="nav-tabs nav">
+                  <li
+                    class="page-item"
+                    style="display: inline-block"
+                    *ngFor="let id of list; index as idt">
+                    <!-- <a
+                      (click)="changePage(idt)"
+                      [ngClass]="
+                        idt == sectionIndex
+                          ? 'nav-page-link-active'
+                          : 'nav-page-link'
+                      "
+                      href="javascript: void(0);"
+                      class="text-primary font-weight-bold">
+                      PAGE {{ idt + 1 }}
+                      <span
+                        class="btn-close ml-2 fw-light"
+                        (click)="closePage($event, idt)">
+                        <i class="fas fa-times"></i>
+                      </span>
+                    </a> -->
+                  </li>
+                </ul>
+              </nav>
+              <a
+                *ngIf="formType == 'multi'"
+                class="btn btn-sm btn-light"
+                style="
+                  margin-left: auto;
+                  float: right;
+                  position: absolute;
+                  right: 0;
+                  padding: 9px 10px;
+                "
+                href="javascript: void(0);"
+                (click)="addPage()">
+                <i class="fas fa-plus"></i>
+              </a>
+              <div class="d-flex flex-column border-b pb-3">
+                <!-- <input
+                  type="text"
+                  class="label-formulir"
+                  placeholder="Label Formulir"
+                  name="label-formulir"
+                  id="label-formulir"
+                  [(ngModel)]="tempLabel"
+                  (change)="changePage(sectionIndex)" /> -->
+                <!-- <input
+                  type="text"
+                  class="deskripsi-formulir"
+                  placeholder="Deskripsi (Optional)"
+                  name="description-formulir"
+                  id="description-formulir"
+                  [(ngModel)]="tempDesc"
+                  (change)="changePage(sectionIndex)" /> -->
+              </div>
+              <!-- <div
+                id="dropzone"
+                class="dropzone"
+                dndDropzone
+                (dndDrop)="onDrop($event)">
+                <div
+                  (dragover)="placeholderStatus = true"
+                  *ngIf="list[sectionIndex].length == 0 && !placeholderStatus">
+                  <div class="row">
+                    <div
+                      class="{{
+                        columnMode == 1 ? 'col px-4' : 'col-6 pl-4'
+                      }} py-3">
+                      <div class="dropzone-placeholder py-5">
+                        Taruh di sini untuk menambahkan
+                      </div>
+                    </div>
+                    <div class="col-6 py-3 pr-4" *ngIf="columnMode == 2">
+                      <div class="dropzone-placeholder py-5">
+                        Taruh di sini untuk menambahkan
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div dndPlaceholderRef>
+                  <div class="row">
+                    <div
+                      class="{{
+                        columnMode == 1 ? 'col px-4' : 'col-6 pl-4'
+                      }} py-3">
+                      <div class="dropzone-placeholder py-5">
+                        Taruh di sini untuk menambahkan
+                      </div>
+                    </div>
+                    <div class="col-6 py-3 pr-4" *ngIf="columnMode == 2">
+                      <div class="dropzone-placeholder py-5">
+                        Taruh di sini untuk menambahkan
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  [dndDraggable]="content"
+                  [dndEffectAllowed]="'all'"
+                  [dndDisableIf]="false"
+                  (dndStart)="onDragStart($event, content, i)"
+                  (dndCopied)="onDraggableCopied()"
+                  (dndLinked)="onDraggableLinked()"
+                  (dndMoved)="onDraggableMoved()"
+                  (dndCanceled)="onDragCanceled()"
+                  (dndEnd)="onDragEnd()"
+                  (mouseenter)="from = 'list'"
+                  class="row my-3"
+                  *ngFor="let content of list[sectionIndex]; index as i">
+                  <div
+                    *ngFor="let data of content; index as j"
+                    class="{{
+                      content.length == 1 ? 'col' : 'col-6'
+                    }} d-flex justify-content-between">
+                    <div *ngIf="data != null" class="w-100 p-3 cursor-pointer{{ content.length == 1 ? ' mx-4 ' : j == 0 ? ' ml-4' : ' mr-4 ' }}{{ indexFormFocus[0] == i && indexFormFocus[1] == j ? ' border-form-active ' : ' border-form ' }}">
+                      <div class="btn-group {{indexFormFocus[0] == i && indexFormFocus[1] == j ? '' : 'd-none'}}" style="position: absolute; top: -3rem; left: 2rem; background-color: #E9ECF5; border-radius: 8px;">
+                        <button (click)="mode = 'delete'; deleteItem(i, j)" class="btn">
+                          <img src="assets/icons/trash.svg" alt="Trash Icon" />
+                        </button>
+                        <button (mousedown)="changeMode('copy')" dndHandle *ngIf="j == 0 || list[sectionIndex][i][0] == null" class="btn">
+                          <img src="assets/icons/copy.svg" alt="Copy Icon" />
+                        </button>
+                        <button (mousedown)="changeMode('move')" dndHandle *ngIf="j == 0 || list[sectionIndex][i][0] == null" class="btn">
+                          <img src="assets/icons/blueGrid.svg" alt="Drag Indicator Icon" />
+                        </button>
+                      </div>
+                      <div #p="ngbPopover" (click)="formClick(i, j); propertiStatus ? p.open() : p.close()" [popoverTitle]="propertiTitle" [ngbPopover]="propertiContent" triggers="manual" [autoClose]="false" placement="right">
+                        <ng-template [ngTemplateOutlet]="Form" [ngTemplateOutletContext]="{data: data,i: i,j: j}">
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div
+                      class="row h-100 w-100"
+                      *ngIf="data == null"
+                      dndDropzone
+                      (dndDrop)="onDrop2($event, i)">
+                      <div
+                        dndPlaceholderRef
+                        class="dropzone-placeholder py-4 {{
+                          j == 0 ? 'ml-4' : ''
+                        }}">
+                        Taruh di sini untuk menambahkan
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="row stikcy-template">
+          <div class="col-12 d-flex justify-content-between">
+            <div class="card w-100">
+              <div class="card-body">
+                <h4 class="card-title m-0">Tambah Aset</h4>
+                <p class="card-subtitle">Geser dan taruh bidang</p>
+                <nav aria-label="Page column" class="my-2">
+                  <ul class="nav-tabs nav">
+                    <li class="li-column text-center">
+                      <!-- <a
+                        (click)="columnMode = 1"
+                        [ngClass]="
+                          columnMode == 1
+                            ? 'nav-page-link-active'
+                            : 'nav-page-link'
+                        "
+                        href="javascript: void(0);"
+                        class="font-weight-bold">
+                        1 Kolom
+                      </a> -->
+                    </li>
+                    <li class="li-column text-center">
+                      <!-- <a
+                        (click)="columnMode = 2"
+                        [ngClass]="
+                          columnMode == 2
+                            ? 'nav-page-link-active'
+                            : 'nav-page-link'
+                        "
+                        href="javascript: void(0);"
+                        class="font-weight-bold">
+                        2 Kolom
+                      </a> -->
+                    </li>
+                  </ul>
+                </nav>
+                <!-- Input Search -->
+                <div style="position: relative" class="mb-3 relative">
+                  <!-- <input
+                    (keyup)="searchListAset()"
+                    [(ngModel)]="searchAset"
+                    class="custom-search-input form-control form-control-lg"
+                    type="text"
+                    name="searchAset"
+                    placeholder="Cari di sini" /> -->
+                  <i (click)="searchListAset()" class="fa fa-search font-size-20 search-dokumen-ikon"></i>
+                </div>
+                <!-- Template -->
+                <div id="template" class="pb-1 task-list scrollbar">
+                  <ng-container *ngFor="let template of templates; index as i">
+                    <!-- <div
+                      [dndDraggable]="template"
+                      [dndEffectAllowed]="'all'"
+                      [dndDisableIf]="false"
+                      (dndStart)="onDragStart($event, template, i)"
+                      (dndCopied)="onDraggableCopied()"
+                      (dndLinked)="onDraggableLinked()"
+                      (dndMoved)="onDraggableMoved()"
+                      (dndCanceled)="onDragCanceled()"
+                      (dndEnd)="onDragEnd()"
+                      (mouseenter)="from = 'template'">
+                      <ng-template
+                        [ngTemplateOutlet]="Template"
+                        [ngTemplateOutletContext]="{ templates: template }">
+                      </ng-template>
+                    </div> -->
+                  </ng-container>
+                </div>
+                <div class="border-t text-center">
+                  <a
+                    href="javascript: void(0);"
+                    (click)="previewForm(previewMobile)"
+                    type="button"
+                    class="btn btn-outline-primary rounded-8 btn-block mt-1">
+                    Tampilkan
+                  </a>
+                  <a
+                    (click)="save(saveForm)"
+                    href="javascript: void(0);"
+                    type="button"
+                    class="btn btn-primary rounded-8 btn-block mt-1">
+                    Simpan
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Template -->
+<ng-template #Template let-templates="templates">
+  <!-- <div class="card no-shadow cursor-pointer template-hover" [ngbPopover]="popTemplate" container="body" [openDelay]="500" [closeDelay]="100" triggers="mouseenter:mouseleave" placement="left" popoverClass="custom-popover">
+    <div class="card-body py-0 px-0">
+      <div class="d-flex align-items-center">
+        <img src="assets/icons/grid.svg" class="mr-2 icon-grid" alt="{{ templates.name }}-grip" />
+        <div class="icon-wrapper">
+          <img
+            class="w-24-h-24"
+            src="assets/icons/cms/{{ templates.iconId }}.svg"
+            [alt]="templates.name" />
+        </div>
+        <div class="d-flex flex-column">
+          <p class="m-0 font-bold text-14px">{{ templates.name }}</p>
+          <p class="m-0">{{ templates.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</ng-template>
+
+<ng-template #popTemplate>
+  <p class="active-popover">Geser dan taruh untuk menambahkan</p>
+</ng-template>
+
+<!-- Form -->
+<ng-template #Form let-data="data" let-i="i" let-j="j">
+  <label for="{{ i }}-{{ j }}" class="form-label label-result">
+    {{ data.property.label.value == "" ? data.name : data.property.label.value}}
+    <span *ngIf="data.tampilan.wajib_diisi" class="after"> * </span>
+  </label>
+  <ng-template [ngIf]="data.type != 'multiple-line' && data.type != 'select' && data.type != 'multi-select'">
+    <div class="relative">
+      <!-- <input disabled [required]="data.tampilan.wajib_diisi" [type]="data.type" [(ngModel)]="data.data" [placeholder]="data.property.keterangan.value == '' ? data.property.keterangan.placeholder : data.property.keterangan.value" id="{{ i }}-{{ j }}" maxlength="{{ data.batasi_karakter ? data.property.batasi_karakter.value : '' }}" class="form-control input-result" /> -->
+      <span
+        *ngIf="data.type == 'media' || data.type == 'media-capture'"
+        class="icon-input font-weight-bold btn btn-primary"
+        style="transform: translate(0, -1.5em); right: 0"
+        >Browse</span
+      >
+      <i
+        class="fa {{
+          data.type === 'password'
+            ? ' fa-eye '
+            : data.type === 'date'
+            ? ' fa-calendar-alt '
+            : data.type === 'time'
+            ? ' fa-clock '
+            : ''
+        }} icon-input"></i>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]="data.type == 'multiple-line'">
+    <textarea disabled class="form-control input-result" [required]="data.tampilan.wajib_diisi" rows="3">
+    {{ data.property.keterangan.value != "" ? data.property.keterangan.value : data.property.keterangan.placeholder }}
+    </textarea>
+  </ng-template>
+  <ng-template [ngIf]="data.type == 'select'">
+    <!-- <ng-select *ngIf="data.format.select.value.value == 'dropdown'" [items]="data.option" [addTag]="addRadio" bindLabel="label" bindValue="id" [(ngModel)]="data.value">
+      <ng-template ng-option-tmp let-item="item" let-index="index">
+        <div class="d-flex align-items-center">
+          <img
+            *ngIf="data.value == item.id"
+            class="icon-check"
+            src="assets/icons/radioChecked.svg"
+            alt="" />
+          <img
+            *ngIf="data.value != item.id"
+            class="icon-check"
+            src="assets/icons/radioUnchecked.svg"
+            alt="" />
+          <span class="font-size-12">{{ item.label }}</span>
+        </div>
+      </ng-template>
+    </ng-select> -->
+    <div
+      class="form-check d-flex flex-column pl-1"
+      *ngIf="data.format.select.value.value == 'list'">
+      <label
+        class="form-check-label my-1"
+        for="{{ option.label }}"
+        *ngFor="let option of data.option; index as ido">
+        <img
+          *ngIf="data.value == option.id"
+          class="icon-check"
+          src="assets/icons/radioChecked.svg"
+          alt="" />
+        <img
+          *ngIf="data.value != option.id"
+          class="icon-check"
+          src="assets/icons/radioUnchecked.svg"
+          alt="" />
+        <!-- <input
+          disabled
+          style="display: none"
+          type="radio"
+          class="form-check-input"
+          id="{{ option.label }}"
+          name="{{ option.label }}"
+          value="{{ option.id }}"
+          [(ngModel)]="data.value" /> -->
+          {{ option.label }}
+      </label>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="data.type == 'multi-select'">
+    <!-- <ng-select
+      *ngIf="data.format.multi_select.value.value == 'dropdown'"
+      [items]="data.option"
+      [addTag]="addRadio"
+      bindLabel="label"
+      bindValue="id"
+      [multiple]="true"
+      [(ngModel)]="data.value"
+      (change)="checkMultipleSelectInNgSelect(data.value, data.option)">
+      <ng-template ng-option-tmp let-item="item" let-index="index">
+        <div class="d-flex align-items-center">
+          <img
+            *ngIf="item.selected"
+            class="icon-check"
+            src="assets/icons/checkboxChecked.svg"
+            alt="" />
+          <img
+            *ngIf="!item.selected"
+            class="icon-check"
+            src="assets/icons/checkboxUnchecked.svg"
+            alt="" />
+          <span class="font-size-12">{{ item.label }}</span>
+        </div>
+      </ng-template>
+    </ng-select> -->
+    <div
+      class="form-check d-flex flex-column pl-1"
+      *ngIf="data.format.multi_select.value.value == 'list'">
+      <label
+        class="form-check-label my-1"
+        for="{{ option.label }}"
+        *ngFor="let option of data.option; index as ido">
+        <img
+          *ngIf="option.selected"
+          class="icon-check"
+          src="assets/icons/checkboxChecked.svg"
+          alt="" />
+        <img
+          *ngIf="!option.selected"
+          class="icon-check"
+          src="assets/icons/checkboxUnchecked.svg"
+          alt="" />
+        <!-- <input
+          disabled
+          style="display: none"
+          type="checkbox"
+          class="form-check-input"
+          id="{{ option.label }}"
+          name="{{ option.label }}"
+          value="{{ option.id }}"
+          [(ngModel)]="option.selected" /> -->
+          {{ option.label }}
+      </label>
+    </div>
+  </ng-template>
+  <div *ngIf="data.tampilan.deskripsi" class="form-text mt-2 d-flex align-items-center">
+    <img src="assets/icons/attentionDark.svg" [alt]="data.property.deskripsi.placeholder" class="mr-2" />
+    <p class="mb-0">{{ data.property.deskripsi.value != "" ? data.property.deskripsi.value : "Deskripsi (penjelasan)" }}</p>
+  </div>
+</ng-template>
+
+<!-- Properti -->
+<ng-template #propertiTitle>
+  <div class="d-flex justify-content-between text-white align-items-center">
+    <p class="mb-0" style="font-size: 16px; font-weight: 700">Properti</p>
+    <button class="btn p-0" (click)="closePopover()">
+      <i class="fa fa-times" style="color: #fff"> </i>
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #propertiContent>
+  <div *ngIf="indexFormFocus[0] != -1 && indexFormFocus[1] != -1">
+    <div class="form-group row">
+      <!-- <ng-select
+        *ngIf="indexFormFocus[0] != -1 && indexFormFocus[1] != -1"
+        [items]="templates"
+        bindLabel="name"
+        bindValue="type"
+        [(ngModel)]="formChangeType"
+        (change)="changeForm()"
+        class="p-2"
+        style="width: 270px">
+        <ng-template ng-option-tmp let-item="item" let-index="index">
+          <span class="font-weight-bold font-size-14">{{ item.name }}</span>
+          <br />
+          <span class="font-size-12">{{ item.desc }}</span>
+        </ng-template>
+      </ng-select> -->
+    </div>
+    <div class="form-group">
+      <label for="label">Label</label>
+      <!-- <input type="text" class="form-control" id="label" [placeholder]="list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property'].label.value != '' ? list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property'].label.value : list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property'].label.placeholder" [(ngModel)]="list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property'].label.value" /> -->
+    </div>
+    <div
+      class="form-group"
+      *ngIf="
+        list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] !=
+          'date' &&
+        list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] !=
+          'time'
+      ">
+      <label for="label2">Keterangan</label>
+      <!-- <input
+        type="text"
+        class="form-control"
+        id="label2"
+        [placeholder]="
+          list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property']
+            .keterangan.value != ''
+            ? list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'property'
+              ].keterangan.value
+            : list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'property'
+              ].keterangan.placeholder
+        "
+        [(ngModel)]="
+          list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property']
+            .keterangan.value
+        " /> -->
+    </div>
+    <div
+      class="form-group"
+      *ngIf="
+        list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] !=
+        'number'
+      ">
+      <label for="label3">Deskripsi</label>
+      <!-- <input
+        type="text"
+        class="form-control"
+        id="label3"
+        [placeholder]="
+          list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property']
+            .deskripsi.value != ''
+            ? list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'property'
+              ].deskripsi.value
+            : list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'property'
+              ].deskripsi.placeholder
+        "
+        [(ngModel)]="
+          list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property']
+            .deskripsi.value
+        " /> -->
+    </div>
+    <div
+      class="form-group"
+      *ngIf="
+        list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] ==
+        'number'
+      ">
+      <label for="label4">Batas Karakter</label>
+      <!-- <input
+        type="number"
+        class="form-control"
+        id="label4"
+        placeholder="{{
+          list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property']
+            .batasi_karakter.placeholder
+        }}"
+        [(ngModel)]="
+          list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property']
+            .batasi_karakter.value
+        " /> -->
+    </div>
+    <div
+      class="form-group"
+      *ngIf="
+        list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] ==
+        'password'
+      ">
+      <label for="label5">Minimal Karakter</label>
+      <!-- <input
+        type="number"
+        class="form-control"
+        id="label5"
+        placeholder="{{
+          list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property']
+            .minimal_karakter.placeholder
+        }}"
+        [(ngModel)]="
+          list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property']
+            .minimal_karakter.value
+        " /> -->
+    </div>
+    <hr
+      *ngIf="
+        list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] ==
+        'select'
+      " />
+    <!-- <ngb-accordion
+      #acc="ngbAccordion"
+      *ngIf="
+        list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] ==
+          'select' ||
+        list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] ==
+          'multi-select'
+      ">
+      <ngb-panel id="toggle-4">
+        <ng-template ngbPanelHeader let-opened="opened">
+          <div class="accordion-button custom-header justify-content-between">
+            <button
+              ngbPanelToggle
+              class="btn-accordion-custom d-flex justify-content-between align-items-center">
+              <span class="text-primary font-size-12">Fitur Opsi</span>
+              <i class="fa fa-chevron-down"></i>
+            </button>
+          </div>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="Tambah Input (enter)"
+            [(ngModel)]="radioForm"
+            (keyup.enter)="addRadio(radioForm)" />
+          <div
+            dndDropzone
+            dndEffectAllowed="move"
+            (dndDrop)="
+              onDropRadio(
+                $event,
+                list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                  'option'
+                ]
+              )
+            ">
+            <div class="dndPlaceholder" dndPlaceholderRef></div>
+            <div
+              *ngFor="
+                let val of this.list[this.sectionIndex][this.indexFormFocus[0]][
+                  this.indexFormFocus[1]
+                ]['option']
+              "
+              draggable="true"
+              [dndDraggable]="val"
+              dndEffectAllowed="move"
+              (dndMoved)="
+                onDraggedRadio(
+                  val,
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'option'
+                  ]
+                )
+              ">
+              <div class="d-flex">
+                <button class="btn">
+                  <i class="fa fa-grip-vertical my-auto"></i>
+                </button>
+                <input
+                  type="text"
+                  class="form-control mb-2"
+                  [(ngModel)]="val.label" />
+                <button class="btn">
+                  <i
+                    class="fa fa-trash-alt my-auto"
+                    (click)="removeRadio(val)"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion> -->
+    <hr
+      *ngIf="
+        list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] ==
+        'select'
+      " />
+    <!-- <ngb-accordion
+      #acc="ngbAccordion"
+      *ngIf="
+        list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] ==
+        'select'
+      ">
+      <ngb-panel id="toggle">
+        <ng-template ngbPanelHeader let-opened="opened">
+          <div class="accordion-button custom-header justify-content-between">
+            <button
+              ngbPanelToggle
+              class="btn-accordion-custom d-flex justify-content-between align-items-center">
+              <span class="text-primary font-size-12">Format</span>
+              <i class="fa fa-chevron-down"></i>
+            </button>
+          </div>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <div class="form-check d-flex flex-column pl-2">
+            <label
+              class="form-check-label"
+              for="{{ option.label }}"
+              *ngFor="
+                let option of this.list[this.sectionIndex][
+                  this.indexFormFocus[0]
+                ][this.indexFormFocus[1]]['format']['select']['option'];
+                index as ido
+              ">
+              <img
+                *ngIf="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'format'
+                  ]['select']['value']['value'] == option.value
+                "
+                class="icon-check"
+                src="assets/icons/radioChecked.svg"
+                alt="" />
+              <img
+                *ngIf="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'format'
+                  ]['select']['value']['value'] != option.value
+                "
+                class="icon-check"
+                src="assets/icons/radioUnchecked.svg"
+                alt="" />
+              <input
+                style="display: none"
+                type="radio"
+                class="form-check-input"
+                id="{{ option.label }}"
+                name="{{ option.label }}"
+                value="{{ option.value }}"
+                [(ngModel)]="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'format'
+                  ]['select']['value']['value']
+                " />{{ option.label }}
+            </label>
+          </div>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion> -->
+    <hr
+      *ngIf="
+        list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] ==
+        'multi-select'
+      " />
+    <!-- <ngb-accordion
+      #acc="ngbAccordion"
+      *ngIf="
+        list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] ==
+        'multi-select'
+      ">
+      <ngb-panel id="toggle-2">
+        <ng-template ngbPanelHeader let-opened="opened">
+          <div class="accordion-button custom-header justify-content-between">
+            <button
+              ngbPanelToggle
+              class="btn-accordion-custom d-flex justify-content-between align-items-center">
+              <span class="text-primary font-size-12">Format</span>
+              <i class="fa fa-chevron-down"></i>
+            </button>
+          </div>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <div class="form-check d-flex flex-column pl-2">
+            <label
+              class="form-check-label"
+              for="{{ option.label }}"
+              *ngFor="
+                let option of this.list[this.sectionIndex][
+                  this.indexFormFocus[0]
+                ][this.indexFormFocus[1]]['format']['multi_select']['option'];
+                index as ido
+              ">
+              <img
+                *ngIf="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'format'
+                  ]['multi_select']['value']['value'] == option.value
+                "
+                class="icon-check"
+                src="assets/icons/radioChecked.svg"
+                alt="" />
+              <img
+                *ngIf="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'format'
+                  ]['multi_select']['value']['value'] != option.value
+                "
+                class="icon-check"
+                src="assets/icons/radioUnchecked.svg"
+                alt="" />
+              <input
+                style="display: none"
+                type="radio"
+                class="form-check-input"
+                id="{{ option.label }}"
+                name="{{ option.label }}"
+                value="{{ option.value }}"
+                [(ngModel)]="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'format'
+                  ]['multi_select']['value']['value']
+                " />{{ option.label }}
+            </label>
+          </div>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion> -->
+    <hr />
+    <!-- <ngb-accordion #acc="ngbAccordion">
+      <ngb-panel id="toggle-1">
+        <ng-template ngbPanelHeader let-opened="opened">
+          <div class="accordion-button custom-header justify-content-between">
+            <button
+              ngbPanelToggle
+              class="btn-accordion-custom d-flex justify-content-between align-items-center">
+              <span class="text-primary font-size-12">Tampilan</span>
+              <i class="fa fa-chevron-down"></i>
+            </button>
+          </div>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <div class="d-flex">
+            <label class="switch mr-2">
+              <input
+                type="checkbox"
+                [checked]="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'tampilan'
+                  ].deskripsi
+                "
+                (change)="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'tampilan'
+                  ].deskripsi =
+                    !list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                      'tampilan'
+                    ].deskripsi
+                " />
+              <span class="slider round"></span>
+            </label>
+            <p>Deskripsi</p>
+          </div>
+          <div class="d-flex">
+            <label class="switch mr-2">
+              <input
+                type="checkbox"
+                [checked]="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'tampilan'
+                  ].wajib_diisi
+                "
+                (change)="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'tampilan'
+                  ].wajib_diisi =
+                    !list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                      'tampilan'
+                    ].wajib_diisi
+                " />
+              <span class="slider round"></span>
+            </label>
+            <p>Wajib Diisi</p>
+          </div>
+          <div
+            class="d-flex"
+            *ngIf="
+              list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'type'
+              ] != 'password'
+            ">
+            <label class="switch mr-2">
+              <input
+                type="checkbox"
+                [checked]="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'tampilan'
+                  ].primary_key
+                "
+                (change)="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'tampilan'
+                  ].primary_key =
+                    !list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                      'tampilan'
+                    ].primary_key
+                " />
+              <span class="slider round"></span>
+            </label>
+            <p>Primary Key</p>
+          </div>
+          <div
+            class="d-flex"
+            *ngIf="
+              list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'type'
+              ] != 'date' &&
+              list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'type'
+              ] != 'time' &&
+              list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'type'
+              ] != 'password'
+            ">
+            <label class="switch mr-2">
+              <input
+                type="checkbox"
+                [checked]="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'tampilan'
+                  ].batasi_karakter
+                "
+                (change)="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'tampilan'
+                  ].batasi_karakter =
+                    !list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                      'tampilan'
+                    ].batasi_karakter
+                " />
+              <span class="slider round"></span>
+            </label>
+            <p>Batasi Karakter</p>
+          </div>
+          <div
+            class="d-flex"
+            *ngIf="
+              list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'type'
+              ] == 'multiple-line'
+            ">
+            <label class="switch mr-2">
+              <input
+                type="checkbox"
+                [checked]="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'tampilan'
+                  ].pencatatan
+                "
+                (change)="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'tampilan'
+                  ].pencatatan =
+                    !list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                      'tampilan'
+                    ].pencatatan
+                " />
+              <span class="slider round"></span>
+            </label>
+            <p>Pencatatan</p>
+          </div>
+          <div
+            class="d-flex"
+            *ngIf="
+              list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'type'
+              ] == 'password'
+            ">
+            <label class="switch mr-2">
+              <input
+                type="checkbox"
+                [checked]="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'tampilan'
+                  ].minimal_karakter
+                "
+                (change)="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'tampilan'
+                  ].minimal_karakter =
+                    !list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                      'tampilan'
+                    ].minimal_karakter
+                " />
+              <span class="slider round"></span>
+            </label>
+            <p>Minimal Karakter</p>
+          </div>
+          <div
+            class="d-flex"
+            *ngIf="
+              list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'type'
+              ] == 'password'
+            ">
+            <label class="switch mr-2">
+              <input
+                type="checkbox"
+                [checked]="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'tampilan'
+                  ].sertakan_angka
+                "
+                (change)="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'tampilan'
+                  ].sertakan_angka =
+                    !list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                      'tampilan'
+                    ].sertakan_angka
+                " />
+              <span class="slider round"></span>
+            </label>
+            <p>Sertakan Angka</p>
+          </div>
+          <div
+            class="d-flex"
+            *ngIf="
+              list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'type'
+              ] == 'password'
+            ">
+            <label class="switch mr-2">
+              <input
+                type="checkbox"
+                [checked]="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'tampilan'
+                  ].sertakan_simbol
+                "
+                (change)="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'tampilan'
+                  ].sertakan_simbol =
+                    !list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                      'tampilan'
+                    ].sertakan_simbol
+                " />
+              <span class="slider round"></span>
+            </label>
+            <p>Sertakan Simbol</p>
+          </div>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion> -->
+    <hr
+      *ngIf="
+        list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] ==
+        'number'
+      " />
+    <!-- <ngb-accordion
+      #acc="ngbAccordion"
+      *ngIf="
+        list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] ==
+          'number' ||
+        list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] ==
+          'date' ||
+        list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] ==
+          'time'
+      ">
+      <ngb-panel id="toggle-3">
+        <ng-template ngbPanelHeader let-opened="opened">
+          <div class="accordion-button custom-header justify-content-between">
+            <button
+              ngbPanelToggle
+              class="btn-accordion-custom d-flex justify-content-between align-items-center">
+              <span class="text-primary font-size-12">Format</span>
+              <i class="fa fa-chevron-down"></i>
+            </button>
+          </div>
+        </ng-template>
+        <ng-template
+          ngbPanelContent
+          *ngIf="
+            list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] ==
+            'date'
+          ">
+          <ng-select
+            [items]="
+              list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'format'
+              ]['date']['option']
+            "
+            bindValue="value"
+            bindLabel="label"
+            [(ngModel)]="
+              list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'format'
+              ]['date']['value']['value']
+            ">
+          </ng-select>
+        </ng-template>
+        <ng-template
+          ngbPanelContent
+          *ngIf="
+            list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] ==
+            'number'
+          ">
+          <ng-select
+            class="mb-3"
+            [items]="
+              list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'format'
+              ]['option']
+            "
+            bindValue="label"
+            bindLabel="label"
+            [(ngModel)]="
+              list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'format'
+              ]['value']['label']
+            ">
+          </ng-select>
+          <div
+            class="d-flex"
+            *ngIf="
+              list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'type'
+              ] == 'number'
+            ">
+            <label class="switch mr-2">
+              <input
+                type="checkbox"
+                [checked]="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'format'
+                  ].is_negative
+                "
+                (change)="
+                  list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                    'format'
+                  ].is_negative =
+                    !list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                      'format'
+                    ].is_negative
+                " />
+              <span class="slider round"></span>
+            </label>
+            <p>Bilangan Negatif</p>
+          </div>
+        </ng-template>
+        <ng-template
+          ngbPanelContent
+          *ngIf="
+            list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['type'] ==
+            'time'
+          ">
+          <ng-select
+            [items]="
+              list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'format'
+              ]['time']['option']
+            "
+            bindValue="value"
+            bindLabel="label"
+            [(ngModel)]="
+              list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]][
+                'format'
+              ]['time']['value']['value']
+            ">
+          </ng-select>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion> -->
+    <hr />
+    <div class="text-center">
+      <span
+        class="cursor-pointer"
+        (click)="deleteItem(indexFormFocus[0], indexFormFocus[1])"
+        ><i class="fa fa-trash-alt mr-2"></i>Hapus</span
+      >
+    </div>
+  </div>
+</ng-template>
+
+<!-- Flow save when back -->
+<ng-template #saveForm let-modal>
+  <div class="modal-body text-center">
+    <div class="row">
+      <div class="col text-right">
+        <i
+          (click)="modal.dismiss('Cross click')"
+          class="fa fa-times font-size-20 cursor-pointer"></i>
+      </div>
+    </div>
+    <img src="assets/icons/checkedImage.svg" alt="" *ngIf="flowCondition == 2" class="mb-2" />
+    <img src="assets/icons/successAttention.svg" alt="" *ngIf="flowCondition == 0" class="mb-2" />
+    <h3 class="modal-title mb-3 font-size-24 font-weight-bold" style="color: #101010 !important;">
+      {{ flowSaveData[flowCondition].title }}
+    </h3>
+    <span class="my-3 font-size-16 font-weight-bold" style="color: #64748B !important;">
+      {{ flowSaveData[flowCondition].desc }}
+    </span>
+    <div class="form-group row my-3" *ngIf="flowCondition == 1">
+      <div class="col text-left">
+        <label class="font-size-14 font-weight-medium" style="color: #111111 !important;">Nama Dokumen</label>
+        <!-- <input
+          [(ngModel)]="formulirStructure.form_title"
+          type="text"
+          name="form_title"
+          class="form-control custom input-result"
+          placeholder="Masukkan nama dokumen untuk formulir" /> -->
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col">
+        <button
+          class="btn btn-outline-primary btn-block rounded-8"
+          (click)="flowSave('cancel')">
+          {{ flowSaveData[flowCondition].cancel }}
+        </button>
+      </div>
+      <div class="col">
+        <button
+          class="btn btn-primary btn-block rounded-8"
+          (click)="flowSave('confirm')"
+          [disabled]="
+            flowCondition == 1 && formulirStructure.form_title.length == 0
+          ">
+          {{ flowSaveData[flowCondition].confirm }}
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #previewMobile let-modal>
+  <div class="modal-header bg-light-primary py-2 d-flex align-items-center">
+    <h5 class="modal-title text-white" id="modal-basic-title">
+      Tampilan Mobile
+    </h5>
+    <i
+      class="fa fa-times text-white cursor-pointer"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"></i>
+  </div>
+  <div class="modal-body shadow-sm p-0" style="overflow-y: auto">
+    <div *ngIf="formType == 'multi'" class="col-12 text-center py-2 shadow-sm">
+      <span class="font-weight-bold font-size-16">
+        {{
+          formulirStructure.form_title
+            ? formulirStructure.form_title
+            : "Page Title"
+        }}
+      </span>
+      <br />
+      <span class="font-size-16">
+        Tahap {{ sectionIndex + 1 }}/{{ list.length }}
+      </span>
+    </div>
+    <div class="col-12 px-3 py-2">
+      <span class="font-weight-bold font-size-18">{{
+        detail[sectionIndex].title
+          ? detail[sectionIndex].title
+          : "Label formulir"
+      }}</span>
+      <br />
+      <span class="font-size-14">{{
+        detail[sectionIndex].desc
+          ? detail[sectionIndex].desc
+          : "Ini adalah bagian dari keterangan formulir"
+      }}</span>
+    </div>
+    <div
+      class="col-12 px-3 py-2"
+      *ngFor="let content of list[sectionIndex]; index as i">
+      <div class="row">
+        <div class="col" *ngFor="let data of content; index as j">
+          <div *ngIf="data != null">
+            <ng-template
+              [ngTemplateOutlet]="FormMobile"
+              [ngTemplateOutletContext]="{
+                data: data,
+                i: i,
+                j: j
+              }">
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="formType == 'multi'" class="modal-footer">
+    <div class="row w-100">
+      <div class="col-md-6">
+        <button
+          class="btn btn-outline-secondary btn-block"
+          (click)="prevSection()"
+          [disabled]="sectionIndex == 0">
+          Sebelumnya
+        </button>
+      </div>
+      <div class="col-md-6">
+        <button
+          class="btn btn-primary btn-block"
+          (click)="nextSection()"
+          [disabled]="sectionIndex == list.length - 1">
+          Selanjutnya
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #FormMobile let-data="data" let-i="i" let-j="j">
+  <label for="{{ i }}-{{ j }}" class=""
+    >{{ data.property.label.value == "" ? data.name : data.property.label.value
+    }}<span *ngIf="data.tampilan.wajib_diisi" class="after"> * </span>
+  </label>
+  <ng-template [ngIf]="data.type == 'media' || data.type == 'media-capture'">
+    <div class="dropzone-placeholder py-3">
+      <i class="fa fa-camera mr-2"></i>Unggah Media Disini
+    </div>
+  </ng-template>
+  <ng-template
+    [ngIf]="
+      data.type != 'multiple-line' &&
+      data.type != 'select' &&
+      data.type != 'multi-select' &&
+      data.type != 'media' &&
+      data.type != 'media-capture'
+    ">
+    <div class="relative">
+      <!-- <input
+        disabled
+        [required]="data.tampilan.wajib_diisi"
+        [type]="data.type"
+        [(ngModel)]="data.data"
+        [placeholder]="
+          data.property.keterangan.value == ''
+            ? data.property.keterangan.placeholder
+            : data.property.keterangan.value
+        "
+        id="{{ i }}-{{ j }}"
+        maxlength="{{
+          data.batasi_karakter ? data.property.batasi_karakter.value : ''
+        }}"
+        class="form-control" /> -->
+      <i
+        class="fa {{
+          data.type === 'password'
+            ? ' fa-eye '
+            : data.type === 'date'
+            ? ' fa-calendar-alt '
+            : data.type === 'time'
+            ? ' fa-clock '
+            : ''
+        }} icon-input"></i>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]="data.type == 'multiple-line'">
+    <textarea
+      disabled
+      class="form-control"
+      [required]="data.tampilan.wajib_diisi"
+      rows="3">
+    {{
+        data.property.keterangan.value != ""
+          ? data.property.keterangan.value
+          : data.property.keterangan.placeholder
+      }}
+    </textarea>
+  </ng-template>
+  <ng-template [ngIf]="data.type == 'select'">
+    <!-- <ng-select
+      *ngIf="data.format.select.value.value == 'dropdown'"
+      [items]="data.option"
+      [addTag]="addRadio"
+      bindLabel="label"
+      bindValue="id"
+      [(ngModel)]="data.value">
+      <ng-template ng-option-tmp let-item="item" let-index="index">
+        <div class="d-flex align-items-center">
+          <img
+            *ngIf="data.value == item.id"
+            class="icon-check"
+            src="assets/icons/radioChecked.svg"
+            alt="" />
+          <img
+            *ngIf="data.value != item.id"
+            class="icon-check"
+            src="assets/icons/radioUnchecked.svg"
+            alt="" />
+          <span class="font-size-12">{{ item.label }}</span>
+        </div>
+      </ng-template>
+    </ng-select> -->
+    <div
+      class="form-check d-flex flex-column pl-1"
+      *ngIf="data.format.select.value.value == 'list'">
+      <label
+        class="form-check-label my-1"
+        for="{{ option.label }}"
+        *ngFor="let option of data.option; index as ido">
+        <img
+          *ngIf="data.value == option.id"
+          class="icon-check"
+          src="assets/icons/radioChecked.svg"
+          alt="" />
+        <img
+          *ngIf="data.value != option.id"
+          class="icon-check"
+          src="assets/icons/radioUnchecked.svg"
+          alt="" />
+        <!-- <input
+          disabled
+          style="display: none"
+          type="radio"
+          class="form-check-input"
+          id="{{ option.label }}"
+          name="{{ option.label }}"
+          value="{{ option.id }}"
+          [(ngModel)]="data.value" /> -->
+          {{ option.label }}
+      </label>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="data.type == 'multi-select'">
+    <!-- <ng-select
+      *ngIf="data.format.multi_select.value.value == 'dropdown'"
+      [items]="data.option"
+      [addTag]="addRadio"
+      bindLabel="label"
+      bindValue="id"
+      [multiple]="true"
+      [(ngModel)]="data.value"
+      (change)="checkMultipleSelectInNgSelect(data.value, data.option)">
+      <ng-template ng-option-tmp let-item="item" let-index="index">
+        <div class="d-flex align-items-center">
+          <img
+            *ngIf="item.selected"
+            class="icon-check"
+            src="assets/icons/checkboxChecked.svg"
+            alt="" />
+          <img
+            *ngIf="!item.selected"
+            class="icon-check"
+            src="assets/icons/checkboxUnchecked.svg"
+            alt="" />
+          <span class="font-size-12">{{ item.label }}</span>
+        </div>
+      </ng-template>
+    </ng-select> -->
+    <div
+      class="form-check d-flex flex-column pl-1"
+      *ngIf="data.format.multi_select.value.value == 'list'">
+      <label
+        class="form-check-label my-1"
+        for="{{ option.label }}"
+        *ngFor="let option of data.option; index as ido">
+        <img
+          *ngIf="option.selected"
+          class="icon-check"
+          src="assets/icons/checkboxChecked.svg"
+          alt="" />
+        <img
+          *ngIf="!option.selected"
+          class="icon-check"
+          src="assets/icons/checkboxUnchecked.svg"
+          alt="" />
+        <!-- <input
+          disabled
+          style="display: none"
+          type="checkbox"
+          class="form-check-input"
+          id="{{ option.label }}"
+          name="{{ option.label }}"
+          value="{{ option.id }}"
+          [(ngModel)]="option.selected" /> -->
+          {{ option.label }}
+      </label>
+    </div>
+  </ng-template>
+  <div *ngIf="data.tampilan.deskripsi" class="form-text mt-2">
+    {{
+      data.property.deskripsi.value != ""
+        ? data.property.deskripsi.value
+        : data.property.deskripsi.placeholder
+    }}
+  </div>
+</ng-template>

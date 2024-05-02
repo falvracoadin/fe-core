@@ -1,0 +1,28 @@
+.card {
+  border: 3px solid #cbd5e1 !important;
+  border-radius: 1rem !important;
+  border-radius: 10px !important;
+  margin-top: 24px;
+}
+
+.attention-icon {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.legend-card {
+  p {
+    margin: 0 !important;
+  }
+
+  :first-child {
+    font-size: 1rem;
+    font-weight: 800;
+  }
+
+  :last-child {
+    font-size: 24px;
+    font-weight: 700;
+  }
+}

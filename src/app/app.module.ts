@@ -1,80 +1,55 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AsyncPipe } from "@angular/common";
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgModule, ErrorHandler, APP_INITIALIZER } from "@angular/core";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+// import { NgxSpinnerModule } from "ngx-spinner";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { HttpConfigInterceptor } from "./core/interceptors/http-config.interceptor";
+import { LayoutsModule } from "./layouts/layouts.module";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { AuthService } from "./feature/auth/services/auth.service";
+// import {
+//   NgbDateAdapter,
+//   NgbDateParserFormatter,
+// } from "@ng-bootstrap/ng-bootstrap";
+// import {
+//   CustomAdapter,
+//   CustomDateParserFormatter,
+// } from "./core/adapter/datepicker-adapter";
 
-import { AuthComponent } from './layout/auth/auth.component';
-import { MainComponent } from './layout/main/main.component';
+import { SentryService } from "./core/services/sentry.service";
+import { GlobalErrorHandler } from "./core/handler/global-error-handler";
 
-import { HttpConfigInterceptor } from './core/interceptor/http-config.interceptor';
-import { GlobalErrorHandler } from './core/handler/global-error-handler';
+import { DecryptionService } from "./core/services/decryption.service";
+// import { AuthModule, OidcConfigService } from "angular-auth-oidc-client";
+import { environment } from "src/environments/environment";
 
-import { SentryService } from './core/service/sentry.service';
-import { IpService } from './core/service/ip.service';
-import { AuthService } from './core/service/auth.service';
 
-import { TopbarComponent } from './layout/main/topbar/topbar.component';
-import { LeftSidebarComponent } from './layout/main/left-sidebar/left-sidebar.component';
-import { RightSidebarComponent } from './layout/main/right-sidebar/right-sidebar.component';
-import { FooterComponent } from './layout/main/footer/footer.component';
-
-import { NgChartsModule } from 'ng2-charts';
-import { AccordionModule } from 'ngx-bootstrap/accordion';
-import { AlertModule } from 'ngx-bootstrap/alert';
-import * as moment from 'moment';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { NgxSliderModule } from 'ngx-slider-v2';
-import { LottieModule } from 'ngx-lottie';
-import { ToastrModule } from 'ngx-toastr';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { DecryptionService } from './core/service/decryption.service';
-
-export function playerFactory() {
-  return import('lottie-web');
-}
-
-const decryptionService = new DecryptionService();
+// export function configureAuth(oidcConfigService: OidcConfigService) {
+//   return () =>
+//     oidcConfigService.withConfig({
+//       stsServer: environment.oidc_url,
+//       redirectUrl: window.location.origin,
+//       postLogoutRedirectUri: window.location.origin,
+//       clientId: environment.oidc_clientId,
+//     });
+// }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-
-    AuthComponent,
-
-    MainComponent,
-    TopbarComponent,
-    LeftSidebarComponent,
-    RightSidebarComponent,
-    FooterComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    LayoutsModule,
     AppRoutingModule,
-    NgxSliderModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule,
-    NgSelectModule,
-    NgChartsModule.forRoot(),
-    AlertModule.forRoot(),
-    AccordionModule.forRoot(),
-    BsDatepickerModule.forRoot(),
-    BrowserAnimationsModule,
-    CKEditorModule,
-    BsDropdownModule.forRoot(),
-    BrowserAnimationsModule,
-    LottieModule.forRoot({ player: playerFactory }),
-    ToastrModule.forRoot(),
-    LeafletModule,
+    // NgxSpinnerModule,
+    // AuthModule.forRoot(),
   ],
   providers: [
+    AsyncPipe,
     SentryService,
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     {
@@ -82,24 +57,29 @@ const decryptionService = new DecryptionService();
       useClass: HttpConfigInterceptor,
       multi: true,
     },
+    // OidcConfigService,
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: configureAuth,
+    //   deps: [OidcConfigService],
+    //   multi: true,
+    // },
+    // { provide: NgbDateAdapter, useClass: CustomAdapter },
+    // { provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter },
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(
     private authService: AuthService,
-    private ipService: IpService,
+    private decryptionService: DecryptionService
   ) {
-
-    const ipAddress = this.ipService.GetIpAddressFromLocalStorage();
-
-    if (ipAddress === '') {
-      this.ipService.GetIpAddress().subscribe((ipAddressResponse) => {
-        this.ipService.SetIpAddress(ipAddressResponse);
-      });
-    }
-    if (moment().isAfter(this.authService.GetTokenPayload().Expired)) {
-      this.authService.Logout();
+    const platformkey = localStorage.getItem("platformKey");
+    if (this.authService.getToken() !== null && platformkey) {
+      this.authService.saveUserLogin(
+        this.decryptionService.GrabEnvironmentKey("mode"),
+        platformkey
+      );
     }
   }
 }

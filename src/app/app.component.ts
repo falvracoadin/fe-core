@@ -1,77 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import { BnNgIdleService } from 'bn-ng-idle';
-import { AuthService } from './core/service/auth.service';
-import { DecryptionService } from './core/service/decryption.service';
-import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
+import { Component, OnInit } from "@angular/core";
+// import { NgxSpinnerService } from "ngx-spinner";
+import { LoaderService } from "./core/services/loader.service";
+import { DecryptionService } from "./core/services/decryption.service";
+// import { OidcSecurityService } from "angular-auth-oidc-client";
+import { AuthService } from "./feature/auth/services/auth.service";
+import { Location } from "@angular/common";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
+  selector: "app-root",
+  templateUrl: "./app.component.html",
 })
 export class AppComponent implements OnInit {
-  isKeycloak: boolean =
-    this.decryptionService.GrabEnvironmentKey('authMode') === 'keycloak'
-      ? true
-      : false;
-
   constructor(
+    private loaderService: LoaderService,
+    // private spinner : NgxSpinnerService,
+    private decryptionService: DecryptionService,
+    private location: Location,
     private router: Router,
     private authService: AuthService,
-    private bnIdle: BnNgIdleService,
-    private decryptionService: DecryptionService,
-  ) {}
+    // private oidcSecurityService: OidcSecurityService
+  ) {
+    this.loaderService.isLoading.subscribe((showLoading) => {
+      if (showLoading) {
+        // this.spinner.show().then();
+      } else {
+        // this.spinner.hide().then();
+      }
+    });
+  }
 
-  ngOnInit() {
-    const countAutoLogout =
-      this.decryptionService.GrabEnvironmentKey('countAutoLogout');
-    const idleTimeout =
-      this.decryptionService.GrabEnvironmentKey('idleTimeout');
-    const userLogin = this.authService.getProfileFromLocalStorage();
-
-    let count = countAutoLogout;
-
-    let interval: any;
-    if (userLogin && this.decryptionService.GrabEnvironmentKey('idleMode')) {
-      const idle = this.bnIdle
-        .startWatching(idleTimeout)
-        .subscribe((isTimedOut: boolean) => {
-          if (isTimedOut) {
-            interval = setInterval(() => {
-              count--;
-              if (count == 0) {
-                clearInterval(interval);
-                if (this.isKeycloak) {
-                  this.authService.closeOidc()
-                } else {
-                  this.authService.Logout();
-                }
-                this.router.navigate(['/login']);
-                this.bnIdle.stopTimer();
-                Swal.close();
-                idle.unsubscribe();
-                return;
-              }
-            }, 1000);
-          }
-
-          Swal.fire({
-            title: 'Apa kamu masih di sana?',
-            text: 'Anda sudah tidak aktif selama beberapa waktu, apakah Anda ingin melanjutkan?',
-            icon: 'warning',
-            showCancelButton: false,
-            showConfirmButton: true,
-            confirmButtonColor: '#3ba269',
-            confirmButtonText: 'Ya saya disini!',
-          }).then((result) => {
-            if (result.isConfirmed || result.isDismissed) {
-              count = countAutoLogout;
-              clearInterval(interval);
-              this.bnIdle.resetTimer();
-              return;
-            }
-          });
-        });
-    }
+  ngOnInit(): void {
+  //   if (this.decryptionService.GrabEnvironmentKey("mode") == "keycloak") {
+  //     this.oidcSecurityService.checkAuth().subscribe((auth) => {
+  //       console.log("App Comp Auth", auth);
+  //       if (auth) {
+  //         let token = this.oidcSecurityService.getToken();
+  //         this.authService.saveToken(token).then();
+  //         this.authService.saveUserLogin(
+  //           this.decryptionService.GrabEnvironmentKey("mode")
+  //         );
+  //         this.authService.savePermission();
+  //         setTimeout(() => {
+  //           const condition = this.location.path().includes("/login");
+  //           if (condition) {
+  //             this.router.navigate(["/dashboard"]);
+  //           } else {
+  //             this.router.navigate([this.location.path()]);
+  //           }
+  //         }, 1000);
+  //       } else {
+  //         console.log("NOT LOGGED IN");
+  //         this.authService.logout();
+  //         this.router.navigate(["/login"]);
+  //       }
+  //     });
+  //   }
   }
 }

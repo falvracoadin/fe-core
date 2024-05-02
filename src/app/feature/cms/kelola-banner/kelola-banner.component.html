@@ -1,0 +1,173 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="title-page">CMS - Kelola Banner</div>
+        <div class="card">
+          <div class="card-header pb-0 px-0">
+            <div class="card-header pb-0 px-0">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-8 col-md-6 col-12">
+                    <div class="px-3">
+                      <div class="card-title">Daftar Banner</div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 col-md-6 col-12 d-flex justify-content-sm-end align-items-center">
+                    <div class="px-3">
+                      <!-- <a (click)="createDokumen(formKelolaDokumen)"
+                        class="btn btn-primary font-size-14 rounded-8 button-dukcapil d-flex align-items-center">
+                        <i class="fa fa-plus mr-2"></i> Tambah
+                      </a> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <hr />
+            <div class="px-3 d-flex align-items-center" style="padding-top: .5rem;">
+              <div class="row limit pl-3">
+                <div class="d-flex">
+                  <!-- <ng-select class="custom" bindLabel="title" bindValue="param" [(ngModel)]="filter.param" [items]="filterParam" placeholder="Pilih Parameter"></ng-select> -->
+                  <div class="relative">
+                    <!-- <input type="text" [(ngModel)]="filter.value" placeholder="Cari berdasarkan parameter" class="search-input" (keyup)="reloadDataTable()" /> -->
+                    <i class="fa fa-search icon-search"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="btn ml-4 rounded-8 d-flex align-items-center filter-button">
+                <i class="fa fa-filter"></i>
+              </div>
+              
+  <!--              <div-->
+  <!--                class="input-container mr-2"-->
+  <!--                style="width: 309px"-->
+  <!--                *ngIf="-->
+  <!--                  !(filter.param == 'tglDiterima');-->
+  <!--                  else tanggal_diterima_search-->
+  <!--                ">-->
+  <!--                <img-->
+  <!--                  src="https://cdn-icons-png.flaticon.com/32/149/149852.png"-->
+  <!--                  alt="" />-->
+  <!--                <input-->
+  <!--                  style="width: 259px"-->
+  <!--                  [(ngModel)]="filter.value"-->
+  <!--                  type="text"-->
+  <!--                  placeholder="Cari berdasarkan parameter"-->
+  <!--                  class="filter-input" />-->
+  <!--              </div>-->
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-12">
+              <div class="">
+                <!-- <table
+                  class="table table-hover"
+                  datatable
+                  [dtOptions]="dtOptions">
+                  <thead>
+                    <tr style="background-color: #E2E8F0 !important">
+                      <th class="text-center">#</th>
+                      <th>Nama Banner</th>
+                      <th>Dibuat Oleh</th>
+                      <th class="text-center">Tgl. Dibuat</th>
+                      <th class="text-center">Status</th>
+                      <th class="text-center">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let banner of listBanner; index as i" [class.bg-white]="(i % 2) == 0" [class.bg-second]="(i % 2) == 1">
+                      <td class="align-middle">
+                        <img
+                          src="{{ banner.ikon }}"
+                          alt=""
+                          class="icon-dokumen" />
+                      </td>
+                      <td class="align-middle">{{ banner.doc_title ? banner.doc_title : "-" }}</td>
+                      <td class="align-middle">{{ banner.created_by ? banner.created_by : "-" }}</td>
+                      <td class="align-middle text-center">
+                        {{ getDateFormat(banner.tanggal_dibuat) }}
+                      </td>
+                      <td class="align-middle status_dokumen text-center">
+                        <div class="d-flex justify-content-center">
+                          <div
+                            [class.status-danger]="banner.status == 0"
+                            [class.status-success]="banner.status == 1">
+                            <span *ngIf="banner.status == 0">Inactive</span>
+                            <span *ngIf="banner.status == 1">Published</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center">
+                        <button class="btn btn-outline-primary mr-2">
+                            <i class="fa fa-pencil-alt"></i>
+                        </button>
+                        <button class="btn btn-outline-primary">
+                            <i class="fa fa-trash-alt"></i>
+                        </button>
+                    </td>
+                    </tr>
+                  </tbody>
+                  <tr class="table-danger" *ngIf="totalRecord == 0">
+                    <td [attr.colspan]="10" class="text-center">
+                      Data tidak ditemukan
+                    </td>
+                  </tr>
+                </table> -->
+                <div class="info-wrap-imi" *ngIf="totalRecord != 0">
+                  <div class="info-1">Tampilkan</div>
+                  <!-- <select
+                    [(ngModel)]="limit"
+                    id="inputLimit"
+                    class="form-control info-2"
+                    style=" background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; padding: 0.47rem 0.75rem"
+                    name="showFilter"
+                    (change)="clickLimit()">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select> -->
+                  <div class="info-3">dari {{ totalRecord }} data</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #tanggal_diterima_search>
+    <div class="input-container mr-2" style="width: 309px">
+      <img src="https://cdn-icons-png.flaticon.com/512/833/833593.png" alt="" />
+      <!-- <input
+        style="width: 259px"
+        [(ngModel)]="filter.value"
+        type="date"
+        placeholder="Cari berdasarkan tanggal"
+        class="filter-input" /> -->
+    </div>
+  </ng-template>
+  
+  <!-- <ng-template #formKelolaDokumen let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title my-auto font-weight-bold font-size-24">
+        {{ titleModal }}
+      </h4>
+      <button
+        type="button"
+        class="close my-auto"
+        (click)="modal.close()"
+        aria-label="Close">
+        <i class="mdi mdi-close-thick"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-form-kelola-dokumen
+        [listFormulir]="listFormulir"
+        [dokumenInput]="dokumenInput"
+        (afterSave)="modal.close(); reloadDataTable()"></app-form-kelola-dokumen>
+    </div>
+  </ng-template> -->
+  

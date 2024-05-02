@@ -1,0 +1,245 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title-page">
+                User Management - Role
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="card-title" style="width: fit-content">
+                            Role List
+                        </div>
+                        <div class="mx-1">
+                            <button type="button" class="btn btn-primary rounded-8" (click)="openModal(userRoleModal, 'Add User Role')">
+                                <i class="fa fa-plus mr-2"></i>
+                                <span class="text-button">Assign to User</span>
+                            </button>
+<!--                            <button type="button" class="btn btn-primary rounded-8" (click)="openModal(userRoleModal, 'Add User Role')">-->
+<!--                                <i class="fa fa-plus mr-2"></i>-->
+<!--                                <span class="text-button">Tambah</span>-->
+<!--                            </button>-->
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between align-items-center" style="padding-top: .5rem;">
+                                <div class="row limit pl-3">
+                                    <div class="d-flex">
+                                        <!-- <ng-select class="custom" bindLabel="" [bindValue]="" [items]="listRoleKey" placeholder="Pilih Parameter"></ng-select> -->
+                                        <div class="relative">
+                                            <!-- <input type="text" [(ngModel)]="filter" placeholder="Cari berdasarkan parameter" class="search-input" (keyup)="reloadDataTable()" /> -->
+                                            <i class="fa fa-search icon-search"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row justify-content-end">
+                                    <!-- <button type="button" class="btn btn-sm btn-primary mr-2" *ngIf="authService.checkAccess('user.create')" (click)="createUser(formUser)"> -->
+                                    <!--                            <div class="dropdown mr-3" ngbDropdown>-->
+                                    <!--                                <button class="btn btn-outline-primary dropdown-toggle w-100 py-2 px-3" type="button" id="dropdownImport" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>-->
+                                    <!--                                    <i class="text fa fa-upload mr-2" style="margin-top: 3px;"></i>-->
+                                    <!--                                    <span class="text-button">-->
+                                    <!--                                        Import-->
+                                    <!--                                    </span>-->
+                                    <!--                                    <i class="fa fa-caret-down ml-1 val" style="margin-bottom: 3px;" aria-hidden="true"></i>-->
+                                    <!--                                </button>-->
+                                    <!--                                <div class="dropdown-menu dropdown-menu-right text-center w-100" aria-labelledby="dropdownImport" ngbDropdownMenu>-->
+                                    <!--                                    <a class="dropdown-item" href="#">Excel</a>-->
+                                    <!--                                    <a class="dropdown-item" href="#">PDF</a>-->
+                                    <!--                                    <a class="dropdown-item" href="#">CSV</a>-->
+                                    <!--                                </div>-->
+                                    <!--                            </div>-->
+                                    <button class="btn btn-outline-primary rounded-8" style="margin-right: 8px;" (click)="openModal(addRoleModal, 'Add Role')">
+                                        <i class="fa fa-plus mr-2"></i>
+                                        Add
+                                    </button>
+
+                                    <div class="dropdown" ngbDropdown>
+                                        <button class="btn btn-outline-primary dropdown-toggle w-100 py-2 px-3 rounded-8" type="button" id="dropdownExport" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+                                            <i class="text fa fa-download mr-2" style="margin-top: 3px;"></i>
+                                            <span class="text-button">
+                                        Export
+                                    </span>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right text-center w-100" aria-labelledby="dropdownExport" ngbDropdownMenu>
+                                            <!-- <a class="dropdown-item cursor-pointer" (click)="downloadExcel()">Excel</a> -->
+                                            <a class="dropdown-item cursor-pointer" (click)="downloadPDF()">PDF</a>
+                                            <a class="dropdown-item cursor-pointer" (click)="downloadCSV()">CSV</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body pb-0 px-0 pt-2">
+                    <div class="table-responsive">
+                        <!-- <table id="roleList" class="table table-hover" datatable [dtOptions]="dtOptions">
+                            <thead style="background-color: #E2E8F0">
+                                <tr>
+                                    <th class="text-center" style="width: 5%;">No</th>
+                                    <th>Nama Klien</th>
+                                    <th>ID</th>
+                                    <th>Nama</th>
+                                    <th class="text-center" style="width: 6%;">Tipe</th>
+                                    <th class="text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let user of listUserRole; index as i" [class.bg-white]="(i % 2) == 0" [class.bg-second]="(i % 2) == 1">
+                                    <td class="text-center align-middle">{{i + 1}}</td>
+                                    <td class="align-middle">{{user.ClientName}}</td>
+                                    <td class="align-middle">{{user.Id}}</td>
+                                    <td class="align-middle">{{user.RoleName}}</td>
+                                    <td class="align-middle text-center">
+                                        <!-- <button class="btn btn btn-outline-primary" ngbTooltip="{{ user.RoleType === 'web' ? 'Website' : user.RoleType === 'office' ? 'Office' : 'Application' }}"> -->
+                                            <!-- <i class="fa fa-{{ user.RoleType === 'web' ? 'globe' : user.RoleType === 'office' ? 'building' : 'mobile' }}" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                    <td class="align-middle action text-center">
+                                        <div class="rounded-8 btn btn-outline-primary mr-3" placement="auto" container="body" ngbTooltip="Ubah" (click)="gotoPermission(user)">Setting</div>
+                                        <div class="rounded-8 btn btn-outline-primary" placement="auto" container="body" ngbTooltip="Edit Role" (click)="openModal(addRoleModal, 'Edit Role', user)">Edit</div>
+                                    </td>
+                                </tr>
+                                <tr class="table-danger" *ngIf="totalRecord == 0">
+                                    <td [attr.colspan]="10" class="text-center">
+                                        Data tidak ditemukan
+                                    </td>
+                                </tr>
+                            </tbody> -->
+                        <!-- </table> -->
+                        <div class="info-wrap-imi" *ngIf="totalRecord != 0">
+                            <div class="info-1">Tampilkan</div>
+                            <!-- <select
+                                    [(ngModel)]="limit"
+                                    id="inputLimit"
+                                    class="form-control info-2"
+                                    style=" background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; padding: 0.47rem 0.75rem"
+                                    name="showFilter"
+                                    (change)="clickLimit()"> -->
+                            <select
+                                    id="inputLimit"
+                                    class="form-control info-2"
+                                    style=" background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; padding: 0.47rem 0.75rem"
+                                    name="showFilter"
+                                    (change)="clickLimit()">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                            <div class="info-3">dari {{ totalRecord }} data</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #userRoleModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title mt-0">{{ title }}</h5>
+        <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="d-flex justify-content-between custom-label">
+                    <span>User Name</span>
+                    <span>:</span>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <!-- <ng-select [items]="listUser" bindLabel="Fullname" bindValue="Id" [(ngModel)]="dataUser.UserId" placeholder="User Name"> -->
+                <!-- </ng-select> -->
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="d-flex justify-content-between custom-label">
+                    <span>Role Name</span>
+                    <span>:</span>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <!-- <ng-select [items]="listRole" bindLabel="RoleName" bindValue="Id" [(ngModel)]="dataUser.RoleId" placeholder="Role Name"> -->
+                <!-- </ng-select> -->
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-center">
+        <div class="d-flex justify-content-center">
+            <div class="btn btn-light mr-2" (click)="modal.dismiss('Cross click')">
+                Cancel
+            </div>
+            <div class="btn btn-primary" (click)="saveUserRole()">
+                Save
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #addRoleModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title mt-0">{{ title }}</h5>
+        <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="d-flex justify-content-between custom-label">
+                    <span>Role Name</span>
+                    <span>:</span>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <!-- <input type="text" class="custom-input" [(ngModel)]="dataRole.RoleName"> -->
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="d-flex justify-content-between custom-label">
+                    <span>Role Type</span>
+                    <span>:</span>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <!-- <ng-select [items]="listRoleType" bindLabel="type" bindValue="type" [(ngModel)]="dataRole.RoleType" placeholder="Role Name"> -->
+                <!-- </ng-select> -->
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-center">
+        <div class="d-flex justify-content-center">
+            <div class="btn btn-light mr-2" (click)="modal.dismiss('Cross click')">
+                Cancel
+            </div>
+            <div class="btn btn-primary" (click)="createRole()">
+                Save
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<div id="exportPDF">
+    <p class="exportTitle">{{ exportPDF.title }}</p>
+
+    <table class="table table-bordered">
+        <thead class="table-primary">
+        <tr>
+            <th class="text-center" *ngFor="let header of exportPDF.header" [width]="header.width">{{ header.column }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of exportPDF.records">
+            <td *ngFor="let header of exportPDF.header">{{ data[header.key] }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

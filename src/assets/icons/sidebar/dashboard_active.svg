@@ -1,0 +1,30 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+	<title>dashboard-svg</title>
+	<defs>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp1">
+			<path d="m12 2c0.28 0 0.55 0.12 0.74 0.33l9 10c0.26 0.29 0.33 0.71 0.17 1.07-0.16 0.36-0.52 0.6-0.91 0.6h-2v7c0 0.55-0.45 1-1 1h-12c-0.55 0-1-0.45-1-1v-7h-2c-0.4 0-0.75-0.24-0.91-0.6-0.16-0.36-0.1-0.78 0.17-1.07l9-10c0.19-0.21 0.46-0.33 0.74-0.33zm0 2.49l-6.75 7.51h0.75c0.55 0 1 0.45 1 1v7h10v-7c0-0.55 0.44-1 1-1h0.75zm2 10.51c0.55 0 1 0.45 1 1 0 0.55-0.45 1-1 1h-4c-0.56 0-1-0.45-1-1 0-0.55 0.44-1 1-1z"/>
+		</clipPath>
+	</defs>
+	<style>
+		.s0 { fill: none } 
+		.s1 { fill: #231f20 } 
+		.s2 { fill: #cc1d15 } 
+	</style>
+	<g id="Layer">
+		<g id="Layer">
+			<g id="Layer">
+				<g id="Layer">
+					<g id="Layer">
+						<path id="Layer" class="s0" d="m0 0h24v24h-24z"/>
+						<path id="9348db9z0b" fill-rule="evenodd" class="s1" d="m12 2c0.3 0 0.5 0.1 0.7 0.3l9 10c0.3 0.3 0.4 0.7 0.2 1.1-0.1 0.4-0.5 0.6-0.9 0.6h-2v7c0 0.6-0.4 1-1 1h-12c-0.6 0-1-0.4-1-1v-7h-2c-0.4 0-0.8-0.2-0.9-0.6-0.2-0.4-0.1-0.8 0.2-1.1l9-10c0.1-0.2 0.4-0.3 0.7-0.3zm0 2.5l-6.8 7.5h0.8c0.5 0 1 0.4 1 1v7h10v-7c0-0.6 0.4-1 1-1h0.7zm2 10.5c0.6 0 1 0.5 1 1 0 0.6-0.4 1-1 1h-4c-0.5 0-1-0.4-1-1 0-0.5 0.5-1 1-1z"/>
+						<g id="Clip-Path" clip-path="url(#cp1)">
+							<g id="Layer">
+								<path id="Layer" fill-rule="evenodd" class="s2" d="m-28-28h80v80h-80z"/>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</svg>

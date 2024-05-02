@@ -1,0 +1,129 @@
+{
+    "status_code": 200,
+    "message": "Success",
+    "data": {
+        "list": [
+            {
+                "UserId": 1771,
+                "created_at": "2023-01-07 15:06:15",
+                "doc_id": 49,
+                "id": 320,
+                "job_adj_id": 1620,
+                "job_assign_to": "ADMIN LVTIGA_2",
+                "job_status": 0,
+                "nama": "STEPHANUS DHIMAS HULIO",
+                "no_registrasi": "NTT2023010731001",
+                "type": "M_AKTA_LAHIR"
+            },
+            {
+                "UserId": 1771,
+                "created_at": "2023-01-07 14:55:55",
+                "doc_id": 117,
+                "id": 319,
+                "job_adj_id": 1619,
+                "job_assign_to": "ADMIN LVTIGA",
+                "job_status": 0,
+                "nama": "STEPHANUS DHIMAS HULIO",
+                "no_registrasi": "NTT2023010721001",
+                "type": "M_KK"
+            },
+            {
+                "UserId": 1771,
+                "created_at": "2023-01-07 14:49:58",
+                "doc_id": 154,
+                "id": 318,
+                "job_adj_id": 1620,
+                "job_assign_to": "ADMIN LVTIGA_2",
+                "job_status": 0,
+                "nama": "STEPHANUS DHIMAS HULIO",
+                "no_registrasi": "NTT2023010711001",
+                "type": "M_KTP"
+            },
+            {
+                "UserId": 1675,
+                "created_at": "2022-12-05 16:19:26",
+                "doc_id": 153,
+                "id": 317,
+                "job_adj_id": 1619,
+                "job_assign_to": "ADMIN LVTIGA",
+                "job_status": 0,
+                "nama": "QORIE' INSYIRA FITRIA",
+                "no_registrasi": "NTT2022120511001",
+                "type": "M_KTP"
+            },
+            {
+                "UserId": 1,
+                "created_at": "2022-11-28 14:08:38",
+                "doc_id": 48,
+                "id": 316,
+                "job_adj_id": 1620,
+                "job_assign_to": "ADMIN LVTIGA_2",
+                "job_status": 0,
+                "nama": "TES AKTA LAHIR BARU",
+                "no_registrasi": "NTT2022112831002",
+                "type": "M_AKTA_LAHIR"
+            },
+            {
+                "UserId": 9,
+                "created_at": "2022-11-28 14:08:35",
+                "doc_id": 116,
+                "id": 315,
+                "job_adj_id": 1619,
+                "job_assign_to": "ADMIN LVTIGA",
+                "job_status": 0,
+                "nama": "SI PEMOHON ",
+                "no_registrasi": "NTT2022112821002",
+                "type": "M_KK"
+            },
+            {
+                "UserId": 20,
+                "created_at": "2022-11-28 14:08:26",
+                "doc_id": 152,
+                "id": 314,
+                "job_adj_id": 1620,
+                "job_assign_to": "ADMIN LVTIGA_2",
+                "job_status": 0,
+                "nama": "TES KTP BARU",
+                "no_registrasi": "NTT2022112811002",
+                "type": "M_KTP"
+            },
+            {
+                "UserId": 1,
+                "created_at": "2022-11-28 11:53:01",
+                "doc_id": 47,
+                "id": 313,
+                "job_adj_id": 1619,
+                "job_assign_to": "ADMIN LVTIGA",
+                "job_status": 0,
+                "nama": "TES AKTA LAHIR BARU",
+                "no_registrasi": "NTT2022112831001",
+                "type": "M_AKTA_LAHIR"
+            },
+            {
+                "UserId": 9,
+                "created_at": "2022-11-28 11:52:48",
+                "doc_id": 115,
+                "id": 312,
+                "job_adj_id": 1620,
+                "job_assign_to": "ADMIN LVTIGA_2",
+                "job_status": 0,
+                "nama": "SI PEMOHON ",
+                "no_registrasi": "NTT2022112821001",
+                "type": "M_KK"
+            },
+            {
+                "UserId": 20,
+                "created_at": "2022-11-28 11:52:36",
+                "doc_id": 151,
+                "id": 311,
+                "job_adj_id": 1619,
+                "job_assign_to": "ADMIN LVTIGA",
+                "job_status": 0,
+                "nama": "TES KTP BARU",
+                "no_registrasi": "NTT2022112811001",
+                "type": "M_KTP"
+            }
+        ],
+        "total_items": 320
+    }
+}

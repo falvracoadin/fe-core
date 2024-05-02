@@ -1,0 +1,45 @@
+form {
+    font-size: 16px;
+}
+
+.btn.custom {
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+.image {
+    width: 100%;
+    position: relative;
+}
+
+.ab {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+    padding-right: 10px;
+}
+
+.form-control-lg {
+    border-radius: 8px !important;
+}
+
+.ng-select.custom ::ng-deep .ng-select-container {
+    height: calc(1.5em + 1rem + 2px) !important;
+    border-radius: 8px !important;
+}
+
+.invalid-password {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #f46a6a;
+}
+
+ol, ul, dl {
+    margin-top: 0;
+    margin-bottom: 0;
+}

@@ -1,0 +1,64 @@
+<header id="page-topbar">
+  <div class="navbar-header p-0">
+    <div class="d-flex">
+      <!-- LOGO -->
+      <div class="navbar-brand-box">
+        <a routerLink="/" class="logo logo-dark">
+          <span class="logo-sm">
+            <img src="assets/images/DH_Logo/HealthID%20-%20logo%202.svg" alt="Logo Image" class="w-40-h-auto" />
+          </span>
+          <span class="logo-lg">
+            <img
+              src="assets/images/DH_Logo/HealthID%20-%20logo%202.svg"
+              class="mr-5 w-40-h-auto"
+              alt="Logo Image"
+            />
+            <span class="text-xl text-hover-none whitespace-nowrap font-bold" style="color: #3F4144">Health ID Admin</span>
+          </span>
+        </a>
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-sm px-3 font-size-16 header-item ml-2"
+        id="vertical-menu-btn"
+        (click)="toggleMobileMenu($event)"
+      >
+        <img
+         [src]="isMobileMenuOpen ? 'assets/icons/sidebar-close.svg' : 'assets/icons/sidebar-open.svg'"
+          width="25"
+          height="25"
+          alt="Menu Icon"
+        />
+      </button>
+    </div>
+
+    <div class="d-flex">
+      <button
+        type="button"
+        role="button"
+        class="btn header-item noti-icon right-bar-toggle d-flex align-items-center gap-2"
+        (click)="toggleRightSidebar()"
+      >
+        <img
+          class="rounded-circle header-profile-user"
+          [src]="photoProfile"
+          [height]="42"
+          [width]="42"
+          alt="Header Avatar"
+          onerror="this.src='assets/images/users/avatar-1.jpg'"
+        />
+        <div class="d-flex flex-column justify-content-between text-right">
+          <p class="text-base mb-0" style="color: #111; font-size: 16px; font-weight: 700">{{ userName.Fullname }}</p>
+          <p class="text-A8A8A8 text-xxs mb-0" style="color: #3F4144; font-weight: 700; font-size: 14px">{{ userPermission.operator ? 'Operator' : userPermission.superadmin ? 'Superadmin' : userPermission.supervisor ? 'Supervisor' : '' }}</p>
+        </div>
+        <img
+          src="assets/icons/expand_more.svg"
+          alt="Expand More Icon"
+          [height]="24"
+        />
+        <!-- <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i> -->
+      </button>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,284 @@
+.title-page {
+  font-size: 32px;
+  font-weight: 800;
+  font-stretch: normal;
+  color: #231f20;
+  margin-bottom: 10px;
+}
+
+.sub-title-page {
+  font-size: 16px;
+  font-weight: 700;
+  font-stretch: normal;
+  color: #231f20;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  width: 100%;
+  height: 29px;
+  font-size: 21px;
+  font-weight: 700;
+  color: #231f20;
+  margin: 16px 0;
+}
+
+.limit div:last-child span {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.limit div:last-child span:first-child {
+  margin-left: 0;
+}
+
+.limit div:last-child span.active {
+  color: #cc1d15 !important;
+}
+
+.input-container {
+  max-height: 36px;
+  display: flex;
+  flex-direction: row;
+  color: #495057;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 11.5px;
+  min-height: 27px;
+}
+
+.input-container-filter {
+  width: 189px;
+}
+
+.input-container img {
+  width: 16px;
+  height: 16px;
+  margin: 10px 12px;
+  opacity: 0.5;
+}
+
+.input-container input.filter-input,
+.input-container input.filter-input:focus {
+  border: none;
+  outline: none;
+}
+
+.btn-filter {
+  width: 36px;
+  height: 36px;
+  margin: 0 8px;
+  padding: 0;
+}
+
+.btn-filter svg {
+  margin: 6px;
+}
+
+.filter-button {
+  border: 1.5px solid #21409a;
+  border-radius: 8px;
+  min-height: 48px;
+  min-width: 48px;
+  justify-content: center;
+}
+
+.btn-eye {
+  background-color: white;
+  border: 1px solid #4e4751;
+}
+
+.btn-eye:hover {
+  background-color: #4e4751;
+}
+
+.btn-eye:hover g {
+  fill: #fff;
+}
+
+table,
+button,
+.dropdown-item {
+  font-size: 16px;
+}
+
+table {
+  color: #495057;
+  font-weight: 500;
+}
+
+td.status_dokumen > div > div {
+  text-align: center;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  outline: 0;
+  padding: 9px 0;
+  box-sizing: border-box;
+  border-radius: 30px;
+  min-width: 130px;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.status-success {
+  color: #39c875;
+  border: 0.5px solid #39c875;
+  background-color: #edfff5;
+}
+
+.status-warning {
+  color: #f0b242;
+  border: 0.5px solid #f0b242;
+  background-color: #fef7eb;
+}
+
+.status-danger {
+  color: #eb5757;
+  border: 0.5px solid #eb5757;
+  background-color: #ffe8e8;
+}
+
+.status-secondary {
+  color: rgb(76, 70, 80);
+  border: 0.5px solid rgb(76, 70, 80);
+  background-color: #e6e6e6;
+}
+
+.status-semi {
+  color: rgb(76, 70, 80);
+  border: 0.5px solid rgb(76, 70, 80);
+  background-color: rgb(231, 244, 237);
+}
+
+.button-tambah {
+  height: 40px;
+}
+
+.button-tambah:focus > .globe-tambah {
+  filter: brightness(0) invert(1);
+}
+
+.icon-dokumen {
+  width: 32px;
+}
+
+.circle {
+  font-size: 16px;
+  width: 1.25em;
+  height: 1.25em;
+  display: inline-block;
+  fill: white;
+  border-radius: 50%;
+}
+
+.circle svg {
+  margin-top: -0.25rem;
+}
+
+.circle.check {
+  background-color: #17804b;
+}
+
+.circle.cross {
+  background-color: #cc1d15;
+}
+
+::ng-deep .dataTables_wrapper {
+  overflow: hidden;
+}
+
+::ng-deep .dataTables_wrapper > div > div {
+  overflow: auto;
+}
+
+// Ng Select search paramaeter
+// .ng-select.custom ::ng-deep .ng-select-container {
+//     height: 50px !important;
+//     border-radius: 8px 0 0 8px !important;
+// }
+
+// .ng-select.custom ::ng-deep .ng-value-label, .ng-select.custom ::ng-deep .ng-placeholder {
+//     color: #64748B !important;
+//     font-size: 14px;
+// }
+
+.rounded-8 {
+  border-radius: 8px;
+}
+
+.bg-white {
+  background-color: white !important;
+}
+
+.bg-second {
+  background-color: #f8f8f8 !important;
+}
+
+.relative {
+  position: relative;
+}
+
+.icon-search {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+  font-size: 20px;
+}
+
+.search-input {
+  padding-left: 40px;
+  height: 100%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #cbd5e1;
+  border-radius: 8px;
+  width: 340px;
+  font-size: 14px;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.text-unactive {
+  color: #231f20;
+}
+
+.text-active {
+  color: #21409a;
+  cursor: pointer;
+}
+
+.blank-page-container {
+  text-align: center;
+  margin-top: 5rem; /* Adjust margin as needed */
+  margin-bottom: 5rem;
+}
+
+.blank-page-image {
+  width: 200px; /* Adjust image width as needed */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+  margin: 0 auto 20px; /* Center image horizontally and add spacing below */
+}
+
+.blank-page-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.blank-page-description {
+  font-size: 16px;
+  width: 80%; /* Set the width of the description container */
+  margin: 0 auto; /* Center the description horizontally */
+  text-align: center; /* Center the text within the container */
+  word-wrap: break-word;
+}

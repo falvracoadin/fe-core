@@ -1,0 +1,120 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title-page">Konsultasi</div>
+            <div class="sub-title-page">
+                <a style="margin: auto 0; text-decoration: none; font-size: 14px" class="text-unactive">
+                    <span>Layanan Kesehatan</span>
+                </a>
+                <a style="margin: auto 0; text-decoration: none; font-size: 14px" class="text-unactive">
+                    <span style="padding: 0 5px">/</span>
+                    <span>Konsultasi</span>
+                </a>
+                <a style="margin: auto 0; text-decoration: none; font-size: 14px" class="text-active">
+                    <span style="padding: 0 5px">/</span>
+                    <span>Data Konsultasi</span>
+                </a>
+            </div>
+            <div class="card">
+                <div class="card-header pb-0 px-0">
+                    <div class="card-header pb-0 px-0">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-8 col-md-6 col-12">
+                                    <div class="px-3">
+                                        <div class="card-title">Daftar Pengguna</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-md-6 col-12 d-flex justify-content-sm-end align-items-center px-4">
+                                    <div class="dropdown mr-3" ngbDropdown>
+                                        <button class="btn btn-outline-primary rounded-8 dropdown-toggle w-100 py-2 px-4" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+                                            <i class="text fa fa-download mr-1" style="margin-top: 3px;"></i>
+                                            <span class="text-button">
+                                                Unduh
+                                            </span>
+                                            <i class="fa fa-caret-down ml-1 val" style="margin-bottom: 3px;" aria-hidden="true"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right text-center w-100" aria-labelledby="dropdownMenuButton" ngbDropdownMenu>
+                                            <a class="dropdown-item" href="javascript: void(0)">Excel</a>
+                                            <a class="dropdown-item" href="javascript: void(0)">PDF</a>
+                                            <a class="dropdown-item" href="javascript: void(0)">CSV</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="px-3 d-flex align-items-center" style="padding-top: .5rem;">
+                        <div class="row limit pl-3" style="height: 50px;">
+                            <!-- <div class="d-flex"> -->
+                            <div class="relative">
+                                <!-- <input type="text" [(ngModel)]="filter.value" placeholder="Pencarian"
+                                    class="search-input" (keyup)="reloadDataTable()" /> -->
+                                <i class="fa fa-search icon-search"></i>
+                            </div>
+                        </div>
+                        <!-- </div> -->
+                        <!-- <div class="btn ml-4 rounded-8 d-flex align-items-center filter-button">
+                <i class="fa fa-filter"></i>
+              </div> -->
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="">
+                                <!-- <table class="table table-hover" datatable [dtOptions]="dtOptions">
+                                    <thead>
+                                        <tr style="background-color: #E2E8F0 !important">
+                                            <th class="pl-3">No.Kartu Peserta</th>
+                                            <th>Fasilitas Kesehatan</th>
+                                            <th>Spesialis</th>
+                                            <th>Nama Dokter</th>
+                                            <th>Tgl & Jam Reservasi</th>
+                                            <th class="text-center">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let dokter of listDokter; index as i"
+                                            [class.bg-white]="(i % 2) == 0" [class.bg-second]="(i % 2) == 1">
+                                            <td class="align-middle pl-3">{{ dokter.noPeserta ? dokter.noPeserta : "-" }}</td>
+                                            <td class="align-middle">{{ dokter.faskes ? dokter.faskes : "-" }}</td>
+                                            <td class="align-middle">{{ dokter.spesialis ? dokter.spesialis.join(', ') : "-" }}</td>
+                                            <td class="align-middle">{{ dokter.name ? dokter.name : "-" }}</td>
+                                            <td class="align-middle">{{ dokter.reservation ? formatDateTime(dokter.reservation) : "-" }}</td>
+                                            <td class="align-middle text-center">
+                                                <a class="btn btn-outline-primary" placement="left" container="body"
+                                                        ngbTooltip="Detail"
+                                                        [routerLink]="['/kesehatan/konsultasi/konsultasi/', dokter.id]">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a> -->
+                                                <!-- <button class="btn btn-outline-primary">
+                                                    <i class="fa fa-trash-alt"></i>
+                                                </button> -->
+                                            <!-- </td>
+                                        </tr>
+                                    </tbody>
+                                    <tr class="table-danger" *ngIf="totalRecord == 0">
+                                        <td [attr.colspan]="10" class="text-center">
+                                            Data tidak ditemukan
+                                        </td>
+                                    </tr>
+                                </table> -->
+                                <div class="info-wrap-imi" *ngIf="totalRecord != 0">
+                                    <div class="info-1">Tampilkan</div>
+                                    <!-- <select [(ngModel)]="limit" id="inputLimit" class="form-control info-2"
+                                        style=" background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; padding: 0.47rem 0.75rem"
+                                        name="showFilter" (change)="clickLimit()">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select> -->
+                                    <div class="info-3">dari {{ totalRecord }} data</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

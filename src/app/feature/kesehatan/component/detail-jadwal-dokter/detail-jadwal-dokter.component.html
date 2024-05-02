@@ -1,0 +1,58 @@
+<form>
+    <div class="form-group row align-items-center">
+        <div class="col-4">
+            <label class="font-size-14 mb-0 font-weight-bold">Hari</label>
+        </div>
+        <div class="col-8 relative">
+            <!-- <ng-select [items]="indonesianDays" bindLabel="day" bindValue="day" placeholder="Pilih Hari"
+                (change)="onDaySelected($event)"></ng-select> -->
+        </div>
+    </div>
+
+    <div class="form-group row align-items-center">
+        <div class="col-4">
+            <label class="font-size-14 mb-0 font-weight-bold">Jadwal</label>
+        </div>
+        <div class="col-8 d-flex flex-column">
+            <div class="d-flex align-items-center">
+                <!-- Schedule Start Input -->
+                <!-- [(ngModel)]="formModel.schedule_start" -->
+                <input class="form-control form-schedule mr-2" type="time" name="schedule_start" placeholder="Schedule Start" />
+
+                <!-- Hyphen Separator -->
+                <span class="mr-2">-</span>
+
+                <!-- Schedule End Input -->
+                <!-- [(ngModel)]="formModel.schedule_end" -->
+                <input class="form-control form-schedule" type="time" name="schedule_end" placeholder="Schedule End" />
+
+
+                <!-- Add Button -->
+                <!-- (click)="addScheduleRow()" -->
+                <button type="button" class="btn btn-primary btn-sm ml-2"
+                    >
+                    <i class="fa fa-plus"></i>
+                </button>
+
+                <!-- Remove Button -->
+                <!-- (click)="removeScheduleRow(i)" -->
+                <button type="button" class="btn btn-danger btn-sm ml-2"
+                    >
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+    <div class="form-group row">
+        <div class="col text-center">
+            <button type="submit" class="btn btn-outline-primary btn-action mr-2">
+                Batal
+            </button>
+            <button type="submit" class="btn btn-primary btn-action">
+                Simpan Perubahan
+            </button>
+        </div>
+    </div>
+</form>

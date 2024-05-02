@@ -1,0 +1,91 @@
+<ng-template #contentTemplate>
+  <!--- Sidemenu -->
+  <div id="sidebar-menu">
+    <!-- Left Menu Start -->
+    <ul class="metismenu list-unstyled" id="side-menu" #sideMenu>
+      <ng-container *ngFor="let item of menuItems">
+        <li class="menu-title" *ngIf="item.isTitle">{{ item.label }}</li>
+
+        <li *ngIf="!item.isTitle && !item.isLayout">
+
+          <!-- If menu not have submenu -->
+          <!-- <a [routerLink]="item.link" [routerLinkActiveOptions]="{ exact: true }"
+            *ngIf="!hasItems(item) && checkItemRole(item)" class="side-nav-link-ref parent-menu"
+            routerLinkActive="active" #parentRLA="routerLinkActive"
+            style="{{ parentRLA.isActive ? ' background-color: #21409A1A !important; ' : '' }}"> -->
+          <a [routerLink]="item.link" [routerLinkActiveOptions]="{ exact: true }"
+            *ngIf="!hasItems(item) && checkItemRole(item)" class="side-nav-link-ref parent-menu"
+            routerLinkActive="active" #parentRLA="routerLinkActive"
+            
+            >
+            <img
+              [src]="parentRLA.isActive ? 'assets/icons/sidebarMenuIcon/' + item.icon + '-active.svg' : 'assets/icons/sidebarMenuIcon/' + item.icon + '.svg'"
+              class="mr-2" alt="{{ item.icon }}-icon" />
+            <span> {{ item.label }}</span>
+            <span class="badge badge-pill badge-{{ item.badge.variant }} float-right" *ngIf="item.badge">{{
+              item.badge.text }}</span>
+          </a>
+
+          <!-- If menu have submenu -->
+          <a *ngIf="hasItems(item) && checkItemRole(item)" href="javascript:void(0);"
+            [ngClass]="{ 'has-arrow': !item.badge, 'has-dropdown': item.badge }" class="parent-menu">
+            <img
+              [src]="checkSubSubItemActive(item) ? 'assets/icons/sidebarMenuIcon/' + item.icon + '-active.svg' : 'assets/icons/sidebarMenuIcon/' + item.icon + '.svg'"
+              class="mr-2" alt="{{ item.icon }}-icon" />
+            <span> {{ item.label }}</span>
+            <span class="badge badge-pill badge-{{ item.badge.variant }} float-right" *ngIf="item.badge">{{
+              item.badge.text }}</span>
+          </a>
+
+          <!-- Submenu configuration -->
+          <ul *ngIf="hasItems(item) && checkItemRole(item)" class="sub-menu" aria-expanded="false">
+            <li *ngFor="let subitem of item.subItems">
+
+              <!-- If menu not have submenu -->
+              <a [routerLink]="subitem.link" *ngIf="!hasItems(subitem) && checkItemRole(subitem)"
+                class="side-nav-link-ref sub-menu-1" [attr.data-parent]="subitem.parentId"
+                routerLinkActive="sub-menu-1-active" #subItemRLA="routerLinkActive">
+                <img
+                  [src]="subItemRLA.isActive ? 'assets/icons/sidebarMenuIcon/' + subitem.icon + '-active.svg' : 'assets/icons/sidebarMenuIcon/' + subitem.icon + '.svg'"
+                  class="mr-2" alt="{{ subitem.icon }}-icon" />
+                {{ subitem.label }}
+              </a>
+
+              <!-- If menu have submenu -->
+              <a *ngIf="hasItems(subitem) && checkItemRole(subitem)" class="has-arrow has-dropdown sub-menu-1 disable-background pointer"
+                [attr.data-parent]="subitem.parentId">
+                <img
+                  [src]="checkSubSubItemActive(subitem) ? 'assets/icons/sidebarMenuIcon/' + subitem.icon + '-active.svg' : 'assets/icons/sidebarMenuIcon/' + subitem.icon + '.svg'"
+                  alt="{{ subitem.icon }}-icon" class="mr-2" />
+                {{ subitem.label }}
+              </a>
+              <ul *ngIf="hasItems(subitem) && checkItemRole(subitem)" class="sub-menu mm-collapse" aria-expanded="false">
+                <li *ngFor="let sub of subitem.subItems">
+                  <a [routerLink]="sub.link" *ngIf="!hasItems(sub) && checkItemRole(sub)" class="side-nav-link-ref sub-menu-2"
+                    [attr.data-parent]="sub.parentId" routerLinkActive="active" #subRLA="routerLinkActive">
+                    <img
+                      [src]="subRLA.isActive ? 'assets/icons/sidebarMenuIcon/' + sub.icon + '-active.svg' : 'assets/icons/sidebarMenuIcon/' + sub.icon + '.svg'"
+                      alt="{{ sub.icon }}-icon" class="mr-2" />
+                    {{ sub.label }}
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</ng-template>
+
+<div class="vertical-menu">
+  <!-- <perfect-scrollbar [config]="configData"> -->
+    <div *ngIf="!isCondensed">
+      <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </div>
+    <div *ngIf="isCondensed">
+      <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </div>
+  <!-- </perfect-scrollbar> -->
+</div>

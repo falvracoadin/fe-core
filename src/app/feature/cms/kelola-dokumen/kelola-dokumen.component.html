@@ -1,0 +1,226 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="title-page">CMS - Kelola Dokumen</div>
+      <div class="card">
+        <div class="card-header pb-0 px-0">
+          <div class="card-header pb-0 px-0">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-8 col-md-6 col-12">
+                  <div class="px-3">
+                    <div class="card-title">Daftar Dokumen</div>
+                  </div>
+                </div>
+                <div class="col-sm-4 col-md-6 col-12 d-flex justify-content-sm-end align-items-center">
+                  <div class="px-3">
+                    <a (click)="createDokumen(formKelolaDokumen)"
+                      class="btn btn-primary font-size-14 rounded-8 button-dukcapil d-flex align-items-center">
+                      <i class="fa fa-plus mr-2"></i> Tambah
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <hr />
+          <div class="px-3 d-flex align-items-center" style="padding-top: .5rem;">
+            <div class="row limit pl-3">
+              <div class="d-flex">
+                <!-- <ng-select class="custom" bindLabel="title" bindValue="param" [(ngModel)]="filter.param" [items]="filterParam" placeholder="Pilih Parameter"></ng-select> -->
+                <div class="relative">
+                  <!-- <input type="text" [(ngModel)]="filter.value" placeholder="Cari berdasarkan parameter" class="search-input" (keyup)="reloadDataTable()" /> -->
+                  <i class="fa fa-search icon-search"></i>
+                </div>
+              </div>
+            </div>
+            <div class="btn ml-4 rounded-8 d-flex align-items-center filter-button">
+              <i class="fa fa-filter"></i>
+            </div>
+            
+<!--              <div-->
+<!--                class="input-container mr-2"-->
+<!--                style="width: 309px"-->
+<!--                *ngIf="-->
+<!--                  !(filter.param == 'tglDiterima');-->
+<!--                  else tanggal_diterima_search-->
+<!--                ">-->
+<!--                <img-->
+<!--                  src="https://cdn-icons-png.flaticon.com/32/149/149852.png"-->
+<!--                  alt="" />-->
+<!--                <input-->
+<!--                  style="width: 259px"-->
+<!--                  [(ngModel)]="filter.value"-->
+<!--                  type="text"-->
+<!--                  placeholder="Cari berdasarkan parameter"-->
+<!--                  class="filter-input" />-->
+<!--              </div>-->
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12">
+            <div class="">
+              <!-- <table
+                class="table table-hover"
+                datatable
+                [dtOptions]="dtOptions">
+                <thead>
+                  <tr style="background-color: #E2E8F0 !important">
+                    <th class="text-center">#</th>
+                    <th class="text-center">Nama</th>
+                    <th class="text-center" style="min-width: 200px">Menu</th>
+                    <th class="text-center" style="min-width: 150px">Sub Menu</th>
+                    <th class="text-center" style="min-width: 100px">Instansi</th>
+                    <th class="text-center" style="max-width: 100px">Status</th>
+                    <th class="text-center" style="max-width: 100px">Adjudikasi</th>
+                    <th class="text-center" style="min-width: 120px">
+                      Tgl. Dibuat
+                    </th>
+                    <th class="text-center" style="min-width: 120px">
+                      Tgl. Status
+                    </th> -->
+<!--                    <th class="text-center" style="min-width: 100px">Aksi</th>-->
+                  <!-- </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let dokumen of listDokumen; index as i" [class.bg-white]="(i % 2) == 0" [class.bg-second]="(i % 2) == 1">
+                    <td class="align-middle">
+                      <img
+                        src="{{ dokumen.ikon }}"
+                        alt=""
+                        class="icon-dokumen" />
+                    </td>
+                    <td class="align-middle">
+                      <p class="doc_title mb-0">
+                        {{ dokumen.doc_title ? dokumen.doc_title : "-" }}
+                      </p>
+                      <p class="alias_formulir mb-0">
+                        {{ dokumen.alias_formulir ? dokumen.alias_formulir : "-" }}
+                      </p>
+                    </td>
+                    <td class="align-middle">{{ dokumen.menu ? dokumen.menu : "-" }}</td>
+                    <td class="align-middle">{{ dokumen.sub_menu ? dokumen.sub_menu : "-" }}</td>
+                    <td class="align-middle">{{ dokumen.instansi ? dokumen.instansi : "-" }}</td>
+                    <td class="align-middle status_dokumen text-center">
+                      <div class="d-flex justify-content-center">
+                        <div
+                          [class.status-danger]="dokumen.status == 0"
+                          [class.status-success]="dokumen.status == 1">
+                          <span *ngIf="dokumen.status == 0">Tidak Aktif</span>
+                          <span *ngIf="dokumen.status == 1">Aktif</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="align-middle">
+                      <span *ngIf="dokumen.adjudikasi == 0">
+                        <div class="circle cross mr-1">
+                          <svg
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-wvcacx-MuiSvgIcon-root cross"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                  data-testid="CloseIcon">
+                            <path
+                                    d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                          </svg>
+                        </div>
+                        Tidak
+                      </span>
+                      <span *ngIf="dokumen.adjudikasi == 1">
+                        <div class="circle check mr-1">
+                          <svg
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-wvcacx-MuiSvgIcon-root check"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                  data-testid="CheckIcon">
+                            <path
+                                    d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                          </svg>
+                        </div>
+                        Ya
+                      </span>
+                    </td>
+                    <td class="align-middle text-center">
+                      {{ getDateFormat(dokumen.tanggal_dibuat) }}
+                    </td>
+                    <td class="align-middle text-center">
+                      {{ getDateFormat(dokumen.tanggal_status) }}
+                    </td> -->
+<!--                    <td class="align-middle text-center">-->
+<!--                      <button-->
+<!--                        class="btn btn-outline-warning mr-2"-->
+<!--                        (click)="deleteDokumen(dokumen.id)">-->
+<!--                        <i class="fa fa-trash-alt"></i>-->
+<!--                      </button>-->
+<!--                      <button-->
+<!--                        class="btn btn-outline-warning"-->
+<!--                        (click)="updateDokumen(formKelolaDokumen, dokumen)">-->
+<!--                        <i class="fa fa-pencil-alt"></i>-->
+<!--                      </button>-->
+<!--                    </td>-->
+                  <!-- </tr>
+                </tbody>
+                <tr class="table-danger" *ngIf="totalRecord == 0">
+                  <td [attr.colspan]="10" class="text-center">
+                    Data tidak ditemukan
+                  </td>
+                </tr>
+              </table> -->
+              <div class="info-wrap-imi" *ngIf="totalRecord != 0">
+                <div class="info-1">Tampilkan</div>
+                <!-- <select
+                  [(ngModel)]="limit"
+                  id="inputLimit"
+                  class="form-control info-2"
+                  style=" background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; padding: 0.47rem 0.75rem"
+                  name="showFilter"
+                  (change)="clickLimit()">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select> -->
+                <div class="info-3">dari {{ totalRecord }} data</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #tanggal_diterima_search>
+  <div class="input-container mr-2" style="width: 309px">
+    <img src="https://cdn-icons-png.flaticon.com/512/833/833593.png" alt="" />
+    <!-- <input
+      style="width: 259px"
+      [(ngModel)]="filter.value"
+      type="date"
+      placeholder="Cari berdasarkan tanggal"
+      class="filter-input" /> -->
+  </div>
+</ng-template>
+
+<ng-template #formKelolaDokumen let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title my-auto font-weight-bold font-size-24">
+      {{ titleModal }}
+    </h4>
+    <button
+      type="button"
+      class="close my-auto"
+      (click)="modal.close()"
+      aria-label="Close">
+      <i class="mdi mdi-close-thick"></i>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- <app-form-kelola-dokumen
+      [listFormulir]="listFormulir"
+      [dokumenInput]="dokumenInput"
+      (afterSave)="modal.close(); reloadDataTable()"></app-form-kelola-dokumen> -->
+  </div>
+</ng-template>

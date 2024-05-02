@@ -1,0 +1,121 @@
+.tambah-ikon {
+    display: flex;
+    cursor: pointer;
+}
+
+.text-ikon {
+    color: #94A3B8;
+}
+
+.text-gambar {
+    color: #495057;
+}
+
+.ng-select-chevron {
+    position: absolute;
+    top: 30%;
+    right: 25px;
+    font-size: 16px;
+}
+
+input::placeholder {
+    font-size: 14px;
+}
+
+.ng-select.custom ::ng-deep .ng-arrow-wrapper {
+    z-index: 5;
+}
+
+.ng-select.custom ::ng-deep .ng-arrow-wrapper .ng-arrow {
+    border-color: #999 transparent transparent;
+    border-style: none !important;
+    border-width: 5px 5px 2.5px;
+}
+
+.ng-select.custom ::ng-deep .ng-select-single .ng-select-container {
+    height: 42.36px !important;
+}
+
+.ng-select .ng-select-container .ng-value-container {
+    align-items: center;
+    padding-left: 10px;
+}
+
+.ng-select.custom ::ng-deep .ng-value-label, .ng-select.custom ::ng-deep .ng-placeholder {
+    font-size: 14px;
+}
+
+.button-gambar {
+    position: absolute;
+}
+
+.custom-file-input {
+    cursor: pointer;
+}
+
+.custom-file-input:lang(en)~.custom-file-label::after {
+    content: "Buka Folder";
+    font-size: 16px;
+}
+
+.custom-file-label {
+    height: 42.36px !important;
+    font-size: 16px;
+}
+
+.custom-file-label::after {
+    font-size: 16px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    display: block;
+    height: 42.36px !important;
+    padding: 0.47rem 0.75rem;
+    line-height: 1.5;
+    content: "Buka Folder";
+    background-color: #E9ECF5;
+    border-left: inherit;
+    border-radius: 0 0.25rem 0.25rem 0;
+    cursor: pointer;
+}
+
+.gambar-upload {
+    width: 300px;
+}
+
+.ikon-upload {
+    display: block;
+    width: 100px;
+    margin: 10px 0;
+}
+
+.ikon-upload-area {
+    width: 120px;
+    position: relative;
+}
+
+.button-delete-ikon {
+    position: absolute;
+    top: 0;
+    left: 100px;
+    cursor: pointer;
+}
+
+::ng-deep .ng-dropdown-panel .ng-dropdown-footer {
+    border: 1px solid #ccc;
+    padding: 5px 7px;
+    background-color: white;
+}
+
+.search-dokumen-ikon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.relative {
+    position: relative;
+}

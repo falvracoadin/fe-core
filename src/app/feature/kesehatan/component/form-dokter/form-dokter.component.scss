@@ -1,0 +1,66 @@
+.title-page {
+  font-size: 32px;
+  font-weight: 800;
+  font-stretch: normal;
+  color: #231f20;
+  margin-bottom: 10px;
+}
+
+.card-title {
+  width: 100%;
+  height: 29px;
+  font-size: 21px;
+  font-weight: 700;
+  color: #231f20;
+  margin: 16px 0;
+}
+
+.bs-stepper .step-trigger {
+  display: block;
+}
+
+// .bs-stepper .step.active .step-trigger {
+//   background-color: #00A79D;
+//   color: #fff;
+// }
+
+.bs-stepper .step-trigger.disabled,
+.bs-stepper .step-trigger:disabled {
+  opacity: 1;
+}
+
+.bs-stepper .step.active .bs-stepper-circle {
+  background-color: #00a79d;
+}
+
+.bs-stepper .bs-stepper-header .line {
+  min-height: 6px;
+  background-color: #ffffff;
+}
+
+.bs-stepper-header {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.bs-stepper .bs-stepper-header .line-progress {
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  height: 2px;
+  background-color: #ccc;
+  z-index: 1;
+  min-height: 6px;
+}
+
+.bs-stepper .bs-stepper-header .step {
+  position: relative;
+  z-index: 2;
+}
+
+.prev-step .bs-stepper-circle {
+  background-color: #ffffff;
+  border: 2px solid #00a79d;
+  color: #00a79d;
+}

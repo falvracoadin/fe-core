@@ -1,0 +1,66 @@
+.main{
+    min-height: 100vh;
+    min-width: 100vw;
+    width: 100vw;
+    background-color: white;
+}
+
+.blue-line{
+    width: 70%;
+    height: 3px;
+    border-radius: 5px;
+    display: inline-block;
+    background-color: #21409A;
+    position: absolute;
+    left: 15px;
+    bottom: 10px;
+}
+
+.relative {
+    position: relative;
+}
+
+.main > div :nth-child(2){
+    z-index: 999;
+}
+
+.main .logo-top{
+    margin-top: 40px;
+    position: relative;
+}
+
+.main .logo{
+    width: 50px;
+    height: auto;
+}
+
+.main .company{
+    font-size: 36px;
+    font-weight: 800;
+    color: #101010;
+    margin-left: 15px;
+}
+
+.main .left-img{
+    width: 70%;
+    height: auto;
+}
+
+.shape_1{
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    z-index: 10;
+    width: 242px;
+    height: 242px;
+}
+
+.version{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    font-size: 14px;
+    letter-spacing: 0.47px;
+    color: #231f20;
+    font-weight: 600;
+}

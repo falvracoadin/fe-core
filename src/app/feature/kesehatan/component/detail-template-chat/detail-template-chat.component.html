@@ -1,0 +1,20 @@
+<form>
+  <div class="form-group row">
+    <div class="col-4">
+      <label class="font-size-14 mb-0 font-weight-bold">Teks</label>
+    </div>
+    <div class="col-8 relative">
+      <!-- <textarea name="teks" class="form-control form-control-lg" placeholder="Masukkan teks template"
+        [(ngModel)]="formModel.text"></textarea> -->
+    </div>
+  </div>
+  <hr />
+  <div class="form-group row">
+    <div class="col text-center">
+      <button type="submit" class="btn btn-outline-primary btn-action mr-2" (click)="close()">
+        Batal
+      </button>
+      <button type="submit" class="btn btn-primary btn-action" (click)="save()">Kirim</button>
+    </div>
+  </div>
+</form>

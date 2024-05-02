@@ -1,0 +1,245 @@
+<form>
+  <div class="form-group row align-items-center">
+    <div class="col-4">
+      <label class="font-size-14 mb-0 font-weight-bold">Nama Dokumen</label>
+    </div>
+    <div class="col-8 relative">
+      <!-- <ng-select
+        [(ngModel)]="formModel.m_form_id"
+        class="custom"
+        id="nama_dokumen"
+        name="nama_dokumen"
+        [items]="listFormulir"
+        bindLabel="form_title"
+        bindValue="id"
+        placeholder="Pilih dokumen yang tersedia">
+        <ng-template ng-header-tmp>
+          <div style="position: relative">
+            <input
+              (keyup)="searchListDokumen()"
+              [(ngModel)]="searchDokumen"
+              type="text"
+              name="searchDokumen"
+              class="custom form-control form-control-lg"
+              placeholder="Cari" />
+            <i
+              (click)="searchListDokumen()"
+              class="fa fa-search font-size-16 search-dokumen-ikon"></i>
+          </div>
+        </ng-template>
+        <ng-template ng-option-tmp let-item="item" let-index="index">
+          <span class="font-weight-bold font-size-16">{{
+            item.form_title
+          }}</span>
+          <br />
+          <span class="font-size-12">{{
+            item.is_multi == 1 ? "Multi Halaman" : "Satu halaman"
+          }}</span>
+        </ng-template>
+      </ng-select> -->
+      <i class="fa fa-chevron-down my-auto ng-select-chevron"></i>
+    </div>
+  </div>
+  <div class="form-group row align-items-center">
+    <div class="col-4">
+      <label class="font-size-14 mb-0 font-weight-bold">Alias Formulir</label>
+    </div>
+    <div class="col-8 relative">
+      <!-- <input
+        [(ngModel)]="formModel.alias_formulir"
+        type="text"
+        name="alias"
+        class="custom form-control form-control-lg"
+        placeholder="Masukkan alias untuk formulir" /> -->
+    </div>
+  </div>
+  <div class="form-group row align-items-center">
+    <div class="col-4">
+      <label class="font-size-14 mb-0 font-weight-bold">Kategori</label>
+    </div>
+    <div class="col-8 relative">
+      <!-- <ng-select
+        [(ngModel)]="formModel.kategori"
+        name="kategori"
+        class="custom"
+        [items]="listKategori"
+        bindLabel="kategori"
+        bindValue="kategori"
+        placeholder="Pilih ID atau dokumen">
+      </ng-select> -->
+      <i class="fa fa-chevron-down my-auto ng-select-chevron"></i>
+    </div>
+  </div>
+  <div class="form-group row align-items-center">
+    <div class="col-4">
+      <label class="font-size-14 mb-0 font-weight-bold">Sub Kategori</label>
+    </div>
+    <div class="col-8 relative">
+      <!-- <ng-select
+        [(ngModel)]="formModel.sub_kategori"
+        name="sub_kategori"
+        class="custom"
+        [items]="listSubKategori"
+        bindLabel="sub_kategori"
+        bindValue="sub_kategori"
+        placeholder="Cari atau tambah sub kategori">
+      </ng-select> -->
+      <i class="fa fa-chevron-down my-auto ng-select-chevron"></i>
+    </div>
+  </div>
+  <div class="form-group row align-items-center">
+    <div class="col-4">
+      <label class="font-size-14 mb-0 font-weight-bold">Menu</label>
+    </div>
+    <div class="col-8 relative">
+      <!-- <ng-select
+        [(ngModel)]="formModel.menu"
+        name="menu"
+        class="custom"
+        [items]="listMenu"
+        bindLabel="menu"
+        bindValue="menu"
+        placeholder="Cari atau tambah menu baru"> -->
+        <!-- <ng-template ng-footer-tmp>
+          <div>
+            <button (click)="tambahMenu()" class="btn btn-primary btn-block"
+              ><i class="fa fa-plus mr-2"></i>Tambah Menu</button
+            >
+          </div>
+        </ng-template> -->
+      <!-- </ng-select> -->
+      <i class="fa fa-chevron-down my-auto ng-select-chevron"></i>
+    </div>
+  </div>
+  <div class="form-group row align-items-center">
+    <div class="col-4">
+      <label class="font-size-14 mb-0 font-weight-bold">Sub Menu</label>
+    </div>
+    <div class="col-8 relative">
+      <!-- <ng-select
+        [(ngModel)]="formModel.sub_menu"
+        name="sub_menu"
+        class="custom"
+        [items]="listSubMenu"
+        bindLabel="sub_menu"
+        bindValue="sub_menu"
+        placeholder="Cari atau tambah sub menu">
+      </ng-select> -->
+      <i class="fa fa-chevron-down my-auto ng-select-chevron"></i>
+    </div>
+  </div>
+  <div class="form-group row align-items-center">
+    <div class="col-4">
+      <label class="font-size-14 mb-0 font-weight-bold">Instansi</label>
+    </div>
+    <div class="col-8 relative">
+      <!-- <input
+        [(ngModel)]="formModel.instansi"
+        name="instansi"
+        type="text"
+        class="form-control form-control-lg"
+        placeholder="Maksimal instansi terkait" /> -->
+    </div>
+  </div>
+  <div class="form-group row align-items-center">
+    <div class="col-4">
+      <label class="font-size-14 mb-0 font-weight-bold">Adjudikasi</label>
+    </div>
+    <div class="col-8 relative">
+      <!-- <ng-select
+        [(ngModel)]="formModel.adjudikasi"
+        name="adjudikasi"
+        class="custom"
+        [items]="listAdjudikasi"
+        bindLabel="adjudikasi"
+        bindValue="id"
+        placeholder="Ya / Tidak">
+      </ng-select> -->
+      <i class="fa fa-chevron-down my-auto ng-select-chevron"></i>
+    </div>
+  </div>
+  <div class="form-group row align-items-center">
+    <div class="col-4">
+      <label class="font-size-14 mb-0 font-weight-bold">Status</label>
+    </div>
+    <div class="col-8 relative">
+      <!-- <ng-select
+        [(ngModel)]="formModel.status"
+        name="status"
+        class="custom"
+        [items]="listStatus"
+        bindLabel="status"
+        bindValue="id"
+        placeholder="Pilih Status">
+      </ng-select> -->
+      <i class="fa fa-chevron-down my-auto ng-select-chevron"></i>
+    </div>
+  </div>
+  <div class="form-group row align-items-center">
+    <div class="col-4">
+      <label class="font-size-14 mb-0 font-weight-bold">Pilih Gambar</label>
+    </div>
+    <div class="col-8 relative">
+      <div class="custom-file">
+        <input
+          name="gambar"
+          type="file"
+          accept="image/*"
+          class="custom-file-input"
+          id="customFile"
+          (change)="handleUpload($event, 'gambar')" />
+        <label class="custom-file-label" for="customFile">{{
+          namaGambar
+        }}</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col d-flex justify-content-center">
+      <img *ngIf="fileGambar" [src]="fileGambar" alt="" class="gambar-upload" />
+    </div>
+  </div>
+  <div class="form-group row align-items-center">
+    <div class="col-4">
+      <label class="font-size-14 mb-0 font-weight-bold">Ikon</label>
+    </div>
+    <div class="col-8 relative">
+      <div *ngIf="fileIkon" class="ikon-upload-area card">
+        <img [src]="fileIkon" alt="" class="ikon-upload" />
+        <i class="fa fa-times font-size-22 text-dark button-delete-ikon" (click)="deleteIkon()"></i>
+      </div>
+      <img
+        *ngIf="!fileIkon"
+        class="tambah-ikon"
+        src="assets/images/tambah-ikon.svg"
+        alt=""
+        width="100"
+        height="100"
+        (click)="clickInput('input-ikon')" />
+
+      <input
+        id="input-ikon"
+        type="file"
+        name="ikon"
+        accept="image/png, image/svg+xml"
+        class="form-control form-control-lg"
+        (change)="handleUpload($event, 'ikon')"
+        hidden />
+      <span class="font-size-16 text-ikon">Atur kategori ikon. Hanya gambar format *.png dan *.svg yang diterima</span>
+    </div>
+  </div>
+  <hr />
+  <div class="form-group row">
+    <div class="col text-center">
+      <button
+        type="submit"
+        class="btn btn-outline-primary btn-lg mr-2"
+        (click)="close()">
+        Batal
+      </button>
+      <button type="submit" class="btn btn-primary btn-lg" (click)="save()">
+        Kirim
+      </button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,19 @@
+<app-topbar
+  [photoProfile]="profilePhoto"
+  (settingsButtonClicked)="onSettingsButtonClicked()"
+  (mobileMenuButtonClicked)="onToggleMobileMenu()"
+>
+</app-topbar>
+
+<app-sidebar [isCondensed]="isCondensed"></app-sidebar>
+
+<div class="main-content">
+  <div class="mt-70px p-4">
+    <router-outlet></router-outlet>
+  </div>
+
+  <app-footer></app-footer>
+</div>
+
+<app-rightsidebar [photoProfile]="profilePhoto"></app-rightsidebar>
+<div class="my-5"></div>

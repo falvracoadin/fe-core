@@ -1,0 +1,237 @@
+{
+    "code": 200,
+    "status": "success",
+    "message": "role permissions have been successfully acquired",
+    "data": [
+        {
+            "Id": 79612,
+            "PermissionKey": "Web:Profile:Edit",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79613,
+            "PermissionKey": "Web:Profile:Delete",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79614,
+            "PermissionKey": "Web:Password:Edit",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79615,
+            "PermissionKey": "Web:Media:Edit",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79616,
+            "PermissionKey": "Web:Clients:Get",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79617,
+            "PermissionKey": "Web:Client:Create",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79618,
+            "PermissionKey": "Web:Client:Get",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79619,
+            "PermissionKey": "Web:Client:Edit",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79620,
+            "PermissionKey": "Web:Client:Delete",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79621,
+            "PermissionKey": "Web:RolePermission:Create",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79622,
+            "PermissionKey": "Web:RolePermissions:Get",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79623,
+            "PermissionKey": "Web:RolePermission:Edit",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79624,
+            "PermissionKey": "Web:RolePermission:Delete",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79625,
+            "PermissionKey": "Web:Roles:Get",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79626,
+            "PermissionKey": "Web:Role:Create",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79627,
+            "PermissionKey": "Web:Role:Get",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79628,
+            "PermissionKey": "Web:Role:Edit",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79629,
+            "PermissionKey": "Web:Role:Delete",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79630,
+            "PermissionKey": "Web:UserPermission:Create",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79631,
+            "PermissionKey": "Web:UserPermissions:Get",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79632,
+            "PermissionKey": "Web:UserPermission:Edit",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79633,
+            "PermissionKey": "Web:UserPermission:Delete",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79634,
+            "PermissionKey": "Web:UserRole:Create",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79635,
+            "PermissionKey": "Web:UserRoles:Get",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79636,
+            "PermissionKey": "Web:UserRole:Edit",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79637,
+            "PermissionKey": "Web:UserRole:Delete",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79638,
+            "PermissionKey": "Web:Users:Get",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79639,
+            "PermissionKey": "Web:User:Create",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79640,
+            "PermissionKey": "Web:User:Get",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79641,
+            "PermissionKey": "Web:User:Edit",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79642,
+            "PermissionKey": "Web:User:Delete",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79643,
+            "PermissionKey": "Web:User:Upgrade:Approve",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79644,
+            "PermissionKey": "Web:User:Upgrade:Reject",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79645,
+            "PermissionKey": "Web:Documents:Get",
+            "RoleId": 1125
+        },
+        {
+            "Id": 79646,
+            "PermissionKey": "Web:Document:Get",
+            "RoleId": 1125
+        },
+        {
+            "Id": 80458,
+            "PermissionKey": "Web:Report:All",
+            "RoleId": 1125
+        },
+        {
+            "Id": 80600,
+            "PermissionKey": "Web:Profile:Get",
+            "RoleId": 1125
+        },
+        {
+            "Id": 80610,
+            "PermissionKey": "Web:AdjAdmin:All",
+            "RoleId": 1125
+        },
+        {
+            "Id": 80617,
+            "PermissionKey": "Web:Admin:Webdashboard",
+            "RoleId": 1125
+        },
+        {
+            "Id": 80771,
+            "PermissionKey": "Web:KategoriLokasi:All",
+            "RoleId": 1125
+        },
+        {
+            "Id": 80772,
+            "PermissionKey": "Web:Lokasi:All",
+            "RoleId": 1125
+        },
+        {
+            "Id": 80773,
+            "PermissionKey": "Web:Kependudukan:All",
+            "RoleId": 1125
+        },
+        {
+            "Id": 80867,
+            "PermissionKey": "Web:Cms:All",
+            "RoleId": 1125
+        },
+        {
+            "Id": 80870,
+            "PermissionKey": "Web:Voucher:All",
+            "RoleId": 1125
+        },
+        {
+            "Id": 80871,
+            "PermissionKey": "Web:ProgramBantuan:All",
+            "RoleId": 1125
+        },
+        {
+            "Id": 80872,
+            "PermissionKey": "Web:PenerimaBantuan:All",
+            "RoleId": 1125
+        }
+    ]
+}

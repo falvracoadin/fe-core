@@ -1,0 +1,229 @@
+<!-- Right Sidebar -->
+<div class="right-bar h-100">
+  <ng-container *ngIf="part == 'main'">
+    <div class="position-absolute rightbar-title">
+      <a href="javascript:void(0);" class="float-right" (click)="hide()">
+        <img
+          src="assets/icons/close.svg"
+          alt="Close Icon"
+          [height]="20"
+          [width]="20"
+        />
+      </a>
+    </div>
+
+    <div class="h-100 d-flex flex-column justify-content-between p-3">
+      <div class="d-flex flex-column gap-5">
+        <!-- Profile -->
+        <div class="d-flex flex-column align-items-center mt-5 gap-1">
+          <img
+            [src]="photoProfile"
+            alt="Profile Image"
+            class="rounded-circle profile-image"
+            [height]="90"
+            [width]="90"
+            onerror="this.src='assets/images/users/avatar-1.jpg'"
+          />
+          <p class="text-base mb-0" style="font-weight: 800; color: #3f4144">
+            {{ user.Fullname }}
+          </p>
+          <p
+            class="mb-0"
+            style="color: #3f4144; font-weight: 400; font-size: 14px"
+          >
+            {{ user.Email }}
+          </p>
+        </div>
+        <!-- Edit Profile Menu -->
+        <div class="w-100">
+          <p
+            class="py-3 text-base cursor-pointer list-menu-profile d-flex align-items-center justify-content-between menu-righsidebar"
+            (click)="part = 'editProfile'"
+          >
+            Edit Profil
+            <img src="assets/icons/arrow-right.svg" alt="Arrow Right Icon" />
+          </p>
+          <p
+            class="py-3 text-base cursor-pointer list-menu-profile d-flex align-items-center justify-content-between"
+            (click)="
+              isKeycloak ? changePasswordKeycloak() : (part = 'changePassword')
+            "
+          >
+            Ganti Password
+            <img src="assets/icons/arrow-right.svg" alt="Arrow Right Icon" />
+          </p>
+        </div>
+      </div>
+      <button class="btn btn-rounded btn-block btn-primary" (click)="logOut()">
+        <span class="text-base">Logout</span>
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="part == 'editProfile'">
+    <div class="h-100 d-flex flex-column justify-content-between p-3">
+      <!-- Kembali Main dan Edit Profile -->
+      <div class="d-flex flex-column gap-5">
+        <div
+          class="d-flex cursor-pointer align-items-center"
+          (click)="part = 'main'"
+        >
+          <img
+            src="assets/icons/chevron_left.svg"
+            alt="Back Icon"
+            [height]="24"
+            [width]="24"
+            class="mr-2"
+          />
+          <p class="text-base mb-0" style="color: #3f4144; font-weight: 600">
+            Edit Profil
+          </p>
+        </div>
+
+        <div class="d-flex flex-column gap-3 align-items-center">
+          <div style="position: relative">
+            <!--            class="cursor-pointer" (click)="triggerInputProfilePhoto()"-->
+            <img
+              [src]="photoProfile"
+              style="min-height: 90px; max-width: 90px"
+              [height]="90"
+              [width]="90"
+              alt="Avatar Profile"
+              class="profile-image rounded-circle"
+            />
+            <!--            <img class="camera-icon" src="assets/icons/camera.svg" alt="Camera Icon" />-->
+          </div>
+          <!--          <input accept="image/jpeg,image/jpg,image/png" autocomplete="off" id="ProfilePhoto" type="file" style="display: none" (change)="uploadPhoto($event)" [alt]="Fullname" />-->
+
+          <form class="w-100">
+            <div class="form-group">
+              <label class="text-base" for="name">Nama</label>
+              <input
+                name="name"
+                [(ngModel)]="Fullname"
+                type="text"
+                class="form-control"
+                id="name"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div class="form-group">
+              <label class="text-base" for="email">Email</label>
+              <input
+                [disabled]="isKeycloak"
+                name="email"
+                [(ngModel)]="Email"
+                type="email"
+                class="form-control disabled-keycloak"
+                id="email"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div>
+        <button
+          (click)="submitEditProfile()"
+          type="button"
+          class="btn btn-rounded btn-block btn-primary"
+        >
+          <span class="text-base">Konfirmasi</span>
+        </button>
+        <button
+          class="btn btn-rounded btn-block btn-outline-primary"
+          (click)="part = 'main'"
+        >
+          <span class="text-base">Batal</span>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="part == 'changePassword'">
+    <div class="h-100 d-flex flex-column justify-content-between p-3">
+      <!-- Kembali Main dan Edit Profile -->
+      <div class="d-flex flex-column gap-5">
+        <div
+          class="d-flex cursor-pointer align-items-center"
+          (click)="part = 'main'"
+        >
+          <img
+            src="assets/icons/chevron_left.svg"
+            alt="Back Icon"
+            [height]="24"
+            [width]="24"
+            class="mr-2"
+          />
+          <p
+            class="text-base mb-0"
+            style="font-weight: 600; color: #3f4144 !important"
+          >
+            Ganti Password
+          </p>
+        </div>
+
+        <div class="d-flex flex-column gap-3 align-items-center">
+          <form class="w-100">
+            <div class="form-group">
+              <label class="text-base" for="oldPassword">Password Lama</label>
+              <input
+                name="oldPassword"
+                [(ngModel)]="OldPassword"
+                type="password"
+                class="form-control"
+                id="oldPassword"
+                placeholder="Masukkan password lama Anda"
+              />
+            </div>
+            <div class="form-group">
+              <label class="text-base" for="newPassword">Password Baru</label>
+              <input
+                [(ngModel)]="NewPassword"
+                name="newPassword"
+                type="password"
+                class="form-control"
+                id="newPassword"
+                placeholder="Masukkan password baru Anda"
+              />
+            </div>
+            <div class="form-group">
+              <label class="text-base" for="passwordConfirmation"
+                >Konfirmasi Password Baru</label
+              >
+              <input
+                [(ngModel)]="PasswordConfirmation"
+                name="passwordConfirmation"
+                type="password"
+                class="form-control"
+                id="passwordConfirmation"
+                placeholder="Konfirmasi password baru Anda"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div>
+        <button
+          (click)="submitChangePassword()"
+          class="btn btn-rounded btn-block btn-primary"
+        >
+          <span class="text-base">Konfirmasi</span>
+        </button>
+        <button
+          class="btn btn-rounded btn-block btn-outline-primary"
+          (click)="part = 'main'"
+        >
+          <span class="text-base">Batal</span>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<!-- /Right-bar -->
+
+<!-- Right bar overlay-->
+<div class="rightbar-overlay" (click)="hide()"></div>

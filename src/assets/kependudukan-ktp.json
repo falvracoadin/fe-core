@@ -1,0 +1,46 @@
+{
+    "status_code": 200,
+    "message": "Success",
+    "data": {
+        "list": [
+            {
+                "alamat": "LOREM IPSUM",
+                "foto": null,
+                "id": 311,
+                "jam_kedatangan": null,
+                "jenis_permohonan": "PEMBUATAN BARU",
+                "kecamatan": "WAGIR",
+                "kecamatan_id": "350721",
+                "kelurahan": "SIDORAHAYU",
+                "kelurahan_id": "3507210009",
+                "kode_pos": "777333",
+                "konfirmasi_at": null,
+                "konfirmasi_by": null,
+                "kota": "MALANG",
+                "kota_id": "3507",
+                "link_picture": "https://s3.loyalto.id/inisadev/public/noimage.png",
+                "lokasi_id": "350721",
+                "m_user_id": 20,
+                "nama": "TES KTP BARU",
+                "no_kk": "1111111",
+                "no_nik": "222222",
+                "no_registrasi": "NTT2022112811001",
+                "notes": null,
+                "notes_operator": null,
+                "notes_supervisor": null,
+                "path": null,
+                "pekerjaan_lainnya": null,
+                "provinsi": "JAWA TIMUR",
+                "provinsi_id": "35",
+                "rt": "55",
+                "rw": "345",
+                "status": "diproses",
+                "tanggal_kedatangan": null,
+                "tempat_kedatangan": "WAGIR",
+                "verifikasi_at": null,
+                "verifikasi_by": null
+            }
+        ],
+        "total_item": 1
+    }
+}

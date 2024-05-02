@@ -1,0 +1,620 @@
+{
+  "id": "113",
+  "form_title": "Test Single Formulir Lengkap",
+  "sections": [
+    "section-1"
+  ],
+  "detail_sections": {
+    "section-1": {
+      "desc": "Deskripsi Single Formulir",
+      "forms": [
+        "form-12",
+        "form-1",
+        "form-2",
+        "form-3",
+        "form-4",
+        "form-5",
+        "form-6",
+        "form-7",
+        "form-8",
+        "form-9",
+        "form-10",
+        "form-11"
+      ],
+      "id": "section-1",
+      "title": "Test Single Formulir"
+    }
+  },
+  "forms": {
+    "form-1": {
+      "content": [
+        {
+          "desc": "Isi data teks dalam satu baris",
+          "iconId": 1,
+          "id": "form-1-1",
+          "name": "Kolom Satu Baris",
+          "property": {
+            "deskripsi": {
+              "placeholder": "Edit deskripsi kolom",
+              "type": "text",
+              "value": ""
+            },
+            "keterangan": {
+              "placeholder": "Tambah keterangan kolom",
+              "type": "text",
+              "value": ""
+            },
+            "label": {
+              "placeholder": "Edit label",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "tampilan": {
+            "batasi_karakter": false,
+            "deskripsi": false,
+            "primary_key": false,
+            "wajib_diisi": true
+          },
+          "type": "single-line"
+        }
+      ],
+      "id": "form-1"
+    },
+    "form-2": {
+      "content": [
+        {
+          "desc": "Isi data teks dalam multi baris",
+          "iconId": 2,
+          "id": "form-2-1",
+          "name": "Kolom Multi Baris",
+          "property": {
+            "deskripsi": {
+              "placeholder": "Edit deskripsi kolom",
+              "type": "text",
+              "value": ""
+            },
+            "keterangan": {
+              "placeholder": "Tambah keterangan kolom",
+              "type": "text",
+              "value": ""
+            },
+            "label": {
+              "placeholder": "Edit label",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "tampilan": {
+            "batasi_karakter": false,
+            "deskripsi": false,
+            "pencatatan": false,
+            "wajib_diisi": true
+          },
+          "type": "multiple-line"
+        }
+      ],
+      "id": "form-2"
+    },
+    "form-3": {
+      "content": [
+        {
+          "desc": "Bilangan bulat atau desimal",
+          "format": {
+            "is_negative": false,
+            "option": [
+              {
+                "label": "Bilangan Bulat"
+              },
+              {
+                "label": "Bilangan Desimal"
+              }
+            ],
+            "value": {
+              "label": "Bilangan Bulat"
+            }
+          },
+          "iconId": 3,
+          "id": "form-3-1",
+          "name": "Angka",
+          "property": {
+            "deskripsi": {
+              "placeholder": "Edit deskripsi kolom",
+              "type": "text",
+              "value": ""
+            },
+            "keterangan": {
+              "placeholder": "Tambah keterangan kolom",
+              "type": "text",
+              "value": ""
+            },
+            "label": {
+              "placeholder": "Edit label",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "tampilan": {
+            "batasi_karakter": false,
+            "deskripsi": false,
+            "primary_key": false,
+            "wajib_diisi": true
+          },
+          "type": "number"
+        }
+      ],
+      "id": "form-3"
+    },
+    "form-4": {
+      "content": [
+        {
+          "desc": "Tanggal",
+          "format": {
+            "date": {
+              "option": [
+                {
+                  "label": "DD/MM/YYYY",
+                  "value": "dd/MM/yyyy"
+                },
+                {
+                  "label": "MM/DD/YYYY",
+                  "value": "MM/dd/yyyy"
+                },
+                {
+                  "label": "YYYY/MM/DD",
+                  "value": "yyyy/MM/dd"
+                },
+                {
+                  "label": "YYYY/DD/MM",
+                  "value": "yyyy/dd/MM"
+                },
+                {
+                  "label": "DD-MM-YYYY",
+                  "value": "dd-MM-yyyy"
+                },
+                {
+                  "label": "MM-DD-YYYY",
+                  "value": "MM-dd-yyyy"
+                },
+                {
+                  "label": "YYYY-MM-DD",
+                  "value": "yyyy-MM-dd"
+                },
+                {
+                  "label": "YYYY-DD-MM",
+                  "value": "yyyy-dd-MM"
+                }
+              ],
+              "value": {
+                "label": "DD/MM/YYYY",
+                "value": "dd/MM/yyyy"
+              }
+            }
+          },
+          "iconId": 4,
+          "id": "form-4-1",
+          "name": "Tanggal",
+          "property": {
+            "deskripsi": {
+              "placeholder": "Edit deskripsi kolom",
+              "type": "text",
+              "value": ""
+            },
+            "keterangan": {
+              "placeholder": "Tambah keterangan kolom",
+              "type": "text",
+              "value": ""
+            },
+            "label": {
+              "placeholder": "Edit label",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "tampilan": {
+            "deskripsi": false,
+            "wajib_diisi": true
+          },
+          "type": "date",
+          "value": null
+        }
+      ],
+      "id": "form-4"
+    },
+    "form-5": {
+      "content": [
+        {
+          "desc": "Jam, menit dan detik",
+          "format": {
+            "time": {
+              "option": [
+                {
+                  "label": "24 Hours",
+                  "value": "HH:mm"
+                },
+                {
+                  "label": "AM/PM",
+                  "value": "hh:mm"
+                },
+                {
+                  "label": "24 Hours with seconds",
+                  "value": "HH:mm:ss"
+                },
+                {
+                  "label": "AM/PM with seconds",
+                  "value": "hh:mm:ss"
+                }
+              ],
+              "value": {
+                "label": "AM/PM",
+                "value": "hh:mm"
+              }
+            }
+          },
+          "iconId": 10,
+          "id": "form-5-1",
+          "name": "Waktu",
+          "property": {
+            "deskripsi": {
+              "placeholder": "Edit deskripsi kolom",
+              "type": "text",
+              "value": ""
+            },
+            "keterangan": {
+              "placeholder": "Tambah keterangan kolom",
+              "type": "text",
+              "value": ""
+            },
+            "label": {
+              "placeholder": "Edit label",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "tampilan": {
+            "deskripsi": false,
+            "wajib_diisi": true
+          },
+          "type": "time",
+          "value": null
+        }
+      ],
+      "id": "form-5"
+    },
+    "form-6": {
+      "content": [
+        {
+          "desc": "Dengan format yg diterima",
+          "iconId": 5,
+          "id": "form-6-1",
+          "name": "Email",
+          "property": {
+            "deskripsi": {
+              "placeholder": "Edit deskripsi kolom",
+              "type": "text",
+              "value": ""
+            },
+            "keterangan": {
+              "placeholder": "Tambah keterangan kolom",
+              "type": "text",
+              "value": ""
+            },
+            "label": {
+              "placeholder": "Edit label",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "tampilan": {
+            "deskripsi": false,
+            "primary_key": false,
+            "wajib_diisi": true
+          },
+          "type": "email"
+        }
+      ],
+      "id": "form-6"
+    },
+    "form-7": {
+      "content": [
+        {
+          "desc": "Dengan enkripsi",
+          "iconId": 6,
+          "id": "form-7-1",
+          "name": "Kata Sandi",
+          "property": {
+            "deskripsi": {
+              "placeholder": "Edit deskripsi kolom",
+              "type": "text",
+              "value": ""
+            },
+            "keterangan": {
+              "placeholder": "Tambah keterangan kolom",
+              "type": "text",
+              "value": ""
+            },
+            "label": {
+              "placeholder": "Edit label",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "tampilan": {
+            "deskripsi": false,
+            "primary_key": false,
+            "wajib_diisi": true
+          },
+          "type": "password"
+        }
+      ],
+      "id": "form-7"
+    },
+    "form-8": {
+      "content": [
+        {
+          "desc": "Dropdown or list options",
+          "format": {
+            "type": "dropdown"
+          },
+          "iconId": 7,
+          "id": "form-8-1",
+          "name": "Tombol Radio",
+          "option": [
+            {
+              "id": 1,
+              "label": "Opsi 1"
+            },
+            {
+              "id": 2,
+              "label": "Opsi 2"
+            },
+            {
+              "id": 3,
+              "label": "Opsi 3"
+            }
+          ],
+          "property": {
+            "deskripsi": {
+              "placeholder": "Edit deskripsi kolom",
+              "type": "text",
+              "value": ""
+            },
+            "keterangan": {
+              "placeholder": "Tambah keterangan kolom",
+              "type": "text",
+              "value": ""
+            },
+            "label": {
+              "placeholder": "Edit label",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "tampilan": {
+            "deskripsi": false,
+            "wajib_diisi": true
+          },
+          "type": "select",
+          "value": "2b9282b1-6cab-422b-bb6c-2c57a56fb33e"
+        }
+      ],
+      "id": "form-8"
+    },
+    "form-9": {
+      "content": [
+        {
+          "desc": "Plihan lebih dari satu",
+          "format": {
+            "type": "dropdown"
+          },
+          "iconId": 8,
+          "id": "form-9-1",
+          "name": "Kotak Centang",
+          "option": [
+            {
+              "id": 1,
+              "label": "Opsi 1",
+              "selected": false
+            },
+            {
+              "id": 2,
+              "label": "Opsi 2",
+              "selected": false
+            },
+            {
+              "id": 3,
+              "label": "Opsi 3",
+              "selected": false
+            }
+          ],
+          "property": {
+            "deskripsi": {
+              "placeholder": "Edit deskripsi kolom",
+              "type": "text",
+              "value": ""
+            },
+            "keterangan": {
+              "placeholder": "Tambah keterangan kolom",
+              "type": "text",
+              "value": ""
+            },
+            "label": {
+              "placeholder": "Edit label",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "tampilan": {
+            "deskripsi": false,
+            "wajib_diisi": true
+          },
+          "type": "multi-select"
+        }
+      ],
+      "id": "form-9"
+    },
+    "form-10": {
+      "content": [
+        {
+          "desc": "Berkas, gambar, video dll",
+          "iconId": 9,
+          "id": "form-10-1",
+          "name": "Media",
+          "property": {
+            "deskripsi": {
+              "placeholder": "Edit deskripsi kolom",
+              "type": "text",
+              "value": ""
+            },
+            "keterangan": {
+              "placeholder": "Tambah keterangan kolom",
+              "type": "text",
+              "value": ""
+            },
+            "label": {
+              "placeholder": "Edit label",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "tampilan": {
+            "deskripsi": false,
+            "primary_key": false,
+            "wajib_diisi": true
+          },
+          "type": "media"
+        }
+      ],
+      "id": "form-10"
+    },
+    "form-11": {
+      "content": [
+        {
+          "desc": "Ambil foto dengan kamera",
+          "iconId": 10,
+          "id": "form-11-1",
+          "name": "Foto",
+          "property": {
+            "deskripsi": {
+              "placeholder": "Edit deskripsi kolom",
+              "type": "text",
+              "value": ""
+            },
+            "deskripsi_panduan": {
+              "placeholder": "Edit deskripsi panduan kolom",
+              "type": "text",
+              "value": ""
+            },
+            "ilustrasi_panduan": {
+              "placeholder": "Edit ",
+              "type": "text",
+              "value": ""
+            },
+            "judul_panduan": {
+              "placeholder": "Edit judul panduan  kolom",
+              "type": "text",
+              "value": ""
+            },
+            "keterangan": {
+              "placeholder": "Tambah keterangan kolom",
+              "type": "text",
+              "value": "Foto"
+            },
+            "label": {
+              "placeholder": "Edit label",
+              "type": "text",
+              "value": ""
+            },
+            "name": {
+              "placeholder": "Edit name",
+              "type": "text",
+              "value": ""
+            },
+            "panduan": {
+              "placeholder": "Edit panduan kolom ( Enter )",
+              "type": "text",
+              "value": []
+            }
+          },
+          "tampilan": {
+            "deskripsi": false,
+            "is_card": true,
+            "liveness": false,
+            "ocr": false,
+            "panduan": true,
+            "wajib_diisi": true
+          },
+          "type": "media-capture"
+        }
+      ],
+      "id": "form-11"
+    },
+    "form-12": {
+      "content": [
+        {
+          "desc": "Isi data teks dalam satu baris",
+          "iconId": 1,
+          "id": "form-12-1",
+          "name": "Kolom Satu Baris",
+          "property": {
+            "deskripsi": {
+              "placeholder": "Edit deskripsi kolom",
+              "type": "text",
+              "value": ""
+            },
+            "keterangan": {
+              "placeholder": "Tambah keterangan kolom",
+              "type": "text",
+              "value": ""
+            },
+            "label": {
+              "placeholder": "Edit label",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "tampilan": {
+            "batasi_karakter": false,
+            "deskripsi": false,
+            "primary_key": false,
+            "wajib_diisi": true
+          },
+          "type": "single-line"
+        },
+        {
+          "desc": "Isi data teks dalam satu baris",
+          "iconId": 1,
+          "id": "form-12-2",
+          "name": "Kolom Satu Baris",
+          "property": {
+            "deskripsi": {
+              "placeholder": "Edit deskripsi kolom",
+              "type": "text",
+              "value": ""
+            },
+            "keterangan": {
+              "placeholder": "Tambah keterangan kolom",
+              "type": "text",
+              "value": ""
+            },
+            "label": {
+              "placeholder": "Edit label",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "tampilan": {
+            "batasi_karakter": false,
+            "deskripsi": false,
+            "primary_key": false,
+            "wajib_diisi": true
+          },
+          "type": "single-line"
+        }
+      ],
+      "id": "form-12"
+    }
+  },
+  "is_draft": 0,
+  "is_multi": 0
+}

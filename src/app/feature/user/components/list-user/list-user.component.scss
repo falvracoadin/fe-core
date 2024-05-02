@@ -1,0 +1,170 @@
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.custom-label span {
+    line-height: 36px;
+}
+
+.title-page {
+    font-size: 28px;
+    font-weight: 700;
+    font-stretch: normal;
+    color: #231f20;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    width: 100%;
+    height: 29px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #231f20;
+    margin: 16px 0;
+}
+
+@media screen and (max-width: 1065px) {
+    .text-button {
+        display: none;
+    }
+
+    .button-search {
+        display: inline-block;
+    }
+}
+
+@media screen and (min-width: 1065px) {
+    .button-search {
+        display: none;
+    }
+}
+
+table, button, .dropdown-item {
+    font-size: 16px;
+}
+
+table {
+    color: #495057;
+    font-weight: 500;
+}
+
+.bdg {
+    width: 100%;
+    background-color: #EDFFF5;
+    border-radius: 20px;
+    border: 1px solid #2C8424;
+}
+
+.relative {
+    position: relative;
+    height: 50px;
+}
+
+.icon-search {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+    font-size: 20px;
+}
+
+.search-input {
+    padding-left: 40px;
+    height: 100%;
+    border-width: 1px 1px 1px 0;
+    border-style: solid;
+    border-color: #CBD5E1;
+    border-radius: 0 8px 8px 0;
+    width: 340px;
+    font-size: 14px;
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: #64748B;
+    font-size: 14px;
+}
+
+.ng-select.custom ::ng-deep .ng-select-container {
+    height: 50px !important;
+    border-radius: 8px 0 0 8px !important;
+}
+
+.ng-select.custom ::ng-deep .ng-value-label, .ng-select.custom ::ng-deep .ng-placeholder {
+    color: #64748B !important;
+    font-size: 14px;
+}
+
+.rounded-8 {
+    border-radius: 8px !important;
+}
+
+#exportPDF {
+    display: none;
+}
+
+.exportTitle {
+    font-size: 30px;
+    font-weight: 600;
+    margin: 30px;
+}
+
+.modal-title {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.modal-header {
+    border-bottom: 1px solid #CBD5E1;
+}
+
+.bg-second {
+    background-color: #F8F8F8 !important;
+}
+
+.bg-white {
+    background-color: white !important;
+}
+
+.status-success {
+    color: #2C8424;
+    border: 1px solid #2C8424;
+    background-color: #EDFFF5;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.status-warning {
+    color: #F2994A;
+    border: 1px solid #F2994A;
+    background-color: #FFF7EF;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.status-secondary{
+    color: rgb(76, 70, 80);
+    border: 0.5px solid rgb(76, 70, 80);
+    background-color: #e6e6e6;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.status-danger{
+    color: #EB5757;
+    border: 1px solid #EB5757;
+    background-color: #FFE8E8;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.status-semi{
+    color: rgb(76, 70, 80);
+    border: 0.5px solid rgb(76, 70, 80);
+    background-color: rgb(231, 244, 237);
+    width: 100%;
+    border-radius: 20px;
+}
