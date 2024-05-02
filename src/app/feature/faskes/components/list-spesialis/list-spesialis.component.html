@@ -33,7 +33,7 @@
                     </div>
                     <hr />
                     <div class="px-3 d-flex align-items-center" style="padding-top: .5rem;">
-                        <div class="row limit pl-3" style="height: 50px;">
+                        <div class="row limit ps-3" style="height: 50px;">
                             <div class="relative">
                                 <input type="text" [(ngModel)]="filter.value" placeholder="Pencarian"
                                     class="search-input" (keyup)="reloadDataTable()" />
@@ -47,7 +47,7 @@
                                 <table class="table table-hover" datatable [dtOptions]="dtOptions">
                                     <thead>
                                         <tr style="background-color: #E2E8F0 !important">
-                                            <th class="pl-3">#</th>
+                                            <th class="ps-3">#</th>
                                             <th>Nama Spesialis</th>
                                             <th style="min-width: 40%;">Deskripsi</th>
                                             <th class="text-center">Status</th>
@@ -57,7 +57,7 @@
                                     <tbody>
                                         <tr *ngFor="let spesialis of listSpesialis; index as i"
                                                 [class.bg-white]="(i % 2) == 0" [class.bg-second]="(i % 2) == 1">
-                                                <td class="align-middle pl-3">
+                                                <td class="align-middle ps-3">
                                                     <div class="icon-specialist">
                                                         <img *ngIf="spesialis.icon" [src]="spesialis.icon" alt="Specialist Image">
                                                         <img *ngIf="!spesialis.icon" src="/assets/icons/spesialis/doctor.svg" alt="Placeholder Image">

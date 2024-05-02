@@ -20,7 +20,7 @@
             >
             <img
               [src]="parentRLA.isActive ? 'assets/icons/sidebarMenuIcon/' + item.icon + '-active.svg' : 'assets/icons/sidebarMenuIcon/' + item.icon + '.svg'"
-              class="mr-2" alt="{{ item.icon }}-icon" />
+              class="me-2" alt="{{ item.icon }}-icon" />
             <span> {{ item.label }}</span>
             <span class="badge badge-pill badge-{{ item.badge.variant }} float-right" *ngIf="item.badge">{{
               item.badge.text }}</span>
@@ -31,7 +31,7 @@
             [ngClass]="{ 'has-arrow': !item.badge, 'has-dropdown': item.badge }" class="parent-menu">
             <img
               [src]="checkSubSubItemActive(item) ? 'assets/icons/sidebarMenuIcon/' + item.icon + '-active.svg' : 'assets/icons/sidebarMenuIcon/' + item.icon + '.svg'"
-              class="mr-2" alt="{{ item.icon }}-icon" />
+              class="me-2" alt="{{ item.icon }}-icon" />
             <span> {{ item.label }}</span>
             <span class="badge badge-pill badge-{{ item.badge.variant }} float-right" *ngIf="item.badge">{{
               item.badge.text }}</span>
@@ -47,7 +47,7 @@
                 routerLinkActive="sub-menu-1-active" #subItemRLA="routerLinkActive">
                 <img
                   [src]="subItemRLA.isActive ? 'assets/icons/sidebarMenuIcon/' + subitem.icon + '-active.svg' : 'assets/icons/sidebarMenuIcon/' + subitem.icon + '.svg'"
-                  class="mr-2" alt="{{ subitem.icon }}-icon" />
+                  class="me-2" alt="{{ subitem.icon }}-icon" />
                 {{ subitem.label }}
               </a>
 
@@ -56,7 +56,7 @@
                 [attr.data-parent]="subitem.parentId">
                 <img
                   [src]="checkSubSubItemActive(subitem) ? 'assets/icons/sidebarMenuIcon/' + subitem.icon + '-active.svg' : 'assets/icons/sidebarMenuIcon/' + subitem.icon + '.svg'"
-                  alt="{{ subitem.icon }}-icon" class="mr-2" />
+                  alt="{{ subitem.icon }}-icon" class="me-2" />
                 {{ subitem.label }}
               </a>
               <ul *ngIf="hasItems(subitem) && checkItemRole(subitem)" class="sub-menu mm-collapse" aria-expanded="false">
@@ -65,7 +65,7 @@
                     [attr.data-parent]="sub.parentId" routerLinkActive="active" #subRLA="routerLinkActive">
                     <img
                       [src]="subRLA.isActive ? 'assets/icons/sidebarMenuIcon/' + sub.icon + '-active.svg' : 'assets/icons/sidebarMenuIcon/' + sub.icon + '.svg'"
-                      alt="{{ sub.icon }}-icon" class="mr-2" />
+                      alt="{{ sub.icon }}-icon" class="me-2" />
                     {{ sub.label }}
                   </a>
                 </li>

@@ -27,16 +27,16 @@
                                 </div>
                                 <div
                                     class="col-sm-4 col-md-6 col-12 d-flex justify-content-sm-end align-items-center px-4">
-                                    <div class="dropdown mr-3" ngbDropdown>
+                                    <div class="dropdown me-3" ngbDropdown>
                                         <button
                                             class="btn btn-outline-primary rounded-8 dropdown-toggle w-100 py-2 px-4"
                                             type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
-                                            <i class="text fa fa-download mr-1" style="margin-top: 3px;"></i>
+                                            <i class="text fa fa-download me-1" style="margin-top: 3px;"></i>
                                             <span class="text-button">
                                                 Unduh
                                             </span>
-                                            <i class="fa fa-caret-down ml-1 val" style="margin-bottom: 3px;"
+                                            <i class="fa fa-caret-down ms-1 val" style="margin-bottom: 3px;"
                                                 aria-hidden="true"></i>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right text-center w-100"
@@ -53,7 +53,7 @@
                     <hr />
                     <ng-container *ngIf="totalRecord != 0; else dataAvailable">
                         <div class="px-3 d-flex align-items-center" style="padding-top: .5rem;">
-                            <div class="row limit pl-3" style="height: 50px;">
+                            <div class="row limit ps-3" style="height: 50px;">
                                 <!-- <div class="d-flex"> -->
                                 <div class="relative">
                                     <!-- <input type="text" [(ngModel)]="filter.value" placeholder="Pencarian"
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                             <!-- </div> -->
-                            <!-- <div class="btn ml-4 rounded-8 d-flex align-items-center filter-button">
+                            <!-- <div class="btn ms-4 rounded-8 d-flex align-items-center filter-button">
                 <i class="fa fa-filter"></i>
               </div> -->
                         </div>
@@ -72,7 +72,7 @@
                                     <!-- <table class="table table-hover" datatable [dtOptions]="dtOptions">
                                         <thead>
                                             <tr style="background-color: #E2E8F0 !important">
-                                                <th class="pl-3" style="min-width: 15%;">No.Transaksi</th>
+                                                <th class="ps-3" style="min-width: 15%;">No.Transaksi</th>
                                                 <th style="min-width: 15%;">Nama Pasien</th>
                                                 <th style="min-width: 15%;">Nama Dokter</th>
                                                 <th style="min-width: 15%;">Tanggal</th>
@@ -84,7 +84,7 @@
                                         <tbody>
                                             <tr *ngFor="let dokter of listDokter; index as i"
                                                 [class.bg-white]="(i % 2) == 0" [class.bg-second]="(i % 2) == 1">
-                                                <td class="align-middle pl-3">{{ dokter.noTrx ? dokter.noTrx : "-" }}
+                                                <td class="align-middle ps-3">{{ dokter.noTrx ? dokter.noTrx : "-" }}
                                                 </td>
                                                 <td class="align-middle">{{ dokter.name ? dokter.name : "-" }}</td>
                                                 <td class="align-middle">{{ dokter.nameDoctor ? dokter.nameDoctor : "-"

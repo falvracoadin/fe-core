@@ -12,11 +12,11 @@
                         </div>
                         <div class="mx-1">
                             <button type="button" class="btn btn-primary rounded-8" (click)="openModal(userRoleModal, 'Add User Role')">
-                                <i class="fa fa-plus mr-2"></i>
+                                <i class="fa fa-plus me-2"></i>
                                 <span class="text-button">Assign to User</span>
                             </button>
 <!--                            <button type="button" class="btn btn-primary rounded-8" (click)="openModal(userRoleModal, 'Add User Role')">-->
-<!--                                <i class="fa fa-plus mr-2"></i>-->
+<!--                                <i class="fa fa-plus me-2"></i>-->
 <!--                                <span class="text-button">Tambah</span>-->
 <!--                            </button>-->
                         </div>
@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="d-flex justify-content-between align-items-center" style="padding-top: .5rem;">
-                                <div class="row limit pl-3">
+                                <div class="row limit ps-3">
                                     <div class="d-flex">
                                         <!-- <ng-select class="custom" bindLabel="" [bindValue]="" [items]="listRoleKey" placeholder="Pilih Parameter"></ng-select> -->
                                         <div class="relative">
@@ -35,14 +35,14 @@
                                     </div>
                                 </div>
                                 <div class="d-flex flex-row justify-content-end">
-                                    <!-- <button type="button" class="btn btn-sm btn-primary mr-2" *ngIf="authService.checkAccess('user.create')" (click)="createUser(formUser)"> -->
-                                    <!--                            <div class="dropdown mr-3" ngbDropdown>-->
+                                    <!-- <button type="button" class="btn btn-sm btn-primary me-2" *ngIf="authService.checkAccess('user.create')" (click)="createUser(formUser)"> -->
+                                    <!--                            <div class="dropdown me-3" ngbDropdown>-->
                                     <!--                                <button class="btn btn-outline-primary dropdown-toggle w-100 py-2 px-3" type="button" id="dropdownImport" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>-->
-                                    <!--                                    <i class="text fa fa-upload mr-2" style="margin-top: 3px;"></i>-->
+                                    <!--                                    <i class="text fa fa-upload me-2" style="margin-top: 3px;"></i>-->
                                     <!--                                    <span class="text-button">-->
                                     <!--                                        Import-->
                                     <!--                                    </span>-->
-                                    <!--                                    <i class="fa fa-caret-down ml-1 val" style="margin-bottom: 3px;" aria-hidden="true"></i>-->
+                                    <!--                                    <i class="fa fa-caret-down ms-1 val" style="margin-bottom: 3px;" aria-hidden="true"></i>-->
                                     <!--                                </button>-->
                                     <!--                                <div class="dropdown-menu dropdown-menu-right text-center w-100" aria-labelledby="dropdownImport" ngbDropdownMenu>-->
                                     <!--                                    <a class="dropdown-item" href="#">Excel</a>-->
@@ -51,13 +51,13 @@
                                     <!--                                </div>-->
                                     <!--                            </div>-->
                                     <button class="btn btn-outline-primary rounded-8" style="margin-right: 8px;" (click)="openModal(addRoleModal, 'Add Role')">
-                                        <i class="fa fa-plus mr-2"></i>
+                                        <i class="fa fa-plus me-2"></i>
                                         Add
                                     </button>
 
                                     <div class="dropdown" ngbDropdown>
                                         <button class="btn btn-outline-primary dropdown-toggle w-100 py-2 px-3 rounded-8" type="button" id="dropdownExport" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
-                                            <i class="text fa fa-download mr-2" style="margin-top: 3px;"></i>
+                                            <i class="text fa fa-download me-2" style="margin-top: 3px;"></i>
                                             <span class="text-button">
                                         Export
                                     </span>
@@ -98,7 +98,7 @@
                                         </button>
                                     </td>
                                     <td class="align-middle action text-center">
-                                        <div class="rounded-8 btn btn-outline-primary mr-3" placement="auto" container="body" ngbTooltip="Ubah" (click)="gotoPermission(user)">Setting</div>
+                                        <div class="rounded-8 btn btn-outline-primary me-3" placement="auto" container="body" ngbTooltip="Ubah" (click)="gotoPermission(user)">Setting</div>
                                         <div class="rounded-8 btn btn-outline-primary" placement="auto" container="body" ngbTooltip="Edit Role" (click)="openModal(addRoleModal, 'Edit Role', user)">Edit</div>
                                     </td>
                                 </tr>
@@ -173,7 +173,7 @@
     </div>
     <div class="modal-footer d-flex justify-content-center">
         <div class="d-flex justify-content-center">
-            <div class="btn btn-light mr-2" (click)="modal.dismiss('Cross click')">
+            <div class="btn btn-light me-2" (click)="modal.dismiss('Cross click')">
                 Cancel
             </div>
             <div class="btn btn-primary" (click)="saveUserRole()">
@@ -217,7 +217,7 @@
     </div>
     <div class="modal-footer d-flex justify-content-center">
         <div class="d-flex justify-content-center">
-            <div class="btn btn-light mr-2" (click)="modal.dismiss('Cross click')">
+            <div class="btn btn-light me-2" (click)="modal.dismiss('Cross click')">
                 Cancel
             </div>
             <div class="btn btn-primary" (click)="createRole()">

@@ -3,7 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule, ErrorHandler, APP_INITIALIZER } from "@angular/core";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-// import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxSpinnerModule } from "ngx-spinner";
 
 import { HttpConfigInterceptor } from "./core/interceptors/http-config.interceptor";
 import { LayoutsModule } from "./layouts/layouts.module";
@@ -45,7 +45,7 @@ import { environment } from "src/environments/environment";
     LayoutsModule,
     AppRoutingModule,
     HttpClientModule,
-    // NgxSpinnerModule,
+    NgxSpinnerModule,
     // AuthModule.forRoot(),
   ],
   providers: [

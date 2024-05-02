@@ -14,7 +14,7 @@
                     <hr>
                     <div class="d-flex justify-content-between" style="padding-top: 0.5rem">
                         <div class="d-flex justify-content-start">
-                            <div class="row limit pl-3">
+                            <div class="row limit ps-3">
                                 <div class="d-flex">
                                     <div class="relative">
                                         <!-- <input type="text" [(ngModel)]="filter.search" placeholder="Cari berdasarkan parameter" class="search-input" (keyup)="reloadDataTable()" /> -->
@@ -22,18 +22,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="btn btn-secondary ml-4 rounded-8 d-flex align-items-center" style="min-height: 48px; min-width: 48px; justify-content: center">
+                            <div class="btn btn-secondary ms-4 rounded-8 d-flex align-items-center" style="min-height: 48px; min-width: 48px; justify-content: center">
                                 <i class="fa fa-filter"></i>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end align-items-center">
-                            <div class="dropdown mr-3" ngbDropdown>
+                            <div class="dropdown me-3" ngbDropdown>
                                 <button class="btn btn-outline-primary rounded-8 dropdown-toggle w-100 py-2 px-4" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
-                                    <i class="text fa fa-download mr-1" style="margin-top: 3px;"></i>
+                                    <i class="text fa fa-download me-1" style="margin-top: 3px;"></i>
                                     <span class="text-button">
                                         Unduh
                                     </span>
-                                    <i class="fa fa-caret-down ml-1 val" style="margin-bottom: 3px;" aria-hidden="true"></i>
+                                    <i class="fa fa-caret-down ms-1 val" style="margin-bottom: 3px;" aria-hidden="true"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right text-center w-100" aria-labelledby="dropdownMenuButton" ngbDropdownMenu>
                                     <a class="dropdown-item" href="javascript: void(0)">Excel</a>
@@ -73,19 +73,19 @@
                                     </td>
                                     <td class="align-middle text-center">
                                         <div class="d-flex align-items-center">
-                                            <i class="fa font-size-24 mr-2 fa-{{ dokumen.doc_adj_key1_status == 1 ? 'check-circle text-success' : 'times-circle  text-danger' }}"></i>
+                                            <i class="fa font-size-24 me-2 fa-{{ dokumen.doc_adj_key1_status == 1 ? 'check-circle text-success' : 'times-circle  text-danger' }}"></i>
                                             <p class="mb-0">{{ dokumen.doc_adj_key1_status == 1 ? 'Ya' : 'Tidak' }}</p>
                                         </div>
                                     </td>
                                     <td class="align-middle text-center">
                                         <div class="d-flex align-items-center">
-                                            <i class="fa font-size-24 mr-2 fa-{{ dokumen.doc_adj_key2_status == 1 ? 'check-circle text-success' : 'times-circle  text-danger' }}"></i>
+                                            <i class="fa font-size-24 me-2 fa-{{ dokumen.doc_adj_key2_status == 1 ? 'check-circle text-success' : 'times-circle  text-danger' }}"></i>
                                             <p class="mb-0">{{ dokumen.doc_adj_key2_status == 1 ? 'Ya' : 'Tidak' }}</p>
                                         </div>
                                     </td>
                                     <td class="align-middle text-center">
                                         <div class="d-flex align-items-center">
-                                            <i class="fa font-size-24 mr-2 fa-{{ dokumen.doc_adj_key3_status == 1 ? 'check-circle text-success' : 'times-circle  text-danger' }}"></i>
+                                            <i class="fa font-size-24 me-2 fa-{{ dokumen.doc_adj_key3_status == 1 ? 'check-circle text-success' : 'times-circle  text-danger' }}"></i>
                                             <p class="mb-0">{{ dokumen.doc_adj_key3_status == 1 ? 'Ya' : 'Tidak' }}</p>
                                         </div>
                                     </td>

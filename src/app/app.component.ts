@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-// import { NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerService } from "ngx-spinner";
 import { LoaderService } from "./core/services/loader.service";
 import { DecryptionService } from "./core/services/decryption.service";
 // import { OidcSecurityService } from "angular-auth-oidc-client";
@@ -14,7 +14,7 @@ import { Router } from "@angular/router";
 export class AppComponent implements OnInit {
   constructor(
     private loaderService: LoaderService,
-    // private spinner : NgxSpinnerService,
+    private spinner : NgxSpinnerService,
     private decryptionService: DecryptionService,
     private location: Location,
     private router: Router,
@@ -23,9 +23,9 @@ export class AppComponent implements OnInit {
   ) {
     this.loaderService.isLoading.subscribe((showLoading) => {
       if (showLoading) {
-        // this.spinner.show().then();
+        this.spinner.show().then();
       } else {
-        // this.spinner.hide().then();
+        this.spinner.hide().then();
       }
     });
   }

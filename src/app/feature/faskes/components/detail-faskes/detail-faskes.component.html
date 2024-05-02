@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="col-12 bg-white d-flex" style="padding-bottom: 1.5rem !important;">
-                        <div class="btn btn-outline-danger w-50 mr-2">
+                        <div class="btn btn-outline-danger w-50 me-2">
                             Banned
                         </div>
                         <div class="btn btn-outline-danger w-50">
@@ -230,7 +230,7 @@
                             <div class="col-6 d-flex align-items-center" *ngIf="!isOperator">
                                 <div>
                                     <i
-                                        class="fa font-size-24 mr-2 fa-{{ document[row['bind']] == 1 ? 'check-circle text-success' : 'times-circle  text-danger' }}"></i>
+                                        class="fa font-size-24 me-2 fa-{{ document[row['bind']] == 1 ? 'check-circle text-success' : 'times-circle  text-danger' }}"></i>
                                 </div>
                                 <p class="mb-0">{{ document[row['bind']] == 1 ? 'Ya' : 'Tidak' }}</p>
                             </div>
@@ -266,7 +266,7 @@
                                 {{row['label']}}
                             </div>
                             <div class="col-6">
-                                <span class="mr-3">:</span>
+                                <span class="me-3">:</span>
                                 {{document[row['bind']]}}
                             </div>
                         </div>

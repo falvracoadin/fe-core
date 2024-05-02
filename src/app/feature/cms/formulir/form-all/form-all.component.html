@@ -49,7 +49,7 @@
                       class="text-primary font-weight-bold">
                       PAGE {{ idt + 1 }}
                       <span
-                        class="btn-close ml-2 fw-light"
+                        class="btn-close ms-2 fw-light"
                         (click)="closePage($event, idt)">
                         <i class="fas fa-times"></i>
                       </span>
@@ -100,13 +100,13 @@
                   <div class="row">
                     <div
                       class="{{
-                        columnMode == 1 ? 'col px-4' : 'col-6 pl-4'
+                        columnMode == 1 ? 'col px-4' : 'col-6 ps-4'
                       }} py-3">
                       <div class="dropzone-placeholder py-5">
                         Taruh di sini untuk menambahkan
                       </div>
                     </div>
-                    <div class="col-6 py-3 pr-4" *ngIf="columnMode == 2">
+                    <div class="col-6 py-3 pe-4" *ngIf="columnMode == 2">
                       <div class="dropzone-placeholder py-5">
                         Taruh di sini untuk menambahkan
                       </div>
@@ -117,13 +117,13 @@
                   <div class="row">
                     <div
                       class="{{
-                        columnMode == 1 ? 'col px-4' : 'col-6 pl-4'
+                        columnMode == 1 ? 'col px-4' : 'col-6 ps-4'
                       }} py-3">
                       <div class="dropzone-placeholder py-5">
                         Taruh di sini untuk menambahkan
                       </div>
                     </div>
-                    <div class="col-6 py-3 pr-4" *ngIf="columnMode == 2">
+                    <div class="col-6 py-3 pe-4" *ngIf="columnMode == 2">
                       <div class="dropzone-placeholder py-5">
                         Taruh di sini untuk menambahkan
                       </div>
@@ -148,7 +148,7 @@
                     class="{{
                       content.length == 1 ? 'col' : 'col-6'
                     }} d-flex justify-content-between">
-                    <div *ngIf="data != null" class="w-100 p-3 cursor-pointer{{ content.length == 1 ? ' mx-4 ' : j == 0 ? ' ml-4' : ' mr-4 ' }}{{ indexFormFocus[0] == i && indexFormFocus[1] == j ? ' border-form-active ' : ' border-form ' }}">
+                    <div *ngIf="data != null" class="w-100 p-3 cursor-pointer{{ content.length == 1 ? ' mx-4 ' : j == 0 ? ' ms-4' : ' me-4 ' }}{{ indexFormFocus[0] == i && indexFormFocus[1] == j ? ' border-form-active ' : ' border-form ' }}">
                       <div class="btn-group {{indexFormFocus[0] == i && indexFormFocus[1] == j ? '' : 'd-none'}}" style="position: absolute; top: -3rem; left: 2rem; background-color: #E9ECF5; border-radius: 8px;">
                         <button (click)="mode = 'delete'; deleteItem(i, j)" class="btn">
                           <img src="assets/icons/trash.svg" alt="Trash Icon" />
@@ -173,7 +173,7 @@
                       <div
                         dndPlaceholderRef
                         class="dropzone-placeholder py-4 {{
-                          j == 0 ? 'ml-4' : ''
+                          j == 0 ? 'ms-4' : ''
                         }}">
                         Taruh di sini untuk menambahkan
                       </div>
@@ -284,7 +284,7 @@
   <!-- <div class="card no-shadow cursor-pointer template-hover" [ngbPopover]="popTemplate" container="body" [openDelay]="500" [closeDelay]="100" triggers="mouseenter:mouseleave" placement="left" popoverClass="custom-popover">
     <div class="card-body py-0 px-0">
       <div class="d-flex align-items-center">
-        <img src="assets/icons/grid.svg" class="mr-2 icon-grid" alt="{{ templates.name }}-grip" />
+        <img src="assets/icons/grid.svg" class="me-2 icon-grid" alt="{{ templates.name }}-grip" />
         <div class="icon-wrapper">
           <img
             class="w-24-h-24"
@@ -355,7 +355,7 @@
       </ng-template>
     </ng-select> -->
     <div
-      class="form-check d-flex flex-column pl-1"
+      class="form-check d-flex flex-column ps-1"
       *ngIf="data.format.select.value.value == 'list'">
       <label
         class="form-check-label my-1"
@@ -412,7 +412,7 @@
       </ng-template>
     </ng-select> -->
     <div
-      class="form-check d-flex flex-column pl-1"
+      class="form-check d-flex flex-column ps-1"
       *ngIf="data.format.multi_select.value.value == 'list'">
       <label
         class="form-check-label my-1"
@@ -442,7 +442,7 @@
     </div>
   </ng-template>
   <div *ngIf="data.tampilan.deskripsi" class="form-text mt-2 d-flex align-items-center">
-    <img src="assets/icons/attentionDark.svg" [alt]="data.property.deskripsi.placeholder" class="mr-2" />
+    <img src="assets/icons/attentionDark.svg" [alt]="data.property.deskripsi.placeholder" class="me-2" />
     <p class="mb-0">{{ data.property.deskripsi.value != "" ? data.property.deskripsi.value : "Deskripsi (penjelasan)" }}</p>
   </div>
 </ng-template>
@@ -676,7 +676,7 @@
           </div>
         </ng-template>
         <ng-template ngbPanelContent>
-          <div class="form-check d-flex flex-column pl-2">
+          <div class="form-check d-flex flex-column ps-2">
             <label
               class="form-check-label"
               for="{{ option.label }}"
@@ -744,7 +744,7 @@
           </div>
         </ng-template>
         <ng-template ngbPanelContent>
-          <div class="form-check d-flex flex-column pl-2">
+          <div class="form-check d-flex flex-column ps-2">
             <label
               class="form-check-label"
               for="{{ option.label }}"
@@ -804,7 +804,7 @@
         </ng-template>
         <ng-template ngbPanelContent>
           <div class="d-flex">
-            <label class="switch mr-2">
+            <label class="switch me-2">
               <input
                 type="checkbox"
                 [checked]="
@@ -825,7 +825,7 @@
             <p>Deskripsi</p>
           </div>
           <div class="d-flex">
-            <label class="switch mr-2">
+            <label class="switch me-2">
               <input
                 type="checkbox"
                 [checked]="
@@ -852,7 +852,7 @@
                 'type'
               ] != 'password'
             ">
-            <label class="switch mr-2">
+            <label class="switch me-2">
               <input
                 type="checkbox"
                 [checked]="
@@ -885,7 +885,7 @@
                 'type'
               ] != 'password'
             ">
-            <label class="switch mr-2">
+            <label class="switch me-2">
               <input
                 type="checkbox"
                 [checked]="
@@ -912,7 +912,7 @@
                 'type'
               ] == 'multiple-line'
             ">
-            <label class="switch mr-2">
+            <label class="switch me-2">
               <input
                 type="checkbox"
                 [checked]="
@@ -939,7 +939,7 @@
                 'type'
               ] == 'password'
             ">
-            <label class="switch mr-2">
+            <label class="switch me-2">
               <input
                 type="checkbox"
                 [checked]="
@@ -966,7 +966,7 @@
                 'type'
               ] == 'password'
             ">
-            <label class="switch mr-2">
+            <label class="switch me-2">
               <input
                 type="checkbox"
                 [checked]="
@@ -993,7 +993,7 @@
                 'type'
               ] == 'password'
             ">
-            <label class="switch mr-2">
+            <label class="switch me-2">
               <input
                 type="checkbox"
                 [checked]="
@@ -1091,7 +1091,7 @@
                 'type'
               ] == 'number'
             ">
-            <label class="switch mr-2">
+            <label class="switch me-2">
               <input
                 type="checkbox"
                 [checked]="
@@ -1140,7 +1140,7 @@
       <span
         class="cursor-pointer"
         (click)="deleteItem(indexFormFocus[0], indexFormFocus[1])"
-        ><i class="fa fa-trash-alt mr-2"></i>Hapus</span
+        ><i class="fa fa-trash-alt me-2"></i>Hapus</span
       >
     </div>
   </div>
@@ -1282,7 +1282,7 @@
   </label>
   <ng-template [ngIf]="data.type == 'media' || data.type == 'media-capture'">
     <div class="dropzone-placeholder py-3">
-      <i class="fa fa-camera mr-2"></i>Unggah Media Disini
+      <i class="fa fa-camera me-2"></i>Unggah Media Disini
     </div>
   </ng-template>
   <ng-template
@@ -1359,7 +1359,7 @@
       </ng-template>
     </ng-select> -->
     <div
-      class="form-check d-flex flex-column pl-1"
+      class="form-check d-flex flex-column ps-1"
       *ngIf="data.format.select.value.value == 'list'">
       <label
         class="form-check-label my-1"
@@ -1416,7 +1416,7 @@
       </ng-template>
     </ng-select> -->
     <div
-      class="form-check d-flex flex-column pl-1"
+      class="form-check d-flex flex-column ps-1"
       *ngIf="data.format.multi_select.value.value == 'list'">
       <label
         class="form-check-label my-1"

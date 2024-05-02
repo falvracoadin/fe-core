@@ -613,7 +613,7 @@ export class DetailKartuKaryawanComponent implements OnInit {
             { label: 'Ustadz / Mubaligh', value: 'Ustadz / Mubaligh' },
             { label: 'Juru Masak', value: 'Juru Masak' },
             { label: 'Promotor Acara', value: 'Promotor Acara' },
-            { label: 'Anggota DPR-RI', value: 'Anggota DPR-RI' },
+            { label: 'Anggota Dpe-RI', value: 'Anggota Dpe-RI' },
             { label: 'Anggota DPD', value: 'Anggota DPD' },
             { label: 'Anggota BPK', value: 'Anggota BPK' },
             { label: 'Presiden', value: 'Presiden' },

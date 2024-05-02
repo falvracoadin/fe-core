@@ -37,7 +37,7 @@
           <hr />
           <ng-container *ngIf="totalRecord != 0; else dataAvailable">
             <div class="px-3 d-flex align-items-center" style="padding-top: .5rem;">
-              <div class="row limit pl-3" style="height: 50px;">
+              <div class="row limit ps-3" style="height: 50px;">
                 <div class="relative">
                   <input type="text" placeholder="Pencarian" class="search-input" (keyup)="reloadDataTable()" />
                   <i class="fa fa-search icon-search"></i>
@@ -50,7 +50,7 @@
                   <!-- <table class="table table-hover" datatable [dtOptions]="dtOptions">
                     <thead>
                       <tr style="background-color: #E2E8F0 !important">
-                        <th class="pl-3" style="width: 85%;">Teks</th>
+                        <th class="ps-3" style="width: 85%;">Teks</th>
                         <th class="text-center" style="width: 15%;">Aksi</th>
                       </tr>
                     </thead>
@@ -58,9 +58,9 @@
                       <tr *ngFor="let template of listTemplate; index as i" [class.bg-white]="(i % 2) == 0"
                         [class.bg-second]="(i % 2) == 1">
 
-                        <td class="align-middle py-4 pl-3">{{ template.text ? template.text : "-" }}</td>
+                        <td class="align-middle py-4 ps-3">{{ template.text ? template.text : "-" }}</td>
                         <td class="align-middle text-center">
-                          <a class="btn btn-outline-primary mr-2" placement="left" container="body" ngbTooltip="Edit"
+                          <a class="btn btn-outline-primary me-2" placement="left" container="body" ngbTooltip="Edit"
                             (click)="updateModal(formTemplateChat, template)">
                             <i class="fa fa-pencil-alt"></i>
                           </a>

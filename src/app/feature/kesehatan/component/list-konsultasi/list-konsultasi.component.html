@@ -26,13 +26,13 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-4 col-md-6 col-12 d-flex justify-content-sm-end align-items-center px-4">
-                                    <div class="dropdown mr-3" ngbDropdown>
+                                    <div class="dropdown me-3" ngbDropdown>
                                         <button class="btn btn-outline-primary rounded-8 dropdown-toggle w-100 py-2 px-4" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
-                                            <i class="text fa fa-download mr-1" style="margin-top: 3px;"></i>
+                                            <i class="text fa fa-download me-1" style="margin-top: 3px;"></i>
                                             <span class="text-button">
                                                 Unduh
                                             </span>
-                                            <i class="fa fa-caret-down ml-1 val" style="margin-bottom: 3px;" aria-hidden="true"></i>
+                                            <i class="fa fa-caret-down ms-1 val" style="margin-bottom: 3px;" aria-hidden="true"></i>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right text-center w-100" aria-labelledby="dropdownMenuButton" ngbDropdownMenu>
                                             <a class="dropdown-item" href="javascript: void(0)">Excel</a>
@@ -46,7 +46,7 @@
                     </div>
                     <hr />
                     <div class="px-3 d-flex align-items-center" style="padding-top: .5rem;">
-                        <div class="row limit pl-3" style="height: 50px;">
+                        <div class="row limit ps-3" style="height: 50px;">
                             <!-- <div class="d-flex"> -->
                             <div class="relative">
                                 <!-- <input type="text" [(ngModel)]="filter.value" placeholder="Pencarian"
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <!-- </div> -->
-                        <!-- <div class="btn ml-4 rounded-8 d-flex align-items-center filter-button">
+                        <!-- <div class="btn ms-4 rounded-8 d-flex align-items-center filter-button">
                 <i class="fa fa-filter"></i>
               </div> -->
                     </div>
@@ -65,7 +65,7 @@
                                 <!-- <table class="table table-hover" datatable [dtOptions]="dtOptions">
                                     <thead>
                                         <tr style="background-color: #E2E8F0 !important">
-                                            <th class="pl-3">No.Kartu Peserta</th>
+                                            <th class="ps-3">No.Kartu Peserta</th>
                                             <th>Fasilitas Kesehatan</th>
                                             <th>Spesialis</th>
                                             <th>Nama Dokter</th>
@@ -76,7 +76,7 @@
                                     <tbody>
                                         <tr *ngFor="let dokter of listDokter; index as i"
                                             [class.bg-white]="(i % 2) == 0" [class.bg-second]="(i % 2) == 1">
-                                            <td class="align-middle pl-3">{{ dokter.noPeserta ? dokter.noPeserta : "-" }}</td>
+                                            <td class="align-middle ps-3">{{ dokter.noPeserta ? dokter.noPeserta : "-" }}</td>
                                             <td class="align-middle">{{ dokter.faskes ? dokter.faskes : "-" }}</td>
                                             <td class="align-middle">{{ dokter.spesialis ? dokter.spesialis.join(', ') : "-" }}</td>
                                             <td class="align-middle">{{ dokter.name ? dokter.name : "-" }}</td>

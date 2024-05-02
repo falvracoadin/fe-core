@@ -16,7 +16,7 @@
                   <div class="px-3">
                     <a (click)="createDokumen(formKelolaDokumen)"
                       class="btn btn-primary font-size-14 rounded-8 button-dukcapil d-flex align-items-center">
-                      <i class="fa fa-plus mr-2"></i> Tambah
+                      <i class="fa fa-plus me-2"></i> Tambah
                     </a>
                   </div>
                 </div>
@@ -26,7 +26,7 @@
           
           <hr />
           <div class="px-3 d-flex align-items-center" style="padding-top: .5rem;">
-            <div class="row limit pl-3">
+            <div class="row limit ps-3">
               <div class="d-flex">
                 <!-- <ng-select class="custom" bindLabel="title" bindValue="param" [(ngModel)]="filter.param" [items]="filterParam" placeholder="Pilih Parameter"></ng-select> -->
                 <div class="relative">
@@ -35,12 +35,12 @@
                 </div>
               </div>
             </div>
-            <div class="btn ml-4 rounded-8 d-flex align-items-center filter-button">
+            <div class="btn ms-4 rounded-8 d-flex align-items-center filter-button">
               <i class="fa fa-filter"></i>
             </div>
             
 <!--              <div-->
-<!--                class="input-container mr-2"-->
+<!--                class="input-container me-2"-->
 <!--                style="width: 309px"-->
 <!--                *ngIf="-->
 <!--                  !(filter.param == 'tglDiterima');-->
@@ -114,7 +114,7 @@
                     </td>
                     <td class="align-middle">
                       <span *ngIf="dokumen.adjudikasi == 0">
-                        <div class="circle cross mr-1">
+                        <div class="circle cross me-1">
                           <svg
                                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-wvcacx-MuiSvgIcon-root cross"
                                   focusable="false"
@@ -128,7 +128,7 @@
                         Tidak
                       </span>
                       <span *ngIf="dokumen.adjudikasi == 1">
-                        <div class="circle check mr-1">
+                        <div class="circle check me-1">
                           <svg
                                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-wvcacx-MuiSvgIcon-root check"
                                   focusable="false"
@@ -150,7 +150,7 @@
                     </td> -->
 <!--                    <td class="align-middle text-center">-->
 <!--                      <button-->
-<!--                        class="btn btn-outline-warning mr-2"-->
+<!--                        class="btn btn-outline-warning me-2"-->
 <!--                        (click)="deleteDokumen(dokumen.id)">-->
 <!--                        <i class="fa fa-trash-alt"></i>-->
 <!--                      </button>-->
@@ -193,7 +193,7 @@
 </div>
 
 <ng-template #tanggal_diterima_search>
-  <div class="input-container mr-2" style="width: 309px">
+  <div class="input-container me-2" style="width: 309px">
     <img src="https://cdn-icons-png.flaticon.com/512/833/833593.png" alt="" />
     <!-- <input
       style="width: 259px"

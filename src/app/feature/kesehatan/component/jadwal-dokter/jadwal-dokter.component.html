@@ -38,7 +38,7 @@
                     <hr />
                     <ng-container *ngIf="totalRecord != 0; else dataAvailable">
                         <div class="px-3 d-flex align-items-center" style="padding-top: .5rem;">
-                            <div class="row limit pl-3" style="height: 50px;">
+                            <div class="row limit ps-3" style="height: 50px;">
                                 <!-- <div class="d-flex"> -->
                                 <div class="relative">
                                     <!-- <input type="text" [(ngModel)]="filter.value" placeholder="Pencarian"
@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                             <!-- </div> -->
-                            <!-- <div class="btn ml-4 rounded-8 d-flex align-items-center filter-button">
+                            <!-- <div class="btn ms-4 rounded-8 d-flex align-items-center filter-button">
                 <i class="fa fa-filter"></i>
               </div> -->
                         </div>
@@ -57,7 +57,7 @@
                                     <!-- <table class="table table-hover" datatable [dtOptions]="dtOptions">
                                         <thead>
                                             <tr style="background-color: #E2E8F0 !important">
-                                                <th class="pl-3" style="width: 20%;">Nama</th>
+                                                <th class="ps-3" style="width: 20%;">Nama</th>
                                                 <th class="text-center" style="width: 10%;">Minggu</th>
                                                 <th class="text-center" style="width: 10%;">Senin</th>
                                                 <th class="text-center" style="width: 10%;">Selasa</th>
@@ -72,7 +72,7 @@
                                             <tr *ngFor="let jadwal of listJadwal; index as i"
                                                 [class.bg-white]="(i % 2) == 0" [class.bg-second]="(i % 2) == 1">
 
-                                                <td class="align-middle pl-3">{{ jadwal.namaDokter ? jadwal.namaDokter :
+                                                <td class="align-middle ps-3">{{ jadwal.namaDokter ? jadwal.namaDokter :
                                                     "-" }}</td>
                                                 <td class="align-middle text-center">{{
                                                     displaySchedule(jadwal.schedule['Sunday']) }}</td>

@@ -2,12 +2,12 @@
     <div class="d-flex justify-content-between">
         <h2 class="my-auto page-title">
             <span style="cursor: pointer" (click)="goingBack()">
-                <i class="fa fa-chevron-left mr-3"></i>
+                <i class="fa fa-chevron-left me-3"></i>
             </span> User Detail - {{user?.Fullname}}
         </h2>
         <!-- <button *ngIf="!saasMode" class="button-red py-3 m-1 rounded-8" (click)="openModal(activityLog)">
             <div class="val">
-                <i class="fa fa-user mr-2"></i>
+                <i class="fa fa-user me-2"></i>
                 View Activity Log
             </div>
         </button> -->
@@ -28,60 +28,60 @@
                             <div class="d-flex align-items-center justify-content-between px-3 mb-3">
                                 <p class="card-title">General Info</p> -->
                                 <!-- <button class="btn btn-outline-primary rounded-8" (click)="openEditModal(editGeneral, 'Ubah Informasi Umum')">
-                                    <i class="fas fa-pen mr-2"></i>
+                                    <i class="fas fa-pen me-2"></i>
                                     Edit
                                 </button> -->
                             <!-- </div>
                             <table class="table">
                                 <tr class="bg-second">
-                                    <td style="width: 45%" class="pl-3">Name</td>
+                                    <td style="width: 45%" class="ps-3">Name</td>
                                     <td class="fit"> : </td>
                                     <td *ngIf="!(user?.Fullname == null || user?.Fullname == ''); else noData">{{user?.Fullname}}</td>
                                 </tr>
                                 <tr class="bg-white">
-                                    <td style="width: 45%" class="pl-3">Phone</td>
+                                    <td style="width: 45%" class="ps-3">Phone</td>
                                     <td> : </td>
                                     <td *ngIf="!(user?.Phone == null || user?.Phone == ''); else noData">{{user?.Phone}}</td>
                                 </tr>
                                 <tr class="bg-second">
-                                    <td style="width: 45%" class="pl-3">NIK</td>
+                                    <td style="width: 45%" class="ps-3">NIK</td>
                                     <td> : </td>
                                     <td *ngIf="!(user?.NIK == null || user?.NIK == ''); else noData">{{user?.NIK}}</td>
                                 </tr>
                                 <tr class="bg-white">
-                                    <td style="width: 45%" class="pl-3">Email</td>
+                                    <td style="width: 45%" class="ps-3">Email</td>
                                     <td> : </td>
                                     <td *ngIf="!(user?.Email == null || user?.Email == ''); else noData">{{user?.Email}}</td>
                                 </tr>
                                 <tr class="bg-second">
-                                    <td style="width: 45%" class="pl-3">Referral Code</td>
+                                    <td style="width: 45%" class="ps-3">Referral Code</td>
                                     <td> : </td>
                                     <td *ngIf="!(user?.Referral == null || user?.Referral == ''); else noData">{{user?.Referral}}</td>
                                     <td *ngIf="!(user?.Referral == null || user?.Referral == '')">✔️</td>
                                 </tr>
                                 <tr class="bg-white">
-                                    <td style="width: 45%" class="pl-3">Member Type</td>
+                                    <td style="width: 45%" class="ps-3">Member Type</td>
                                     <td> : </td>
                                     <td *ngIf="!(user?.Member == null || user?.Member == ''); else noData">{{user?.Member}}</td>
                                     <td *ngIf="!(user?.Member == null || user?.Member == '')">✔️</td>
                                 </tr>
                                 <tr class="bg-second">
-                                    <td style="width: 45%" class="pl-3">Registration Date</td>
+                                    <td style="width: 45%" class="ps-3">Registration Date</td>
                                     <td> : </td>
                                     <td *ngIf="!(user?.RegDate == null || user?.RegDate == ''); else noData">{{user?.RegDate}}</td>
                                 </tr>
                                 <tr class="bg-white">
-                                    <td style="width: 45%" class="pl-3">Failed Verification</td>
+                                    <td style="width: 45%" class="ps-3">Failed Verification</td>
                                     <td> : </td>
                                     <td *ngIf="!(user?.FailedDate == null || user?.FailedDate == ''); else noData">{{user?.FailedDate}}</td>
                                 </tr>
                                 <tr class="bg-second">
-                                    <td style="width: 45%" class="pl-3">Success Verification</td>
+                                    <td style="width: 45%" class="ps-3">Success Verification</td>
                                     <td> : </td>
                                     <td *ngIf="!(user?.SuccessDate == null || user?.SuccessDate == ''); else noData">{{user?.SuccessDate}}</td>
                                 </tr>
                                 <tr class="bg-white">
-                                    <td style="width: 45%" class="pl-3">Status</td>
+                                    <td style="width: 45%" class="ps-3">Status</td>
                                     <td> : </td>
                                     <span *ngFor="let stat of status">
                                         <td class="{{ stat.id === 'active' ? 'text-success' : stat.id === 'not-active' ? 'text-danger' : stat.id === 'blacklist' ? '' : stat.id === 'suspend' ? 'text-warning' : stat.id === 'expired' ? 'text-danger' : stat.id === 'paid' ? 'text-primary' : '' }}" style="font-weight: 400;" *ngIf="(user?.Status == stat.id)">{{ stat.name }}</td>
@@ -97,43 +97,43 @@
                             <div class="d-flex align-items-center justify-content-between px-3 mb-3">
                                 <p class="card-title">General Info</p> -->
                                 <!-- <button *ngIf="roleUser?.superadmin" class="btn btn-outline-primary rounded-8" (click)="openEditModal(editGeneral, 'Ubah Informasi Umum')">
-                                    <i class="fas fa-pen mr-2"></i>
+                                    <i class="fas fa-pen me-2"></i>
                                     Edit
                                 </button> -->
                             <!-- </div> -->
                             <!-- <table class="table">
                                 <tr class="bg-second">
-                                    <td style="width: 45%" class="pl-3">Fullname</td>
+                                    <td style="width: 45%" class="ps-3">Fullname</td>
                                     <td class="fit"> : </td>
                                     <td *ngIf="!(user?.Fullname == null || user?.Fullname == ''); else noData">{{user?.Fullname}}</td>
                                 </tr>
                                 <tr class="bg-white">
-                                    <td style="width: 45%" class="pl-3">Username</td>
+                                    <td style="width: 45%" class="ps-3">Username</td>
                                     <td class="fit"> : </td>
                                     <td *ngIf="!(user?.Username == null || user?.Username == ''); else noData">{{user?.Username}}</td>
                                 </tr>
                                 <tr class="bg-second">
-                                    <td style="width: 45%" class="pl-3">Phone</td>
+                                    <td style="width: 45%" class="ps-3">Phone</td>
                                     <td> : </td>
                                     <td *ngIf="!(user?.Phone == null || user?.Phone == ''); else noData">{{user?.Phone}}</td>
                                 </tr>
                                 <tr class="bg-white">
-                                    <td style="width: 45%" class="pl-3">Email</td>
+                                    <td style="width: 45%" class="ps-3">Email</td>
                                     <td> : </td>
                                     <td *ngIf="!(user?.Email == null || user?.Email == ''); else noData">{{user?.Email}}</td>
                                 </tr>
                                 <tr class="bg-second">
-                                    <td style="width: 45%" class="pl-3">Install Id</td>
+                                    <td style="width: 45%" class="ps-3">Install Id</td>
                                     <td> : </td>
                                     <td *ngIf="!(user?.InstallId == null || user?.InstallId == ''); else noData">{{user?.InstallId}}</td>
                                 </tr>
                                 <tr class="bg-white">
-                                    <td style="width: 45%" class="pl-3">Device Id</td>
+                                    <td style="width: 45%" class="ps-3">Device Id</td>
                                     <td> : </td>
                                     <td *ngIf="!(user?.DeviceId == null || user?.DeviceId == ''); else noData">{{user?.DeviceId}}</td>
                                 </tr>
                                 <tr class="bg-second">
-                                    <td style="width: 45%" class="pl-3">Status</td>
+                                    <td style="width: 45%" class="ps-3">Status</td>
                                     <td> : </td>
                                     <span *ngFor="let stat of status">
                                         <td class="{{ stat.id === 'active' ? 'text-success' : stat.id === 'not-active' ? 'text-danger' : stat.id === 'blacklist' ? '' : stat.id === 'suspend' ? 'text-warning' : stat.id === 'expired' ? 'text-danger' : stat.id === 'paid' ? 'text-primary' : '' }}" style="font-weight: 400;" *ngIf="(user?.Status == stat.id)">{{ stat.name }}</td>
@@ -185,28 +185,28 @@
             <div class="d-flex align-items-center justify-content-between px-3 mb-3">
                 <p class="card-title">Social Media</p>
                 <button class="btn btn-outline-primary rounded-8" (click)="openEditModal(editSocial, 'Ubah Sosial Media')">
-                    <i class="fas fa-pen mr-2"></i>
+                    <i class="fas fa-pen me-2"></i>
                     Edit
                 </button>
             </div>
             <table class="table table-borderless">
                 <tr class="bg-second">
-                    <td style="width: 45%" class="pl-3">Instagram</td>
+                    <td style="width: 45%" class="ps-3">Instagram</td>
                     <td class="fit"> : </td>
                     <td *ngIf="!(user?.Instagram == null || user?.Instagram == ''); else noData">{{user?.Instagram}}</td>
                 </tr>
                 <tr class="bg-white">
-                    <td style="width: 45%" class="pl-3">Facebook</td>
+                    <td style="width: 45%" class="ps-3">Facebook</td>
                     <td> : </td>
                     <td *ngIf="!(user?.Facebook == null || user?.Facebook == ''); else noData">{{user?.Facebook}}</td>
                 </tr>
                 <tr class="bg-second">
-                    <td style="width: 45%" class="pl-3">Twitter</td>
+                    <td style="width: 45%" class="ps-3">Twitter</td>
                     <td> : </td>
                     <td *ngIf="!(user?.Twitter == null || user?.Twitter == ''); else noData">{{user?.Twitter}}</td>
                 </tr>
                 <tr class="bg-white">
-                    <td style="width: 45%" class="pl-3">Line</td>
+                    <td style="width: 45%" class="ps-3">Line</td>
                     <td> : </td>
                     <td *ngIf="!(user?.Line == null || user?.Line == ''); else noData">{{user?.Line}}</td>
             </table>
@@ -219,12 +219,12 @@
             </div>
             <table class="table table-borderless">
                 <tr class="bg-second">
-                    <td style="width: 45%" class="pl-3">Qoin Balance</td>
+                    <td style="width: 45%" class="ps-3">Qoin Balance</td>
                     <td class="fit"> : </td>
                     <td *ngIf="!(user?.QoinBalance == null || user?.QoinBalance == ''); else noData">{{user?.QoinBalance}}</td>
                 </tr>
                 <tr class="bg-white">
-                    <td style="width: 45%" class="pl-3">Qoin Poin</td>
+                    <td style="width: 45%" class="ps-3">Qoin Poin</td>
                     <td> : </td>
                     <td *ngIf="!(user?.QoinPoint == null || user?.QoinPoint == ''); else noData">{{user?.QoinPoint}}</td>
                 </tr>
@@ -238,12 +238,12 @@
             </div>
             <table class="table table-borderless">
                 <tr class="bg-second">
-                    <td style="width: 45%" class="pl-3">Id Pelanggan PLN</td>
+                    <td style="width: 45%" class="ps-3">Id Pelanggan PLN</td>
                     <td class="fit"> : </td>
                     <td *ngIf="!(user?.PLN == null || user?.PLN == ''); else noData">{{user?.PLN}}</td>
                 </tr>
                 <tr class="bg-white">
-                    <td style="width: 45%" class="pl-3">Id Pelanggan PDAM</td>
+                    <td style="width: 45%" class="ps-3">Id Pelanggan PDAM</td>
                     <td> : </td>
                     <td *ngIf="!(user?.PDAM == null || user?.PDAM == ''); else noData">{{user?.PDAM}}</td>
                 </tr>
@@ -257,12 +257,12 @@
             </div>
             <table class="table table-borderless">
                 <tr class="bg-second">
-                    <td style="width: 45%" class="pl-3">Debit Card</td>
+                    <td style="width: 45%" class="ps-3">Debit Card</td>
                     <td class="fit"> : </td>
                     <td *ngIf="!(user?.Debit == null || user?.Debit == ''); else noData">{{user?.Debit}}</td>
                 </tr>
                 <tr class="bg-white">
-                    <td style="width: 45%" class="pl-3">Credit Card</td>
+                    <td style="width: 45%" class="ps-3">Credit Card</td>
                     <td> : </td>
                     <td *ngIf="!(user?.Credit == null || user?.Credit == ''); else noData">{{user?.Credit}}</td>
                 </tr>
@@ -352,7 +352,7 @@
                 </div>
                 <hr style="border-top: 1px solid #CBD5E1 !important" />
                 <div class="form-group row justify-content-center">
-                    <button type="button" class="btn custom btn-outline-primary mr-3" (click)="modal.close(); resetForm()">Batal</button>
+                    <button type="button" class="btn custom btn-outline-primary me-3" (click)="modal.close(); resetForm()">Batal</button>
                     <button type="submit" class="btn custom btn-primary">Simpan Perubahan</button>
                 </div>
             </form>
@@ -414,7 +414,7 @@
                 </div>
                 <hr style="border-top: 1px solid #CBD5E1 !important" />
                 <div class="form-group row justify-content-center">
-                    <button type="button" class="btn custom btn-outline-primary mr-3" (click)="modal.close(); resetForm()">Batal</button>
+                    <button type="button" class="btn custom btn-outline-primary me-3" (click)="modal.close(); resetForm()">Batal</button>
                     <button type="submit" class="btn custom btn-primary">Simpan Perubahan</button>
                 </div>
             </form>
@@ -479,7 +479,7 @@
             </div>
             <hr style="border-top: 1px solid #CBD5E1 !important" />
             <div class="form-group row justify-content-center">
-                <button type="button" class="btn custom btn-outline-primary mr-3" (click)="modal.close(); resetForm()">Batal</button>
+                <button type="button" class="btn custom btn-outline-primary me-3" (click)="modal.close(); resetForm()">Batal</button>
                 <button type="submit" class="btn custom btn-primary">Simpan Perubahan</button>
             </div>
         </form>

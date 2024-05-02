@@ -7,13 +7,13 @@
           <div class="px-3 d-flex justify-content-between align-items-center">
             <div class="card-title">Daftar Formulir</div>
             <a (click)="open(form)" class="btn btn-primary font-size-14 button-dukcapil d-flex align-items-center justify-content-center rounded-8">
-              <i class="fa fa-plus mr-2"></i> Tambah
+              <i class="fa fa-plus me-2"></i> Tambah
             </a>
           </div>
           <hr />
           <div class="px-3 d-flex justify-content-between" style="padding-top: .5rem;">
             <div class="d-flex justify-content-start">
-              <div class="row limit pl-3">
+              <div class="row limit ps-3">
                 <div class="d-flex">
                   <!-- <ng-select class="custom" bindLabel="title" bindValue="param" [(ngModel)]="filter2.param" [items]="filterParam" placeholder="Pilih Parameter"></ng-select> -->
                   <div class="relative">
@@ -22,7 +22,7 @@
                   </div>
                 </div>
               </div>
-              <div class="btn btn-secondary ml-4 rounded-8 d-flex align-items-center" style="min-height: 48px; min-width: 48px; justify-content: center">
+              <div class="btn btn-secondary ms-4 rounded-8 d-flex align-items-center" style="min-height: 48px; min-width: 48px; justify-content: center">
                 <i class="fa fa-filter"></i>
               </div>
             </div>
@@ -39,7 +39,7 @@
 <!--                </ng-select>-->
 <!--              </div>-->
 <!--              <div-->
-<!--                class="input-container mr-2"-->
+<!--                class="input-container me-2"-->
 <!--                style="width: 309px"-->
 <!--                *ngIf="-->
 <!--                  !(filter.param == 'tglDiterima');-->
@@ -108,7 +108,7 @@
                       <span>{{ user.form_title }}</span>
                       <span
                         *ngIf="user.is_draft == 1"
-                        class="ml-2 badge badge-primary" style="background-color: #E9ECF5 !important; color: #64748B !important;"
+                        class="ms-2 badge badge-primary" style="background-color: #E9ECF5 !important; color: #64748B !important;"
                         >Draft</span
                       >
                     </td>
@@ -121,7 +121,7 @@
                       <span>{{ user.created_at | date : "dd / MM / yyyy" }}</span>
                     </td>
                     <td class="align-middle text-center">
-                      <button style="min-width: 44px; min-height: 44px" class="mr-2 btn btn-outline-primary" routerLink="/cms/formulir/{{ user.is_multi == 0 ? 'single' : 'multi' }}/{{ user.id }}">
+                      <button style="min-width: 44px; min-height: 44px" class="me-2 btn btn-outline-primary" routerLink="/cms/formulir/{{ user.is_multi == 0 ? 'single' : 'multi' }}/{{ user.id }}">
                         <i class="fa fa-eye"></i>
                       </button>
                       <button style="min-width: 44px; min-height: 44px" (click)="previewForm(previewMobile, user.id)" class="btn btn-outline-primary">
@@ -269,7 +269,7 @@
               Tidak
             </button> -->
           </div>
-          <div class="col-md-6 pr-0">
+          <div class="col-md-6 pe-0">
             <!-- <button
               type="button"
               class="btn btn-light w-100"
@@ -287,11 +287,11 @@
   </div>
   <div class="modal-footer d-flex justify-content-center">
     <div class="d-flex justify-content-center">
-      <div class="btn btn-light mr-2" (click)="modal.dismiss('Cross click')">
+      <div class="btn btn-light me-2" (click)="modal.dismiss('Cross click')">
         Batal
       </div>
       <div
-        class="btn btn-light mr-2"
+        class="btn btn-light me-2"
         (click)="cleanAll(); modal.dismiss('Cross click')">
         Bersihkan
       </div>
@@ -384,7 +384,7 @@
   </label>
   <ng-template [ngIf]="data.type == 'media' || data.type == 'media-capture'">
     <div class="dropzone-placeholder py-3">
-      <i class="fa fa-camera mr-2"></i>Unggah Media Disini
+      <i class="fa fa-camera me-2"></i>Unggah Media Disini
     </div>
   </ng-template>
   <ng-template
@@ -460,7 +460,7 @@
       </ng-template>
     </ng-select> -->
     <div
-      class="form-check d-flex flex-column pl-1"
+      class="form-check d-flex flex-column ps-1"
       *ngIf="data.format.select.value.value == 'list'">
       <label
         class="form-check-label my-1"
@@ -515,7 +515,7 @@
       </ng-template>
     </ng-select> -->
     <div
-      class="form-check d-flex flex-column pl-1"
+      class="form-check d-flex flex-column ps-1"
       *ngIf="data.format.multi_select.value.value == 'list'">
       <label
         class="form-check-label my-1"
@@ -554,7 +554,7 @@
 </ng-template>
 
 <ng-template #tanggal_diterima_search>
-  <div class="input-container mr-2" style="width: 309px">
+  <div class="input-container me-2" style="width: 309px">
     <img src="https://cdn-icons-png.flaticon.com/512/833/833593.png" alt="" />
     <!-- <input
       style="width: 259px"
