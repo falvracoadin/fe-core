@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/feature/auth/services/auth.service';
 import { SpesialisService } from '../../services/spesialis/spesialis.service';
 
 import Swal from 'sweetalert2';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-list-spesialis',
@@ -36,7 +37,7 @@ export class ListSpesialisComponent implements OnInit {
   constructor(
     private spesialisService: SpesialisService,
     private authService: AuthService,
-    //private modalService: NgbModal,
+    private modalService: BsModalService,
     private route: ActivatedRoute
   ) {}
 
@@ -234,13 +235,17 @@ export class ListSpesialisComponent implements OnInit {
       'desc': '',
       'icon': '',
     };
-    //this.modalService.open(modalId, { size: 'lg', centered: true });
+    this.modalService.show(modalId, { class : 'modal-lg' });
   }
 
   updateDokumen(modalId : any, dokumen : any) {
     this.titleModal = 'Edit Spesialis';
     this.dataForm = dokumen;
-    //this.modalService.open(modalId, { size: 'lg', backdrop: 'static' });
+    this.modalService.show(modalId, { class : 'modal-lg' });
+  }
+
+  close(modalId : any = null){
+    this.modalService.hide(modalId ? modalId : undefined)
   }
 
   deleteDokumen(userId : any) {

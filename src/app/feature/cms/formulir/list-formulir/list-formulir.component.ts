@@ -7,6 +7,7 @@ import { UserService } from 'src/app/feature/user/services/user.service';
 import Swal from 'sweetalert2';
 import { FormulirService } from '../services/formulir.service';
 import { FormulirModel } from '../formulir.model';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-list-formulir',
@@ -51,7 +52,7 @@ export class ListFormulirComponent implements OnInit {
     public authService: AuthService,
     private userService: UserService,
     private formulirService: FormulirService,
-    //private modalService: NgbModal,
+    private modalService: BsModalService,
     private router: Router
   ) {}
 
@@ -149,22 +150,24 @@ export class ListFormulirComponent implements OnInit {
   createUser(modalId:any) {
     this.titleModal = 'Tambah User';
     this.userId = 0;
-    //this.modalService.open(modalId, { size: 'lg', centered: true });
+    this.modalService.show(modalId, { class: 'modal-lg' });
   }
 
   open(modalId:any) {
     this.titleModal = 'Tambah Formulir';
-    // this.modalService.open(modalId, {
-    //   size: 'lg',
-    //   centered: true,
-    //   windowClass: 'animate',
-    // });
+    this.modalService.show(modalId, {
+      class: 'modal-lg'
+    });
   }
 
   updateUser(modalId :any, user :any) {
     this.titleModal = 'Edit User: ' + user.name;
     this.userId = user.id;
-    //this.modalService.open(modalId, { size: 'lg', backdrop: 'static' });
+    this.modalService.show(modalId, { class: 'modal-lg' });
+  }
+
+  close(modalId : any = null){
+    this.modalService.hide(modalId ? modalId : undefined)
   }
 
   deleteUser(userId : any) {
@@ -284,10 +287,6 @@ export class ListFormulirComponent implements OnInit {
       this.formulirStructure.sections[
         this.formulirStructure.sections.indexOf(this.activeSection) - 1
       ];
-  }
-
-  close() {
-    // this.modalService.dismissAll();
   }
 
   clickLimit() {

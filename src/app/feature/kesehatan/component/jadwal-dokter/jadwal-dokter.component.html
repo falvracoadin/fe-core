@@ -27,10 +27,10 @@
                                 </div>
                                 <div
                                     class="col-sm-4 col-md-6 col-12 d-flex justify-content-sm-end align-items-center px-4">
-                                    <!-- <button type="button" class="btn btn-outline-primary rounded-8"
+                                    <button type="button" class="btn btn-outline-primary rounded-8"
                                         style="min-width: 10rem;" (click)="createDokumen(formJadwalDokter)">
                                         <em class="fa fa-plus font-size-14 align-middle me-2"></em> Tambah
-                                    </button> -->
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -118,29 +118,29 @@
                             </div>
                         </div>
                     </ng-container>
-                    <!-- <ng-template #dataAvailable>
+                    <ng-template #dataAvailable>
                         <div class="blank-page-container">
                             <img src="assets/icons/kesehatan/doctorDesk.svg" alt="Image" class="blank-page-image">
                             <h1 class="blank-page-title">Daftar Jadwal Dokter Kosong</h1>
                             <p class="blank-page-description">Belum ada jadwal yang ditambahkan</p>
                         </div>
-                    </ng-template> -->
+                    </ng-template>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- <ng-template #formJadwalDokter let-modal>
+    <ng-template #formJadwalDokter let-modal>
         <div class="modal-header">
             <h4 class="modal-title my-auto font-weight-bold font-size-24">
                 {{ titleModal }}
             </h4>
-            <button type="button" class="close my-auto" (click)="modal.close()" aria-label="Close">
+            <button type="button" class="close my-auto" (click)="close()" aria-label="Close">
                 <i class="mdi mdi-close-thick"></i>
             </button>
         </div>
         <div class="modal-body">
-            <app-detail-jadwal-dokter [dataForm]="dataForm" (afterSave)="modal.close(); reloadDataTable()">
+            <app-detail-jadwal-dokter [dataForm]="dataForm" (afterSave)="close(); reloadDataTable()">
             </app-detail-jadwal-dokter>
         </div>
-    </ng-template> -->
+    </ng-template>

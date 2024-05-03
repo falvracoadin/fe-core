@@ -4,6 +4,7 @@ import { DataTableDirective } from 'angular-datatables';
 import { TemplateChatService } from '../../services/template-chat/template-chat.service';
 
 import Swal from 'sweetalert2';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-template-chat',
@@ -37,7 +38,7 @@ export class TemplateChatComponent implements OnInit {
   };
 
   constructor(
-    // //private modalService: NgbModal,
+    private modalService: BsModalService,
     private templateService: TemplateChatService
   ) { }
 
@@ -103,14 +104,19 @@ export class TemplateChatComponent implements OnInit {
 
   createModal(modalId : any) {
     this.titleModal = 'Tambah Template Chat';
-    this.dataForm = {}
-    // //this.modalService.open(modalId, { size: 'lg', centered: true });
+    this.dataForm = {}    
+    this.modalService.show(modalId, { class : 'modal-lg' });
+
   }
 
   updateModal(modalId : any, data : any) {
     this.titleModal = 'Edit Template Chat';
     this.dataForm = data;
-    // //this.modalService.open(modalId, { size: 'lg', backdrop: 'static' });
+    this.modalService.show(modalId, { class : 'modal-lg' });
+  }
+
+  close(modalId : any = null){
+    this.modalService.hide(modalId ? modalId : undefined)
   }
 
   deleteDokumen(userId : any) {

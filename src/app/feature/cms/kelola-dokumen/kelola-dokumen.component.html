@@ -212,15 +212,15 @@
     <button
       type="button"
       class="close my-auto"
-      (click)="modal.close()"
+      (click)="close()"
       aria-label="Close">
       <i class="mdi mdi-close-thick"></i>
     </button>
   </div>
   <div class="modal-body">
-    <!-- <app-form-kelola-dokumen
+    <app-form-kelola-dokumen
       [listFormulir]="listFormulir"
       [dokumenInput]="dokumenInput"
-      (afterSave)="modal.close(); reloadDataTable()"></app-form-kelola-dokumen> -->
+      (afterSave)="close(); reloadDataTable()"></app-form-kelola-dokumen>
   </div>
 </ng-template>

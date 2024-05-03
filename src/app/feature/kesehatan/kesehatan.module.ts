@@ -37,7 +37,7 @@ import { ListBeliObatComponent } from './component/list-beli-obat/list-beli-obat
     // PerfectScrollbarModule,
     ReactiveFormsModule,
     // NgbAlertModule,
-    NgModule,
+    // NgModule,
     DataTablesModule,
     // NgSelectModule,
     FormsModule,

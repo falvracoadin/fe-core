@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/feature/auth/services/auth.service';
 import { DokumenService } from '../services/dokumen/dokumen.service';
 import { FormulirService } from '../services/formulir/formulir.service';
 import Swal from 'sweetalert2';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-kelola-dokumen',
@@ -42,7 +43,7 @@ export class KelolaDokumenComponent implements OnInit {
     private dokumenService: DokumenService,
     private formulirService: FormulirService,
     private authService: AuthService,
-    //private modalService: NgbModal,
+    private modalService: BsModalService,
     private route: ActivatedRoute
   ) {}
 
@@ -130,13 +131,17 @@ export class KelolaDokumenComponent implements OnInit {
   createDokumen(modalId:any) {
     this.titleModal = 'Tambah Dokumen';
     this.dokumenInput = null;
-    //this.modalService.open(modalId, { size: 'lg', centered: true });
+    this.modalService.show(modalId, { class : 'modal-lg' });
   }
 
   updateDokumen(modalId : any, dokumen : any) {
     this.titleModal = 'Edit Dokumen: ' + dokumen.doc_title;
     this.dokumenInput = dokumen;
-    //this.modalService.open(modalId, { size: 'lg', backdrop: 'static' });
+    this.modalService.show(modalId, { class : 'modal-lg'});
+  }
+
+  close(modalId : any = null){
+    this.modalService.hide(modalId ? modalId : undefined)
   }
 
   deleteDokumen(userId : any) {

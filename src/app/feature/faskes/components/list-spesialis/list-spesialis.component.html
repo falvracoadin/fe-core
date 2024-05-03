@@ -113,12 +113,12 @@
             <h4 class="modal-title my-auto font-weight-bold font-size-24">
                 {{ titleModal }}
             </h4>
-            <button type="button" class="close my-auto" (click)="modal.close()" aria-label="Close">
+            <button type="button" class="close my-auto" (click)="close()" aria-label="Close">
                 <i class="mdi mdi-close-thick"></i>
             </button>
         </div>
         <div class="modal-body">
-            <app-detail-spesialis [dataForm]="dataForm" (afterSave)="modal.close(); reloadDataTable()">
+            <app-detail-spesialis [dataForm]="dataForm" (afterSave)="close(); reloadDataTable()">
             </app-detail-spesialis>
         </div>
     </ng-template>

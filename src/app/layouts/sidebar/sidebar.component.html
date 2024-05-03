@@ -16,7 +16,7 @@
           <a [routerLink]="item.link" [routerLinkActiveOptions]="{ exact: true }"
             *ngIf="!hasItems(item) && checkItemRole(item)" class="side-nav-link-ref parent-menu"
             routerLinkActive="active" #parentRLA="routerLinkActive"
-            
+            [style]="parentRLA.isActive ? 'background-color: #21409A1A !important' : {}"
             >
             <img
               [src]="parentRLA.isActive ? 'assets/icons/sidebarMenuIcon/' + item.icon + '-active.svg' : 'assets/icons/sidebarMenuIcon/' + item.icon + '.svg'"

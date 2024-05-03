@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/feature/auth/services/auth.service';
 import { JadwalDokterService } from '../../services/jadwal-dokter/jadwal-dokter.service';
 
 import Swal from 'sweetalert2';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 
 @Component({
@@ -37,7 +38,7 @@ export class JadwalDokterComponent implements OnInit {
   constructor(
     private jadwalDokterService: JadwalDokterService,
     private authService: AuthService,
-    //private modalService: NgbModal,
+    private modalService: BsModalService,
     private route: ActivatedRoute
   ) { }
 
@@ -287,13 +288,17 @@ export class JadwalDokterComponent implements OnInit {
       'id': '',
       'text': '',
     };
-    //this.modalService.open(modalId, { size: 'lg', centered: true });
+    this.modalService.show(modalId, { class : 'modal-lg' });
   }
 
   updateDokumen(modalId : any, dokumen : any) {
     this.titleModal = 'Edit Jadwal Dokter';
     this.dataForm = dokumen;
-    //this.modalService.open(modalId, { size: 'lg', backdrop: 'static' });
+    this.modalService.show(modalId, { class : 'modal-lg' });
+  }
+
+  close(modalId : any = null){
+    this.modalService.hide(modalId ? modalId : undefined)
   }
 
   deleteDokumen(userId : any) {
