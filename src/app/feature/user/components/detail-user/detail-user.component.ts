@@ -6,6 +6,7 @@ import { DecryptionService } from 'src/app/core/services/decryption.service';
 import { AuthService } from 'src/app/feature/auth/services/auth.service';
 
 import { UserService } from '../../services/user.service';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-detail-user',
@@ -36,6 +37,7 @@ export class DetailUserComponent implements OnInit {
   titleModal = '';
 
   user: any;
+  validation : any;
 
   status: {
     id: string,
@@ -53,7 +55,7 @@ export class DetailUserComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
-    // //private modalService: NgbModal,
+    private modalService: BsModalService,
     private decryptionService: DecryptionService,
     private authService: AuthService
   ) {
@@ -92,12 +94,16 @@ export class DetailUserComponent implements OnInit {
 
   openEditModal(content : any, title: string) {
     this.titleModal = title;
-    // this.modalService.open(content, { size: 'lg', centered: true });
+    this.modalService.show(content, { class: 'modal-lg' });
   }
 
   openModal(content : any) {
     this.titleModal = 'Activity Log - ' + this.user.Fullname;
-    // this.modalService.open(content, { size: 'lg', centered: true });
+    this.modalService.show(content, { class: 'modal-lg' });
+  }
+
+  close(modalId : any = null){
+    this.modalService.hide(modalId ? modalId : undefined)
   }
 
   resetForm() {

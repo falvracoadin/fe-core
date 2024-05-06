@@ -5,12 +5,12 @@
                 <i class="fa fa-chevron-left me-3"></i>
             </span> User Detail - {{user?.Fullname}}
         </h2>
-        <!-- <button *ngIf="!saasMode" class="button-red py-3 m-1 rounded-8" (click)="openModal(activityLog)">
+        <button *ngIf="!saasMode" class="button-red py-3 m-1 rounded-8" (click)="openModal(activityLog)">
             <div class="val">
                 <i class="fa fa-user me-2"></i>
                 View Activity Log
             </div>
-        </button> -->
+        </button>
     </div>
     <div class="row mt-3">
         <div class="col-8">
@@ -21,17 +21,17 @@
                     <button class="rounded-8 headerButton{{ active === 'other' ? ' active ' : ' nonActive ' }}" (click)="active = 'other'">Other</button>
                 </div>
             </div>
-            <!-- <div *ngIf="active == 'general'; else otherDetail">   
+            <div *ngIf="active == 'general'; else otherDetail">   
                 <ng-container *ngIf="!saasMode">
                     <div class="card">
                         <div class="card-body table-responsive px-0 pb-0">
                             <div class="d-flex align-items-center justify-content-between px-3 mb-3">
-                                <p class="card-title">General Info</p> -->
-                                <!-- <button class="btn btn-outline-primary rounded-8" (click)="openEditModal(editGeneral, 'Ubah Informasi Umum')">
+                                <p class="card-title">General Info</p>
+                                <button class="btn btn-outline-primary rounded-8" (click)="openEditModal(editGeneral, 'Ubah Informasi Umum')">
                                     <i class="fas fa-pen me-2"></i>
                                     Edit
-                                </button> -->
-                            <!-- </div>
+                                </button>
+                            </div>
                             <table class="table">
                                 <tr class="bg-second">
                                     <td style="width: 45%" class="ps-3">Name</td>
@@ -90,18 +90,18 @@
                             </table>
                         </div>
                     </div>
-                </ng-container> -->
-                <!-- <ng-container *ngIf="saasMode">
+                </ng-container>
+                <ng-container *ngIf="saasMode">
                     <div class="card">
                         <div class="card-body table-responsive px-0 pb-0">
                             <div class="d-flex align-items-center justify-content-between px-3 mb-3">
-                                <p class="card-title">General Info</p> -->
-                                <!-- <button *ngIf="roleUser?.superadmin" class="btn btn-outline-primary rounded-8" (click)="openEditModal(editGeneral, 'Ubah Informasi Umum')">
+                                <p class="card-title">General Info</p> 
+                                <button *ngIf="roleUser?.superadmin" class="btn btn-outline-primary rounded-8" (click)="openEditModal(editGeneral, 'Ubah Informasi Umum')">
                                     <i class="fas fa-pen me-2"></i>
                                     Edit
-                                </button> -->
-                            <!-- </div> -->
-                            <!-- <table class="table">
+                                </button> 
+                            </div> 
+                            <table class="table">
                                 <tr class="bg-second">
                                     <td style="width: 45%" class="ps-3">Fullname</td>
                                     <td class="fit"> : </td>
@@ -139,47 +139,46 @@
                                         <td class="{{ stat.id === 'active' ? 'text-success' : stat.id === 'not-active' ? 'text-danger' : stat.id === 'blacklist' ? '' : stat.id === 'suspend' ? 'text-warning' : stat.id === 'expired' ? 'text-danger' : stat.id === 'paid' ? 'text-primary' : '' }}" style="font-weight: 400;" *ngIf="(user?.Status == stat.id)">{{ stat.name }}</td>
                                     </span>
                                 </tr>
-                            </table> -->
-                        <!-- </div>
+                            </table> 
+                        </div>
                     </div>
-                </ng-container> -->
-            <!-- </div> -->
+                </ng-container> 
+            </div> 
         </div>
         <div class="col-4">
-            <!-- ktp -->
             <div class="card">
-                <!-- <div class="card-body" *ngIf="user?.KTP; else noKtp">
+                <div class="card-body" *ngIf="user?.KTP; else noKtp">
                     <h3>ID Card Photo</h3>
                     <img [src]="user.KTP" alt="">
-                </div> -->
+                </div>
             </div>
 
             <!-- submitted selfie -->
             <div class="card">
-                <!-- <div class="card-body" *ngIf="user?.Selfie; else noSelfie">
+                <div class="card-body" *ngIf="user?.Selfie; else noSelfie">
                     <h3>Submitted Selfie</h3>
                     <img [src]="user.Selfie" alt="">
-                </div> -->
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- <ng-template #noKtp>
+<ng-template #noKtp>
     <div class="card-body">
         <h3>ID Card</h3>
         <img src="assets/images/blank-ktp.png" alt="" srcset="" class="img-fluid w-100" >
     </div>
-</ng-template> -->
-<!-- 
+</ng-template>
+
 <ng-template #noSelfie>
     <div class="card-body">
         <h3>Submitted Selfie</h3>
         <img src="assets/images/blank-photo.jpg" alt="Default User Photo" class="img-fluid" />
     </div>
-</ng-template> -->
+</ng-template>
 
-<!-- <ng-template #otherDetail>
+<ng-template #otherDetail>
     <div class="card">
         <div class="card-body px-0 pb-0">
             <div class="d-flex align-items-center justify-content-between px-3 mb-3">
@@ -269,16 +268,16 @@
             </table>
         </div>
     </div>
-</ng-template> -->
+</ng-template>
 
-<!-- <ng-template #noData>
+<ng-template #noData>
     <td>-</td>
-</ng-template> -->
-<!-- 
+</ng-template>
+
 <ng-template #activityLog let-modal>
     <div class="modal-header" style="font-size: 18px !important; font-weight: 700;">
         <h4 class="modal-title mt-0">{{titleModal}}</h4>
-        <button type="button" class="close" (click)="modal.close()" aria-label="Close">
+        <button type="button" class="close" (click)="close()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -302,25 +301,25 @@
             </tbody>
         </table>
     </div>
-</ng-template> -->
+</ng-template>
 
-<!-- <ng-template #editGeneral let-modal>
+<ng-template #editGeneral let-modal>
     <ng-container *ngIf="!saasMode">
         <div class="modal-header" style="font-size: 18px !important; font-weight: 700;">
             <h4 class="modal-title mt-0">{{ titleModal }}</h4>
-            <button type="button" class="close" (click)="modal.close()" aria-label="Close">
+            <button type="button" class="close" (click)="close()" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body p-0">
-            <form class="px-3 mt-3" [formGroup]="generalForm" (submit)="saveGeneral(); modal.close()">
+            <form class="px-3 mt-3" [formGroup]="generalForm" (submit)="saveGeneral(); close()">
                 <div class="form-group row">
                     <label class="col-md-4 d-flex align-items-center mb-0">Nama Lengkap</label>
                     <div class="col-md-8">
                             <input formControlName="Fullname" type="text" name="name" class="form-control form-control-lg" style="background: none !important">
                         <div class="invalid-feedback">
-                            <!-- <div *ngFor="let error of validation.Fullname">{{ error }}</div> -->
-                        <!-- </div>
+                             <div *ngFor="let error of validation.Fullname">{{ error }}</div> 
+                         </div>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -328,31 +327,31 @@
                     <div class="col-md-8">
                             <input formControlName="Phone" type="text" name="NIK" class="form-control form-control-lg" style="background: none !important" />
                         <div class="invalid-feedback">
-                            <!-- <div *ngFor="let error of validation.NIK">{{ error }}</div> -->
-                        <!-- </div>
+                             <div *ngFor="let error of validation.NIK">{{ error }}</div> 
+                         </div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4 d-flex align-items-center mb-0">Email</label>
                     <div class="col-md-8">
                             <input formControlName="Email" type="text" name="Phone" class="form-control form-control-lg" style="background: none !important" />
-                        <div class="invalid-feedback"> -->
-                            <!-- <div *ngFor="let error of validation.Phone">{{ error }}</div> -->
-                        <!-- </div>
+                        <div class="invalid-feedback"> 
+                             <div *ngFor="let error of validation.Phone">{{ error }}</div> 
+                         </div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4 d-flex align-items-center mb-0">Status</label>
                     <div class="col-md-8">
-                        <ng-select class="custom" [items]="status" bindLabel="name" bindValue="id" formControlName="Status"></ng-select>
-                        <div class="invalid-feedback"> -->
-                            <!-- <div *ngFor="let error of validation.Status">{{ error }}</div> -->
-                        <!-- </div>
+                        <!-- <ng-select class="custom" [items]="status" bindLabel="name" bindValue="id" formControlName="Status"></ng-select> -->
+                        <div class="invalid-feedback"> 
+                             <div *ngFor="let error of validation.Status">{{ error }}</div> 
+                         </div>
                     </div>
                 </div>
                 <hr style="border-top: 1px solid #CBD5E1 !important" />
                 <div class="form-group row justify-content-center">
-                    <button type="button" class="btn custom btn-outline-primary me-3" (click)="modal.close(); resetForm()">Batal</button>
+                    <button type="button" class="btn custom btn-outline-primary me-3" (click)="close(); resetForm()">Batal</button>
                     <button type="submit" class="btn custom btn-primary">Simpan Perubahan</button>
                 </div>
             </form>
@@ -361,19 +360,19 @@
     <ng-container *ngIf="saasMode">
         <div class="modal-header" style="font-size: 18px !important; font-weight: 700;">
             <h4 class="modal-title mt-0">{{ titleModal }}</h4>
-            <button type="button" class="close" (click)="modal.close()" aria-label="Close">
+            <button type="button" class="close" (click)="close()" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body p-0">
-            <form class="px-3 mt-3" [formGroup]="generalForm" (submit)="saveGeneral(); modal.close()">
+            <form class="px-3 mt-3" [formGroup]="generalForm" (submit)="saveGeneral(); close()">
                 <div class="form-group row">
                     <label class="col-md-4 d-flex align-items-center mb-0">Fullname</label>
                     <div class="col-md-8">
                             <input formControlName="Fullname" type="text" class="form-control form-control-lg" (disabled)="true">
-                        <div class="invalid-feedback"> -->
-                            <!-- <div *ngFor="let error of validation.Fullname">{{ error }}</div> -->
-                        <!-- </div>
+                        <div class="invalid-feedback"> 
+                             <div *ngFor="let error of validation.Fullname">{{ error }}</div> 
+                         </div>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -381,64 +380,64 @@
                     <div class="col-md-8">
                             <input formControlName="Username" type="text" class="form-control form-control-lg" style="background: none !important">
                         <div class="invalid-feedback">
-                            <!-- <div *ngFor="let error of validation.Fullname">{{ error }}</div> -->
-                        <!-- </div>
+                             <div *ngFor="let error of validation.Fullname">{{ error }}</div> 
+                         </div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4 d-flex align-items-center mb-0">No HP</label>
                     <div class="col-md-8">
                             <input formControlName="Phone" type="text" class="form-control form-control-lg" style="background: none !important"/>
-                        <div class="invalid-feedback"> -->
-                            <!-- <div *ngFor="let error of validation.NIK">{{ error }}</div> -->
-                        <!-- </div>
+                        <div class="invalid-feedback"> 
+                             <div *ngFor="let error of validation.NIK">{{ error }}</div> 
+                         </div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4 d-flex align-items-center mb-0">Email</label>
                     <div class="col-md-8">
                             <input formControlName="Email" type="text" class="form-control form-control-lg" (disabled)="true"/>
-                        <div class="invalid-feedback"> -->
-                            <!-- <div *ngFor="let error of validation.Phone">{{ error }}</div> -->
-                        <!-- </div>
+                        <div class="invalid-feedback"> 
+                             <div *ngFor="let error of validation.Phone">{{ error }}</div> 
+                         </div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4 d-flex align-items-center mb-0">Status</label>
-                    <div class="col-md-8"> -->
-                        <!-- <ng-select class="custom" [items]="status" bindLabel="name" bindValue="id" formControlName="Status"></ng-select> -->
-                        <!-- <div class="invalid-feedback"> -->
-                            <!-- <div *ngFor="let error of validation.Status">{{ error }}</div> -->
-                        <!-- </div>
+                    <div class="col-md-8"> 
+                         <!-- <ng-select class="custom" [items]="status" bindLabel="name" bindValue="id" formControlName="Status"></ng-select>  -->
+                         <div class="invalid-feedback"> 
+                             <div *ngFor="let error of validation.Status">{{ error }}</div> 
+                        </div>
                     </div>
                 </div>
                 <hr style="border-top: 1px solid #CBD5E1 !important" />
                 <div class="form-group row justify-content-center">
-                    <button type="button" class="btn custom btn-outline-primary me-3" (click)="modal.close(); resetForm()">Batal</button>
+                    <button type="button" class="btn custom btn-outline-primary me-3" (click)="close(); resetForm()">Batal</button>
                     <button type="submit" class="btn custom btn-primary">Simpan Perubahan</button>
                 </div>
             </form>
         </div>
-    </ng-container> -->
+    </ng-container>
     
-<!-- </ng-template> -->
+</ng-template>
 
-<!-- <ng-template #editSocial let-modal>
+<ng-template #editSocial let-modal>
     <div class="modal-header" style="font-size: 18px !important; font-weight: 700;">
         <h4 class="modal-title mt-0">{{ titleModal }}</h4>
-        <button type="button" class="close" (click)="modal.close()" aria-label="Close">
+        <button type="button" class="close" (click)="close()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body p-0">
-        <form class="px-3 mt-3" [formGroup]="socialForm" (submit)="saveSocial(); modal.close()">
+        <form class="px-3 mt-3" [formGroup]="socialForm" (submit)="saveSocial(); close()">
             <div class="form-group row">
                 <label class="col-md-4 d-flex align-items-center mb-0">Instagram</label>
                 <div class="col-md-8">
                         <input formControlName="instagram" type="text" name="name" class="form-control form-control-lg" style="background: none !important">
                     <div class="invalid-feedback"> -->
                         <!-- <div *ngFor="let error of validation.Fullname">{{ error }}</div> -->
-                    <!-- </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
@@ -447,7 +446,7 @@
                         <input formControlName="facebook" type="text" name="NIK" class="form-control form-control-lg" style="background: none !important" />
                     <div class="invalid-feedback"> -->
                         <!-- <div *ngFor="let error of validation.NIK">{{ error }}</div> -->
-                    <!-- </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
@@ -456,7 +455,7 @@
                         <input formControlName="twitter" type="text" name="Phone" class="form-control form-control-lg" style="background: none !important" />
                     <div class="invalid-feedback"> -->
                         <!-- <div *ngFor="let error of validation.Phone">{{ error }}</div> -->
-                    <!-- </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
@@ -465,7 +464,7 @@
                         <input formControlName="line" type="email" name="email" class="form-control form-control-lg" style="background: none !important" />
                     <div class="invalid-feedback"> -->
                         <!-- <div *ngFor="let error of validation.Email">{{ error }}</div> -->
-                    <!-- </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
@@ -474,14 +473,14 @@
                         <input formControlName="reason" type="email" name="email" class="form-control form-control-lg" style="background: none !important" placeholder="Tuliskan alasan Anda" />
                     <div class="invalid-feedback"> -->
                         <!-- <div *ngFor="let error of validation.Email">{{ error }}</div> -->
-                    <!-- </div>
+                    </div>
                 </div>
             </div>
             <hr style="border-top: 1px solid #CBD5E1 !important" />
             <div class="form-group row justify-content-center">
-                <button type="button" class="btn custom btn-outline-primary me-3" (click)="modal.close(); resetForm()">Batal</button>
+                <button type="button" class="btn custom btn-outline-primary me-3" (click)="close(); resetForm()">Batal</button>
                 <button type="submit" class="btn custom btn-primary">Simpan Perubahan</button>
             </div>
         </form>
     </div>
-</ng-template> -->
+</ng-template>

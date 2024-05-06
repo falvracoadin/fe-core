@@ -29,6 +29,9 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() isCondensed = false;
 
   menu: any;
+  activeMenu : number = -1;
+  activeSubMenu : number = -1;
+  activeSubSubMenu : number = -1;
 
   menuItems : any = [];
   configData : any;
