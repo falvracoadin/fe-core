@@ -89,6 +89,7 @@ export class KelolaDokumenComponent implements OnInit {
 
   getDocuments() {
     this.dtOptions = {
+      searching:false,
       serverSide: true,
       processing: true,
       ordering: false,

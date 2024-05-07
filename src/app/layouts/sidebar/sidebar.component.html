@@ -1,6 +1,6 @@
 <ng-template #contentTemplate>
   <!--- Sidemenu -->
-  <div id="sidebar-menu" [style]="">
+  <div id="sidebar-menu" [style]="isCondensed ? '' : 'overflow : auto; max-height : 90dvh'">
     <!-- Left Menu Start -->
     <ul class="metismenu list-unstyled" id="side-menu" #sideMenu>
       <ng-container *ngFor="let item of menuItems,let indexMenu = index">
@@ -34,7 +34,7 @@
           </a>
 
           <!-- Submenu configuration -->
-          <ul *ngIf="hasItems(item) && checkItemRole(item) && (indexMenu === activeMenu || isCondensed)" class="sub-menu">
+          <ul *ngIf="hasItems(item) && checkItemRole(item) && (indexMenu === activeMenu || (isCondensed && !isMobile))" class="sub-menu">
             <li *ngFor="let subitem of item.subItems, let indexSubMenu = index">
 
               <!-- If menu not have submenu -->
@@ -58,10 +58,10 @@
                   alt="{{ subitem.icon }}-icon" class="me-2" />
                 {{ subitem.label }}
               </a>
-              <ul *ngIf="hasItems(subitem) && checkItemRole(subitem) && (activeSubMenu === indexSubMenu || isCondensed)" [style]="'padding-inline-start : 0px !important;'">
+              <ul *ngIf="hasItems(subitem) && checkItemRole(subitem) && (activeSubMenu === indexSubMenu || (isCondensed && !isMobile))" [style]="'padding-inline-start : 0px !important;'" class="">
                 <li *ngFor="let sub of subitem.subItems">
                   <a [routerLink]="sub.link" *ngIf="!hasItems(sub) && checkItemRole(sub)" class="side-nav-link-ref sub-menu-2"
-                    [attr.data-parent]="sub.parentId" routerLinkActive="active" #subRLA="routerLinkActive" [style]="isCondensed ? 'padding: 15px 10px 15px 20px; margin-left : 0'  : 'padding: 15px 10px 15px 60px; margin-left : 0'">
+                    [attr.data-parent]="sub.parentId" routerLinkActive="active" #subRLA="routerLinkActive" [style]="(isCondensed && !isMobile) ? 'padding: 15px 10px 15px 20px; margin-left : 0'  : 'padding: 15px 10px 15px 60px; margin-left : 0'">
                     <img
                       [src]="subRLA.isActive ? 'assets/icons/sidebarMenuIcon/' + sub.icon + '-active.svg' : 'assets/icons/sidebarMenuIcon/' + sub.icon + '.svg'"
                       alt="{{ sub.icon }}-icon" class="me-2" />

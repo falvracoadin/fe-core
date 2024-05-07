@@ -27,7 +27,7 @@ import { ListLogUserActivityComponent } from './components/list-log-user-activit
     // PerfectScrollbarModule,
     ReactiveFormsModule,
     // NgbAlertModule,
-    NgModule,
+    // NgModule,
     DataTablesModule,
     // NgSelectModule,
     FormsModule,

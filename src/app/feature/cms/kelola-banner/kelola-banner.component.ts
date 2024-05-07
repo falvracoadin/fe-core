@@ -123,6 +123,7 @@ export class KelolaBannerComponent implements OnInit {
     }
 
     this.dtOptions = {
+      searching : false,
       serverSide: true,
       processing: true,
       ordering: false,

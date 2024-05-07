@@ -15,13 +15,13 @@
         <div class="card w-100">
           <div class="card-body">
             <div class="d-flex flex-column border-b">
-              <!-- <input
+              <input
                 type="text"
                 placeholder="File Title"
                 class="p-0"
                 name="file-title"
                 id="file-title"
-                [(ngModel)]="formulirStructure.form_title" /> -->
+                [(ngModel)]="formulirStructure.form_title" />
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@
                     class="page-item"
                     style="display: inline-block"
                     *ngFor="let id of list; index as idt">
-                    <!-- <a
+                    <a
                       (click)="changePage(idt)"
                       [ngClass]="
                         idt == sectionIndex
@@ -53,7 +53,7 @@
                         (click)="closePage($event, idt)">
                         <i class="fas fa-times"></i>
                       </span>
-                    </a> -->
+                    </a>
                   </li>
                 </ul>
               </nav>
@@ -72,22 +72,114 @@
                 <i class="fas fa-plus"></i>
               </a>
               <div class="d-flex flex-column border-b pb-3">
-                <!-- <input
+                <input
                   type="text"
                   class="label-formulir"
                   placeholder="Label Formulir"
                   name="label-formulir"
                   id="label-formulir"
                   [(ngModel)]="tempLabel"
-                  (change)="changePage(sectionIndex)" /> -->
-                <!-- <input
+                  (change)="changePage(sectionIndex)" />
+                <input
                   type="text"
                   class="deskripsi-formulir"
                   placeholder="Deskripsi (Optional)"
                   name="description-formulir"
                   id="description-formulir"
                   [(ngModel)]="tempDesc"
-                  (change)="changePage(sectionIndex)" /> -->
+                  (change)="changePage(sectionIndex)" />
+              </div>
+              <div
+                id="dropzone"
+                class="dropzone"
+                dndDropzone
+                (dndDrop)="onDrop($event)">
+                <div
+                  (dragover)="placeholderStatus = true"
+                  *ngIf="list[sectionIndex].length == 0 && !placeholderStatus">
+                  <div class="row">
+                    <div
+                      class="{{
+                        columnMode == 1 ? 'col px-4' : 'col-6 ps-4'
+                      }} py-3">
+                      <div class="dropzone-placeholder py-5">
+                        Taruh di sini untuk menambahkan
+                      </div>
+                    </div>
+                    <div class="col-6 py-3 pe-4" *ngIf="columnMode == 2">
+                      <div class="dropzone-placeholder py-5">
+                        Taruh di sini untuk menambahkan
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div dndPlaceholderRef>
+                  <div class="row">
+                    <div
+                      class="{{
+                        columnMode == 1 ? 'col px-4' : 'col-6 ps-4'
+                      }} py-3">
+                      <div class="dropzone-placeholder py-5">
+                        Taruh di sini untuk menambahkan
+                      </div>
+                    </div>
+                    <div class="col-6 py-3 pe-4" *ngIf="columnMode == 2">
+                      <div class="dropzone-placeholder py-5">
+                        Taruh di sini untuk menambahkan
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  [dndDraggable]="content"
+                  [dndEffectAllowed]="'all'"
+                  [dndDisableIf]="false"
+                  (dndStart)="onDragStart(i)"
+                  (dndCopied)="onDraggableCopied()"
+                  (dndLinked)="onDraggableLinked()"
+                  (dndMoved)="onDraggableMoved()"
+                  (dndCanceled)="onDragCanceled()"
+                  (dndEnd)="onDragEnd()"
+                  (mouseenter)="from = 'list'"
+                  class="row my-3"
+                  *ngFor="let content of list[sectionIndex]; index as i">
+                  <div
+                    *ngFor="let data of content; index as j"
+                    class="{{
+                      content.length == 1 ? 'col' : 'col-6'
+                    }} d-flex justify-content-between">
+                    <div *ngIf="data != null" class="w-100 p-3 cursor-pointer{{ content.length == 1 ? ' mx-4 ' : j == 0 ? ' ms-4' : ' me-4 ' }}{{ indexFormFocus[0] == i && indexFormFocus[1] == j ? ' border-form-active ' : ' border-form ' }}">
+                      <div class="btn-group {{indexFormFocus[0] == i && indexFormFocus[1] == j ? '' : 'd-none'}}" style="position: absolute; top: -3rem; left: 2rem; background-color: #E9ECF5; border-radius: 8px;">
+                        <button (click)="mode = 'delete'; deleteItem(i, j)" class="btn">
+                          <img src="assets/icons/trash.svg" alt="Trash Icon" />
+                        </button>
+                        <button (mousedown)="changeMode('copy')" dndHandle *ngIf="j == 0 || list[sectionIndex][i][0] == null" class="btn">
+                          <img src="assets/icons/copy.svg" alt="Copy Icon" />
+                        </button>
+                        <button (mousedown)="changeMode('move')" dndHandle *ngIf="j == 0 || list[sectionIndex][i][0] == null" class="btn">
+                          <img src="assets/icons/blueGrid.svg" alt="Drag Indicator Icon" />
+                        </button>
+                      </div>
+                      <div (click)="''"   triggers="manual"  placement="right">
+                        <ng-template [ngTemplateOutlet]="Form" [ngTemplateOutletContext]="{data: data,i: i,j: j}">
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div
+                      class="row h-100 w-100"
+                      *ngIf="data == null"
+                      dndDropzone
+                      (dndDrop)="onDrop2($event, i)">
+                      <div
+                        dndPlaceholderRef
+                        class="dropzone-placeholder py-4 {{
+                          j == 0 ? 'ms-4' : ''
+                        }}">
+                        Taruh di sini untuk menambahkan
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <!-- <div
                 id="dropzone"
@@ -195,7 +287,7 @@
                 <nav aria-label="Page column" class="my-2">
                   <ul class="nav-tabs nav">
                     <li class="li-column text-center">
-                      <!-- <a
+                      <a
                         (click)="columnMode = 1"
                         [ngClass]="
                           columnMode == 1
@@ -205,10 +297,10 @@
                         href="javascript: void(0);"
                         class="font-weight-bold">
                         1 Kolom
-                      </a> -->
+                      </a>
                     </li>
                     <li class="li-column text-center">
-                      <!-- <a
+                      <a
                         (click)="columnMode = 2"
                         [ngClass]="
                           columnMode == 2
@@ -218,29 +310,36 @@
                         href="javascript: void(0);"
                         class="font-weight-bold">
                         2 Kolom
-                      </a> -->
+                      </a>
                     </li>
                   </ul>
                 </nav>
                 <!-- Input Search -->
                 <div style="position: relative" class="mb-3 relative">
-                  <!-- <input
+                  <input
                     (keyup)="searchListAset()"
                     [(ngModel)]="searchAset"
                     class="custom-search-input form-control form-control-lg"
                     type="text"
                     name="searchAset"
-                    placeholder="Cari di sini" /> -->
+                    style="max-height : 20px; padding-left: 40px !important;"
+                    placeholder="Cari di sini" />
                   <i (click)="searchListAset()" class="fa fa-search font-size-20 search-dokumen-ikon"></i>
                 </div>
                 <!-- Template -->
                 <div id="template" class="pb-1 task-list scrollbar">
-                  <ng-container *ngFor="let template of templates; index as i">
-                    <!-- <div
+                  <div *ngFor="let template of templates; index as i">
+                    <!-- <div (mouseenter)="from = 'template'" >
+                      <ng-template
+                        [ngTemplateOutlet]="Template"
+                        [ngTemplateOutletContext]="{ templates: template }">
+                      </ng-template>
+                    </div> -->
+                    <div
                       [dndDraggable]="template"
                       [dndEffectAllowed]="'all'"
                       [dndDisableIf]="false"
-                      (dndStart)="onDragStart($event, template, i)"
+                      (dndStart)="onDragStart(i)"
                       (dndCopied)="onDraggableCopied()"
                       (dndLinked)="onDraggableLinked()"
                       (dndMoved)="onDraggableMoved()"
@@ -251,10 +350,10 @@
                         [ngTemplateOutlet]="Template"
                         [ngTemplateOutletContext]="{ templates: template }">
                       </ng-template>
-                    </div> -->
-                  </ng-container>
+                    </div>
+                  </div>
                 </div>
-                <div class="border-t text-center">
+                <div class="border-t text-center d-flex" style="flex-direction: column;">
                   <a
                     href="javascript: void(0);"
                     (click)="previewForm(previewMobile)"
@@ -281,7 +380,7 @@
 
 <!-- Template -->
 <ng-template #Template let-templates="templates">
-  <!-- <div class="card no-shadow cursor-pointer template-hover" [ngbPopover]="popTemplate" container="body" [openDelay]="500" [closeDelay]="100" triggers="mouseenter:mouseleave" placement="left" popoverClass="custom-popover">
+  <div class="card no-shadow cursor-pointer template-hover"  container="body"  triggers="mouseenter:mouseleave" placement="left" popoverClass="custom-popover">
     <div class="card-body py-0 px-0">
       <div class="d-flex align-items-center">
         <img src="assets/icons/grid.svg" class="me-2 icon-grid" alt="{{ templates.name }}-grip" />
@@ -297,7 +396,7 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 </ng-template>
 
 <ng-template #popTemplate>
@@ -312,7 +411,7 @@
   </label>
   <ng-template [ngIf]="data.type != 'multiple-line' && data.type != 'select' && data.type != 'multi-select'">
     <div class="relative">
-      <!-- <input disabled [required]="data.tampilan.wajib_diisi" [type]="data.type" [(ngModel)]="data.data" [placeholder]="data.property.keterangan.value == '' ? data.property.keterangan.placeholder : data.property.keterangan.value" id="{{ i }}-{{ j }}" maxlength="{{ data.batasi_karakter ? data.property.batasi_karakter.value : '' }}" class="form-control input-result" /> -->
+      <input disabled [required]="data.tampilan.wajib_diisi" [type]="data.type" [(ngModel)]="data.data" [placeholder]="data.property.keterangan.value == '' ? data.property.keterangan.placeholder : data.property.keterangan.value" id="{{ i }}-{{ j }}" maxlength="{{ data.batasi_karakter ? data.property.batasi_karakter.value : '' }}" class="form-control input-result" />
       <span
         *ngIf="data.type == 'media' || data.type == 'media-capture'"
         class="icon-input font-weight-bold btn btn-primary"
@@ -337,7 +436,7 @@
     </textarea>
   </ng-template>
   <ng-template [ngIf]="data.type == 'select'">
-    <!-- <ng-select *ngIf="data.format.select.value.value == 'dropdown'" [items]="data.option" [addTag]="addRadio" bindLabel="label" bindValue="id" [(ngModel)]="data.value">
+    <ng-select *ngIf="data.format.select.value.value == 'dropdown'" [items]="data.option" [addTag]="addRadio" bindLabel="label" bindValue="id" [(ngModel)]="data.value">
       <ng-template ng-option-tmp let-item="item" let-index="index">
         <div class="d-flex align-items-center">
           <img
@@ -353,7 +452,7 @@
           <span class="font-size-12">{{ item.label }}</span>
         </div>
       </ng-template>
-    </ng-select> -->
+    </ng-select>
     <div
       class="form-check d-flex flex-column ps-1"
       *ngIf="data.format.select.value.value == 'list'">
@@ -371,7 +470,7 @@
           class="icon-check"
           src="assets/icons/radioUnchecked.svg"
           alt="" />
-        <!-- <input
+        <input
           disabled
           style="display: none"
           type="radio"
@@ -379,14 +478,14 @@
           id="{{ option.label }}"
           name="{{ option.label }}"
           value="{{ option.id }}"
-          [(ngModel)]="data.value" /> -->
+          [(ngModel)]="data.value" />
           {{ option.label }}
       </label>
     </div>
   </ng-template>
 
   <ng-template [ngIf]="data.type == 'multi-select'">
-    <!-- <ng-select
+    <ng-select
       *ngIf="data.format.multi_select.value.value == 'dropdown'"
       [items]="data.option"
       [addTag]="addRadio"
@@ -410,7 +509,7 @@
           <span class="font-size-12">{{ item.label }}</span>
         </div>
       </ng-template>
-    </ng-select> -->
+    </ng-select>
     <div
       class="form-check d-flex flex-column ps-1"
       *ngIf="data.format.multi_select.value.value == 'list'">
@@ -428,7 +527,7 @@
           class="icon-check"
           src="assets/icons/checkboxUnchecked.svg"
           alt="" />
-        <!-- <input
+        <input
           disabled
           style="display: none"
           type="checkbox"
@@ -436,7 +535,7 @@
           id="{{ option.label }}"
           name="{{ option.label }}"
           value="{{ option.id }}"
-          [(ngModel)]="option.selected" /> -->
+          [(ngModel)]="option.selected" />
           {{ option.label }}
       </label>
     </div>
@@ -460,7 +559,7 @@
 <ng-template #propertiContent>
   <div *ngIf="indexFormFocus[0] != -1 && indexFormFocus[1] != -1">
     <div class="form-group row">
-      <!-- <ng-select
+      <ng-select
         *ngIf="indexFormFocus[0] != -1 && indexFormFocus[1] != -1"
         [items]="templates"
         bindLabel="name"
@@ -474,11 +573,11 @@
           <br />
           <span class="font-size-12">{{ item.desc }}</span>
         </ng-template>
-      </ng-select> -->
+      </ng-select>
     </div>
     <div class="form-group">
       <label for="label">Label</label>
-      <!-- <input type="text" class="form-control" id="label" [placeholder]="list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property'].label.value != '' ? list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property'].label.value : list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property'].label.placeholder" [(ngModel)]="list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property'].label.value" /> -->
+      <input type="text" class="form-control" id="label" [placeholder]="list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property'].label.value != '' ? list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property'].label.value : list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property'].label.placeholder" [(ngModel)]="list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property'].label.value" />
     </div>
     <div
       class="form-group"
@@ -489,7 +588,7 @@
           'time'
       ">
       <label for="label2">Keterangan</label>
-      <!-- <input
+      <input
         type="text"
         class="form-control"
         id="label2"
@@ -506,7 +605,7 @@
         [(ngModel)]="
           list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property']
             .keterangan.value
-        " /> -->
+        " />
     </div>
     <div
       class="form-group"
@@ -515,7 +614,7 @@
         'number'
       ">
       <label for="label3">Deskripsi</label>
-      <!-- <input
+      <input
         type="text"
         class="form-control"
         id="label3"
@@ -532,7 +631,7 @@
         [(ngModel)]="
           list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property']
             .deskripsi.value
-        " /> -->
+        " />
     </div>
     <div
       class="form-group"
@@ -541,7 +640,7 @@
         'number'
       ">
       <label for="label4">Batas Karakter</label>
-      <!-- <input
+      <input
         type="number"
         class="form-control"
         id="label4"
@@ -552,7 +651,7 @@
         [(ngModel)]="
           list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property']
             .batasi_karakter.value
-        " /> -->
+        " />
     </div>
     <div
       class="form-group"
@@ -561,7 +660,7 @@
         'password'
       ">
       <label for="label5">Minimal Karakter</label>
-      <!-- <input
+      <input
         type="number"
         class="form-control"
         id="label5"
@@ -572,7 +671,7 @@
         [(ngModel)]="
           list[sectionIndex][indexFormFocus[0]][indexFormFocus[1]]['property']
             .minimal_karakter.value
-        " /> -->
+        " />
     </div>
     <hr
       *ngIf="
@@ -1152,7 +1251,7 @@
     <div class="row">
       <div class="col text-right">
         <i
-          (click)="modal.dismiss('Cross click')"
+          (click)="closeModal()"
           class="fa fa-times font-size-20 cursor-pointer"></i>
       </div>
     </div>
@@ -1167,12 +1266,12 @@
     <div class="form-group row my-3" *ngIf="flowCondition == 1">
       <div class="col text-left">
         <label class="font-size-14 font-weight-medium" style="color: #111111 !important;">Nama Dokumen</label>
-        <!-- <input
+        <input
           [(ngModel)]="formulirStructure.form_title"
           type="text"
           name="form_title"
           class="form-control custom input-result"
-          placeholder="Masukkan nama dokumen untuk formulir" /> -->
+          placeholder="Masukkan nama dokumen untuk formulir" />
       </div>
     </div>
     <div class="row my-3">
@@ -1205,7 +1304,7 @@
     <i
       class="fa fa-times text-white cursor-pointer"
       aria-label="Close"
-      (click)="modal.dismiss('Cross click')"></i>
+      (click)="closeModal()"></i>
   </div>
   <div class="modal-body shadow-sm p-0" style="overflow-y: auto">
     <div *ngIf="formType == 'multi'" class="col-12 text-center py-2 shadow-sm">
@@ -1294,7 +1393,7 @@
       data.type != 'media-capture'
     ">
     <div class="relative">
-      <!-- <input
+      <input
         disabled
         [required]="data.tampilan.wajib_diisi"
         [type]="data.type"
@@ -1308,7 +1407,7 @@
         maxlength="{{
           data.batasi_karakter ? data.property.batasi_karakter.value : ''
         }}"
-        class="form-control" /> -->
+        class="form-control" />
       <i
         class="fa {{
           data.type === 'password'
@@ -1335,7 +1434,7 @@
     </textarea>
   </ng-template>
   <ng-template [ngIf]="data.type == 'select'">
-    <!-- <ng-select
+    <ng-select
       *ngIf="data.format.select.value.value == 'dropdown'"
       [items]="data.option"
       [addTag]="addRadio"
@@ -1357,7 +1456,7 @@
           <span class="font-size-12">{{ item.label }}</span>
         </div>
       </ng-template>
-    </ng-select> -->
+    </ng-select>
     <div
       class="form-check d-flex flex-column ps-1"
       *ngIf="data.format.select.value.value == 'list'">
@@ -1375,7 +1474,7 @@
           class="icon-check"
           src="assets/icons/radioUnchecked.svg"
           alt="" />
-        <!-- <input
+        <input
           disabled
           style="display: none"
           type="radio"
@@ -1383,14 +1482,14 @@
           id="{{ option.label }}"
           name="{{ option.label }}"
           value="{{ option.id }}"
-          [(ngModel)]="data.value" /> -->
+          [(ngModel)]="data.value" />
           {{ option.label }}
       </label>
     </div>
   </ng-template>
 
   <ng-template [ngIf]="data.type == 'multi-select'">
-    <!-- <ng-select
+    <ng-select
       *ngIf="data.format.multi_select.value.value == 'dropdown'"
       [items]="data.option"
       [addTag]="addRadio"
@@ -1414,7 +1513,7 @@
           <span class="font-size-12">{{ item.label }}</span>
         </div>
       </ng-template>
-    </ng-select> -->
+    </ng-select>
     <div
       class="form-check d-flex flex-column ps-1"
       *ngIf="data.format.multi_select.value.value == 'list'">
@@ -1432,7 +1531,7 @@
           class="icon-check"
           src="assets/icons/checkboxUnchecked.svg"
           alt="" />
-        <!-- <input
+        <input
           disabled
           style="display: none"
           type="checkbox"
@@ -1440,7 +1539,7 @@
           id="{{ option.label }}"
           name="{{ option.label }}"
           value="{{ option.id }}"
-          [(ngModel)]="option.selected" /> -->
+          [(ngModel)]="option.selected" />
           {{ option.label }}
       </label>
     </div>

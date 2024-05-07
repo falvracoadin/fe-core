@@ -32,6 +32,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   activeMenu : number = -1;
   activeSubMenu : number = -1;
   activeSubSubMenu : number = -1;
+  isMobile : boolean = window.screen.width <= 768;
 
   menuItems : any = [];
   configData : any;

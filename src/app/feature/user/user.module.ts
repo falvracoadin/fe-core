@@ -9,6 +9,7 @@ import { ListUserComponent } from './components/list-user/list-user.component';
 import { DataTablesModule } from 'angular-datatables';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { DetailUserComponent } from './components/detail-user/detail-user.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [FormUserComponent, ListUserComponent, DetailUserComponent],
@@ -16,7 +17,7 @@ import { DetailUserComponent } from './components/detail-user/detail-user.compon
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    // NgSelectModule,
+    NgSelectModule,
     DataTablesModule,
     // NgModule,
     SharedModule,

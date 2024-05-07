@@ -17,7 +17,11 @@ import { DetailFaskesComponent } from './components/detail-faskes/detail-faskes.
 
 import { ListSpesialisComponent } from './components/list-spesialis/list-spesialis.component';
 import { DetailSpesialisComponent } from './components/detail-spesialis/detail-spesialis.component';
-
+// import {MatButtonModule} from '@angular/material/button';
+// import {
+//   MatSlideToggleModule,
+//   _MatSlideToggleRequiredValidatorModule,
+// } from '@angular/material/slide-toggle';
 // const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 //   suppressScrollX: true,
 //   wheelSpeed: 0.3
@@ -37,6 +41,9 @@ import { DetailSpesialisComponent } from './components/detail-spesialis/detail-s
     NgSelectModule,
     FormsModule,
     ImageCropperModule,
+    // MatButtonModule,
+    // MatSlideToggleModule,
+    // _MatSlideToggleRequiredValidatorModule,
   ],
   providers: [
     // {

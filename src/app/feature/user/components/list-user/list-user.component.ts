@@ -32,10 +32,10 @@ export class ListUserComponent implements OnInit {
   filter = '';
   saasMode = false;
   listUserKey = [
-    'Nama',
-    'NIK',
-    'No. HP',
-    'Email'
+    { param: 'nama', title: 'Nama' },
+    { param: 'nik', title: 'NIK' },
+    { param: 'hp', title: 'No. HP' },
+    { param: 'email', title: 'E-mail' },
   ];
   totalRecord = 0;
   ModalRef?: BsModalRef;
@@ -69,6 +69,7 @@ export class ListUserComponent implements OnInit {
 
   getUser() {
     this.dtOptions = {
+      searching : false,
       serverSide: true,
       processing: true,
       ordering: false,

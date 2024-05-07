@@ -1,11 +1,13 @@
 /* tslint:disable:triple-equals prefer-for-of */
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-// import { DndDropEvent } from 'ngx-drag-drop';
+import { DndDropEvent } from 'ngx-drag-drop';
 //import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormulirService } from '../services/formulir.service';
 import { component } from '../formulir-data';
 import { FormulirModel } from '../formulir.model';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { LandaService } from 'src/app/core/services/landa.service';
 
 @Component({
   selector: 'app-form-all',
@@ -67,10 +69,11 @@ export class FormAllComponent implements OnInit {
     },
   ];
   constructor(
-    // private modals: NgbModal,
+    private modals: BsModalService,
     private route: ActivatedRoute,
     private router: Router,
-    private formulirService: FormulirService
+    private formulirService: FormulirService,
+    private landaService : LandaService
   ) {}
 
   ngOnInit(): void {
@@ -225,56 +228,59 @@ export class FormAllComponent implements OnInit {
     // console.log("drag cancelled", JSON.stringify(event, null, 2));
   }
 
-  // onDrop(event: DndDropEvent) {
-  //   const dropZone = document.getElementById('dropzone');
-  //   const rect = dropZone.getBoundingClientRect();
-  //   const centerDropZone = rect.left + rect.width / 2;
+  onDrop(event: DndDropEvent) {
+    const dropZone = document.getElementById('dropzone');
+    if(!dropZone) return;
+    const rect = dropZone.getBoundingClientRect();
+    const centerDropZone = rect.left + rect.width / 2;
 
-  //   // console.log("dropped", JSON.stringify(event, null, 2));
-  //   if (this.from == 'list') {
-  //     if (this.mode == 'move') {
-  //       if (
-  //         this.indexTempOndrag != event.index &&
-  //         event.index != this.indexTempOndrag + 1
-  //       ) {
-  //         if (this.indexTempOndrag < event.index) {
-  //           this.list[this.sectionIndex].splice(event.index, 0, event.data);
-  //           this.list[this.sectionIndex].splice(this.indexTempOndrag, 1);
-  //           this.indexFormFocus = [event.index - 1, 0];
-  //         } else if (this.indexTempOndrag > event.index) {
-  //           this.list[this.sectionIndex].splice(this.indexTempOndrag, 1);
-  //           this.list[this.sectionIndex].splice(event.index, 0, event.data);
-  //           this.indexFormFocus = [event.index, 0];
-  //         }
-  //       }
-  //     } else if (this.mode == 'copy') {
-  //       this.list[this.sectionIndex].splice(event.index, 0, event.data);
-  //       this.indexFormFocus = [event.index, 0];
-  //       this.mode = 'move';
-  //     }
-  //     // tslint:disable-next-line:no-conditional-assignment
-  //   } else if ((this.from = 'template')) {
-  //     if (this.columnMode == 1) {
-  //       this.list[this.sectionIndex].splice(event.index, 0, [event.data]);
-  //     } else if (this.columnMode == 2) {
-  //       if (event.event.x < centerDropZone) {
-  //         this.list[this.sectionIndex].splice(event.index, 0, [
-  //           event.data,
-  //           null,
-  //         ]);
-  //       } else {
-  //         this.list[this.sectionIndex].splice(event.index, 0, [
-  //           null,
-  //           event.data,
-  //         ]);
-  //       }
-  //     }
-  //     this.indexFormFocus = [-1, -1];
-  //   }
-  //   this.propertiStatus = false;
-  //   this.placeholderStatus = false;
-  //   this.closePopover();
-  // }
+    // console.log("dropped", JSON.stringify(event, null, 2));
+    if (this.from == 'list') {
+      if (this.mode == 'move') {
+        if (
+          this.indexTempOndrag != event.index &&
+          event.index != this.indexTempOndrag + 1
+        ) {
+          if(!event.index) return;
+          if (this.indexTempOndrag < event.index) {
+            this.list[this.sectionIndex].splice(event.index, 0, event.data);
+            this.list[this.sectionIndex].splice(this.indexTempOndrag, 1);
+            this.indexFormFocus = [event.index - 1, 0];
+          } else if (this.indexTempOndrag > event.index) {
+            this.list[this.sectionIndex].splice(this.indexTempOndrag, 1);
+            this.list[this.sectionIndex].splice(event.index, 0, event.data);
+            this.indexFormFocus = [event.index, 0];
+          }
+        }
+      } else if (this.mode == 'copy') {
+        if(!event.index) return;
+        this.list[this.sectionIndex].splice(event.index, 0, event.data);
+        this.indexFormFocus = [event.index, 0];
+        this.mode = 'move';
+      }
+      // tslint:disable-next-line:no-conditional-assignment
+    } else if ((this.from = 'template')) {
+      if (this.columnMode == 1) {
+        this.list[this.sectionIndex].splice(event.index, 0, [event.data]);
+      } else if (this.columnMode == 2) {
+        if (event.event.x < centerDropZone) {
+          this.list[this.sectionIndex].splice(event.index, 0, [
+            event.data,
+            null,
+          ]);
+        } else {
+          this.list[this.sectionIndex].splice(event.index, 0, [
+            null,
+            event.data,
+          ]);
+        }
+      }
+      this.indexFormFocus = [-1, -1];
+    }
+    this.propertiStatus = false;
+    this.placeholderStatus = false;
+    this.closePopover();
+  }
 
   deleteItem(i : any, j:any) {
     if (this.list[this.sectionIndex][i].length == 1) {
@@ -292,36 +298,39 @@ export class FormAllComponent implements OnInit {
     this.closePopover();
   }
 
-  // onDrop2(event: DndDropEvent, i) {
-  //   const dropZone = document.getElementById('dropzone');
-  //   const rect = dropZone.getBoundingClientRect();
-  //   const centerDropZone = rect.left + rect.width / 2;
-  //   if (this.from == 'list') {
-  //     // if (this.mode == "move") {
-  //     //   if (
-  //     //     this.indexTempOndrag != event.index &&
-  //     //     event.index != this.indexTempOndrag + 1
-  //     //   ) {
-  //     //     if (this.indexTempOndrag < event.index) {
-  //     //       this.list.splice(event.index, 0, event.data);
-  //     //       this.list.splice(this.indexTempOndrag, 1);
-  //     //     } else if (this.indexTempOndrag > event.index) {
-  //     //       this.list.splice(this.indexTempOndrag, 1);
-  //     //       this.list.splice(event.index, 0, event.data);
-  //     //     }
-  //     //   }
-  //     // } else if (this.mode == "copy") {
-  //     //   this.list.splice(event.index, 0, event.data);
-  //     // }
-  //     // tslint:disable-next-line:no-conditional-assignment
-  //   } else if ((this.from = 'template')) {
-  //     if (event.event.x < centerDropZone) {
-  //       this.list[this.sectionIndex][i][0] = event.data;
-  //     } else {
-  //       this.list[this.sectionIndex][i][1] = event.data;
-  //     }
-  //   }
-  // }
+  onDrop2(event: DndDropEvent, i:any) {
+    const dropZone = document.getElementById('dropzone');
+    if(!dropZone) return
+    const rect = dropZone.getBoundingClientRect();
+    const centerDropZone = rect.left + rect.width / 2;
+    if (this.from == 'list') {
+      if (this.mode == "move") {
+        if (
+          this.indexTempOndrag != event.index &&
+          event.index != this.indexTempOndrag + 1
+        ) {
+          if(!event.index) return
+          if (this.indexTempOndrag < event.index) {
+            this.list.splice(event.index, 0, event.data);
+            this.list.splice(this.indexTempOndrag, 1);
+          } else if (this.indexTempOndrag > event.index) {
+            this.list.splice(this.indexTempOndrag, 1);
+            this.list.splice(event.index, 0, event.data);
+          }
+        }
+      } else if (this.mode == "copy") {
+        if(!event.index) return
+        this.list.splice(event.index, 0, event.data);
+      }
+      // tslint:disable-next-line:no-conditional-assignment
+    } else if ((this.from = 'template')) {
+      if (event.event.x < centerDropZone) {
+        this.list[this.sectionIndex][i][0] = event.data;
+      } else {
+        this.list[this.sectionIndex][i][1] = event.data;
+      }
+    }
+  }
 
   // Dropzone
   formClick(i : any, j :any) {
@@ -384,30 +393,28 @@ export class FormAllComponent implements OnInit {
     this.prepareData();
     this.formulirStructure.is_draft = 0;
     this.flowCondition = 1;
-    // this.modals.open(modalId, {
-    //   centered: true,
-    // });
-    // if (this.modePage == "add") {
-    //   this.formulirService
-    //     .addFormulir(this.formulirStructure)
-    //     .subscribe((res) => {
-    //       this.landaService.alertSuccess(
-    //         "Berhasil",
-    //         "Berhasil Menambahkan Formulir"
-    //       );
-    //       this.router.navigate(["/cms/formulir"]);
-    //     });
-    // } else {
-    //   this.formulirService
-    //     .editFormulir(this.formulirStructure, this.paramId)
-    //     .subscribe((res) => {
-    //       this.landaService.alertSuccess(
-    //         "Berhasil",
-    //         "Berhasil Mengubah Formulir"
-    //       );
-    //       this.router.navigate(["/cms/formulir"]);
-    //     });
-    // }
+    this.modals.show(modalId);
+    if (this.modePage == "add") {
+      this.formulirService
+        .addFormulir(this.formulirStructure)
+        .subscribe((res) => {
+          this.landaService.alertSuccess(
+            "Berhasil",
+            "Berhasil Menambahkan Formulir"
+          );
+          this.router.navigate(["/cms/formulir"]);
+        });
+    } else {
+      this.formulirService
+        .editFormulir(this.formulirStructure, this.paramId)
+        .subscribe((res) => {
+          this.landaService.alertSuccess(
+            "Berhasil",
+            "Berhasil Mengubah Formulir"
+          );
+          this.router.navigate(["/cms/formulir"]);
+        });
+    }
   }
 
   // Form
@@ -485,9 +492,7 @@ export class FormAllComponent implements OnInit {
     if (this.formulirStructure.forms['form-1']) {
       if (this.formulirStructure.forms['form-1'].content.length != 0) {
         this.flowCondition = 0;
-        // this.modals.open(id, {
-        //   centered: true,
-        // });
+        this.modals.show(id);
       } else {
         this.router.navigate(['/cms/formulir']).then();
       }
@@ -500,9 +505,7 @@ export class FormAllComponent implements OnInit {
         this.formulirStructure.detail_sections['section-1'].desc != '')
     ) {
       this.flowCondition = 0;
-      // this.modals.open(id, {
-      //   centered: true,
-      // });
+      this.modals.show(id);
     } else {
       this.router.navigate(['/cms/formulir']).then();
     }
@@ -511,11 +514,11 @@ export class FormAllComponent implements OnInit {
   flowSave(param :any) {
     if (param == 'cancel') {
       if (this.flowCondition == 0 || this.flowCondition == 1) {
-        // this.modals.dismissAll();
+        this.modals.hide();
         this.flowCondition = 0;
       } else if (this.flowCondition == 2) {
         this.flowCondition = 0;
-        // this.modals.dismissAll();
+        this.modals.hide();
         this.router.navigate(['/cms/formulir']).then();
       }
     } else if (param == 'confirm') {
@@ -551,7 +554,7 @@ export class FormAllComponent implements OnInit {
           is_draft: 0,
           is_multi: 0,
         };
-        // this.modals.dismissAll();
+        this.modals.hide();
         this.flowCondition = 0;
         this.router.navigate(['/cms/formulir']).then();
       }
@@ -608,7 +611,7 @@ export class FormAllComponent implements OnInit {
 
   // Mobile
   previewForm(id:any) {
-    // this.modals.open(id, { centered: true, windowClass: 'modal-preview' });
+    this.modals.show(id);
   }
 
   prevSection() {
@@ -620,5 +623,9 @@ export class FormAllComponent implements OnInit {
     if (this.sectionIndex < this.list.length - 1) {
       this.sectionIndex = this.sectionIndex + 1;
     }
+  }
+
+  closeModal() {
+    this.modals.hide()
   }
 }

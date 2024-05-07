@@ -36,3 +36,27 @@
 .sub-menu-2:hover{
     background-color: rgb(227, 227, 227) !important;
 }
+
+.animate {
+    max-height: 1000px;
+    overflow: hidden;
+    animation: slideDown 3s ease-out; // Adjust duration and easing as needed
+}
+
+@keyframes slideDown {
+    from {
+        max-height: 0px;
+    }
+    to {
+        max-height: 1000px;    
+    }
+}
+
+// .sub-menu {
+//     overflow: hidden;
+//     transition: max-height 5s ease-out;
+// }
+  
+// .sub-menu.expanded {
+//     max-height: 1000px;
+// }

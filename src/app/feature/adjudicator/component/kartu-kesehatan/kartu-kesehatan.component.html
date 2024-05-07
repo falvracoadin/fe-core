@@ -18,7 +18,7 @@
                             <div class="row limit ps-3">
                                 <div class="d-flex">
                                     <div class="relative">
-                                        <input type="text" (input)="filterKTP($event)" placeholder="Cari berdasarkan parameter" class="search-input" />
+                                        <input type="text" (input)="filterKTP($event)" placeholder="Cari berdasarkan parameter" class="search-input" style="height: 50px;"/>
                                         <i class="fa fa-search icon-search"></i>
                                     </div>
                                 </div>
@@ -46,7 +46,7 @@
                 <div class="row mt-2">
                     <div class="col-12">
                         <div class="table-responsive">
-                            <!-- <table class="table table-hover" datatable [dtOptions]="dtOptions">
+                            <table class="table table-hover" datatable [dtOptions]="dtOptions">
                                 <thead>
                                     <tr style="background-color: #E2E8F0 !important;">
                                         <th class="text-center" [width]="50">No</th>
@@ -93,21 +93,21 @@
                                         </td>
                                     </tr>
                                 </tbody>
-                            </table> -->
+                            </table>
                             <div class="info-wrap-imi" *ngIf="totalRecord != 0">
                                 <div class="info-1">Tampilkan</div>
-                                <!-- <select
-                                        [(ngModel)]="limit"
-                                        id="inputLimit"
-                                        class="form-control info-2"
-                                        style=" background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; padding: 0.47rem 0.75rem"
-                                        name="showFilter"
-                                        (change)="clickLimit()">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select> -->
+                                <select
+                                  [(ngModel)]="limit"
+                                  id="inputLimit"
+                                  class="form-control info-2 relative z-100 m-1"
+                                  style="padding: 0.34rem 0.50rem !important; background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; width:50px; max-height: 30px"
+                                  name="showFilter"
+                                  (change)="clickLimit()">
+                                  <option value="10">10</option>
+                                  <option value="25">25</option>
+                                  <option value="50">50</option>
+                                  <option value="100">100</option>
+                                </select>
                                 <div class="info-3">dari {{ totalRecord }} data</div>
                             </div>
                         </div>

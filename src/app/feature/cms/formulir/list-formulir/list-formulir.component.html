@@ -15,10 +15,10 @@
             <div class="d-flex justify-content-start">
               <div class="row limit ps-3">
                 <div class="d-flex">
-                  <!-- <ng-select class="custom" bindLabel="title" bindValue="param" [(ngModel)]="filter2.param" [items]="filterParam" placeholder="Pilih Parameter"></ng-select> -->
+                  <ng-select class="custom" bindLabel="title" bindValue="param" [(ngModel)]="filter2.param" [items]="filterParam" placeholder="Pilih Parameter"></ng-select>
                   <div class="relative">
-                    <!-- <input type="text" placeholder="Cari berdasarkan parameter" [(ngModel)]="filter.value" class="search-input" /> -->
-                    <i class="fa fa-search icon-search"></i>
+                    <input type="text" placeholder="Cari berdasarkan parameter" [(ngModel)]="filter.value" class="search-input" style="height: 50px;" />
+                    <i class="fa fa-search icon-search" style="margin-top: 6px;"></i>
                   </div>
                 </div>
               </div>
@@ -28,63 +28,63 @@
             </div>
           </div>
 
-<!--          <div class="px-3 d-flex justify-content-between" style="padding: 0">-->
-<!--            <div class="d-flex justify-content-start">-->
-<!--              <div class="input-container">-->
-<!--                <ng-select-->
-<!--                  [items]="filterParam"-->
-<!--                  bindLabel="title"-->
-<!--                  bindValue="param"-->
-<!--                  [(ngModel)]="filter2.param">-->
-<!--                </ng-select>-->
-<!--              </div>-->
-<!--              <div-->
-<!--                class="input-container me-2"-->
-<!--                style="width: 309px"-->
-<!--                *ngIf="-->
-<!--                  !(filter.param == 'tglDiterima');-->
-<!--                  else tanggal_diterima_search-->
-<!--                ">-->
-<!--                <img-->
-<!--                  src="https://cdn-icons-png.flaticon.com/32/149/149852.png"-->
-<!--                  alt="" />-->
-<!--                <input-->
-<!--                  style="width: 259px"-->
-<!--                  [(ngModel)]="filter.value"-->
-<!--                  type="text"-->
-<!--                  placeholder="Cari berdasarkan parameter"-->
-<!--                  class="filter-input" />-->
-<!--              </div>-->
-<!--              <div-->
-<!--                (click)="reloadDataTable()"-->
-<!--                class="btn btn-primary btn-filter">-->
-<!--                <svg-->
-<!--                  focusable="false"-->
-<!--                  aria-hidden="true"-->
-<!--                  viewBox="0 0 24 24"-->
-<!--                  style="-->
-<!--                    user-select: none;-->
-<!--                    width: 1em;-->
-<!--                    height: 1em;-->
-<!--                    display: inline-block;-->
-<!--                    fill: rgb(255, 255, 255);-->
-<!--                    flex-shrink: 0;-->
-<!--                    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;-->
-<!--                    font-size: 1.5rem;-->
-<!--                  ">-->
-<!--                  <path-->
-<!--                    d="M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39c.51-.66.04-1.61-.79-1.61H5.04c-.83 0-1.3.95-.79 1.61z"></path>-->
-<!--                </svg>-->
-<!--                <span-->
-<!--                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
+         <!-- <div class="px-3 d-flex justify-content-between" style="padding: 0">
+           <div class="d-flex justify-content-start">
+             <div class="input-container">
+               <ng-select>
+                 [items]="filterParam"
+                 bindLabel="title"
+                 bindValue="param"
+                 [(ngModel)]="filter2.param">
+               </ng-select>
+             </div>
+             <div
+               class="input-container me-2"
+               style="width: 309px"
+               *ngIf="
+                 !(filter.param == 'tglDiterima');
+                 else tanggal_diterima_search
+               ">
+               <img
+                 src="https://cdn-icons-png.flaticon.com/32/149/149852.png"
+                 alt="" />
+               <input
+                 style="width: 259px"
+                 [(ngModel)]="filter.value"
+                 type="text"
+                 placeholder="Cari berdasarkan parameter"
+                 class="filter-input" />
+             </div>
+             <div
+               (click)="reloadDataTable()"
+               class="btn btn-primary btn-filter">
+               <svg
+                 focusable="false"
+                 aria-hidden="true"
+                 viewBox="0 0 24 24"
+                 style="
+                   user-select: none;
+                   width: 1em;
+                   height: 1em;
+                   display: inline-block;
+                   fill: rgb(255, 255, 255);
+                   flex-shrink: 0;
+                   transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+                   font-size: 1.5rem;
+                 ">
+                 <path
+                   d="M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39c.51-.66.04-1.61-.79-1.61H5.04c-.83 0-1.3.95-.79 1.61z"></path>
+               </svg>
+               <span
+                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>
+             </div>
+           </div>
+         </div> -->
         </div>
         <div class="row mt-3">
           <div class="col-12">
             <div class="">
-              <!-- <table
+              <table
                 class="table table-hover"
                 datatable
                 [dtOptions]="dtOptions">
@@ -135,21 +135,21 @@
                     </td>
                   </tr>
                 </tbody>
-              </table> -->
+              </table>
               <div class="info-wrap-imi" *ngIf="total_record != 0">
                 <div class="info-1">Tampilkan</div>
-                <!-- <select
+                <select
                   [(ngModel)]="limit"
                   id="inputLimit"
-                  class="form-control info-2"
-                  style="padding: 0.47rem 0.75rem !important; background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important;"
+                  class="form-control info-2 relative z-100 m-1"
+                  style="padding: 0.34rem 0.50rem !important; background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; width:50px; max-height: 30px"
                   name="showFilter"
                   (change)="clickLimit()">
                   <option value="10">10</option>
                   <option value="25">25</option>
                   <option value="50">50</option>
                   <option value="100">100</option>
-                </select> -->
+                </select>
                 <div class="info-3">dari {{ total_record }} data</div>
               </div>
             </div>
@@ -162,13 +162,15 @@
 
 <ng-template #form let-modal>
   <div class="modal-body p-4">
-    <button
+    <div class="d-flex" style="justify-content: end;">
+      <div
       type="button"
-      class="close"
-      (click)="close()"
-      aria-label="Close">
-      <i class="mdi mdi-close-thick"></i>
-    </button>
+      class="cursor-pointer"
+        (click)="close()"
+        aria-label="Close">
+        <i class="fa fa-times" style="font-size: 20px;"></i>
+    </div>
+    </div>
     <h3 class="modal-title mt-0 tipe-formulir">Tipe Formulir</h3>
 
     <h6 class="modal-title mt-0 pilih-formulir">Pilih formulir sesuai kebutuhan kamu</h6>
@@ -229,7 +231,7 @@
       <div class="col-md-6">
         <span>Tipe</span>
         <div class="d-flex justify-content-between">
-          <!-- <button
+          <button
             type="button"
             class="btn btn-light px-3"
             style="border-radius: 15px"
@@ -238,8 +240,8 @@
             "
             (click)="filter.is_multi = 0">
             Single Page
-          </button> -->
-          <!-- <button
+          </button>
+          <button
             type="button"
             class="btn btn-light px-3"
             style="border-radius: 15px"
@@ -248,7 +250,7 @@
             "
             (click)="filter.is_multi = 1">
             Multi Page
-          </button> -->
+          </button>
         </div>
       </div>
     </div>
@@ -258,7 +260,7 @@
 
         <div class="d-flex justify-content-between">
           <div class="col-md-6 px-0">
-            <!-- <button
+            <button
               type="button"
               class="btn btn-light w-100"
               style="border-radius: 15px"
@@ -267,10 +269,10 @@
               "
               (click)="filter.is_draft = 0">
               Tidak
-            </button> -->
+            </button>
           </div>
           <div class="col-md-6 pe-0">
-            <!-- <button
+            <button
               type="button"
               class="btn btn-light w-100"
               style="border-radius: 15px"
@@ -279,7 +281,7 @@
               "
               (click)="filter.is_draft = 1">
               Ya
-            </button> -->
+            </button>
           </div>
         </div>
       </div>
@@ -396,7 +398,7 @@
       data.type != 'media-capture'
     ">
     <div class="relative">
-      <!-- <input
+      <input
         disabled
         [required]="data.tampilan.wajib_diisi"
         [type]="data.type"
@@ -410,7 +412,7 @@
         maxlength="{{
           data.batasi_karakter ? data.property.batasi_karakter.value : ''
         }}"
-        class="form-control" /> -->
+        class="form-control" />
       <i
         class="fa {{
           data.type === 'password'
@@ -437,7 +439,7 @@
     </textarea>
   </ng-template>
   <ng-template [ngIf]="data.type == 'select'">
-    <!-- <ng-select
+    <ng-select
       *ngIf="data.format.select.value.value == 'dropdown'"
       [items]="data.option"
       bindLabel="label"
@@ -458,7 +460,7 @@
           <span class="font-size-12">{{ item.label }}</span>
         </div>
       </ng-template>
-    </ng-select> -->
+    </ng-select>
     <div
       class="form-check d-flex flex-column ps-1"
       *ngIf="data.format.select.value.value == 'list'">
@@ -476,7 +478,7 @@
           class="icon-check"
           src="assets/images/adjudicator/radio_button_unchecked.svg"
           alt="" />
-        <!-- <input
+        <input
           disabled
           style="display: none"
           type="radio"
@@ -484,14 +486,14 @@
           id="{{ option.label }}"
           name="{{ option.label }}"
           value="{{ option.id }}"
-          [(ngModel)]="data.value" /> -->
+          [(ngModel)]="data.value" />
           {{ option.label }}
       </label>
     </div>
   </ng-template>
 
   <ng-template [ngIf]="data.type == 'multi-select'">
-    <!-- <ng-select
+    <ng-select
       *ngIf="data.format.multi_select.value.value == 'dropdown'"
       [items]="data.option"
       bindLabel="label"
@@ -513,7 +515,7 @@
           <span class="font-size-12">{{ item.label }}</span>
         </div>
       </ng-template>
-    </ng-select> -->
+    </ng-select>
     <div
       class="form-check d-flex flex-column ps-1"
       *ngIf="data.format.multi_select.value.value == 'list'">
@@ -531,7 +533,7 @@
           class="icon-check"
           src="assets/images/check-box-unchecked.svg"
           alt="" />
-        <!-- <input
+        <input
           disabled
           style="display: none"
           type="checkbox"
@@ -539,7 +541,7 @@
           id="{{ option.label }}"
           name="{{ option.label }}"
           value="{{ option.id }}"
-          [(ngModel)]="option.selected" /> -->
+          [(ngModel)]="option.selected" />
           {{ option.label }}
       </label>
     </div>
@@ -556,11 +558,11 @@
 <ng-template #tanggal_diterima_search>
   <div class="input-container me-2" style="width: 309px">
     <img src="https://cdn-icons-png.flaticon.com/512/833/833593.png" alt="" />
-    <!-- <input
+    <input
       style="width: 259px"
       [(ngModel)]="filter.value"
       type="date"
       placeholder="Cari berdasarkan tanggal"
-      class="filter-input" /> -->
+      class="filter-input" />
   </div>
 </ng-template>

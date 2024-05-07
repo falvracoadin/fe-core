@@ -224,6 +224,7 @@ export class LaporanKonsultasiComponent implements OnInit {
     }
 
     this.dtOptions = {
+      searching:false,
       serverSide: true,
       processing: true,
       ordering: false,

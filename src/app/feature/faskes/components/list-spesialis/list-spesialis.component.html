@@ -34,10 +34,12 @@
                     <hr />
                     <div class="px-3 d-flex align-items-center" style="padding-top: .5rem;">
                         <div class="row limit ps-3" style="height: 50px;">
-                            <div class="relative">
-                                <input type="text" [(ngModel)]="filter.value" placeholder="Pencarian"
+                            <div class="d-flex">
+                                <div class="relative">
+                                    <input type="text" [(ngModel)]="filter.value" placeholder="Pencarian"
                                     class="search-input" (keyup)="reloadDataTable()" />
-                                <i class="fa fa-search icon-search"></i>
+                                    <i class="fa fa-search icon-search"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -66,11 +68,10 @@
                                                 <td class="align-middle">{{ spesialis.nameSpecialist ? spesialis.nameSpecialist : "-" }}</td>
                                                 <td class="align-middle">{{ spesialis.desc ? spesialis.desc : "-" }}</td>
                                                 <td class="align-middle text-center">
-                                                    <div class="custom-control custom-switch custom-switch-md" style="padding-left: 1.5rem">
-                                                        <!-- (change)="toggleStatus(spesialis)" -->
-                                                        <input type="checkbox" class="custom-control-input" id="statusToggle{{spesialis.id}}" [checked]="spesialis.status === 1">
-                                                        <label class="custom-control-label" for="statusToggle{{spesialis.id}}"></label>
-                                                    </div>
+                                                    <label class="switch">
+                                                        <input type="checkbox" [checked]="spesialis.status === 1">
+                                                        <span class="slider round"></span>
+                                                    </label>
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     <a class="btn btn-outline-primary" placement="left" container="body"
@@ -89,13 +90,17 @@
                                 </table>
                                 <div class="info-wrap-imi" *ngIf="totalRecord != 0">
                                     <div class="info-1">Tampilkan</div>
-                                    <select [(ngModel)]="limit" id="inputLimit" class="form-control info-2"
-                                        style=" background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; padding: 0.47rem 0.75rem"
-                                        name="showFilter" (change)="clickLimit()">
-                                        <option value="10">10</option>
-                                        <option value="25">25</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
+                                    <select
+                                      [(ngModel)]="limit"
+                                      id="inputLimit"
+                                      class="form-control info-2 relative z-100 m-1"
+                                      style="padding: 0.34rem 0.50rem !important; background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; width:50px; max-height: 30px"
+                                      name="showFilter"
+                                      (change)="clickLimit()">
+                                      <option value="10">10</option>
+                                      <option value="25">25</option>
+                                      <option value="50">50</option>
+                                      <option value="100">100</option>
                                     </select>
                                     <div class="info-3">dari {{ totalRecord }} data</div>
                                 </div>

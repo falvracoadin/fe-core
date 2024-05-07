@@ -183,6 +183,7 @@ export class ListSpesialisComponent implements OnInit {
     }
 
     this.dtOptions = {
+      searching:false,
       serverSide: true,
       processing: true,
       ordering: false,

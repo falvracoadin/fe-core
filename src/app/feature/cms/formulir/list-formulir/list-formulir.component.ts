@@ -97,6 +97,7 @@ export class ListFormulirComponent implements OnInit {
 
   getList() {
     this.dtOptions = {
+      searching:false,
       serverSide: true,
       processing: true,
       ordering: false,

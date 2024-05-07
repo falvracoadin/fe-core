@@ -28,10 +28,10 @@
           <div class="px-3 d-flex align-items-center" style="padding-top: .5rem;">
             <div class="row limit ps-3">
               <div class="d-flex">
-                <!-- <ng-select class="custom" bindLabel="title" bindValue="param" [(ngModel)]="filter.param" [items]="filterParam" placeholder="Pilih Parameter"></ng-select> -->
+                <ng-select class="custom" bindLabel="title" bindValue="param" [(ngModel)]="filter.param" [items]="filterParam" placeholder="Pilih Parameter"></ng-select>
                 <div class="relative">
-                  <!-- <input type="text" [(ngModel)]="filter.value" placeholder="Cari berdasarkan parameter" class="search-input" (keyup)="reloadDataTable()" /> -->
-                  <i class="fa fa-search icon-search"></i>
+                  <input type="text" [(ngModel)]="filter.value" placeholder="Cari berdasarkan parameter" class="search-input" (keyup)="reloadDataTable()" style="height: 50px;" />
+                  <i class="fa fa-search icon-search" style="margin-top: 6px;"></i>
                 </div>
               </div>
             </div>
@@ -39,29 +39,29 @@
               <i class="fa fa-filter"></i>
             </div>
             
-<!--              <div-->
-<!--                class="input-container me-2"-->
-<!--                style="width: 309px"-->
-<!--                *ngIf="-->
-<!--                  !(filter.param == 'tglDiterima');-->
-<!--                  else tanggal_diterima_search-->
-<!--                ">-->
-<!--                <img-->
-<!--                  src="https://cdn-icons-png.flaticon.com/32/149/149852.png"-->
-<!--                  alt="" />-->
-<!--                <input-->
-<!--                  style="width: 259px"-->
-<!--                  [(ngModel)]="filter.value"-->
-<!--                  type="text"-->
-<!--                  placeholder="Cari berdasarkan parameter"-->
-<!--                  class="filter-input" />-->
-<!--              </div>-->
+             <!-- <div
+               class="input-container me-2"
+               style="width: 309px"
+               *ngIf="
+                 !(filter.param == 'tglDiterima');
+                 else tanggal_diterima_search
+               ">
+               <img
+                 src="https://cdn-icons-png.flaticon.com/32/149/149852.png"
+                 alt="" />
+               <input
+                 style="width: 259px"
+                 [(ngModel)]="filter.value"
+                 type="text"
+                 placeholder="Cari berdasarkan parameter"
+                 class="filter-input" />
+             </div> -->
           </div>
         </div>
         <div class="row mt-3">
           <div class="col-12">
             <div class="">
-              <!-- <table
+              <table
                 class="table table-hover"
                 datatable
                 [dtOptions]="dtOptions">
@@ -79,9 +79,9 @@
                     </th>
                     <th class="text-center" style="min-width: 120px">
                       Tgl. Status
-                    </th> -->
-<!--                    <th class="text-center" style="min-width: 100px">Aksi</th>-->
-                  <!-- </tr>
+                    </th>
+                   <th class="text-center" style="min-width: 100px">Aksi</th>
+                  </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let dokumen of listDokumen; index as i" [class.bg-white]="(i % 2) == 0" [class.bg-second]="(i % 2) == 1">
@@ -147,41 +147,41 @@
                     </td>
                     <td class="align-middle text-center">
                       {{ getDateFormat(dokumen.tanggal_status) }}
-                    </td> -->
-<!--                    <td class="align-middle text-center">-->
-<!--                      <button-->
-<!--                        class="btn btn-outline-warning me-2"-->
-<!--                        (click)="deleteDokumen(dokumen.id)">-->
-<!--                        <i class="fa fa-trash-alt"></i>-->
-<!--                      </button>-->
-<!--                      <button-->
-<!--                        class="btn btn-outline-warning"-->
-<!--                        (click)="updateDokumen(formKelolaDokumen, dokumen)">-->
-<!--                        <i class="fa fa-pencil-alt"></i>-->
-<!--                      </button>-->
-<!--                    </td>-->
-                  <!-- </tr>
+                    </td>
+                   <td class="align-middle text-center">
+                     <button
+                       class="btn btn-outline-warning me-2"
+                       (click)="deleteDokumen(dokumen.id)">
+                       <i class="fa fa-trash-alt"></i>
+                     </button>
+                     <button
+                       class="btn btn-outline-warning"
+                       (click)="updateDokumen(formKelolaDokumen, dokumen)">
+                       <i class="fa fa-pencil-alt"></i>
+                     </button>
+                   </td>
+                  </tr>
                 </tbody>
                 <tr class="table-danger" *ngIf="totalRecord == 0">
                   <td [attr.colspan]="10" class="text-center">
                     Data tidak ditemukan
                   </td>
                 </tr>
-              </table> -->
+              </table>
               <div class="info-wrap-imi" *ngIf="totalRecord != 0">
                 <div class="info-1">Tampilkan</div>
-                <!-- <select
+                <select
                   [(ngModel)]="limit"
                   id="inputLimit"
-                  class="form-control info-2"
-                  style=" background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; padding: 0.47rem 0.75rem"
+                  class="form-control info-2 relative z-100 m-1"
+                  style="padding: 0.34rem 0.50rem !important; background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; width:50px; max-height: 30px"
                   name="showFilter"
                   (change)="clickLimit()">
                   <option value="10">10</option>
                   <option value="25">25</option>
                   <option value="50">50</option>
                   <option value="100">100</option>
-                </select> -->
+                </select>
                 <div class="info-3">dari {{ totalRecord }} data</div>
               </div>
             </div>
@@ -195,12 +195,12 @@
 <ng-template #tanggal_diterima_search>
   <div class="input-container me-2" style="width: 309px">
     <img src="https://cdn-icons-png.flaticon.com/512/833/833593.png" alt="" />
-    <!-- <input
+    <input
       style="width: 259px"
       [(ngModel)]="filter.value"
       type="date"
       placeholder="Cari berdasarkan tanggal"
-      class="filter-input" /> -->
+      class="filter-input" />
   </div>
 </ng-template>
 

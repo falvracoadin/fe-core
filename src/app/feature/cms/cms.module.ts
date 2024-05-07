@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-// import { DndModule } from 'ngx-drag-drop';
+import { DndModule } from 'ngx-drag-drop';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -28,7 +27,7 @@ import { FormKelolaBannerComponent } from './form-kelola-banner/form-kelola-bann
     imports: [
         CommonModule,
         CmsRoutingModule,
-        // DndModule,
+        DndModule,
         NgSelectModule,
         FormsModule,
         ReactiveFormsModule,
@@ -36,6 +35,7 @@ import { FormKelolaBannerComponent } from './form-kelola-banner/form-kelola-bann
         // NgbNavModule,
         // NgbPopoverModule,
         DataTablesModule,
+        // DragDropModule,
         // NgbTooltipModule,
         // NgbModule
     ]
