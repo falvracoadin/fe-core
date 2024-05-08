@@ -26,7 +26,6 @@ import { DecryptionService } from "./core/services/decryption.service";
 // import { AuthModule, OidcConfigService } from "angular-auth-oidc-client";
 import { environment } from "src/environments/environment";
 
-
 // export function configureAuth(oidcConfigService: OidcConfigService) {
 //   return () =>
 //     oidcConfigService.withConfig({

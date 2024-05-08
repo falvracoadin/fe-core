@@ -15,6 +15,7 @@ import { PendapatanTransaksiRequest } from 'src/app/component/chart-pendapatan/c
 import { TrendTransaksiRequest } from 'src/app/component/chart-trend/chart-trend.component';
 import { PermissionsService } from 'src/app/core/services/permissions.service';
 import { PieChartCardModel } from 'src/app/component/pie-chart-card/pie-chart-card.component';
+import { BarChartDataCustom } from 'src/app/component/bar-chart/bar-chart.component';
 
 export interface Doctor {
   id: number;
@@ -148,23 +149,18 @@ export class DashboardComponent implements OnInit {
   //   },
 
   // };
-  // barChartLabels: Label[] = [
-  //   'Gas',
-  //   'HP Pascabayar',
-  //   'ISAT',
-  //   'PBB',
-  //   'PDAM Jawa Barat',
-  //   'PDAM Jawa Timur',
-  //   'PLN', 'PLNPASCA',
-  //   'Telkom',
-  //   'Telkomsel'
-  // ];
-  // barChartType: ChartType = 'horizontalBar';
-  barChartLegend = true;
-  barChartPlugins = [];
-  // barChartData: ChartDataSets[] = [
-  //   { data: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1], label: 'Jumlah Transaksi', barThickness: 20, radius: 5, maxBarThickness: 20 }
-  // ];
+  barChartLabels: any[] = [
+    'Gas',
+    'HP Pascabayar',
+    'ISAT',
+    'PBB',
+    'PDAM Jawa Barat',
+    'PDAM Jawa Timur',
+    'PLN', 'PLNPASCA',
+    'Telkom',
+    'Telkomsel'
+  ];
+  barChartData: any[] = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
   barChartColors: Array<any> = [
     {
       backgroundColor: '#A6B3D7',
@@ -315,10 +311,9 @@ export class DashboardComponent implements OnInit {
         this.DigitizedCardsLabels.push(['Pasport'])
       }
 
-      // this.pieChartData3 = [data.data.KTPAccepted, data.data.SIMAccepted, data.data.PassportAccepted];
 
-      // this.barChartData[0].data = data.data.TopProducts.map((product) => product.TransactionCount);
-      // this.barChartLabels = data.data.TopProducts.map((product) => product.TrxProductName);
+      this.barChartData= data.data.TopProducts.map((product : any) => product.TransactionCount);
+      this.barChartLabels = data.data.TopProducts.map((product : any) => product.TrxProductName);
     })
   }
 
@@ -383,6 +378,7 @@ export class DashboardComponent implements OnInit {
     }
 
     this.dtOptions = {
+      searching : false,
       serverSide: true,
       processing: true,
       ordering: false,
@@ -488,6 +484,7 @@ export class DashboardComponent implements OnInit {
     }
 
     this.dtOptions = {
+      searching : false,
       serverSide: true,
       processing: true,
       ordering: false,
@@ -631,6 +628,14 @@ export class DashboardComponent implements OnInit {
           },
         },
       ];
+  }
+
+  penggunaBaruBarChart () : BarChartDataCustom {
+    return {
+      title: 'Pengguna Baru',
+      data: this.barChartData,
+      labels: this.barChartLabels
+    };
   }
 }
 
