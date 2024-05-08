@@ -66,14 +66,16 @@
               "src/assets/scss/icons.scss",
               "./node_modules/ngx-toastr/toastr.css",
               "./node_modules/ngx-toastr/toastr-old.css",
-              "node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css",
-              "./node_modules/leaflet/dist/leaflet.css"
+              "./node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css",
+              "./node_modules/leaflet/dist/leaflet.css",
+              "./node_modules/bs-stepper/dist/css/bs-stepper.min.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/datatables.net/js/jquery.dataTables.min.js",
-              "node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js",
-              "./node_modules/leaflet/dist/leaflet.js"
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/datatables.net/js/jquery.dataTables.min.js",
+              "./node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js",
+              "./node_modules/leaflet/dist/leaflet.js",
+              "./node_modules/bs-stepper/dist/js/bs-stepper.min.js"
             ]
           },
           "configurations": {

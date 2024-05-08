@@ -1,337 +1,475 @@
 <div class="container-fluid">
+    <!-- Breadcrumb -->
     <div class="d-flex justify-content-between top-header">
         <div class="row">
             <div class="col-12">
                 <div class="title-page">Dokter</div>
                 <div class="sub-title-page">
-                    <a style="margin: auto 0; text-decoration: none; font-size: 14px" class="text-unactive">
+                    <a class="text-unactive">
                         <span>Layanan Kesehatan</span>
                     </a>
-                    <a style="margin: auto 0; text-decoration: none; font-size: 14px" class="text-unactive">
-                        <span style="padding: 0 5px">/</span>
+                    <a class="text-unactive">
+                        <span class="px-1">/</span>
                         <span>Telemedicine</span>
                     </a>
-                    <a style="margin: auto 0; text-decoration: none; font-size: 14px" class="text-active">
-                        <span style="padding: 0 5px">/</span>
+                    <a class="text-active">
+                        <span class="px-1">/</span>
                         <span>Dokter</span>
                     </a>
                 </div>
             </div>
         </div>
         <div class="d-flex align-items-center">
-            <!-- <div class="btn btn-outline-primary" [routerLink]="['/kesehatan/telemedicine/dokter']">
+            <button class="btn btn-outline-primary" [routerLink]="['/kesehatan/telemedicine/dokter']">
                 <em class="fa fa-arrow-left font-size-14 align-middle me-2"></em> Kembali
-            </div> -->
+            </button>
         </div>
     </div>
-    <div class="px-0">
-        <div class="row mt-0">
-            <div class="col-lg-4 col-md-4 stick-card">
-                <div class="row">
-                    <div class="col-12 d-flex justify-content-center bg-white"
-                        style="padding: 1.5rem !important; padding-top: 2.5rem !important;">
-                        <div class="profile-image-container">
-                            <img class="profile-image"
-                                [src]="document['doc_pict_secondary'] ? document['doc_pict_secondary'] : 'assets/images/users/avatar-1.jpg'"
-                                alt="">
-                        </div>
+
+    <!-- Data -->
+    <div class="row">
+
+        <!-- Profil Dokter -->
+        <div class="col-lg-3 col-md-3 stick-card">
+            <div class="card">
+                <div class="card-body text-center">
+                    <img class="profile-image w-75"
+                        [src]="data.profile_picture ? data.profile_picture : 'assets/images/users/avatar-1.jpg'" alt="">
+                    <div class="profile-detail mt-3">
+                        <h5 class="card-title">{{ data.full_name }}</h5>
+                        <p class="card-text">{{ data.gender == "P" ? 'Perempuan': 'Laki - Laki' }}</p>
                     </div>
-                    <div class="col-12 bg-white">
-                        <hr class="line-separator">
+                </div>
+                <hr class="line-separator">
+                <div class="card-body">
+                    <div class="card-data">
+                        <h5 class="title">Email</h5>
+                        <p class="data font-weight-bolder">{{ data.email }}</p>
                     </div>
-                    <div class="col-12 bg-white" style="padding: 1.5rem 1.5rem 0rem 1.5rem !important;">
-                        <div class="info-dokter">
-                            <div class="info-description">Email :</div>
-                            <div class="info-sub">dummy@gmail.com</div>
-                        </div>
-                        <div class="info-dokter">
-                            <div class="info-description">Phone</div>
-                            <div class="info-sub">903493849032</div>
-                        </div>
-                        <div class="info-dokter">
-                            <div class="info-description">Status</div>
-                            <div class="info-sub">Active</div>
-                        </div>
+                    <div class="card-data">
+                        <h5 class="title">No Telp</h5>
+                        <p class="data font-weight-bolder">{{ data.phone_number }}</p>
                     </div>
-                    <div class="col-12 bg-white d-flex" style="padding-bottom: 1.5rem !important;">
-                        <div class="btn btn-outline-danger w-50 me-2">
-                            Banned
-                        </div>
-                        <div class="btn btn-outline-danger w-50">
+                    <div class="card-data">
+                        <h5 class="title">Status</h5>
+                        <p class="data font-weight-bolder">{{ data.status }}</p>
+                    </div>
+                    <div class="d-flex">
+                        <!-- Block button -->
+                        <button *ngIf="data.status == 'active'" class="btn btn-outline-danger w-100"
+                            (click)="blockDoctor()">
                             Block
+                        </button>
+
+                        <!-- Unblock button -->
+                        <button *ngIf="data.status == 'inactive'" class="btn btn-outline-success w-100"
+                            (click)="unblockDoctor()">
+                            Unblock
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail  -->
+        <div class="col-lg-9 col-md-9">
+
+            <!-- Data Pribadi -->
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="font-weight-bolder mb-0">Data Pribadi</h4>
+                    <button class="btn btn-primary" *ngIf="!isEditData" (click)="updateState()">
+                        <i class="fas fa-pencil-alt"></i>
+                        Ubah
+                    </button>
+                </div>
+                <div class="card-body p-0">
+                    <div class="row bg-secondary py-3 px-2">
+                        <div class="col-md-4 d-flex justify-content-between">
+                            <p class="font-weight-bolder">No. STR</p>
+                            <p>:</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ no_str }}</p>
+                        </div>
+                    </div>
+                    <div class="row py-3 px-2">
+                        <div class="col-md-4 d-flex justify-content-between">
+                            <p class="font-weight-bolder">Masa berlaku STR</p>
+                            <p>:</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ data.str_date }}</p>
+                        </div>
+                    </div>
+                    <div class="row bg-secondary py-3 px-2">
+                        <div class="col-md-4 d-flex justify-content-between">
+                            <p class="font-weight-bolder">Masa berlaku SIP</p>
+                            <p>:</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ data.sip_date }}</p>
+                        </div>
+                    </div>
+                    <div class="row py-3 px-2">
+                        <div class="col-md-4 d-flex justify-content-between">
+                            <p class="font-weight-bolder">Start Experience</p>
+                            <p>:</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ data.start_experience }}</p>
+                        </div>
+                    </div>
+                    <div class="row bg-secondary py-3 px-2">
+                        <div class="col-md-4 d-flex justify-content-between">
+                            <p class="font-weight-bolder">Provinsi</p>
+                            <p>:</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ data.province_name }}</p>
+                        </div>
+                    </div>
+                    <div class="row py-3 px-2">
+                        <div class="col-md-4 d-flex justify-content-between">
+                            <p class="font-weight-bolder">Kab/Kota</p>
+                            <p>:</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ data.regency_name }}</p>
+                        </div>
+                    </div>
+                    <div *ngIf="!isEditData" class="row bg-secondary py-3 px-2">
+                        <div class="col-md-4 d-flex justify-content-between">
+                            <p class="font-weight-bolder">Specialist</p>
+                            <p>:</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ data.specialist ? data.specialist : '-' }}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 col-md-8">
-                <div class="row info px-3 mt-3" *ngFor="let keyHeader of getKeyObject(listViewInfo); index as j">
-                    <div class="col-12 keyheader d-flex justify-content-between">
-                        <div>{{keyHeader}}</div>
-                        <div *ngIf="j==0 && isOperator" class="btn btn{{isEditData ? '' : '-outline'}}-primary"
-                            (click)="toggleEditData()">
-                            {{isEditData ? 'Simpan' : 'Ubah'}}
-                        </div>
-                    </div>
-                    <div class="col-12 keyvalue bg-white" *ngFor="let row of listViewInfo[keyHeader]; index as i"
-                        [class.bg-white]="(i%2) == 1" [class.bg-second]="(i%2) == 0">
-                        <div class="row">
-                            <div class="col-4 d-flex justify-content-between">
-                                <div>{{row['label']}}</div>
-                                <div>:</div>
-                            </div>
 
-                            <div class="{{ isEditData ? 'col-8' : 'col-6' }}">
-                                <span
-                                    *ngIf="!row['isEdit'] && !isEditData &&  row['type'] != 'date' && row['type'] != 'status' && row['type'] != 'statusJobs'">
-                                    {{document[row['bind']] ? document[row['bind']] : '-'}}
-                                </span>
-                                <div *ngIf="row['type'] === 'status' && !row['isEdit'] && !isEditData"
-                                    class="status_dokumen{{ document[row['bind']] == 3 ? ' status-semi ' : document[row['bind']] == 0 || document[row['bind']] == undefined ? ' status-secondary ' : document[row['bind']] > 0 && document[row['bind']] < 3 ? ' status-success ' : (document[row['bind']] == 5 || document[row['bind']] == 7) ? ' status-danger ' : ' status-warning ' }}">
-                                    <span>{{ document[row['bind']] == 3 ? 'Disetujui' : document[row['bind']] == 0 ||
-                                        document[row['bind']] == undefined ? 'Diperiksa' : document[row['bind']] > 0 &&
-                                        document[row['bind']] < 3 ? 'Diverifikasi' : (document[row['bind']]==5 ||
-                                            document[row['bind']]==7) ? 'Ditolak' : 'Anomali' }}</span>
-                                </div>
-                                <div *ngIf="row['type'] === 'statusJobs' && !row['isEdit'] && !isEditData"
-                                    class="status_dokumen{{ document[row['bind']] == 'Karyawan Kontrak' ? ' status-secondary ' : document[row['bind']] == 'Karyawan Tetap' ? ' status-success ' : ' status-warning ' }}">
-                                    <span>{{ document[row['bind']] }}</span>
-                                </div>
-                                <!-- <span *ngIf="!isEditData && row['type'] == 'date' && !row['isEdit']">
-                                    {{document[row['bind']] | date : 'dd-MM-yyyy' }}
-                                </span> -->
-                                <div class="input-group"
-                                    *ngIf="row['isEdit'] && row['type'] == 'date' || isEditData && row['type'] == 'date'">
-                                    <!-- <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
-                                        [(ngModel)]="document[row['bind']]" ngbDatepicker #d="ngbDatepicker"
-                                        (change)="d.toggle()" /> -->
-                                    <!-- <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
-                                        <img height="18px" src="https://cdn-icons-png.flaticon.com/24/55/55281.png"
-                                            alt="">
-                                    </button> -->
-                                </div>
-                                <div class="input-group"
-                                    *ngIf="row['isEdit'] && (row['type'] != 'date' || !row['type']) || isEditData && (row['type'] != 'date' || !row['type'])">
-                                    <!-- <input *ngIf="!row['type'] || row['type'] == 'text'" type="{{row['type']}}"
-                                        class="form-control" [(ngModel)]="document[row['bind']]"
-                                        placeholder="{{row['label']}}" aria-describedby="basic-addon1" /> -->
-                                </div>
-                                <div class="input-group"
-                                    *ngIf="row['isEdit'] && row['type'] == 'dropdown' || isEditData && row['type'] == 'dropdown'">
-                                    <!-- <ng-select class="custom" [items]="row['options']" bindLabel="label"
-                                        bindValue="value" [(ngModel)]="document[row['bind']]" placeholder="Pilih Status"
-                                        [ngModelOptions]="{standalone:true}"></ng-select> -->
-                                </div>
-                            </div>
-
-                            <div class="col-2 d-flex align-items-center" style="column-gap: 1rem"
-                                *ngIf="isOperator && !isEditData">
-                                <img placement="auto" container="body" ngbTooltip="Edit data" class="cursor-pointer"
-                                    (click)="row['isEdit'] = true" height="24" src="assets/icons/adjEdit.svg"
-                                    alt="Edit Input" />
-                                <img placement="auto" container="body" ngbTooltip="Tutup edit data"
-                                    class="cursor-pointer" (click)="row['isEdit'] = false" height="24"
-                                    src="assets/icons/adjClose.svg" alt="Close Input" />
-                            </div>
-                        </div>
-                    </div>
-
+            <!-- View Riwayat Pendidikan -->
+            <div class="card" *ngIf="!isEditData">
+                <div class="card-header d-flex justify-content-between align-items-center py-4">
+                    <h4 class="font-weight-bolder mb-0">Riwayat Pendidikan</h4>
                 </div>
-                <!-- new detail identitas -->
-                <div class="row info px-3 mt-3">
-                    <div class="col-12 keyheader d-flex justify-content-between">
-                        <div>Detail Identitas</div>
-                        <div *ngIf="isOperator" class="btn btn{{isEditData ? '' : '-outline'}}-primary"
-                            (click)="toggleEditData()">
-                            {{isEditData ? 'Simpan' : 'Ubah'}}
-                        </div>
-                    </div>
-                    <div class="col-12 keyvalue bg-white" *ngFor="let row of data_form; index as i"
-                        [class.bg-white]="(i%2) == 1" [class.bg-second]="(i%2) == 0">
-                        <div class="row">
-                            <div class="col-4 d-flex justify-content-between">
-                                <div>{{row.title}}</div>
-                                <div>:</div>
-                            </div>
+                <div class="card-body p-0">
 
-                            <div class="{{ isEditData ? 'col-8' : 'col-6' }}">
-                                <span
-                                    *ngIf="!row['isEdit'] && !isEditData &&  row['type'] != 'date'  && row['type'] != 'status' && row['type'] != 'statusJobs'">
-                                    {{row.value ? row.value : '-'}}
-                                </span>
-                                <div *ngIf="row['type'] === 'status' && !row['isEdit'] && !isEditData"
-                                    class="status_dokumen{{ row.value == 3 ? ' status-semi ' : row.value == 0 || row.value == undefined ? ' status-secondary ' : row.value > 0 && row.value < 3 ? ' status-success ' : row.value == 5 ? ' status-danger ' : ' status-warning ' }}">
-                                    <span>{{ row.value == 3 ? 'Disetujui' : row.value == 0 ||
-                                        row.value == undefined ? 'Diperiksa' : row.value > 0 &&
-                                        row.value < 3 ? 'Diverifikasi' : row.value==5 ? 'Ditolak' : 'Anomali' }}</span>
+                    <!-- If educations data not empty -->
+                    <ng-container *ngIf="data.educations.length > 0">
+                        <ng-container *ngFor="let item of data.educations">
+                            <div class="row bg-secondary py-3 px-2">
+                                <div class="col-md-4 d-flex justify-content-between">
+                                    <p class="font-weight-bolder">Universitas</p>
+                                    <p>:</p>
                                 </div>
-                                <div *ngIf="row['type'] === 'statusJobs' && !row['isEdit'] && !isEditData"
-                                    class="status_dokumen{{ row.value == 'Karyawan Kontrak' ? ' status-secondary ' : row.value == 'Karyawan Tetap' ? ' status-success ' : ' status-warning ' }}">
-                                    <span>{{ row.value }}</span>
-                                </div>
-                                <!-- <span *ngIf="!isEditData && row['type'] == 'date' && !row['isEdit']">
-                                    {{row.value | date : 'dd-MM-yyyy' }}
-                                </span> -->
-                                <div class="input-group"
-                                    *ngIf="row['isEdit'] && row['type'] == 'date' || isEditData && row['type'] == 'date'">
-                                    <!-- <input class="form-control" placeholder="dd-mm-yyyy" name="dp"
-                                        [(ngModel)]="row.value" ngbDatepicker #d="ngbDatepicker"
-                                        (change)="d.toggle()" />
-                                    <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
-                                        <img height="18px" src="https://cdn-icons-png.flaticon.com/24/55/55281.png"
-                                            alt="">
-                                    </button> -->
-                                </div>
-                                <div class="input-group"
-                                    *ngIf="row['isEdit'] && (row['type'] != 'date' || !row['type']) || isEditData && (row['type'] != 'date' || !row['type'])">
-                                    <!-- <input *ngIf="!row['type'] || row['type'] == 'text'" type="{{row['type']}}"
-                                        class="form-control" [(ngModel)]="row.value" placeholder="{{row['label']}}"
-                                        aria-describedby="basic-addon1" /> -->
-                                </div>
-                                <div class="input-group"
-                                    *ngIf="row['isEdit'] && row['type'] == 'dropdown' || isEditData && row['type'] == 'dropdown'">
-                                    <!-- <ng-select class="custom" [items]="row['options']" bindLabel="label"
-                                        bindValue="value" [(ngModel)]="row.value" placeholder="Pilih Status"
-                                        [ngModelOptions]="{standalone:true}"></ng-select> -->
-                                </div>
-                                <div class="input-group"
-                                    *ngIf="row['isEdit'] && row['type'] == 'select' || isEditData && row['type'] == 'select'">
-                                    <!-- <ng-select class="custom" [items]="row['options']" bindLabel="label"
-                                        bindValue="value" [(ngModel)]="row.value" placeholder="Pilih Status"
-                                        [ngModelOptions]="{standalone:true}"></ng-select> -->
+                                <div class="col-md-8">
+                                    <p>{{ item.education }}</p>
                                 </div>
                             </div>
+                            <div class="row py-3 px-2">
+                                <div class="col-md-4 d-flex justify-content-between">
+                                    <p class="font-weight-bolder">Tahun</p>
+                                    <p>:</p>
+                                </div>
+                                <div class="col-md-8">
+                                    <p>{{ item.graduation_year }}</p>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
 
-                            <div class="col-2 d-flex align-items-center" style="column-gap: 1rem"
-                                *ngIf="isOperator && !isEditData">
-                                <img placement="auto" container="body" ngbTooltip="Edit data" class="cursor-pointer"
-                                    (click)="row['isEdit'] = true" height="24" src="assets/icons/adjEdit.svg"
-                                    alt="Edit Input" />
-                                <img placement="auto" container="body" ngbTooltip="Tutup edit data"
-                                    class="cursor-pointer" (click)="row['isEdit'] = false" height="24"
-                                    src="assets/icons/adjClose.svg" alt="Close Input" />
+                    <!-- If educations data is empty -->
+                    <ng-container *ngIf="data.educations.length == 0">
+                        <div class="row bg-secondary py-3 px-2">
+                            <div class="col-md-12 text-center">
+                                <p>Data tidak ditemukan</p>
                             </div>
                         </div>
-                    </div>
+                    </ng-container>
                 </div>
+            </div>
 
-                <div class="row info mt-3 px-3">
-                    <div class="col-12 keyheader">
-                        Verifikasi Data
-                    </div>
-
-                    <div class="col-12 keyvalue" *ngFor="let row of listVerifikasi; index as i"
-                        [class.bg-white]="(i%2) == 1" [class.bg-second]="(i%2) == 0">
-                        <div class="row">
-                            <div class="col-6 d-flex justify-content-between">
-                                <div>
-                                    {{row['label']}}
-                                </div>
-                                <div>:</div>
-                            </div>
-
-                            <div class="col-6 d-flex align-items-center" *ngIf="!isOperator">
-                                <div>
-                                    <i
-                                        class="fa font-size-24 me-2 fa-{{ document[row['bind']] == 1 ? 'check-circle text-success' : 'times-circle  text-danger' }}"></i>
-                                </div>
-                                <p class="mb-0">{{ document[row['bind']] == 1 ? 'Ya' : 'Tidak' }}</p>
-                            </div>
-
-                            <div class="col-6" *ngIf="isOperator">
-                                <div class="form-check-inline">
-                                    <label class="form-check-label" for="{{row['bind']}}_ya">
-                                        <img (click)="document[row['bind']] = '1'"
-                                            src="assets/icons/{{ document[row['bind']] == 1 ? 'radioChecked' : 'radioUnchecked' }}.svg"
-                                            alt="Radio Checked" /> Ya
-                                    </label>
-                                </div>
-                                <div class="form-check-inline">
-                                    <label class="form-check-label" for="{{row['bind']}}_tidak">
-                                        <img (click)="document[row['bind']] = '0'"
-                                            src="assets/icons/{{ document[row['bind']] == 0 ? 'radioChecked' : 'radioUnchecked' }}.svg"
-                                            alt="Radio Unchecked" /> Tidak
-                                    </label>
+            <!-- Update Riwayat Pendidikan -->
+            <div class="card" *ngIf="isEditData">
+                <div class="card-header d-flex justify-content-between align-items-center py-4">
+                    <h4 class="font-weight-bolder mb-0">Riwayat Pendidikan</h4>
+                    <button class="btn btn-outline-primary" (click)="openModal(add_education_form)">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="card-body bg-secondary">
+                    <div class="card card-item w-100" *ngFor="let item of data.educations">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="card-title">{{ item.education }}</h5>
+                                    <p class="card-text">{{ item.graduation_year }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="row info mt-3 px-3" *ngIf="isSuperadmin">
-                    <div class="col-12 keyheader">
-                        Catatan
-                    </div>
-                    <div class="col-12 keyvalue" *ngFor="let row of listCatatan; index as i"
-                        [class.bg-white]="(i%2) == 1" [class.bg-second]="(i%2) == 0">
-                        <div class="row">
-                            <div class="col-6">
-                                {{row['label']}}
-                            </div>
-                            <div class="col-6">
-                                <span class="me-3">:</span>
-                                {{document[row['bind']]}}
+            <!-- Update Spesialis -->
+            <div class="card" *ngIf="isEditData">
+                <div class="card-header d-flex justify-content-between align-items-center py-4">
+                    <h4 class="font-weight-bolder mb-0">Spesialis</h4>
+                    <button class="btn btn-outline-primary" (click)="openModal(add_specialist_form)">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="card-body bg-secondary">
+                    <div class="card card-item w-100" *ngFor="let item of data.doctor_specialists">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="card-title">{{ item.specialist }}</h5>
+                                    <p class="card-text">Tarif: Rp. {{ item.rate }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="row info mt-3 px-3"
-                    *ngIf="(document.adj_status <= 2 || document.adj_status == 7  || document.adj_status == 8 || document.adj_status == undefined) && !isSuperadmin">
-                    <div class="col-12 keyheader">
-                        Catatan
+            <!-- View Tempat Praktek -->
+            <div class="card" *ngIf="!isEditData">
+                <div class="card-header d-flex justify-content-between align-items-center py-4">
+                    <h4 class="font-weight-bolder mb-0">Tempat Praktek</h4>
+                </div>
+                <div class="card-body p-0">
+                    <div class="row py-3 px-2" *ngFor="let item of data.facilities; index as i"
+                        [class.bg-secondary]="i % 2 == 0">
+                        <p class="col-12">{{ i + 1}}. <b>{{ item.name }}</b> {{ item.province_name }}, {{
+                            item.regency_name }}</p>
                     </div>
-                    <div class="col-12 keyvalue" style="background-color: white;">
-                        <div class="row" *ngIf="isSupervisor">
-                            <div class="col-6 mb-4 d-flex justify-content-between">
-                                <div>Dari Operator</div>
-                                <div>:</div>
-                            </div>
-                            <div class="col-6">
-                                {{document['notes']}}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <!-- <textarea class="catatan" *ngIf="isSupervisor"
-                                    placeholder="Cth: Data Karyawan tidak valid" name=""
-                                    [(ngModel)]="document['catatan_supervisor']"></textarea>
-                                <textarea class="catatan" *ngIf="isOperator"
-                                    placeholder="Cth: Data Karyawan tidak valid" name=""
-                                    [(ngModel)]="document['notes']"></textarea> -->
+                </div>
+            </div>
+
+            <!-- Update Tempat Praktek -->
+            <div class="card" *ngIf="isEditData">
+                <div class="card-header d-flex justify-content-between align-items-center py-4">
+                    <h4 class="font-weight-bolder mb-0">Tempat Praktek</h4>
+                    <button class="btn btn-outline-primary" (click)="openModal(add_facilities_form)">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="card-body bg-secondary">
+                    <div class="card card-item w-100" *ngFor="let item of data.facilities; index as i">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="card-title">{{ item.name }}</h5>
+                                    <p class="card-text">{{item.province_name}}, {{ item.regency_name }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="row info mt-3 px-3"
-                    *ngIf="isOperator || (isSupervisor && (document.adj_status == 2 || document.adj_status == 7 || document.adj_status == 8))">
-                    <div class="col-12 keyheader">
-                        Keputusan
+            <!-- Jadwal Praktek -->
+            <div class="card" *ngIf="!isEditData">
+                <div class="card-header d-flex justify-content-between align-items-center py-4">
+                    <h4 class="font-weight-bolder mb-0">Jadwal Praktek</h4>
+                </div>
+                <div class="card-body p-0">
+                    <div class="row bg-secondary py-3 px-2">
+                        <div class="col-md-4 d-flex justify-content-between">
+                            <p class="font-weight-bolder">Minggu</p>
+                            <p>:</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ data.doctor_schedules.sunday ? data.doctor_schedules.sunday : '-' }}</p>
+                        </div>
                     </div>
-                    <div class="col-12 keyvalue" style="background-color: white;">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <!-- <ng-select [placeholder]="'Pilih keputusan akhir'" [items]="listKeputusan"
-                                    bindLabel="label" bindValue="label" [(ngModel)]="document.keputusan">
-                                </ng-select> -->
-                            </div>
-                            <div class="col-md-4">
-                                <button *ngIf="isSupervisor" class="rounded-8 btn btn-primary w-100"
-                                    [disabled]="!document['catatan_supervisor'] || !document.keputusan || isEditData"
-                                    (click)="validateData()">
-                                    Konfirmasi
-                                </button>
-                                <button *ngIf="isOperator" class="rounded-8 btn btn-primary w-100"
-                                    [disabled]="!document['notes'] || !document.keputusan || isEditData"
-                                    (click)="verifData()">
-                                    Konfirmasi
-                                </button>
-                            </div>
+                    <div class="row py-3 px-2">
+                        <div class="col-md-4 d-flex justify-content-between">
+                            <p class="font-weight-bolder">Senin</p>
+                            <p>:</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ data.doctor_schedules.monday ? data.doctor_schedules.monday : '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="row bg-secondary py-3 px-2">
+                        <div class="col-md-4 d-flex justify-content-between">
+                            <p class="font-weight-bolder">Selasa</p>
+                            <p>:</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ data.doctor_schedules.tuesday ? data.doctor_schedules.tuesday : '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="row py-3 px-2">
+                        <div class="col-md-4 d-flex justify-content-between">
+                            <p class="font-weight-bolder">Rabu</p>
+                            <p>:</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ data.doctor_schedules.wednesday ? data.doctor_schedules.wednesday : '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="row bg-secondary py-3 px-2">
+                        <div class="col-md-4 d-flex justify-content-between">
+                            <p class="font-weight-bolder">Kamis</p>
+                            <p>:</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ data.doctor_schedules.thursday ? data.doctor_schedules.thursday : '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="row py-3 px-2">
+                        <div class="col-md-4 d-flex justify-content-between">
+                            <p class="font-weight-bolder">Jum'at</p>
+                            <p>:</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ data.doctor_schedules.friday ? data.doctor_schedules.friday : '-' }}</p>
+                        </div>
+                    </div>
+                    <div class="row bg-secondary py-3 px-2">
+                        <div class="col-md-4 d-flex justify-content-between">
+                            <p class="font-weight-bolder">Sabtu</p>
+                            <p>:</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ data.doctor_schedules.saturday ? data.doctor_schedules.saturday : '-' }}</p>
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <!-- Button Action -->
+            <div class="action d-flex justify-content-between" *ngIf="isEditData">
+                <div class="row w-100">
+                    <div class="col-md-6">
+                        <button class="btn btn-outline-secondary w-100" (click)="closeUpdate()">Batal</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-secondary w-100" (click)="save()">Simpan</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<ng-template #add_education_form let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title my-auto font-weight-bold font-size-24">
+            Tambah Riwayat Pendidikan
+        </h4>
+        <button type="button" class="close my-auto" (click)="modal.close()" aria-label="Close">
+            <i class="mdi mdi-close-thick"></i>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="university" class="mb-0">Nama Universitas</label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="university" placeholder="Masukkan nama universitas"
+                    [(ngModel)]="educationForm.education" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="year" class="mb-0">Tahun Lulus</label>
+            </div>
+            <div class="col-md-9">
+                <input type="number" class="form-control" id="year" placeholder="2020"
+                    [(ngModel)]="educationForm.graduation_year" />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-around">
+        <button (click)="modal.close()" class="btn btn-outline-primary w-25">Batal</button>
+        <button (click)="saveEducationModal(); modal.close()" class="btn btn-primary w-25">Tambahkan</button>
+    </div>
+</ng-template>
+
+<ng-template #add_specialist_form let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title my-auto font-weight-bold font-size-24">
+            Tambah Spesialis Dokter
+        </h4>
+        <button type="button" class="close my-auto" (click)="modal.close()" aria-label="Close">
+            <i class="mdi mdi-close-thick"></i>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="specialist" class="mb-0">Spesialis</label>
+            </div>
+            <div class="col-md-9">
+                <ng-select [items]="listSpecialist" bindLabel="name" placeholder="Pilih spesialis"
+                    [(ngModel)]="selectedSpecialist"></ng-select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="rate" class="mb-0">Rate (Rp)</label>
+            </div>
+            <div class="col-md-9">
+                <input type="number" class="form-control" id="rate" placeholder="50.000"
+                    [(ngModel)]="specialistForm.rate" (input)="formatCurrency($event)" />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-around">
+        <button (click)="modal.close()" class="btn btn-outline-primary w-25">Batal</button>
+        <button (click)="saveSpecialistModal(); modal.close()" class="btn btn-primary w-25">Tambahkan</button>
+    </div>
+</ng-template>
+
+<ng-template #add_facilities_form let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title my-auto font-weight-bold font-size-24">
+            Tambah Tempat Praktek
+        </h4>
+        <button type="button" class="close my-auto" (click)="modal.close()" aria-label="Close">
+            <i class="mdi mdi-close-thick"></i>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="specialist" class="mb-0">Spesialis</label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="specialist" placeholder="Masukkan nama tempat praktek"
+                    [(ngModel)]="facilityForm.name" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="rate" class="mb-0">Provinsi</label>
+            </div>
+            <div class="col-md-9">
+                <ng-select [items]="listProvince" bindLabel="name" placeholder="Pilih provinsi"
+                    [(ngModel)]="selectedProvince"
+                    (change)="getRegion(selectedProvince.id); selectedRegion = {}"></ng-select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="rate" class="mb-0">Kab/kota</label>
+            </div>
+            <div class="col-md-9">
+                <ng-select [items]="listRegion" bindLabel="name" placeholder="Pilih kab/kota"
+                    [(ngModel)]="selectedRegion"></ng-select>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-around">
+        <button (click)="modal.close()" class="btn btn-outline-primary w-25">Batal</button>
+        <button (click)="saveFacilityModal(); modal.close()" class="btn btn-primary w-25">Tambahkan</button>
+    </div>
+</ng-template>
