@@ -3,9 +3,9 @@
         <div class="col-4">
             <label class="font-size-14 mb-0 font-weight-bold">Hari</label>
         </div>
-        <div class="col-8 relative">
-            <!-- <ng-select [items]="indonesianDays" bindLabel="day" bindValue="day" placeholder="Pilih Hari"
-                (change)="onDaySelected($event)"></ng-select> -->
+        <div class="col-8 mb-3">
+            <ng-select [(ngModel)]="selectedDay" [items]="indonesianDays" bindLabel="day" bindValue="day" placeholder="Pilih Hari"
+                (change)="onDaySelected($event)"></ng-select>
         </div>
     </div>
 

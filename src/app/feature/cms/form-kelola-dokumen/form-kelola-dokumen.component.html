@@ -1,10 +1,10 @@
 <form>
-  <div class="form-group row align-items-center">
+  <div class="form-group row align-items-center mt-3">
     <div class="col-4">
       <label class="font-size-14 mb-0 font-weight-bold">Nama Dokumen</label>
     </div>
     <div class="col-8 relative">
-      <!-- <ng-select
+      <ng-select
         [(ngModel)]="formModel.m_form_id"
         class="custom"
         id="nama_dokumen"
@@ -36,29 +36,29 @@
             item.is_multi == 1 ? "Multi Halaman" : "Satu halaman"
           }}</span>
         </ng-template>
-      </ng-select> -->
+      </ng-select>
       <i class="fa fa-chevron-down my-auto ng-select-chevron"></i>
     </div>
   </div>
-  <div class="form-group row align-items-center">
+  <div class="form-group row align-items-center mt-3">
     <div class="col-4">
       <label class="font-size-14 mb-0 font-weight-bold">Alias Formulir</label>
     </div>
     <div class="col-8 relative">
-      <!-- <input
+      <input
         [(ngModel)]="formModel.alias_formulir"
         type="text"
         name="alias"
         class="custom form-control form-control-lg"
-        placeholder="Masukkan alias untuk formulir" /> -->
+        placeholder="Masukkan alias untuk formulir" />
     </div>
   </div>
-  <div class="form-group row align-items-center">
+  <div class="form-group row align-items-center mt-3">
     <div class="col-4">
       <label class="font-size-14 mb-0 font-weight-bold">Kategori</label>
     </div>
     <div class="col-8 relative">
-      <!-- <ng-select
+      <ng-select
         [(ngModel)]="formModel.kategori"
         name="kategori"
         class="custom"
@@ -66,16 +66,16 @@
         bindLabel="kategori"
         bindValue="kategori"
         placeholder="Pilih ID atau dokumen">
-      </ng-select> -->
+      </ng-select>
       <i class="fa fa-chevron-down my-auto ng-select-chevron"></i>
     </div>
   </div>
-  <div class="form-group row align-items-center">
+  <div class="form-group row align-items-center mt-3">
     <div class="col-4">
       <label class="font-size-14 mb-0 font-weight-bold">Sub Kategori</label>
     </div>
     <div class="col-8 relative">
-      <!-- <ng-select
+      <ng-select
         [(ngModel)]="formModel.sub_kategori"
         name="sub_kategori"
         class="custom"
@@ -83,40 +83,40 @@
         bindLabel="sub_kategori"
         bindValue="sub_kategori"
         placeholder="Cari atau tambah sub kategori">
-      </ng-select> -->
+      </ng-select>
       <i class="fa fa-chevron-down my-auto ng-select-chevron"></i>
     </div>
   </div>
-  <div class="form-group row align-items-center">
+  <div class="form-group row align-items-center mt-3">
     <div class="col-4">
       <label class="font-size-14 mb-0 font-weight-bold">Menu</label>
     </div>
     <div class="col-8 relative">
-      <!-- <ng-select
+      <ng-select
         [(ngModel)]="formModel.menu"
         name="menu"
         class="custom"
         [items]="listMenu"
         bindLabel="menu"
         bindValue="menu"
-        placeholder="Cari atau tambah menu baru"> -->
-        <!-- <ng-template ng-footer-tmp>
+        placeholder="Cari atau tambah menu baru">
+        <ng-template ng-footer-tmp>
           <div>
             <button (click)="tambahMenu()" class="btn btn-primary btn-block"
               ><i class="fa fa-plus me-2"></i>Tambah Menu</button
             >
           </div>
-        </ng-template> -->
-      <!-- </ng-select> -->
+        </ng-template>
+      </ng-select>
       <i class="fa fa-chevron-down my-auto ng-select-chevron"></i>
     </div>
   </div>
-  <div class="form-group row align-items-center">
+  <div class="form-group row align-items-center mt-3">
     <div class="col-4">
       <label class="font-size-14 mb-0 font-weight-bold">Sub Menu</label>
     </div>
     <div class="col-8 relative">
-      <!-- <ng-select
+      <ng-select
         [(ngModel)]="formModel.sub_menu"
         name="sub_menu"
         class="custom"
@@ -124,29 +124,29 @@
         bindLabel="sub_menu"
         bindValue="sub_menu"
         placeholder="Cari atau tambah sub menu">
-      </ng-select> -->
+      </ng-select>
       <i class="fa fa-chevron-down my-auto ng-select-chevron"></i>
     </div>
   </div>
-  <div class="form-group row align-items-center">
+  <div class="form-group row align-items-center mt-3">
     <div class="col-4">
       <label class="font-size-14 mb-0 font-weight-bold">Instansi</label>
     </div>
     <div class="col-8 relative">
-      <!-- <input
+      <input
         [(ngModel)]="formModel.instansi"
         name="instansi"
         type="text"
         class="form-control form-control-lg"
-        placeholder="Maksimal instansi terkait" /> -->
+        placeholder="Maksimal instansi terkait" />
     </div>
   </div>
-  <div class="form-group row align-items-center">
+  <div class="form-group row align-items-center mt-3">
     <div class="col-4">
       <label class="font-size-14 mb-0 font-weight-bold">Adjudikasi</label>
     </div>
     <div class="col-8 relative">
-      <!-- <ng-select
+      <ng-select
         [(ngModel)]="formModel.adjudikasi"
         name="adjudikasi"
         class="custom"
@@ -154,16 +154,16 @@
         bindLabel="adjudikasi"
         bindValue="id"
         placeholder="Ya / Tidak">
-      </ng-select> -->
+      </ng-select>
       <i class="fa fa-chevron-down my-auto ng-select-chevron"></i>
     </div>
   </div>
-  <div class="form-group row align-items-center">
+  <div class="form-group row align-items-center mt-3">
     <div class="col-4">
       <label class="font-size-14 mb-0 font-weight-bold">Status</label>
     </div>
     <div class="col-8 relative">
-      <!-- <ng-select
+      <ng-select
         [(ngModel)]="formModel.status"
         name="status"
         class="custom"
@@ -171,11 +171,11 @@
         bindLabel="status"
         bindValue="id"
         placeholder="Pilih Status">
-      </ng-select> -->
+      </ng-select>
       <i class="fa fa-chevron-down my-auto ng-select-chevron"></i>
     </div>
   </div>
-  <div class="form-group row align-items-center">
+  <div class="form-group row align-items-center mt-3">
     <div class="col-4">
       <label class="font-size-14 mb-0 font-weight-bold">Pilih Gambar</label>
     </div>
@@ -186,24 +186,38 @@
           type="file"
           accept="image/*"
           class="custom-file-input"
+          style="display: none;"
           id="customFile"
           (change)="handleUpload($event, 'gambar')" />
-        <label class="custom-file-label" for="customFile">{{
-          namaGambar
-        }}</label>
+        <label class="custom-file-label ps-2" style="
+          height: 42.36px!important;
+          font-size: 16px; 
+          border: solid 1px; 
+          width : 100%; 
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          border-color:  #ced4da;
+          " 
+          for="customFile">
+           <span style="color: #6d7c92;
+           font-size: 14px;">
+             {{namaGambar}}
+           </span>
+          </label>
       </div>
     </div>
   </div>
-  <div class="form-group row">
+  <div class="form-group row mt-3">
     <div class="col d-flex justify-content-center">
       <img *ngIf="fileGambar" [src]="fileGambar" alt="" class="gambar-upload" />
     </div>
   </div>
-  <div class="form-group row align-items-center">
+  <div class="form-group row align-items-center mt-3 mb-2">
     <div class="col-4">
       <label class="font-size-14 mb-0 font-weight-bold">Ikon</label>
     </div>
-    <div class="col-8 relative">
+    <div class="col-8">
       <div *ngIf="fileIkon" class="ikon-upload-area card">
         <img [src]="fileIkon" alt="" class="ikon-upload" />
         <i class="fa fa-times font-size-22 text-dark button-delete-ikon" (click)="deleteIkon()"></i>

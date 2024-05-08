@@ -32,7 +32,7 @@
                             {{isEditData ? 'Simpan' : 'Ubah'}}
                         </div>
                     </div>
-<!--                    <div *ngIf="keyHeader == 'Detail Identitas' && isOperator" class="catatan-mandatory ps-3">Data wajib terisi jika terdapat tanda (<span style="color: #FF0000;">*</span>)</div>--> <!-- Belum pasti untuk stylingnya -->
+                   <div *ngIf="keyHeader == 'Detail Identitas' && isOperator" class="catatan-mandatory ps-3">Data wajib terisi jika terdapat tanda (<span style="color: #FF0000;">*</span>)</div> <!-- Belum pasti untuk stylingnya -->
                     <div class="col-12 keyvalue" *ngFor="let row of listViewInfo[keyHeader]; index as i" [class.bg-white]="(i%2) == 1" [class.bg-second-bottom]="(i%2) == 0">
                         <div class="row">
                             <div class="col-4 d-flex justify-content-between">
@@ -50,32 +50,34 @@
                                     <span>{{ document[row['bind']] == 3 ? 'Disetujui' : document[row['bind']] == 0 || document[row['bind']] == undefined ? 'Diperiksa' : document[row['bind']] > 0 && document[row['bind']] < 3 ? 'Diverifikasi' : document[row['bind']] == 5 || document[row['bind']] == 7 ? 'Ditolak' : 'Anomali' }}</span>
                                 </div>
 
-                                <!-- <span *ngIf="!isEditData && row['type'] == 'date' && !row['isEdit']">
+                                <span *ngIf="!isEditData && row['type'] == 'date' && !row['isEdit']">
                                     {{ document[row['bind']] | date : 'dd-MM-yyyy' }}
-                                </span> -->
+                                </span>
 
                                 <div class="input-group" *ngIf="row['isEdit'] && row['type'] == 'date' || isEditData && row['type'] == 'date'">
+                                    <input class="form-control" placeholder="dd-mm-yyyy" name="dp"
+                                        [(ngModel)]="document[row['bind']]" ngbDatepicker type="date"/>
                                     <!-- <input class="form-control" placeholder="dd-mm-yyyy" name="dp"
                                         [(ngModel)]="document[row['bind']]" ngbDatepicker #d="ngbDatepicker"
                                         [minDate]="{year: 1900, month: 1, day: 1}"
                                         [maxDate]="{year: 2099, month: 12, day: 31}" (change)="d.toggle()" /> -->
-                                    <!-- <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                                    <button class="btn btn-outline-secondary"  type="button">
                                         <img height="18px" src="https://cdn-icons-png.flaticon.com/24/55/55281.png"
                                             alt="">
-                                    </button> -->
+                                    </button>
                                 </div>
 
                                 <div class="input-group" *ngIf="row['isEdit'] && (row['type'] != 'date' || !row['type']) || isEditData && (row['type'] != 'date' || !row['type'])">
-                                    <!-- <input *ngIf="!row['type'] || row['type'] == 'text'" type="{{row['type']}}"
+                                    <input *ngIf="!row['type'] || row['type'] == 'text'" type="{{row['type']}}"
                                         class="form-control" [(ngModel)]="document[row['bind']]"
-                                        placeholder="{{row['label']}}" aria-describedby="basic-addon1" /> -->
+                                        placeholder="{{row['label']}}" aria-describedby="basic-addon1" />
                                 </div>
 
                                 <div class="input-group" *ngIf="row['isEdit'] && row['type'] == 'dropdown' || isEditData && row['type'] == 'dropdown'">
-                                    <!-- <ng-select (search)="searchNgSelect($event, row)" class="custom"
+                                    <ng-select (search)="searchNgSelect($event, row)" class="custom"
                                         [items]="row['options']" bindLabel="label" bindValue="value"
                                         [(ngModel)]="document[row['bind']]" placeholder="Pilih Status"
-                                        [ngModelOptions]="{standalone:true}"></ng-select> -->
+                                        [ngModelOptions]="{standalone:true}"></ng-select>
                                 </div>
                             </div>
 
@@ -210,8 +212,8 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <!-- <textarea class="catatan" *ngIf="isSupervisor" placeholder="Cth: warna rambut berbeda" name="" [(ngModel)]="document['catatan_supervisor']"></textarea>
-                                <textarea class="catatan" *ngIf="isOperator" placeholder="Cth: warna rambut berbeda" name="" [(ngModel)]="document['notes']"></textarea> -->
+                                <textarea class="catatan" *ngIf="isSupervisor" placeholder="Cth: warna rambut berbeda" name="" [(ngModel)]="document['catatan_supervisor']"></textarea>
+                                <textarea class="catatan" *ngIf="isOperator" placeholder="Cth: warna rambut berbeda" name="" [(ngModel)]="document['notes']"></textarea>
                             </div>
                         </div>
                     </div>
@@ -224,9 +226,9 @@
                     <div class="col-12 keyvalue" style="background-color: white;">
                         <div class="row">
                             <div class="col-md-8">
-                                <!-- <ng-select [placeholder]="'Pilih keputusan akhir'" [items]="listKeputusan"
+                                <ng-select [placeholder]="'Pilih keputusan akhir'" [items]="listKeputusan"
                                     bindLabel="label" bindValue="label" [(ngModel)]="document.keputusan">
-                                </ng-select> -->
+                                </ng-select>
                             </div>
                             <div class="col-md-4">
                                 <button *ngIf="isSupervisor" class="btn-konfirmasi btn btn-primary w-100"
@@ -258,7 +260,7 @@
                         </div>
                     </div>
                     <div class="roundedbrl-8 col-12 d-flex justify-content-center bg-white p-2">
-                        <!-- <image-cropper *ngIf="cropperOpen" [imageBase64]="imgBase64" cropper [cropper]="cropperPosition" (imageLoaded)="imageLoaded()" (cropperReady)="imageLoaded()" [maintainAspectRatio]="true" [aspectRatio]="cropperRatio" format="png" (imageCropped)="cropImg($event)"></image-cropper> -->
+                        <image-cropper *ngIf="cropperOpen" [imageBase64]="imgBase64"  [cropper]="cropperPosition" (imageLoaded)="imageLoaded()" (cropperReady)="imageLoaded()" [maintainAspectRatio]="true" [aspectRatio]="cropperRatio" format="png" (imageCropped)="cropImg($event)"></image-cropper>
                         <img style="width: 100%;" *ngIf="!cropperOpen" [src]="document['doc_pict_secondary']" alt="">
                     </div>
 

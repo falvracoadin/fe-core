@@ -139,9 +139,15 @@
             <h4 class="modal-title my-auto font-weight-bold font-size-24">
                 {{ titleModal }}
             </h4>
-            <button type="button" class="close my-auto" (click)="close()" aria-label="Close">
-                <i class="mdi mdi-close-thick"></i>
-            </button>
+            <div class="d-flex" style="justify-content: end;">
+                <div
+                type="button"
+                class="cursor-pointer"
+                  (click)="close()"
+                  aria-label="Close">
+                  <i class="fa fa-times" style="font-size: 20px;"></i>
+              </div>
+            </div>
         </div>
         <div class="modal-body">
             <app-detail-jadwal-dokter [dataForm]="dataForm" (afterSave)="close(); reloadDataTable()">

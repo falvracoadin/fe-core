@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 // import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 // import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { DataTablesModule } from 'angular-datatables';
-// import { NgSelectModule } from '@ng-select/ng-select';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { ImageCropperModule, ImageCropperComponent } from 'ngx-image-cropper';
 
@@ -39,7 +39,7 @@ import { ListBeliObatComponent } from './component/list-beli-obat/list-beli-obat
     // NgbAlertModule,
     // NgModule,
     DataTablesModule,
-    // NgSelectModule,
+    NgSelectModule,
     FormsModule,
     ImageCropperModule,
   ],

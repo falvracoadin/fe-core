@@ -14,7 +14,14 @@ import {
 
 export class DetailJadwalDokterComponent implements OnInit {
   scheduleDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  indonesianDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+  indonesianDays = [
+    {day : 'Minggu'}, 
+    {day : 'Senin'}, 
+    {day : 'Selasa'}, 
+    {day : 'Rabu'}, 
+    {day : 'Kamis'}, 
+    {day : 'Jumat'}, 
+    {day : 'Sabtu'}];
   selectedDay!: string;
   selectedSchedules: string[] = []; // Variable to store the schedules for the selected day
   @Input() dataform: any;
@@ -53,7 +60,7 @@ export class DetailJadwalDokterComponent implements OnInit {
   }
 
   // Function to handle selection of day
-  onDaySelected(day: string): void {
+  onDaySelected(day: any): void {
     this.selectedDay = day;
     console.log(day);
     // You can fetch schedules for the selected day from your data source and assign them to selectedSchedules array

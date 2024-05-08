@@ -51,7 +51,7 @@
                                         Export
                                     </span>
                                 </button>
-                                <div class="dropdown-menu dropdown-menu-right text-center w-100" aria-labelledby="dropdownExport" ngbDropdownMenu>
+                                <div class="dropdown-menu dropdown-menu-right text-center w-100">
                                     <!-- <a class="dropdown-item cursor-pointer" (click)="downloadExcel()">Excel</a> -->
                                     <a class="dropdown-item cursor-pointer" (click)="downloadPDF()">PDF</a>
                                     <a class="dropdown-item cursor-pointer" (click)="downloadCSV()">CSV</a>
@@ -76,7 +76,7 @@
                                       </ng-container>
                                     <th class="text-center">No. HP</th>
                                     <th class="text-center">Email</th>
-                                  <th class="text-center" style="width: 5%;">Source</th>
+                                  <!-- <th class="text-center" style="width: 5%;">Source</th> -->
                                     <th class="text-center">Status</th>
                                     <th class="text-center" style="width: 5%;">Aksi</th>
                                 </tr>
@@ -112,11 +112,11 @@
                                         <span *ngIf="user.Email == '' || user.Email == null">-</span>
                                         <span>{{user.Email}}</span>
                                     </td>
-                                   <td class="align-middle text-center">
+                                   <!-- <td class="align-middle text-center">
                                         <button class="btn btn-outline-primary">
-                                            <i class="fa fa-{{ user.Source === 'web' ? 'globe' : user.Source === 'office' ? 'building' : 'mobile' }}" aria-hidden="true"></i>-->
+                                            <i class="fa fa-{{ user.Source === 'web' ? 'globe' : user.Source === 'office' ? 'building' : 'mobile' }}" aria-hidden="true"></i>
                                         </button>
-                                    </td>
+                                    </td> -->
                                     <td class="align-middle">
                                         <div class="text-center py-2" [ngClass]="{'status-success': user.Status, 'status-danger': !user.Status}">
                                             <span class="text-success" *ngIf="user.Status">Aktif</span>
@@ -162,9 +162,15 @@
 <ng-template #formUser let-modal>
     <div class="modal-header">
         <h5 class="modal-title mt-0">{{titleModal}}</h5>
-        <button type="button" class="close" (click)="closeModal()" aria-label="Close">
-            <i class="mdi mdi-close-thick"></i>
-        </button>
+        <div class="d-flex" style="justify-content: end;">
+            <div
+            type="button"
+            class="cursor-pointer"
+              (click)="closeModal()"
+              aria-label="Close">
+              <i class="fa fa-times" style="font-size: 20px;"></i>
+          </div>
+        </div>
     </div>
     <div class="modal-body">
         <app-form-user (batal)="closeModal(); reloadDataTable()" [userId]="userId" (afterSave)="modal.close(); reloadDataTable()"></app-form-user>

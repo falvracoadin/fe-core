@@ -14,6 +14,7 @@ import { DashboardService } from './service/dashboard.service';
 import { PendapatanTransaksiRequest } from 'src/app/component/chart-pendapatan/chart-pendapatan.component';
 import { TrendTransaksiRequest } from 'src/app/component/chart-trend/chart-trend.component';
 import { PermissionsService } from 'src/app/core/services/permissions.service';
+import { PieChartCardModel } from 'src/app/component/pie-chart-card/pie-chart-card.component';
 
 export interface Doctor {
   id: number;
@@ -115,86 +116,15 @@ export class DashboardComponent implements OnInit {
     endDate: '',
     mode: 'monthly',
   };
+  
+  public TransactionByTypeLabels: any = [];
+  public TransactionByTypeData: any = [];
 
-  // chartPlugins = [pluginLabels];
+  public TransactionKTPLabels: any = [];
+  public TransactionKTPData: any = [];
 
-  // public pieChartOptions1: ChartOptions = {
-  //   maintainAspectRatio: false,
-  //   responsive: true,
-  //   legend: {
-  //     display: false, // Hide the default legend
-  //   },
-  //   plugins: {
-  //     labels: {
-  //       render: 'percentage',
-  //       fontColor: '#fff',
-  //       fontSize: 16,
-  //       fontStyle: 'bold',
-  //       precision: 0
-  //     }
-  //   }
-  // };
-  // public pieChartLabels1: Label[] = [['Payment PPOB'], ['Voucher Purchase'], ['Transfer Out to Bank Account']];
-  // public pieChartData1: SingleDataSet = [70, 40, 30];
-  // public pieChartType1: ChartType = 'pie';
-  public pieChartLegend1 = true;
-  public pieChartColors1: Array<any> = [
-    {
-      backgroundColor: ['#21409A', '#A6B3D7', '#00A79D'],
-    }
-  ];
-
-  // public pieChartOptions2: ChartOptions = {
-  //   maintainAspectRatio: false,
-  //   responsive: true,
-  //   legend: {
-  //     display: false, // Hide the default legend
-  //   },
-  //   plugins: {
-  //     labels: {
-  //       render: 'percentage',
-  //       fontColor: '#fff',
-  //       fontSize: 16,
-  //       fontStyle: 'bold',
-  //       precision: 0
-  //     }
-  //   }
-  // };
-  // public pieChartLabels2: Label[] = ['Approved', 'Rejected'];
-  // public pieChartData2: SingleDataSet = [74, 26];
-  // public pieChartType2: ChartType = 'pie';
-  public pieChartLegend2 = true;
-  public pieChartColors2: Array<any> = [
-    {
-      backgroundColor: ['#21409A', '#A6B3D7'],
-    }
-  ];
-
-  // public pieChartOptions3: ChartOptions = {
-  //   maintainAspectRatio: false,
-  //   responsive: true,
-  //   legend: {
-  //     display: false, // Hide the default legend
-  //   },
-  //   plugins: {
-  //     labels: {
-  //       render: 'percentage',
-  //       fontColor: '#fff',
-  //       fontSize: 16,
-  //       fontStyle: 'bold',
-  //       precision: 0
-  //     }
-  //   }
-  // };
-  // public pieChartLabels3: Label[] = ['KTP', 'SIM', 'Pasport'];
-  // public pieChartData3: SingleDataSet = [40, 35, 25];
-  // public pieChartType3: ChartType = 'pie';
-  public pieChartLegend3 = true;
-  public pieChartColors3: Array<any> = [
-    {
-      backgroundColor: ['#21409A', '#A6B3D7', '#00A79D'],
-    }
-  ];
+  public DigitizedCardsLabels: any = [];
+  public DigitizedCardsData: any = [];
 
   // barChartOptions: ChartOptions = {
   //   responsive: true,
@@ -345,13 +275,46 @@ export class DashboardComponent implements OnInit {
   }
 
   getDashboard() {
-    this.dashboardService.getDocumentDashboard().subscribe((data: any) => {
+    this.dashboardService.getDocumentDashboard().subscribe( async (data: any) => {
       this.statsCard[0].stats = data.data.RegisteredUsers;
       this.statsCard[1].stats = data.data.VerifiedEmails;
       this.statsCard[2].stats = data.data.VerifiedNIK;
 
-      // this.pieChartData1 = [data.data.PaymentPPOB, data.data.VoucherPurchase, data.data.TransferBank];
-      // this.pieChartData2 = [data.data.KTPAccepted, data.data.KTPRejected];
+      if(data.data.PaymentPPOB) {
+        this.TransactionByTypeData.push(data.data.PaymentPPOB)
+        this.TransactionByTypeLabels.push(['Payment PPOB'])
+      }
+      if(data.data.VoucherPurchase) {
+        this.TransactionByTypeData.push(data.data.VoucherPurchase)
+        this.TransactionByTypeLabels.push(['Voucher Purchase'])
+      }
+      if(data.data.TransferBank){
+        this.TransactionByTypeData.push(data.data.TransferBank)
+        this.TransactionByTypeLabels.push(['Transfer Out to Bank Account'])
+      }
+
+      if(data.data.KTPAccepted){
+        this.TransactionKTPData.push(data.data.KTPAccepted)
+        this.DigitizedCardsData.push(data.data.KTPAccepted)
+        this.TransactionKTPLabels.push(['Accepted'])
+        this.DigitizedCardsLabels.push(['KTP'])
+      }
+
+      if(data.data.KTPRejected){
+        this.TransactionKTPData.push(data.data.KTPRejected)
+        this.TransactionKTPLabels.push(['Rejected'])
+      }
+
+      if(data.data.SIMAccepted){
+        this.DigitizedCardsData.push(data.data.SIMAccepted)
+        this.DigitizedCardsLabels.push(['SIM'])
+      }
+
+      if(data.data.PassportAccepted){
+        this.DigitizedCardsData.push(data.data.PassportAccepted)
+        this.DigitizedCardsLabels.push(['Pasport'])
+      }
+
       // this.pieChartData3 = [data.data.KTPAccepted, data.data.SIMAccepted, data.data.PassportAccepted];
 
       // this.barChartData[0].data = data.data.TopProducts.map((product) => product.TransactionCount);
@@ -615,12 +578,59 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  checkRoles(key: string): boolean {
+  checkRoles(key: string): boolean { 
     if (key) {
       return this.permissionsService.hasPermission(key);
     } else {
       return true;
     }
+  }
+
+  pieChartCardsNew(): PieChartCardModel[] { 
+    return [
+        {
+          title: '',
+          description: '',
+          legendposition: 'right',
+          data: {
+            labels: this.TransactionByTypeLabels,
+            datasets: [
+              {
+                data: this.TransactionByTypeData,
+                backgroundColor: ['#21409A', '#A6B3D7', '#00A79D'],
+              },
+            ],
+          },
+        },
+        {
+          title: 'Usia Pengguna',
+          description: 'Demografi berdasarkan user yang telah terverifikasi',
+          legendposition: 'right',
+          data: {
+            labels: this.TransactionKTPLabels,
+            datasets: [
+              {
+                data: this.TransactionKTPData,
+                backgroundColor: ['#21409A', '#A6B3D7'],
+              },
+            ],
+          },
+        },
+        {
+          title: 'Usia Pengguna',
+          description: 'Demografi berdasarkan user yang telah terverifikasi',
+          legendposition: 'right',
+          data: {
+            labels: this.DigitizedCardsLabels,
+            datasets: [
+              {
+                data: this.DigitizedCardsData,
+                backgroundColor: ['#21409A', '#A6B3D7', '#00A79D'],
+              },
+            ],
+          },
+        },
+      ];
   }
 }
 

@@ -155,13 +155,15 @@
       <h4 class="modal-title my-auto font-weight-bold font-size-24">
         {{ titleModal }}
       </h4>
-      <button
+      <div class="d-flex" style="justify-content: end;">
+        <div
         type="button"
-        class="close my-auto"
-        (click)="close()"
-        aria-label="Close">
-        <i class="mdi mdi-close-thick"></i>
-      </button>
+        class="cursor-pointer"
+          (click)="close()"
+          aria-label="Close">
+          <i class="fa fa-times" style="font-size: 20px;"></i>
+      </div>
+      </div>
     </div>
     <div class="modal-body">
       <app-form-kelola-dokumen

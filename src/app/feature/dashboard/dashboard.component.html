@@ -25,20 +25,13 @@
           <img placement="auto"
             ngbTooltip="Total user dihitung berdasarkan jumlah nomor handphone yang telah terverifikasi"
             class="attention-icon" src="assets/icons/attention.svg" [height]="24" [width]="24" alt="Attention Icon" />
-          <div class="chartjs-chart">
-            <!-- <canvas baseChart [data]="pieChartData1" [labels]="pieChartLabels1" [chartType]="pieChartType1"
-              [options]="pieChartOptions1" [legend]="pieChartLegend1" [colors]="pieChartColors1"
-              [plugins]="chartPlugins" height="260">
-            </canvas> -->
-          </div>
-          <div class="legend-container">
-            <!-- <ng-container *ngFor="let label of pieChartLabels1; let i = index">
-              <div class="legend-item" *ngIf="pieChartData1 && pieChartData1[i] > 0">
-                <span class="legend-dot" [ngStyle]="{'background-color': pieChartColors1[0].backgroundColor[i]}"></span>
-                {{ label }}
-              </div>
-            </ng-container> -->
-          </div>
+            <app-pie-chart-card
+                  id="1"
+                  [pieChartCard]="pieChartCardsNew()[0]"
+                  [withCustom]="1"
+                  [sizeChartWidth]="150"
+                  [sizeChartHeight]="150"
+            ></app-pie-chart-card>
         </div>
       </div>
     </div>
@@ -49,20 +42,13 @@
         <div class="card-body" style="position: relative">
           <img placement="auto" ngbTooltip="Total digitalisasi KTP berdasarkan status ajudikasinya"
             class="attention-icon" src="assets/icons/attention.svg" [height]="24" [width]="24" alt="Attention Icon" />
-          <div class="chartjs-chart">
-            <!-- <canvas baseChart [data]="pieChartData2" [labels]="pieChartLabels2" [chartType]="pieChartType2"
-              [options]="pieChartOptions2" [legend]="pieChartLegend2" [colors]="pieChartColors2"
-              [plugins]="chartPlugins" height="260">
-            </canvas> -->
-          </div>
-          <div class="legend-container">
-            <!-- <ng-container *ngFor="let label of pieChartLabels2; let i = index">
-              <div class="legend-item" *ngIf="pieChartData2 && pieChartData2[i] > 0">
-                <span class="legend-dot" [ngStyle]="{'background-color': pieChartColors2[0].backgroundColor[i]}"></span>
-                {{ label }}
-              </div>
-            </ng-container> -->
-          </div>
+            <app-pie-chart-card
+              id="2"
+              [pieChartCard]="pieChartCardsNew()[1]"
+              [withCustom]="1"
+              [sizeChartWidth]="150"
+              [sizeChartHeight]="150"
+            ></app-pie-chart-card>
         </div>
       </div>
     </div>
@@ -73,20 +59,13 @@
         <div class="card-body" style="position: relative">
           <img placement="auto" ngbTooltip="Total digitalisasi kartu berdasarkan jenis/tipe kartu"
             class="attention-icon" src="assets/icons/attention.svg" [height]="24" [width]="24" alt="Attention Icon" />
-          <div class="chartjs-chart">
-            <!-- <canvas baseChart [data]="pieChartData3" [labels]="pieChartLabels3" [chartType]="pieChartType3"
-              [options]="pieChartOptions3" [legend]="pieChartLegend3" [colors]="pieChartColors3"
-              [plugins]="chartPlugins" height="260">
-            </canvas> -->
-          </div>
-          <div class="legend-container">
-            <!-- <ng-container *ngFor="let label of pieChartLabels3; let i = index">
-              <div class="legend-item" *ngIf="pieChartData3 && pieChartData3[i] > 0">
-                <span class="legend-dot" [ngStyle]="{'background-color': pieChartColors3[0].backgroundColor[i]}"></span>
-                {{ label }}
-              </div>
-            </ng-container> -->
-          </div>
+            <app-pie-chart-card
+            id="2"
+            [pieChartCard]="pieChartCardsNew()[2]"
+            [withCustom]="1"
+            [sizeChartWidth]="150"
+            [sizeChartHeight]="150"
+          ></app-pie-chart-card>
         </div>
       </div>
     </div>

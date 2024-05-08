@@ -1,0 +1,11 @@
+<div class="bg-white p-2 d-flex" style="justify-content: center; width : 100%;">
+  <div class="position-relative d-flex flex-column" style="width: 100%;" *ngIf="!types">
+    <canvas baseChart class="chart mx-auto" [data]="sumData == 0 ? emptyData.data : withCustom == 3 ? localPieChartCard.data : pieChartCard.data"
+      [type]="pieChartTypePie" [options]="sumData == 0 ? emptyPieChartOptions : pieChartOptions" [plugins]="pieChartPlugins" [width]="250"
+      [height]="250"></canvas>
+    <div class="d-flex" style="justify-content: center; width: 100%;">
+      <div [innerHTML]="legendCustomHTML" style="margin-top:10px">
+      </div>
+    </div>
+  </div>
+</div>

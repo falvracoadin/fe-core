@@ -16,6 +16,7 @@ import { DataTablesModule } from 'angular-datatables';
 // import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { PermissionComponent } from './role/permission/permission.component';
+import { NgChartsModule } from "ng2-charts";
 
 
 import { StatsCardComponent } from '../component/stats-card/stats-card.component';
@@ -24,6 +25,9 @@ import { ChartTrendComponent } from '../component/chart-trend/chart-trend.compon
 import { DecryptionService } from '../core/services/decryption.service';
 import { AuthService } from './auth/services/auth.service';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { PieChartCardComponent } from '../component/pie-chart-card/pie-chart-card.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 // const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -40,7 +44,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
         StatsCardComponent,
         ChartPendapatanComponent,
         ChartTrendComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        PieChartCardComponent
     ],
     imports: [
         ReactiveFormsModule,
@@ -50,11 +55,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
         FeatureRoutingModule,
         // PerfectScrollbarModule,
         UserModule,
-        // ChartsModule,
+        NgChartsModule,
         // NgbModule,
         DataTablesModule,
         FormsModule,
         // NgSelectModule,
+        TooltipModule,
+        BsDatepickerModule
+
     ],
     providers: [
         // {
