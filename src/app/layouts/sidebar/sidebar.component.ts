@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, Input, OnChanges } from '@angular/core';
-// import MetisMenu from 'metismenujs/dist/metismenujs';
 import { EventService } from '../../core/services/event.service';
+import MetisMenu from 'metismenujs'
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from 'src/app/feature/auth/services/auth.service';
 
@@ -29,14 +29,14 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() isCondensed = false;
 
   menu: any;
-  activeMenu : number = -1;
-  activeSubMenu : number = -1;
-  activeSubSubMenu : number = -1;
-  isMobile : boolean = window.screen.width <= 768;
+  activeMenu: number = -1;
+  activeSubMenu: number = -1;
+  activeSubSubMenu: number = -1;
+  isMobile: boolean = window.screen.width <= 768;
 
-  menuItems : any = [];
-  configData : any;
-  role : Role =  {
+  menuItems: any = [];
+  configData: any;
+  role: Role = {
     supervisor: false,
     operator: false,
     superadmin: false,
@@ -79,7 +79,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngAfterViewInit() {
-    // this.menu = new MetisMenu(this.sideMenu.nativeElement);
+    this.menu = new MetisMenu(this.sideMenu.nativeElement);
 
     this._activateMenuDropdown();
   }
@@ -87,7 +87,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   ngOnChanges() {
     if (!this.isCondensed && this.sideMenu || this.isCondensed) {
       setTimeout(() => {
-        // this.menu = new MetisMenu(this.sideMenu.nativeElement);
+        this.menu = new MetisMenu(this.sideMenu.nativeElement);
       });
     } else if (this.menu) {
       this.menu.dispose();
@@ -97,7 +97,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   /**
    * remove active and mm-active class
    */
-  _removeAllClass(className : any) {
+  _removeAllClass(className: any) {
     const els = document.getElementsByClassName(className);
     while (els[0]) {
       els[0].classList.remove(className);
@@ -111,7 +111,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
     this._removeAllClass('mm-active');
     this._removeAllClass('active');
     this._removeAllClass('mm-show');
-    const links : any = document.getElementsByClassName('side-nav-link-ref');
+    const links: any = document.getElementsByClassName('side-nav-link-ref');
     let menuItemEl = null;
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < links.length; i++) {
@@ -168,7 +168,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   initialize(): void {
-    this.menuItems= MENU;
+    this.menuItems = MENU;
   }
 
   /**
@@ -203,11 +203,11 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
     let active = false;
     const nowRoute = window.location.pathname;
     if (item.subItems) {
-      item.subItems.forEach((element : any) => {
+      item.subItems.forEach((element: any) => {
         if (nowRoute.includes(element.link)) {
           active = true;
         } else if (element.subItems) {
-          element.subItems.forEach((element2 : any )=> {
+          element.subItems.forEach((element2: any) => {
             if (nowRoute.includes(element2.link)) {
               active = true;
             }

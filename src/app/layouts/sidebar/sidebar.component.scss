@@ -1,62 +1,55 @@
 .sub-menu-1 {
-    margin-left: 2rem;
-    font-size: 14px;
+  margin-left: 2rem;
+  font-size: 14px;
 }
 
 .sub-menu-2 {
-    margin-left: 3rem;
-    font-size: 14px;
+  margin-left: 3rem;
+  font-size: 14px;
 }
 
 .sub-menu-1-active {
-    color: #CC1D14;
+  color: #cc1d14;
 }
 
 .disable-background {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
 
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .w-24-h-24 {
-    width: 24px !important;
-    height: 24px !important;
+  width: 24px !important;
+  height: 24px !important;
 }
 
-.parent-menu:hover{
-    background-color: rgb(227, 227, 227);
-}
-
-.sub-menu-1:hover{
-    background-color: rgb(227, 227, 227) !important;
-}
-
-.sub-menu-2:hover{
-    background-color: rgb(227, 227, 227) !important;
+.parent-menu:hover {
+  background-color: #f6f6f6 !important;
+  border-radius: 8px;
 }
 
 .animate {
-    max-height: 1000px;
-    overflow: hidden;
-    animation: slideDown 3s ease-out; // Adjust duration and easing as needed
+  max-height: 1000px;
+  overflow: hidden;
+  animation: slideDown 3s ease-out; // Adjust duration and easing as needed
 }
 
 @keyframes slideDown {
-    from {
-        max-height: 0px;
-    }
-    to {
-        max-height: 1000px;    
-    }
+  from {
+    max-height: 0px;
+  }
+  to {
+    max-height: 1000px;
+  }
 }
 
 // .sub-menu {
 //     overflow: hidden;
 //     transition: max-height 5s ease-out;
 // }
-  
+
 // .sub-menu.expanded {
 //     max-height: 1000px;
 // }
