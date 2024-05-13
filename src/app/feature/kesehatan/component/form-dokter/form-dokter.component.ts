@@ -129,7 +129,7 @@ export class FormDokterComponent implements OnInit {
 
   /* upload image configuration */
   imageUrl: string | ArrayBuffer | null = 'assets/images/photo.png';
-  imageFile: File = {} as File;
+  imageFile: File | null = null;
 
   /* validation configuration */
   isValid: boolean = false;
@@ -423,6 +423,7 @@ export class FormDokterComponent implements OnInit {
   }
 
   async uploadImage(uuid: string) {
+    if (!this.imageFile) return;
     return this.doctorService.saveImage(uuid, this.imageFile);
   }
 
@@ -489,6 +490,11 @@ export class FormDokterComponent implements OnInit {
   }
 
   onSubmit() {
+    /* update step */
+    this.updateNextStep(this.currentStep);
+    this.currentStep = 4;
+    this.stepper.next();
+    return;
     /* save doctor first */
     this.doctorService.saveDoctor(this.doctorForm).subscribe({
       next: (res: any) => {

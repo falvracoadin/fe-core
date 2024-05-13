@@ -3,8 +3,8 @@
         <div class="col-md-12">
             <div class="title-page"> Tambah Dokter</div>
             <div class="card">
-                <div class="card-header pb-0 px-0">
-                    <div class="card-header pb-0 px-0">
+                <div class="pb-0 px-0">
+                    <div class="pb-0 px-0">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-sm-8 col-md-6 col-12">
@@ -331,7 +331,7 @@
         </div>
         <div class="content">
             <button class="btn btn-primary" (click)="input_upload.click()">
-                Pilih Gambar
+                {{ imageFile ? 'Ubah Gambar' : 'Pilih Gambar' }}
             </button>
             <span>Ukuran file maks. 2mb</span>
         </div>

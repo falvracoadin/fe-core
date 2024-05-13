@@ -24,11 +24,9 @@
                                     <div class="card-title">Daftar Dokter</div>
                                 </div>
                             </div>
-                            <div
-                                class="col-sm-4 col-md-6 col-12 d-flex justify-content-sm-end align-items-center px-4">
+                            <div class="col-sm-4 col-md-6 col-12 d-flex justify-content-sm-end align-items-center px-4">
                                 <button type="button" class="btn btn-outline-primary rounded-8"
-                                    style="min-width: 10rem;"
-                                    [routerLink]="['/kesehatan/telemedicine/dokter/add']">
+                                    style="min-width: 10rem;" [routerLink]="['/kesehatan/telemedicine/dokter/add']">
                                     <em class="fa fa-plus font-size-14 align-middle me-2"></em> Tambah
                                 </button>
                             </div>
@@ -52,13 +50,13 @@
                             <div class="">
                                 <table class="table table-hover" datatable [dtOptions]="dtOptions">
                                     <thead>
-                                        <tr style="background-color: #0052bd !important">
-                                            <th class="pe-3">No.STR</th>
-                                            <th>Nama Dokter</th>
-                                            <th>Email</th>
-                                            <th>No. Hp</th>
-                                            <th>Spesialis</th>
-                                            <th class="text-center">Aksi</th>
+                                        <tr style="background-color: #E2E8F0 !important">
+                                            <th class="py-4">No.STR</th>
+                                            <th class="py-4">Nama Dokter</th>
+                                            <th class="py-4">Email</th>
+                                            <th class="py-4">No. Hp</th>
+                                            <th class="py-4">Spesialis</th>
+                                            <th class="py-4 text-center">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -68,8 +66,10 @@
                                             </td>
                                             <td class="align-middle">{{ dokter.name ? dokter.name : "-" }}</td>
                                             <td class="align-middle">{{ dokter.email ? dokter.email : "-" }}</td>
-                                            <td class="align-middle">{{ dokter.phone_number ? dokter.phone_number : "-" }}</td>
-                                            <td class="align-middle">{{ dokter.specialist ? dokter.specialist : "-" }}</td>
+                                            <td class="align-middle">{{ dokter.phone_number ? dokter.phone_number : "-"
+                                                }}</td>
+                                            <td class="align-middle">{{ dokter.specialist ? dokter.specialist : "-" }}
+                                            </td>
                                             <td class="align-middle text-center">
                                                 <a class="btn btn-outline-primary" placement="left" container="body"
                                                     ngbTooltip="Detail"

@@ -106,7 +106,7 @@ h1 {
 
 // upload image style
 .upload-image-container {
-  width: 20rem;
+  width: fit-content;
 
   display: flex;
   flex-direction: column;
@@ -117,11 +117,10 @@ h1 {
   border: 1px dashed #cbd5e1;
   border-radius: 15px;
 
-  padding: 4rem 0rem;
+  padding: 4rem 2rem;
   margin: 0 auto;
 
   img {
-    width: 5rem;
     object-fit: cover;
   }
 
