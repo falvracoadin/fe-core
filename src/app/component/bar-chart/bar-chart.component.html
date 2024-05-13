@@ -1,0 +1,23 @@
+<div class="bg-white  p-2 mb-4" style="border-radius: 80px">
+  <div
+    style="
+      padding: 6px 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    "
+  >
+    <section>
+      <canvas
+        id="{{id}}"
+        height="300px"
+        baseChart
+        class="chart"
+        [type]="'bar'"
+        [data]="barChartData"
+        [options]="barChartOptions"
+      >
+      </canvas>
+    </section>
+  </div>
+</div>

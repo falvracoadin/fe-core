@@ -142,7 +142,7 @@ export class PieChartCardComponent implements OnInit, OnChanges {
   };
 
   public pieChartTypeLine: ChartType = 'line';
-  public pieChartTypePie: ChartType = 'bar';
+  public pieChartTypePie: ChartType = 'pie';
   public pieChartPlugins = [DatalabelsPlugin];
 
   constructor(

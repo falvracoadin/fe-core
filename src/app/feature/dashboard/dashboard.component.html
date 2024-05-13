@@ -72,17 +72,11 @@
 
     <div class="col-12" *ngIf="checkRoles('web:dashboard:top10product:read')">
       <div class="card">
-        <h4 class="card-title mb-4 me-3">TOP 10 Products <span class="ms-2"><img placement="auto"
+        <h4 class="card-title me-3">TOP 10 Products <span class="ms-2"><img placement="auto"
               ngbTooltip="10 produk teratas yang memiliki jumlah transaksi terbanyak" src="assets/icons/attention.svg"
               [height]="24" [width]="24" alt="Attention Icon" /></span></h4>
         <div class="card-body">
-          <div class="chartjs-chart">
-            <!-- <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-              [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType"
-              [colors]="barChartColors">
-              >
-            </canvas> -->
-          </div>
+          <app-bar-chart [data]="penggunaBaruBarChart()" [id]="'demo-pengguna'"></app-bar-chart>
         </div>
       </div>
     </div>
@@ -101,14 +95,14 @@
   <div *ngIf="checkRoles('web:dashboard:transaksipendapatan:read')">
     <div class="title-tab">Transaksi dan Pendapatan</div>
     <div class="col-md-12" id="chart-pendapatan">
-      <app-chart-pendapatan [request]="requestPendapatan"></app-chart-pendapatan>
+      <app-line-chart></app-line-chart>
     </div>
   </div>
 
   <div *ngIf="checkRoles('web:dashboard:trendtransaksi:read')">
     <div class="title-tab">Trend Transaksi</div>
     <div class="col-md-12" id="chart-trend">
-      <app-chart-trend [request]="requestTrend"></app-chart-trend>
+      <app-line-chart></app-line-chart>
     </div>
   </div>
 
@@ -175,16 +169,19 @@
         </table>
         <div class="info-wrap-imi" *ngIf="totalRecord != 0">
           <div class="info-1">Tampilkan</div>
-          <select [(ngModel)]="limit" id="inputLimit" class="form-control info-2"
-            style=" background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; padding: 0.47rem 0.75rem"
-            name="showFilter" (change)="clickLimit()">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-          </select>
-          <div class="info-3">dari {{ totalRecord }} data</div>
+            <select
+              [(ngModel)]="limit"
+              id="inputLimit"
+              class="form-control info-2 relative z-100 m-1"
+              style="padding: 0.34rem 0.50rem !important; background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; width:50px; max-height: 30px"
+              name="showFilter"
+              (change)="clickLimit()">
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+            <div class="info-3">dari {{ totalRecord }} data</div>
         </div>
       </div>
       <div class="col-md-6">

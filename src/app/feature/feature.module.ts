@@ -28,6 +28,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { PieChartCardComponent } from '../component/pie-chart-card/pie-chart-card.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BarChartComponent } from '../component/bar-chart/bar-chart.component';
+import { LineChartComponent } from '../component/line-chart/line-chart.component';
 
 
 // const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -45,7 +47,9 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
         ChartPendapatanComponent,
         ChartTrendComponent,
         NotFoundComponent,
-        PieChartCardComponent
+        PieChartCardComponent,
+        BarChartComponent,
+        LineChartComponent
     ],
     imports: [
         ReactiveFormsModule,
