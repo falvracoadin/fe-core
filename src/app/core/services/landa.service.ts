@@ -29,7 +29,7 @@ export class LandaService {
   /**
    * Generate link downloader
    */
-  DownloadLink(path: string, params = {}, mode :any = null) {
+  DownloadLink(path: string, params = {}, mode: any = null) {
     if (mode == null) {
       mode = this.mode;
     }
@@ -44,8 +44,8 @@ export class LandaService {
   /**
    * Remove null data from query params
    */
-  removeNull(params :any = {}) {
-    let filledParams :any = {};
+  removeNull(params: any = {}) {
+    let filledParams: any = {};
     for (const key in params) {
       if (params[key]) {
         filledParams[key] = params[key];
@@ -58,7 +58,7 @@ export class LandaService {
   /**
    * Request GET
    */
-  DataGet(path: string, payloads : any = {}, mode : any = null, header : any = null) {
+  DataGet(path: string, payloads: any = {}, mode: any = null, header: any = null) {
     if (mode == null) {
       mode = this.mode;
     }
@@ -70,7 +70,7 @@ export class LandaService {
     }
   }
 
-  DataGetLocal(path: string, payloads : any = {}, mode : any = null, header : any = {}) {
+  DataGetLocal(path: string, payloads: any = {}, mode: any = null, header: any = {}) {
     if (mode == null) {
       mode = this.mode;
     }
@@ -87,10 +87,10 @@ export class LandaService {
    */
   DataPost(
     path: string,
-    payloads : any = {},
+    payloads: any = {},
     isFormType: boolean = true,
-    mode :any = null,
-    header :any = {}
+    mode: any = null,
+    header: any = {}
   ) {
     if (mode == null) {
       mode = this.mode;
@@ -105,9 +105,9 @@ export class LandaService {
 
   DataPostLocal(
     path: string,
-    payloads : any = {},
+    payloads: any = {},
     isFormType: boolean = true,
-    header :any = {}
+    header: any = {}
   ) {
 
     if (isFormType) {
@@ -123,7 +123,7 @@ export class LandaService {
     });
   }
 
-  DataPostCustom(path: string, payloads : any = {}, isFormType: boolean = true) {
+  DataPostCustom(path: string, payloads: any = {}, isFormType: boolean = true) {
     let reqHeader = this.httpOptions;
 
     const formData = new FormData();
@@ -147,10 +147,10 @@ export class LandaService {
    */
   DataPut(
     path: string,
-    payloads : any = {},
+    payloads: any = {},
     isFormType: boolean = true,
-    mode : any = null,
-    header : any = {}
+    mode: any = null,
+    header: any = {}
   ) {
     if (mode == null) {
       mode = this.mode;
@@ -165,8 +165,8 @@ export class LandaService {
 
   DataPutLocal(
     path: string,
-    payloads : any = {},
-    header : any = {},
+    payloads: any = {},
+    header: any = {},
     isFormType: boolean = true
   ) {
     let reqHeader = this.httpOptions ?? { headers: {} };
@@ -195,7 +195,7 @@ export class LandaService {
   /**
    * Request DELETE
    */
-  DataDelete(path: string, payloads : any = {}, mode : any = null) {
+  DataDelete(path: string, payloads: any = {}, mode: any = null) {
     if (mode == null) {
       mode = this.mode;
     }
@@ -207,10 +207,17 @@ export class LandaService {
     }
   }
 
+  DataDeleteLocal(path: string, payloads = {}, mode: string | null = null, header = {}) {
+    return this.http.delete(path, {
+      headers: header,
+      params: payloads,
+    });
+  }
+
   /**
    * Sweet alert Sukses
    */
-  alertSuccess(title : any , content : any, timer : any = 3.5) {
+  alertSuccess(title: any, content: any, timer: any = 3.5) {
     Swal.fire({
       title,
       text: content,
@@ -224,7 +231,7 @@ export class LandaService {
   /**
    * Sweet alert warning
    */
-  alertWarning(title : any , content : any, timer : any = 3.5) {
+  alertWarning(title: any, content: any, timer: any = 3.5) {
     Swal.fire({
       title,
       text: content,
@@ -238,7 +245,7 @@ export class LandaService {
   /**
    * Sweet alert info
    */
-  alertInfo(title : any , content : any, timer : any = 3.5) {
+  alertInfo(title: any, content: any, timer: any = 3.5) {
     Swal.fire({
       title,
       text: content,
@@ -252,10 +259,10 @@ export class LandaService {
   /**
    * Sweet alert error
    */
-  alertError(title : any, content : any) {
+  alertError(title: any, content: any) {
     let isi = "";
     if (Array.isArray(content) === true) {
-      content.forEach(function (element : any) {
+      content.forEach(function (element: any) {
         isi += `${element} <br>`;
       });
     } else if (typeof content === "object") {
@@ -296,8 +303,8 @@ export class LandaService {
     );
   }
 
-  DataGetKeycloak(path: string, payloads : any = {}) {
-    let clearParams :any = {};
+  DataGetKeycloak(path: string, payloads: any = {}) {
+    let clearParams: any = {};
     for (const key in payloads) {
       if (payloads[key]) clearParams[key] = payloads[key];
     }
@@ -307,7 +314,7 @@ export class LandaService {
     });
   }
 
-  DataPostKeycloak(path: string, payloads : any = {}, isFormType: boolean = true) {
+  DataPostKeycloak(path: string, payloads: any = {}, isFormType: boolean = true) {
     let reqHeader = this.httpOptions;
 
     let formData = new FormData();

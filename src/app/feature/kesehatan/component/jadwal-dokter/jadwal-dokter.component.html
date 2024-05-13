@@ -25,31 +25,19 @@
                                         <div class="card-title">Daftar Jadwal Dokter</div>
                                     </div>
                                 </div>
-                                <div
-                                    class="col-sm-4 col-md-6 col-12 d-flex justify-content-sm-end align-items-center px-4">
-                                    <button type="button" class="btn btn-outline-primary rounded-8"
-                                        style="min-width: 10rem;" (click)="createDokumen(formJadwalDokter)">
-                                        <em class="fa fa-plus font-size-14 align-middle me-2"></em> Tambah
-                                    </button>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <hr />
                     <ng-container *ngIf="totalRecord != 0; else dataAvailable">
                         <div class="px-3 d-flex align-items-center" style="padding-top: .5rem;">
-                            <div class="row limit ps-3" style="height: 50px;">
-                                <div class="d-flex">
+                            <div class="row limit pl-3" style="height: 50px;">
+                                <!-- <div class="d-flex"> -->
                                 <div class="relative">
-                                    <input type="text" [(ngModel)]="filter.value" placeholder="Pencarian"
-                                        class="search-input" (keyup)="reloadDataTable()" />
+                                    <input type="text" placeholder="Pencarian" class="search-input" />
                                     <i class="fa fa-search icon-search"></i>
                                 </div>
                             </div>
-                            </div>
-                            <!-- <div class="btn ms-4 rounded-8 d-flex align-items-center filter-button">
-                <i class="fa fa-filter"></i>
-              </div> -->
                         </div>
                         <div class="row mt-3">
                             <div class="col-12">
@@ -57,7 +45,7 @@
                                     <table class="table table-hover" datatable [dtOptions]="dtOptions">
                                         <thead>
                                             <tr style="background-color: #E2E8F0 !important">
-                                                <th class="ps-3" style="width: 20%;">Nama</th>
+                                                <th class="pl-3" style="width: 20%;">Nama</th>
                                                 <th class="text-center" style="width: 10%;">Minggu</th>
                                                 <th class="text-center" style="width: 10%;">Senin</th>
                                                 <th class="text-center" style="width: 10%;">Selasa</th>
@@ -69,30 +57,39 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let jadwal of listJadwal; index as i"
+                                            <tr *ngFor="let item of listJadwal; index as i"
                                                 [class.bg-white]="(i % 2) == 0" [class.bg-second]="(i % 2) == 1">
 
-                                                <td class="align-middle ps-3">{{ jadwal.namaDokter ? jadwal.namaDokter :
-                                                    "-" }}</td>
-                                                <td class="align-middle text-center">{{
-                                                    displaySchedule(jadwal.schedule['Sunday']) }}</td>
-                                                <td class="align-middle text-center">{{
-                                                    displaySchedule(jadwal.schedule['Monday']) }}</td>
-                                                <td class="align-middle text-center">{{
-                                                    displaySchedule(jadwal.schedule['Tuesday']) }}</td>
-                                                <td class="align-middle text-center">{{
-                                                    displaySchedule(jadwal.schedule['Wednesday']) }}</td>
-                                                <td class="align-middle text-center">{{
-                                                    displaySchedule(jadwal.schedule['Thursday']) }}</td>
-                                                <td class="align-middle text-center">{{
-                                                    displaySchedule(jadwal.schedule['Friday']) }}</td>
-                                                <td class="align-middle text-center">{{
-                                                    displaySchedule(jadwal.schedule['Saturday']) }}</td>
+                                                <td class="align-middle pl-3">
+                                                    {{ item.full_name ? item.full_name : "-" }}
+                                                </td>
                                                 <td class="align-middle text-center">
-                                                    <a class="btn btn-outline-primary" placement="left" container="body"
-                                                        ngbTooltip="Detail">
+                                                    {{ displaySchedule(item.schedules['sunday']) }}
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    {{ displaySchedule(item.schedules['monday']) }}
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    {{ displaySchedule(item.schedules['tuesday']) }}
+                                                </td>
+                                                <td class="align-middle text-center">{{
+                                                    displaySchedule(item.schedules['wednesday']) }}
+                                                </td>
+                                                <td class="align-middle text-center">{{
+                                                    displaySchedule(item.schedules['thursday']) }}
+                                                </td>
+                                                <td class="align-middle text-center">{{
+                                                    displaySchedule(item.schedules['friday']) }}
+                                                </td>
+                                                <td class="align-middle text-center">{{
+                                                    displaySchedule(item.schedules['saturday']) }}
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <button class="btn btn-outline-primary" placement="left"
+                                                        container="body" ngbTooltip="Detail"
+                                                        (click)="update(form_doctor_schedule, item)">
                                                         <i class="fa fa-pencil-alt"></i>
-                                                    </a>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -104,17 +101,13 @@
                                     </table>
                                     <div class="info-wrap-imi" *ngIf="totalRecord != 0">
                                         <div class="info-1">Tampilkan</div>
-                                        <select
-                                          [(ngModel)]="limit"
-                                          id="inputLimit"
-                                          class="form-control info-2 relative z-100 m-1"
-                                          style="padding: 0.34rem 0.50rem !important; background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; width:50px; max-height: 30px"
-                                          name="showFilter"
-                                          (change)="clickLimit()">
-                                          <option value="10">10</option>
-                                          <option value="25">25</option>
-                                          <option value="50">50</option>
-                                          <option value="100">100</option>
+                                        <select [(ngModel)]="limit" id="inputLimit" class="form-control info-2"
+                                            style=" background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; padding: 0.47rem 0.75rem"
+                                            name="showFilter" (change)="clickLimit()">
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
                                         </select>
                                         <div class="info-3">dari {{ totalRecord }} data</div>
                                     </div>
@@ -123,6 +116,7 @@
                         </div>
                     </ng-container>
                     <ng-template #dataAvailable>
+                        <!-- Blank page content -->
                         <div class="blank-page-container">
                             <img src="assets/icons/kesehatan/doctorDesk.svg" alt="Image" class="blank-page-image">
                             <h1 class="blank-page-title">Daftar Jadwal Dokter Kosong</h1>
@@ -133,24 +127,22 @@
             </div>
         </div>
     </div>
+</div>
 
-    <ng-template #formJadwalDokter let-modal>
-        <div class="modal-header">
-            <h4 class="modal-title my-auto font-weight-bold font-size-24">
-                {{ titleModal }}
-            </h4>
-            <div class="d-flex" style="justify-content: end;">
-                <div
-                type="button"
-                class="cursor-pointer"
-                  (click)="close()"
-                  aria-label="Close">
-                  <i class="fa fa-times" style="font-size: 20px;"></i>
-              </div>
-            </div>
-        </div>
-        <div class="modal-body">
-            <app-detail-jadwal-dokter [dataForm]="dataForm" (afterSave)="close(); reloadDataTable()">
-            </app-detail-jadwal-dokter>
-        </div>
-    </ng-template>
+<ng-template #form_doctor_schedule let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title my-auto font-weight-bold font-size-24">
+            {{ titleModal }}
+        </h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modal?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+        <button type="button" class="close my-auto" (click)="modal.close(); reloadDataTable()" aria-label="Close">
+            <i class="mdi mdi-close-thick"></i>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-detail-jadwal-dokter [dataForm]="dataForm" (afterSave)="modal.close(); reloadDataTable()">
+        </app-detail-jadwal-dokter>
+    </div>
+</ng-template>

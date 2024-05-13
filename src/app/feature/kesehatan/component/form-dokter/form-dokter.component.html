@@ -3,8 +3,8 @@
         <div class="col-md-12">
             <div class="title-page"> Tambah Dokter</div>
             <div class="card">
-                <div class="card-header pb-0 px-0">
-                    <div class="card-header pb-0 px-0">
+                <div class="pb-0 px-0">
+                    <div class="pb-0 px-0">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-sm-8 col-md-6 col-12">
@@ -16,10 +16,10 @@
                         </div>
                     </div>
                     <hr />
-                    <div class="container">
+                    <div>
                         <div id="stepper1" class="bs-stepper">
                             <div class="bs-stepper-header">
-                                <!-- <div class="line" [ngClass]="{'active-line': currentStep >= 1}"></div> -->
+                                <div class="line" [ngClass]="{'active-line': currentStep >= 1}"></div>
                                 <div class="step" data-target="#stepper-1">
                                     <button class="step-trigger">
                                         <span class="bs-stepper-circle">1</span>
@@ -53,39 +53,22 @@
                                 </div>
                                 <div class="line"></div>
                                 <div class="line-progress"></div>
-                                <div class="line-progress" style="background-color: #21409A;" [style.width]="stepWidths[currentStep - 1] + '%'"></div>
+                                <div class="line-progress" style="background-color: #21409A;"
+                                    [style.width]="stepWidths[currentStep - 1] + '%'"></div>
                             </div>
-                            <div class="bs-stepper-content">
-                                <form (ngSubmit)="onSubmit()">
-                                    <div id="stepper-1" class="content">
-                                        <div class="form-group">
-                                            <label for="email">Email address</label>
-                                            <input type="email" class="form-control" id="email"
-                                                placeholder="Masukkan Email" />
-                                        </div>
-                                        <button (click)="nextStep(2)" class="btn btn-primary">Next</button>
+                            <div class="bs-stepper-content px-0">
+                                <form enctype="multipart/form-data">
+                                    <div id="stepper-1" class="content px-0">
+                                        <ng-container *ngTemplateOutlet="doctor_data"></ng-container>
                                     </div>
                                     <div id="stepper-2" class="content">
-                                        <div class="form-group">
-                                            <label for="education">Riwayat Pendidikan</label>
-                                            <input type="input" class="form-control" id="education"
-                                                placeholder="Masukkan Riwayat Pendidikan" />
-                                        </div>
-                                        <button (click)="prevStep(1)" class="btn btn-primary">Prev</button>
-                                        <button (click)="nextStep(3)" class="btn btn-primary">Next</button>
+                                        <ng-container *ngTemplateOutlet="medical_education_history"></ng-container>
                                     </div>
                                     <div id="stepper-3" class="content">
-                                        <div class="form-group">
-                                            <label for="image">Unggah Gambar</label>
-                                            <input type="input" class="form-control" id="image"
-                                                placeholder="Massukan Unggah Gambar" />
-                                        </div>
-                                        <button (click)="prevStep(2)" class="btn btn-primary">Prev</button>
-                                        <button (click)="nextStep(4)" class="btn btn-primary">Next</button>
+                                        <ng-container *ngTemplateOutlet="upload_image"></ng-container>
                                     </div>
                                     <div id="stepper-4" class="content text-center">
-                                        <button (click)="prevStep(3)" class="btn btn-primary">Prev</button>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <ng-container *ngTemplateOutlet="done"></ng-container>
                                     </div>
                                 </form>
                             </div>
@@ -96,3 +79,352 @@
         </div>
     </div>
 </div>
+
+<!-- Data Diri Dokter -->
+<ng-template #doctor_data>
+    <div class="row p-3 bg-body">
+        <div class="col-md-6 d-flex">
+            <div class="form-group d-flex align-items-center w-100 mb-0">
+                <label for="full_name" class="w-25 mb-0">Nama Lengkap</label>
+                <p class="px-2 mb-0">:</p>
+                <div class="w-100">
+                    <input type="text" class="form-control" id="full_name" placeholder="Masukkan nama"
+                        [(ngModel)]="doctorForm.full_name" required />
+                    <div class="invalid-feedback" [ngClass]="doctorDataValidation.full_name ? 'd-inline' : 'd-none'">
+                        Nama lengkap tidak boleh kosong
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex">
+            <div class="form-group d-flex align-items-center w-100 mb-0">
+                <label for="expired_sip" class="w-25 mb-0">Masa berlaku SIP</label>
+                <p class="px-2 mb-0">:</p>
+                <div class="w-100">
+                    <input type="date" class="form-control" id="expired_sip" placeholder="04 Maret 2022"
+                        [(ngModel)]="doctorForm.sip_date" />
+                    <div class="invalid-feedback" [ngClass]="doctorDataValidation.sip_date ? 'd-inline' : 'd-none'">
+                        Masa berlaku SIP tidak boleh kosong
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row p-3">
+        <div class="col-md-6 d-flex">
+            <div class="form-group d-flex align-items-center w-100 mb-0">
+                <label for="gender" class="w-25 mb-0">Jenis Kelamin</label>
+                <p class="px-2 mb-0">:</p>
+                <div class="w-100">
+                    <ng-select [items]="listGender" bindLabel="name" bindValue="id" placeholder="Pilih Jenis Kelamin"
+                        [(ngModel)]="doctorForm.gender"></ng-select>
+                    <div class="invalid-feedback" [ngClass]="doctorDataValidation.gender ? 'd-inline' : 'd-none'">
+                        Jenis kelamin harus diisi
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex">
+            <div class="form-group d-flex align-items-center w-100 mb-0">
+                <label for="start_experience" class="w-25 mb-0">Start Experience</label>
+                <p class="px-2 mb-0">:</p>
+                <div class="w-100">
+                    <input type="date" class="form-control" id="start_experience" placeholder="01 Jan 2020"
+                        [(ngModel)]="doctorForm.start_experience" />
+                    <div class="invalid-feedback"
+                        [ngClass]="doctorDataValidation.start_experience ? 'd-inline' : 'd-none'">
+                        Start experience tidak boleh kosong
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row p-3 bg-body">
+        <div class="col-md-6 d-flex">
+            <div class="form-group d-flex align-items-center w-100 mb-0">
+                <label for="email" class="w-25 mb-0">Alamat Email</label>
+                <p class="px-2 mb-0">:</p>
+                <div class="w-100">
+                    <input type="email" class="form-control" id="email" placeholder="Masukkan jenis kelamin"
+                        [(ngModel)]="doctorForm.email" />
+                    <div class="invalid-feedback" [ngClass]="doctorDataValidation.email ? 'd-inline' : 'd-none'">
+                        Alamat email harus diisi
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex">
+            <div class="form-group d-flex align-items-center w-100 mb-0">
+                <label for="province" class="w-25 mb-0">Provinsi</label>
+                <p class="px-2 mb-0">:</p>
+                <div class="w-100">
+                    <ng-select [items]="listProvince" bindLabel="name" bindValue="id" placeholder="Pilih provinsi"
+                        [(ngModel)]="doctorForm.province_id" (change)="getRegion()"></ng-select>
+                    <div class="invalid-feedback" [ngClass]="doctorDataValidation.province_id ? 'd-inline' : 'd-none'">
+                        Provinsi harus dipilih
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row p-3">
+        <div class="col-md-6 d-flex">
+            <div class="form-group d-flex align-items-center w-100 mb-0">
+                <label for="phone_number" class="w-25 mb-0">No.Telepon</label>
+                <p class="px-2 mb-0">:</p>
+                <div class="w-100">
+                    <input type="number" class="form-control" id="phone_number" placeholder="0883123123123"
+                        [(ngModel)]="doctorForm.phone_number" />
+                    <div class="invalid-feedback" [ngClass]="doctorDataValidation.phone_number ? 'd-inline' : 'd-none'">
+                        Nomor telepon harus dipilih
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex">
+            <div class="form-group d-flex align-items-center w-100 mb-0">
+                <label for="city" class="w-25 mb-0">Kab/Kota</label>
+                <p class="px-2 mb-0">:</p>
+                <div class="w-100">
+                    <ng-select [items]="listRegion" bindLabel="name" bindValue="id" placeholder="Pilih kab/kota"
+                        [(ngModel)]="doctorForm.regency_id"></ng-select>
+                    <div class="invalid-feedback" [ngClass]="doctorDataValidation.regency_id ? 'd-inline' : 'd-none'">
+                        Kabupaten atau kota harus dipilih
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row p-3 bg-body">
+        <div class="col-md-6 d-flex">
+            <div class="form-group d-flex align-items-center w-100 mb-0">
+                <label for="str" class="w-25 mb-0">No.STR</label>
+                <p class="px-2 mb-0">:</p>
+                <div class="w-100">
+                    <input type="number" class="form-control" id="str" placeholder="2342342342"
+                        [(ngModel)]="doctorForm.no_str" />
+                    <div class="invalid-feedback" [ngClass]="doctorDataValidation.no_str ? 'd-inline' : 'd-none'">
+                        No. STR harus diisi
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex">
+            <div class="form-group d-flex align-items-center w-100 mb-0">
+                <label for="expired_str" class="w-25 mb-0">Masa berlaku STR</label>
+                <p class="px-2 mb-0">:</p>
+                <div class="w-100">
+                    <input type="date" class="form-control" id="expired_str" placeholder="2342342342"
+                        [(ngModel)]="doctorForm.str_date" />
+                    <div class="invalid-feedback" [ngClass]="doctorDataValidation.str_date ? 'd-inline' : 'd-none'">
+                        Masa berlaku STR harus diisi
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-3 px-3 d-flex justify-content-between align-items-center">
+        <button (click)="backToList()" class="btn btn-outline-primary w-25">Kembali</button>
+        <button (click)="nextStep(2)" class="btn btn-primary w-25">Selanjutnya</button>
+    </div>
+</ng-template>
+
+<!-- Data riwayat pendidikan dokter -->
+<ng-template #medical_education_history>
+    <div class="row">
+        <div class="col-md-6 px-4">
+            <div class="row">
+                <div class="col d-flex justify-content-between align-items-center">
+                    <h1 class="font-weight-bolder history-title">Spesialis Dokter</h1>
+                    <button class="btn btn-outline-primary" (click)="openModal(specialist_modal, 'specialist')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <!-- Jika data spesialis tidak kosong -->
+                <ng-container *ngIf="historyData.specialist.length > 0">
+                    <div *ngFor="let item of historyData.specialist" class="card card-item w-100">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="card-title">{{ item.name }}</h5>
+                                    <p class="card-text">Tarif: {{ item.rate }}</p>
+                                </div>
+                                <div class="col-md-6 d-flex justify-content-end align-items-center">
+                                    <button class="btn btn-outline-secondary me-1"
+                                        (click)="openModal(specialist_modal, 'specialist', item)">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger me-1" (click)="deleteSpecialist(item.id)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <!-- Jika data spesialis kosong -->
+                <ng-container *ngIf="historyData.specialist.length == 0">
+                    <div class="empty-card-history w-100 text-center p-5">
+                        <p class="mb-0">Data Spesialis Belum ditambahkan</p>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div class="col-md-6 px-4">
+            <div class="row">
+                <div class="col d-flex justify-content-between align-items-center">
+                    <h1 class="font-weight-bolder history-title">Riwayat Pendidikan</h1>
+                    <button class="btn btn-outline-primary" (click)="openModal(education_history_modal, 'education')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <!-- Jika data riwayat pendidikan tidak kosong -->
+                <ng-container *ngIf="historyData.education.length > 0">
+                    <div *ngFor="let item of historyData.education" class="card card-item w-100">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="card-title">{{ item.education }}</h5>
+                                    <p class="card-text">{{ item.graduation_year }}</p>
+                                </div>
+                                <div class="col-md-6 d-flex justify-content-end align-items-center">
+                                    <button class="btn btn-outline-secondary me-1"
+                                        (click)="openModal(education_history_modal, 'education', item)">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger ml-1" (click)="deleteEducation(item.id)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <!-- Jika riwayat pendidikan kosong -->
+                <ng-container *ngIf="historyData.education.length == 0">
+                    <div class="empty-card-history w-100 text-center p-5">
+                        <p class="mb-0">Data Riwayat Pendidikan Belum ditambahkan</p>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="mt-3 d-flex justify-content-between align-items-center">
+        <button (click)="prevStep(1)" class="btn btn-outline-primary w-25">Sebelumnya</button>
+        <button (click)="nextStep(3)" class="btn btn-primary w-25">Selanjutnya</button>
+    </div>
+</ng-template>
+
+<!-- Upload gambar -->
+<ng-template #upload_image>
+    <div class="upload-image-container mb-5">
+        <input type="file" (change)="onFileChange($event)" accept="image/*" class="d-none" #input_upload>
+
+        <div *ngIf="imageUrl">
+            <img [src]="imageUrl" alt="Uploaded Image">
+        </div>
+        <div class="content">
+            <button class="btn btn-primary" (click)="input_upload.click()">
+                {{ imageFile ? 'Ubah Gambar' : 'Pilih Gambar' }}
+            </button>
+            <span>Ukuran file maks. 2mb</span>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+        <button (click)="prevStep(2)" class="btn btn-outline-primary w-25">Sebelumnya</button>
+        <button (click)="nextStep(4)" class="btn btn-primary w-25">Selanjutnya</button>
+    </div>
+</ng-template>
+
+<!-- Selesai -->
+<ng-template #done>
+    <img src="assets/images/cloud-success.svg" alt="">
+    <h3 class="my-5">Sukses ! Data registrasi Dokter Anda berhasil disimpan</h3>
+
+    <div class="d-flex justify-content-between align-items-center">
+        <!-- <button (click)="prevStep(3)" class="btn btn-outline-primary w-25">Sebelumnya</button> -->
+        <button class="btn btn-primary w-25" [routerLink]="['/kesehatan/telemedicine/dokter']">Selesai</button>
+    </div>
+</ng-template>
+
+<!-- Modal tambah / update spesialis -->
+<ng-template #specialist_modal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title my-auto font-weight-bold font-size-24">
+            Tambah Spesialis Dokter
+        </h4>
+        <!-- <button type="button" class="close my-auto" (click)="modalRef.hide()" aria-label="Close">
+            <i class="mdi mdi-close-thick"></i>
+        </button> -->
+
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="specialist" class="mb-0">Spesialis</label>
+            </div>
+            <div class="col-md-9">
+                <ng-select [items]="listSpecialist" bindLabel="name" placeholder="Pilih spesialis"
+                    [(ngModel)]="selectedSpecialist"></ng-select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="rate" class="mb-0">Rate (Rp)</label>
+            </div>
+            <div class="col-md-9">
+                <input type="number" class="form-control" id="rate" placeholder="50.000"
+                    [(ngModel)]="specialistForm.rate" />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-around">
+        <button (click)="modalRef.hide()" class="btn btn-outline-primary w-25">Batal</button>
+        <button (click)="saveSpecialistModal(); modalRef.hide()" class="btn btn-primary w-25">Tambahkan</button>
+    </div>
+</ng-template>
+
+<!-- Modal tambah riwayat pendidikan -->
+<ng-template #education_history_modal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title my-auto font-weight-bold font-size-24">
+            Tambah Riwayat Pendidikan
+        </h4>
+        <button type="button" class="close my-auto" (click)="modalRef.hide()" aria-label="Close">
+            <i class="mdi mdi-close-thick"></i>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="university" class="mb-0">Nama Universitas</label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="university" placeholder="Masukkan nama universitas"
+                    [(ngModel)]="educationForm.education" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="year" class="mb-0">Tahun Lulus</label>
+            </div>
+            <div class="col-md-9">
+                <input type="number" class="form-control" id="year" placeholder="2020"
+                    [(ngModel)]="educationForm.graduation_year" />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-around">
+        <button (click)="modalRef.hide()" class="btn btn-outline-primary w-25">Batal</button>
+        <button (click)="saveEducationModal(); modalRef.hide()" class="btn btn-primary w-25">Tambahkan</button>
+    </div>
+</ng-template>

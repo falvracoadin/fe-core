@@ -34,7 +34,6 @@ import { LoginKadaluarsaComponent } from './component/login-kadaluarsa/login-kad
     // PerfectScrollbarModule,
     // ReactiveFormsModule,
     // NgbAlertModule,
-    NgModule,
     DataTablesModule,
     // NgSelectModule,
     FormsModule,

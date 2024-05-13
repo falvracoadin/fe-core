@@ -4,15 +4,18 @@
     <!-- Left Menu Start -->
     <ul class="metismenu list-unstyled" id="side-menu" #sideMenu>
       <ng-container *ngFor="let item of menuItems,let indexMenu = index">
+
+        <!-- title menu -->
         <li class="menu-title" *ngIf="item.isTitle">{{ item.label }}</li>
 
+        <!-- menu item -->
         <li *ngIf="!item.isTitle && !item.isLayout">
 
-          <!-- If menu not have submenu -->
+          <!-- If menu don't have submenu -->
           <a [routerLink]="item.link" [routerLinkActiveOptions]="{ exact: true }"
             *ngIf="!hasItems(item) && checkItemRole(item)" class="side-nav-link-ref parent-menu"
             routerLinkActive="active" #parentRLA="routerLinkActive"
-            [style]="activeMenu === indexMenu ? 'background-color: #21409A1A !important; padding: 20px;' : 'padding: 20px;'"
+            [style]="activeMenu === indexMenu ? 'background-color: #21409A1A !important;' : ''"
             >
             <img
               [src]="parentRLA.isActive ? 'assets/icons/sidebarMenuIcon/' + item.icon + '-active.svg' : 'assets/icons/sidebarMenuIcon/' + item.icon + '.svg'"
@@ -24,7 +27,7 @@
 
           <!-- If menu have submenu -->
           <a *ngIf="hasItems(item) && checkItemRole(item)" href="javascript:void(0);" (click)="activeMenu === indexMenu ? activeMenu = -1 :  activeMenu = indexMenu"
-            [ngClass]="{ 'has-arrow': !item.badge, 'has-dropdown': item.badge }" class="parent-menu" [style]="'padding: 20px;'">
+            [ngClass]="{ 'has-arrow': !item.badge, 'has-dropdown': item.badge }" class="parent-menu">
             <img
               [src]="checkSubSubItemActive(item) ? 'assets/icons/sidebarMenuIcon/' + item.icon + '-active.svg' : 'assets/icons/sidebarMenuIcon/' + item.icon + '.svg'"
               class="ms-1" alt="{{ item.icon }}-icon" />
@@ -37,11 +40,10 @@
           <ul *ngIf="hasItems(item) && checkItemRole(item) && (indexMenu === activeMenu || (isCondensed && !isMobile))" class="sub-menu">
             <li *ngFor="let subitem of item.subItems, let indexSubMenu = index">
 
-              <!-- If menu not have submenu -->
+              <!-- If menu dont have submenu -->
               <a [routerLink]="subitem.link" *ngIf="!hasItems(subitem) && checkItemRole(subitem)"
                 class="side-nav-link-ref sub-menu-1 ms-0" [attr.data-parent]="subitem.parentId"
-                routerLinkActive="sub-menu-1-active" #subItemRLA="routerLinkActive"
-                [style]="'padding: 15px 20px 15px 40px;'">
+                routerLinkActive="sub-menu-1-active" #subItemRLA="routerLinkActive">
                 <img
                   [src]="subItemRLA.isActive ? 'assets/icons/sidebarMenuIcon/' + subitem.icon + '-active.svg' : 'assets/icons/sidebarMenuIcon/' + subitem.icon + '.svg'"
                   class="me-2" alt="{{ subitem.icon }}-icon" />
@@ -51,17 +53,16 @@
               <!-- If menu have submenu -->
               <a *ngIf="hasItems(subitem) && checkItemRole(subitem)" class="has-arrow has-dropdown sub-menu-1 disable-background pointer ms-0"
                 [attr.data-parent]="subitem.parentId"
-                (click)="activeSubMenu === indexSubMenu ? activeSubMenu = -1 :  activeSubMenu = indexSubMenu"
-                [style]="'padding: 15px 20px 15px 40px;'">
+                (click)="activeSubMenu === indexSubMenu ? activeSubMenu = -1 :  activeSubMenu = indexSubMenu">
                 <img
                   [src]="checkSubSubItemActive(subitem) ? 'assets/icons/sidebarMenuIcon/' + subitem.icon + '-active.svg' : 'assets/icons/sidebarMenuIcon/' + subitem.icon + '.svg'"
                   alt="{{ subitem.icon }}-icon" class="me-2" />
                 {{ subitem.label }}
               </a>
-              <ul *ngIf="hasItems(subitem) && checkItemRole(subitem) && (activeSubMenu === indexSubMenu || (isCondensed && !isMobile))" [style]="'padding-inline-start : 0px !important;'" class="">
+              <ul *ngIf="hasItems(subitem) && checkItemRole(subitem) && (activeSubMenu === indexSubMenu || (isCondensed && !isMobile))" class="">
                 <li *ngFor="let sub of subitem.subItems">
                   <a [routerLink]="sub.link" *ngIf="!hasItems(sub) && checkItemRole(sub)" class="side-nav-link-ref sub-menu-2"
-                    [attr.data-parent]="sub.parentId" routerLinkActive="active" #subRLA="routerLinkActive" [style]="(isCondensed && !isMobile) ? 'padding: 15px 10px 15px 20px; margin-left : 0'  : 'padding: 15px 10px 15px 60px; margin-left : 0'">
+                    [attr.data-parent]="sub.parentId" routerLinkActive="active" #subRLA="routerLinkActive">
                     <img
                       [src]="subRLA.isActive ? 'assets/icons/sidebarMenuIcon/' + sub.icon + '-active.svg' : 'assets/icons/sidebarMenuIcon/' + sub.icon + '.svg'"
                       alt="{{ sub.icon }}-icon" class="me-2" />
@@ -71,7 +72,6 @@
               </ul>
             </li>
           </ul>
-
         </li>
       </ng-container>
     </ul>
