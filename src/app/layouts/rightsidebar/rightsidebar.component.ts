@@ -18,7 +18,7 @@ import { DecryptionService } from "../../core/services/decryption.service";
  * Rightsidebar component
  */
 export class RightsidebarComponent implements OnInit {
-  @Input() photoProfile !: string;
+  @Input() photoProfile!: string;
 
   part = "main";
 
@@ -162,10 +162,10 @@ export class RightsidebarComponent implements OnInit {
   }
 
   triggerInputProfilePhoto() {
-    document?.getElementById("ProfilePhoto")?.click();
+    document.getElementById("ProfilePhoto")!.click();
   }
 
-  uploadPhoto(event : any) {
+  uploadPhoto(event: any) {
     const file = event.target.files[0];
     console.log(file);
     // this.photoProfile = this.photoProfile.substr(22);

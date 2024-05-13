@@ -444,9 +444,7 @@ td.status_dokumen > div {
 
 
 .info-wrap-imi select.info-2:focus, .ck.ck-editor__editable_inline:focus {
-  border-color: #45be7c !important;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px rgba(0, 255, 132, 0.164) !important;
-  outline-color: #45be7c;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px rgb(0 78 255 / 16%) !important;
   outline-width: 0px;
 }
 

@@ -110,8 +110,9 @@ export class LoginComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 3500,
               }).then();
+              this.router.navigate(['/dashboard']).then()
               setTimeout(() => {
-                this.router.navigate(['/dashboard']).then()
+                window.location.reload();
               }, 2000);
             }
             clearInterval(checkAuth)

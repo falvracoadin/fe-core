@@ -147,6 +147,19 @@ export class FormDokterComponent implements OnInit {
     start_experience: false,
     str_date: false
   }
+  doctorDataValidationMessage: any = {
+    full_name: [],
+    email: [],
+    gender: [],
+    is_new: [],
+    no_str: [],
+    phone_number: [],
+    province_id: [],
+    regency_id: [],
+    sip_date: [],
+    start_experience: [],
+    str_date: []
+  }
 
   isValidHistory: boolean = false;
 
@@ -275,11 +288,6 @@ export class FormDokterComponent implements OnInit {
     if (this.doctorForm.province_id == null) return;
 
     this.doctorForm.regency_id = 0;
-    // this.doctorService.getRegion(this.doctorForm.province_id).then((res: any) => {
-    //   this.listRegion = res.data;
-    // }).catch((err: any) => {
-    //   console.log(err)
-    // });
     this.doctorService.getRegion(this.doctorForm.province_id).subscribe({
       next: (res: any) => {
         this.listRegion = res.data;
@@ -361,7 +369,16 @@ export class FormDokterComponent implements OnInit {
     }
 
     /* process save */
-    return this.doctorService.saveSpecialist(payload)
+    return new Promise((resolve, reject) => {
+      this.doctorService.saveSpecialist(payload).subscribe({
+        next: (res: any) => {
+          resolve(res);
+        },
+        error: (err: any) => {
+          reject(err);
+        }
+      })
+    })
   }
 
   /* modal education function */
@@ -403,7 +420,16 @@ export class FormDokterComponent implements OnInit {
     });
 
     /* process save */
-    return forkJoin(requests)
+    return new Promise((resolve, reject) => {
+      forkJoin(requests).subscribe({
+        next: (res: any) => {
+          resolve(res);
+        },
+        error: (err: any) => {
+          reject(err);
+        }
+      })
+    });
   }
 
   /* upload image handler */
@@ -429,15 +455,25 @@ export class FormDokterComponent implements OnInit {
 
   /* validation handler */
   validateDoctorData(): boolean {
+    this.resetDataValidation();
     let i = 0;
     Object.keys(this.doctorForm).forEach((key: string) => {
       if (!this.doctorForm[key]) {
         this.doctorDataValidation[key] = true;
+        this.doctorDataValidationMessage[key].push('Data tidak boleh kosong');
         i++;
       } else {
         this.doctorDataValidation[key] = false;
       }
     })
+
+    /* check validation phone number */
+    const phone = this.doctorForm.phone_number.toString();
+    if (phone.length < 11 || phone.length > 13) {
+      this.doctorDataValidation.phone_number = true;
+      this.doctorDataValidationMessage.phone_number.push('Nomor telepon maksimal 13 karakter dan minimal 11 karakter');
+      i++;
+    }
 
     if (i > 0) {
       this.isValid = false;
@@ -489,12 +525,23 @@ export class FormDokterComponent implements OnInit {
     return true;
   }
 
+  resetDataValidation() {
+    this.doctorDataValidationMessage = {
+      full_name: [],
+      email: [],
+      gender: [],
+      is_new: [],
+      no_str: [],
+      phone_number: [],
+      province_id: [],
+      regency_id: [],
+      sip_date: [],
+      start_experience: [],
+      str_date: []
+    }
+  }
+
   onSubmit() {
-    /* update step */
-    this.updateNextStep(this.currentStep);
-    this.currentStep = 4;
-    this.stepper.next();
-    return;
     /* save doctor first */
     this.doctorService.saveDoctor(this.doctorForm).subscribe({
       next: (res: any) => {

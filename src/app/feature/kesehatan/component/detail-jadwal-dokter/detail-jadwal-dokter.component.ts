@@ -5,6 +5,21 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
+import { DoctorScheduleService } from '../../services/doctor-schedule/doctor-schedule.service';
+import Swal from 'sweetalert2';
+
+interface Schedule {
+  id?: number;
+  start_time: string;
+  end_time: string;
+}
+
+interface ScheduleForm {
+  doctor_uuid: string;
+  day: number;
+  start_time: string;
+  end_time: string;
+}
 
 @Component({
   selector: 'app-detail-jadwal-dokter',
@@ -13,59 +28,151 @@ import {
 })
 
 export class DetailJadwalDokterComponent implements OnInit {
-  scheduleDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  indonesianDays = [
-    {day : 'Minggu'}, 
-    {day : 'Senin'}, 
-    {day : 'Selasa'}, 
-    {day : 'Rabu'}, 
-    {day : 'Kamis'}, 
-    {day : 'Jumat'}, 
-    {day : 'Sabtu'}];
-  selectedDay!: string;
-  selectedSchedules: string[] = []; // Variable to store the schedules for the selected day
-  @Input() dataform: any;
+  /* schedule configuration */
+  scheduleDays = [
+    {
+      en: 'Sunday',
+      id: 'Minggu'
+    },
+    {
+      en: 'Monday',
+      id: 'Senin'
+    },
+    {
+      en: 'Tuesday',
+      id: 'Selasa'
+    },
+    {
+      en: 'Wednesday',
+      id: 'Rabu'
+    },
+    {
+      en: 'Thursday',
+      id: 'Kamis'
+    },
+    {
+      en: 'Friday',
+      id: 'Jumat'
+    },
+    {
+      en: 'Saturday',
+      id: 'Sabtu'
+    }
+  ];
+  selectedDay: any = {};
+  selectedSchedules: Schedule[] = [];
+  deletedSchedules: Schedule[] = [];
+
+  /* Input Output configuration */
+  @Input() dataForm: any = {};
   @Output() afterSave = new EventEmitter<boolean>();
 
-  mode!: string;
-  formModel!: {
-    id: number | null;
-    text: string | null;
-    day: string | null;
-    schedule_start: string | null;
-    schedule_end: string | null;
-  };
-
-  constructor() { }
+  constructor(
+    private doctorScheduleService: DoctorScheduleService,
+  ) { }
 
   ngOnInit(): void {
-    
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.selectedDay = 'Minggu'; // Set default day to Minggu (Sunday) after a slight delay
-      // You can fetch schedules for the default selected day here
-      // For now, let's initialize it with an empty array
-      this.selectedSchedules = [];
-    });
+    console.log(this.dataForm)
   }
 
+  /* Get schedule by day functions */
+  onDaySelected(day: any): void {
+    this.selectedDay = day;
+    if (this.dataForm.origin_data[day.en.toLowerCase()].length > 0) {
+      this.selectedSchedules = this.dataForm.origin_data[day.en.toLowerCase()]
+    } else {
+      this.selectedSchedules = [this.createEmptyData()]
+    }
+  }
+
+  /* Create empty data */
+  createEmptyData(): ScheduleForm {
+    console.log('selected:', this.selectedDay)
+    const data: ScheduleForm = {
+      doctor_uuid: this.dataForm.uuid,
+      day: this.convertDay(this.selectedDay.en),
+      start_time: '',
+      end_time: ''
+    };
+
+    return data;
+  }
+
+  /* Create & delete time functions */
   addScheduleRow(): void {
-    this.selectedSchedules.push('');
+    const data = this.createEmptyData();
+    this.selectedSchedules.push(data);
   }
 
   removeScheduleRow(index: number): void {
+    this.deletedSchedules.push(this.selectedSchedules[index]);
     this.selectedSchedules.splice(index, 1);
   }
 
-  // Function to handle selection of day
-  onDaySelected(day: any): void {
-    this.selectedDay = day;
-    console.log(day);
-    // You can fetch schedules for the selected day from your data source and assign them to selectedSchedules array
-    // For now, let's initialize it with an empty array
-    this.selectedSchedules = [];
+  /* Save & Cancel functions */
+  save(): void {
+    const promises: Promise<any>[] = [];
+
+    /* delete data */
+    this.deletedSchedules.forEach((data: Schedule) => {
+      if (data.id) {
+        // delete data
+        promises.push(this.doctorScheduleService.deleteDoctorSchedule(data.id))
+      }
+    })
+
+    this.selectedSchedules.forEach((data: Schedule) => {
+      if (data.id) {
+        // update data
+        promises.push(this.doctorScheduleService.updateDoctorSchedule(data.id, data))
+      } else {
+        // create data
+        promises.push(this.doctorScheduleService.createDoctorSchedule(data))
+      }
+    })
+
+    Promise.all(promises).then(() => {
+      Swal.fire({
+        title: 'Berhasil',
+        text: 'Data berhasil disimpan',
+        icon: 'success',
+      })
+      this.afterSave.emit();
+    }).catch((e) => {
+      Swal.fire({
+        title: 'Error',
+        text: 'Terjadi kesalahan',
+        icon: 'error',
+      })
+    })
   }
 
+  close(): void {
+    this.afterSave.emit();
+  }
+
+  /* utils */
+  convertDay(day: string): number {
+    switch (day) {
+      case 'Sunday':
+        return 0;
+      case 'Monday':
+        return 1;
+      case 'Tuesday':
+        return 2;
+      case 'Wednesday':
+        return 3;
+      case 'Thursday':
+        return 4;
+      case 'Friday':
+        return 5;
+      case 'Saturday':
+        return 6;
+      default:
+        return 0;
+    }
+  }
 }

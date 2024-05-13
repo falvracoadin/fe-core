@@ -444,15 +444,15 @@ export class DetailKartuKesehatanComponent implements OnInit {
     }
   }
 
-  sendData(doc : any) {
-    this.digitalIdService.validateDocument(doc).subscribe((res: any) => {
+  sendData(doc: any) {
+    this.digitalIdService.validateDocument(doc).toPromise().then((res: any) => {
       if (res.status_code === 200) {
         this.landaService.alertSuccess('Success', res.message);
         this.router.navigate(['/adjudicator/digital-id/kartu-kesehatan']).then();
-      } else {
-        this.landaService.alertError('Error', res.message);
       }
-    });
+    }).catch((err) => {
+      this.landaService.alertError('Error', "Terjadi kesalahan, silahkan coba lagi!");
+    })
   }
 
   prepareDoc() {
@@ -658,7 +658,7 @@ export class DetailKartuKesehatanComponent implements OnInit {
 
     if (this.isSupervisor) { this.listKeputusan.push({ label: 'Kirim Kembali' }); }
   }
-  
+
   getDocument() {
     this.digitalIdService.getDocumentById(this.id).subscribe((res: any) => {
       if (res.status === 'success') {
@@ -681,7 +681,7 @@ export class DetailKartuKesehatanComponent implements OnInit {
     });
   }
 
-  getKeyObject(object : any) {
+  getKeyObject(object: any) {
     return Object.keys(object);
   }
 }

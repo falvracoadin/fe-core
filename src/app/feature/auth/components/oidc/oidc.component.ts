@@ -43,7 +43,7 @@ export class OidcComponent implements OnInit {
 
   loginDHI(): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      const result = this.landaService.DataPost("/web-faskes/auth/login").toPromise()
+      const result = this.landaService.DataPostLocal("http://10.10.1.44:8101/web-faskes/auth/login").toPromise()
       result.then((res: any) => {
         const data = {
           token: res.data['AUTH-TOKEN'],

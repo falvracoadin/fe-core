@@ -2,8 +2,8 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { DoctorService, SaveEducationRequest, SaveSpecialistRequestDoctorspecialist, SaveFacilityRequest, SaveSpecialistRequest } from '../../services/doctor/doctor.service';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { Observable } from 'rxjs';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Observable, forkJoin } from 'rxjs';
 
 
 /* interface declaration */
@@ -18,6 +18,9 @@ interface Specialist {
 })
 
 export class DetailDokterComponent implements OnInit {
+    /* modal configuration */
+    modalRef!: BsModalRef;
+
     /* state configuration */
     isEditData: boolean = false;
 
@@ -94,6 +97,7 @@ export class DetailDokterComponent implements OnInit {
     }
 
     save() {
+        console.log(this.newEducationData.length, this.newSpecialistData.length, this.newFacilityData.length)
         const promises: Observable<Object>[] = []
 
         /* add education */
@@ -120,19 +124,26 @@ export class DetailDokterComponent implements OnInit {
         }
 
         /* fetch all data */
-        Promise.all(promises).then((res: any) => {
-            Swal.fire({
-                title: 'Berhasil',
-                text: 'Data berhasil disimpan',
-                icon: 'success'
-            }).then(() => {
-                this.isEditData = false;
-                this.reset();
-                this.getData();
-            })
-        }).catch((err: any) => {
-            console.error(err)
-        });
+        forkJoin(promises).subscribe({
+            next: (res: any) => {
+                Swal.fire({
+                    title: 'Berhasil',
+                    text: 'Data berhasil disimpan',
+                    icon: 'success'
+                }).then(() => {
+                    this.isEditData = false;
+                    this.reset();
+                    this.getData();
+                })
+            },
+            error: (err) => {
+                Swal.fire({
+                    title: 'Gagal',
+                    text: 'Terjadi kesalahan saat menyimpan data',
+                    icon: 'error'
+                })
+            }
+        })
     }
 
     blockDoctor() {
@@ -241,7 +252,7 @@ export class DetailDokterComponent implements OnInit {
 
     /* modal functions */
     openModal(modalId: TemplateRef<any>) {
-        this.modalService.show(modalId, { class: 'modal-lg' });
+        this.modalRef = this.modalService.show(modalId, { class: 'modal-lg' });
         this.reset();
     }
 

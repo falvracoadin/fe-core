@@ -176,7 +176,10 @@
                     <input type="number" class="form-control" id="phone_number" placeholder="0883123123123"
                         [(ngModel)]="doctorForm.phone_number" />
                     <div class="invalid-feedback" [ngClass]="doctorDataValidation.phone_number ? 'd-inline' : 'd-none'">
-                        Nomor telepon harus dipilih
+                        <ng-container *ngFor="let item of doctorDataValidationMessage.phone_number; let i as index">
+                            {{ item }}
+                            <br *ngIf="i < doctorDataValidationMessage.phone_number.length">
+                        </ng-container>
                     </div>
                 </div>
             </div>
@@ -297,7 +300,7 @@
                                         (click)="openModal(education_history_modal, 'education', item)">
                                         <i class="fas fa-pencil-alt"></i>
                                     </button>
-                                    <button class="btn btn-outline-danger ml-1" (click)="deleteEducation(item.id)">
+                                    <button class="btn btn-outline-danger ms-1" (click)="deleteEducation(item.id)">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
@@ -359,10 +362,6 @@
         <h4 class="modal-title my-auto font-weight-bold font-size-24">
             Tambah Spesialis Dokter
         </h4>
-        <!-- <button type="button" class="close my-auto" (click)="modalRef.hide()" aria-label="Close">
-            <i class="mdi mdi-close-thick"></i>
-        </button> -->
-
         <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()">
             <span aria-hidden="true" class="visually-hidden">&times;</span>
         </button>
@@ -399,8 +398,8 @@
         <h4 class="modal-title my-auto font-weight-bold font-size-24">
             Tambah Riwayat Pendidikan
         </h4>
-        <button type="button" class="close my-auto" (click)="modalRef.hide()" aria-label="Close">
-            <i class="mdi mdi-close-thick"></i>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
         </button>
     </div>
     <div class="modal-body">

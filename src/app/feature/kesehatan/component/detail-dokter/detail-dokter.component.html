@@ -159,8 +159,8 @@
 
                     <!-- If educations data not empty -->
                     <ng-container *ngIf="data.educations.length > 0">
-                        <ng-container *ngFor="let item of data.educations">
-                            <div class="row bg-secondary py-3 px-2">
+                        <ng-container *ngFor="let item of data.educations; index as i">
+                            <div class="row py-3 px-2" [class.bg-secondary]="(i % 2) == 0">
                                 <div class="col-md-4 d-flex justify-content-between">
                                     <p class="font-weight-bolder">Universitas</p>
                                     <p>:</p>
@@ -169,7 +169,7 @@
                                     <p>{{ item.education }}</p>
                                 </div>
                             </div>
-                            <div class="row py-3 px-2">
+                            <div class="row py-3 px-2" [class.bg-secondary]="(i % 2) == 0">
                                 <div class="col-md-4 d-flex justify-content-between">
                                     <p class="font-weight-bolder">Tahun</p>
                                     <p>:</p>
@@ -351,7 +351,7 @@
                         <button class="btn btn-outline-secondary w-100" (click)="closeUpdate()">Batal</button>
                     </div>
                     <div class="col-md-6">
-                        <button class="btn btn-secondary w-100" (click)="save()">Simpan</button>
+                        <button class="btn btn-primary w-100" (click)="save()">Simpan</button>
                     </div>
                 </div>
             </div>
@@ -364,8 +364,8 @@
         <h4 class="modal-title my-auto font-weight-bold font-size-24">
             Tambah Riwayat Pendidikan
         </h4>
-        <button type="button" class="close my-auto" (click)="modal.close()" aria-label="Close">
-            <i class="mdi mdi-close-thick"></i>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
         </button>
     </div>
     <div class="modal-body">
@@ -389,8 +389,8 @@
         </div>
     </div>
     <div class="modal-footer justify-content-around">
-        <button (click)="modal.close()" class="btn btn-outline-primary w-25">Batal</button>
-        <button (click)="saveEducationModal(); modal.close()" class="btn btn-primary w-25">Tambahkan</button>
+        <button (click)="modalRef.hide()" class="btn btn-outline-primary w-25">Batal</button>
+        <button (click)="saveEducationModal(); modalRef.hide()" class="btn btn-primary w-25">Tambahkan</button>
     </div>
 </ng-template>
 
@@ -399,8 +399,8 @@
         <h4 class="modal-title my-auto font-weight-bold font-size-24">
             Tambah Spesialis Dokter
         </h4>
-        <button type="button" class="close my-auto" (click)="modal.close()" aria-label="Close">
-            <i class="mdi mdi-close-thick"></i>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
         </button>
     </div>
     <div class="modal-body">
@@ -424,8 +424,8 @@
         </div>
     </div>
     <div class="modal-footer justify-content-around">
-        <button (click)="modal.close()" class="btn btn-outline-primary w-25">Batal</button>
-        <button (click)="saveSpecialistModal(); modal.close()" class="btn btn-primary w-25">Tambahkan</button>
+        <button (click)="modalRef.hide()" class="btn btn-outline-primary w-25">Batal</button>
+        <button (click)="saveSpecialistModal(); modalRef.hide()" class="btn btn-primary w-25">Tambahkan</button>
     </div>
 </ng-template>
 
@@ -434,7 +434,7 @@
         <h4 class="modal-title my-auto font-weight-bold font-size-24">
             Tambah Tempat Praktek
         </h4>
-        <button type="button" class="close my-auto" (click)="modal.close()" aria-label="Close">
+        <button type="button" class="close my-auto" (click)="modalRef.hide()" aria-label="Close">
             <i class="mdi mdi-close-thick"></i>
         </button>
     </div>
@@ -469,7 +469,7 @@
         </div>
     </div>
     <div class="modal-footer justify-content-around">
-        <button (click)="modal.close()" class="btn btn-outline-primary w-25">Batal</button>
-        <button (click)="saveFacilityModal(); modal.close()" class="btn btn-primary w-25">Tambahkan</button>
+        <button (click)="modalRef.hide()" class="btn btn-outline-primary w-25">Batal</button>
+        <button (click)="saveFacilityModal(); modalRef.hide()" class="btn btn-primary w-25">Tambahkan</button>
     </div>
 </ng-template>
