@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/feature/auth/services/auth.service';
 import Swal from 'sweetalert2';
 import { LandaService } from 'src/app/core/services/landa.service';
 import { WilayahService } from '../../services/wilayah/wilayah.service';
+import * as moment from 'moment';
 
 interface Wilayah {
   value: string;
@@ -202,7 +203,7 @@ export class DetailKartuKesehatanComponent implements OnInit {
         cancelButtonText: 'Batal'
       }).then((result) => {
         if (!result.value) {
-          return false;
+          return;
         }
         const doc = this.prepareDoc();
         doc.NIK = doc.Nik;
@@ -279,10 +280,13 @@ export class DetailKartuKesehatanComponent implements OnInit {
           doc.CreatedDate = date.toISOString();
         }
         this.sendData(doc);
-        return
       });
 
     }
+  }
+
+  onDateChange(event: any) {
+    this.document.doc_dob = moment(event).format('YYYY-MM-DD')
   }
 
   verifData() {
@@ -360,7 +364,7 @@ export class DetailKartuKesehatanComponent implements OnInit {
         cancelButtonText: 'Batal'
       }).then((result) => {
         if (!result.value) {
-          return false;
+          return
         }
         const doc = this.prepareDoc();
         doc.NIK = doc.Nik;
@@ -439,20 +443,19 @@ export class DetailKartuKesehatanComponent implements OnInit {
           doc.CreatedDate = date.toISOString();
         }
         this.sendData(doc);
-        return
       });
     }
   }
 
   sendData(doc: any) {
-    this.digitalIdService.validateDocument(doc).toPromise().then((res: any) => {
+    this.digitalIdService.validateDocument(doc).subscribe((res: any) => {
       if (res.status_code === 200) {
         this.landaService.alertSuccess('Success', res.message);
         this.router.navigate(['/adjudicator/digital-id/kartu-kesehatan']).then();
+      } else {
+        this.landaService.alertError('Error', res.message);
       }
-    }).catch((err) => {
-      this.landaService.alertError('Error', "Terjadi kesalahan, silahkan coba lagi!");
-    })
+    });
   }
 
   prepareDoc() {
@@ -578,7 +581,7 @@ export class DetailKartuKesehatanComponent implements OnInit {
       { label: 'Ustadz / Mubaligh', value: 'Ustadz / Mubaligh' },
       { label: 'Juru Masak', value: 'Juru Masak' },
       { label: 'Promotor Acara', value: 'Promotor Acara' },
-      { label: 'Anggota Dpe-RI', value: 'Anggota Dpe-RI' },
+      { label: 'Anggota DPR-RI', value: 'Anggota DPR-RI' },
       { label: 'Anggota DPD', value: 'Anggota DPD' },
       { label: 'Anggota BPK', value: 'Anggota BPK' },
       { label: 'Presiden', value: 'Presiden' },

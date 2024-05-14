@@ -176,7 +176,7 @@
                     <input type="number" class="form-control" id="phone_number" placeholder="0883123123123"
                         [(ngModel)]="doctorForm.phone_number" />
                     <div class="invalid-feedback" [ngClass]="doctorDataValidation.phone_number ? 'd-inline' : 'd-none'">
-                        <ng-container *ngFor="let item of doctorDataValidationMessage.phone_number; let i as index">
+                        <ng-container *ngFor="let item of doctorDataValidationMessage.phone_number; let i = index">
                             {{ item }}
                             <br *ngIf="i < doctorDataValidationMessage.phone_number.length">
                         </ng-container>
@@ -252,7 +252,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <h5 class="card-title">{{ item.name }}</h5>
-                                    <p class="card-text">Tarif: {{ item.rate }}</p>
+                                    <p class="card-text">Tarif: Rp. {{ item.rate ?? 0 | mask: 'separator.2' }} </p>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end align-items-center">
                                     <button class="btn btn-outline-secondary me-1"
@@ -374,6 +374,12 @@
             <div class="col-md-9">
                 <ng-select [items]="listSpecialist" bindLabel="name" placeholder="Pilih spesialis"
                     [(ngModel)]="selectedSpecialist"></ng-select>
+                <div class="invalid-feedback" [ngClass]="specialistDataValidation.name ? 'd-inline' : 'd-none'">
+                    <ng-container *ngFor="let item of specialistDataValidationMessage.name; let i = index">
+                        {{ item }}
+                        <br *ngIf="i < specialistDataValidationMessage.name.length">
+                    </ng-container>
+                </div>
             </div>
         </div>
         <div class="row mb-3">
@@ -381,14 +387,20 @@
                 <label for="rate" class="mb-0">Rate (Rp)</label>
             </div>
             <div class="col-md-9">
-                <input type="number" class="form-control" id="rate" placeholder="50.000"
-                    [(ngModel)]="specialistForm.rate" />
+                <input type="text" class="form-control" id="rate" placeholder="50.000" [(ngModel)]="specialistForm.rate"
+                    mask="separator.2" thousandSeparator="." decimalMarker="." />
+                <div class="invalid-feedback" [ngClass]="specialistDataValidation.rate ? 'd-inline' : 'd-none'">
+                    <ng-container *ngFor="let item of specialistDataValidationMessage.rate; let i = index">
+                        {{ item }}
+                        <br *ngIf="i < specialistDataValidationMessage.rate.length">
+                    </ng-container>
+                </div>
             </div>
         </div>
     </div>
     <div class="modal-footer justify-content-around">
         <button (click)="modalRef.hide()" class="btn btn-outline-primary w-25">Batal</button>
-        <button (click)="saveSpecialistModal(); modalRef.hide()" class="btn btn-primary w-25">Tambahkan</button>
+        <button (click)="saveSpecialistModal()" class="btn btn-primary w-25">Tambahkan</button>
     </div>
 </ng-template>
 
@@ -410,6 +422,12 @@
             <div class="col-md-9">
                 <input type="text" class="form-control" id="university" placeholder="Masukkan nama universitas"
                     [(ngModel)]="educationForm.education" />
+                <div class="invalid-feedback" [ngClass]="educationDataValidation.education ? 'd-inline' : 'd-none'">
+                    <ng-container *ngFor="let item of educationDataValidationMessage.education; let i = index">
+                        {{ item }}
+                        <br *ngIf="i < educationDataValidationMessage.education.length">
+                    </ng-container>
+                </div>
             </div>
         </div>
         <div class="row mb-3">
@@ -419,11 +437,18 @@
             <div class="col-md-9">
                 <input type="number" class="form-control" id="year" placeholder="2020"
                     [(ngModel)]="educationForm.graduation_year" />
+                <div class="invalid-feedback"
+                    [ngClass]="educationDataValidation.graduation_year ? 'd-inline' : 'd-none'">
+                    <ng-container *ngFor="let item of educationDataValidationMessage.graduation_year; let i = index">
+                        {{ item }}
+                        <br *ngIf="i < educationDataValidationMessage.graduation_year.length">
+                    </ng-container>
+                </div>
             </div>
         </div>
     </div>
     <div class="modal-footer justify-content-around">
         <button (click)="modalRef.hide()" class="btn btn-outline-primary w-25">Batal</button>
-        <button (click)="saveEducationModal(); modalRef.hide()" class="btn btn-primary w-25">Tambahkan</button>
+        <button (click)="saveEducationModal()" class="btn btn-primary w-25">Tambahkan</button>
     </div>
 </ng-template>

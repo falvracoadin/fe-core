@@ -12,7 +12,7 @@
                         </div>
                         <a href="https://dukcapil.kemendagri.go.id/" target="_blank"
                             class="btn btn-outline-primary dukcapil rounded-8" *ngIf="!role.superadmin">
-                            web portal dukcapil<i class="fa fa-random ml-2"></i>
+                            web portal dukcapil<i class="fa fa-random ms-2"></i>
                         </a>
                     </div>
                     <hr>
@@ -30,7 +30,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="btn btn-secondary ml-4 rounded-8 d-flex align-items-center"
+                            <div class="btn btn-secondary ms-4 rounded-8 d-flex align-items-center"
                                 style="min-height: 48px; min-width: 48px; justify-content: center">
                                 <i class="fa fa-filter"></i>
                             </div>
@@ -40,7 +40,7 @@
                                 <button class="btn btn-outline-primary dropdown-toggle rounded-8" type="button"
                                     id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false" ngbDropdownToggle>
-                                    <i class="text fa fa-download mr-2" style="margin-top: 3px;"></i>
+                                    <i class="text fa fa-download me-2" style="margin-top: 3px;"></i>
                                     Export
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"
@@ -157,8 +157,8 @@
                                 </tbody>
                             </table>
                             <div class="info-wrap-imi" *ngIf="totalRecord != 0">
-                                <div class="info-1">Tampilkan</div>
-                                <select [(ngModel)]="limit" id="inputLimit" class="form-control info-2"
+                                <div class="info-1 me-2">Tampilkan</div>
+                                <select [(ngModel)]="limit" id="inputLimit" class="info-2 me-2"
                                     style=" background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; padding: 0.47rem 0.75rem"
                                     name="showFilter" (change)="clickLimit()">
                                     <option value="10">10</option>

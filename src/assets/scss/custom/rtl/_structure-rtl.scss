@@ -148,7 +148,7 @@
 
 // Compact sidebar
 
-body[data-sidebar-size="small"] {
+body[data-sidebar-size=small] {
   #sidebar-menu {
     ul {
       li {
@@ -183,7 +183,7 @@ body[data-sidebar-size="small"] {
       margin-right: $sidebar-collapsed-width;
     }
 
-    body[data-sidebar-size="small"].vertical-collpsed .footer {
+    body[data-sidebar-size=small].vertical-collpsed .footer {
       left: 70px;
     }
   }

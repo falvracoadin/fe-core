@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { AfterContentInit, Component, OnInit, TemplateRef } from '@angular/core';
 import Stepper from 'bs-stepper';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -77,11 +77,11 @@ interface SaveDoctorResponse {
   styleUrls: ['./form-dokter.component.scss']
 })
 
-export class FormDokterComponent implements OnInit {
+export class FormDokterComponent implements OnInit, AfterContentInit {
   /* stepper configuration */
   private stepper: Stepper = {} as Stepper;
   currentStep: number = 1;
-  stepWidths = [15, 40, 65, 100];
+  stepWidths = [17, 40, 63, 85];
 
   /* form doctor configuration */
   doctorForm: any = {
@@ -147,6 +147,7 @@ export class FormDokterComponent implements OnInit {
     start_experience: false,
     str_date: false
   }
+
   doctorDataValidationMessage: any = {
     full_name: [],
     email: [],
@@ -159,6 +160,26 @@ export class FormDokterComponent implements OnInit {
     sip_date: [],
     start_experience: [],
     str_date: []
+  }
+
+  specialistDataValidation: any = {
+    name: false,
+    rate: false
+  }
+
+  specialistDataValidationMessage: any = {
+    name: [],
+    rate: []
+  }
+
+  educationDataValidation: any = {
+    education: false,
+    graduation_year: false
+  }
+
+  educationDataValidationMessage: any = {
+    education: [],
+    graduation_year: []
   }
 
   isValidHistory: boolean = false;
@@ -175,13 +196,17 @@ export class FormDokterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.stepper = new Stepper(document.querySelector('#stepper1') as Element, {
-      linear: true,
-      animation: true
-    })
-
     this.getProvince();
     this.getListSpecialist();
+  }
+
+  ngAfterContentInit(): void {
+    setTimeout(() => {
+      this.stepper = new Stepper(document.querySelector('#stepper1') as Element, {
+        linear: true,
+        animation: true
+      })
+    }, 1);
   }
 
   /* Stepper Functions */
@@ -333,6 +358,10 @@ export class FormDokterComponent implements OnInit {
       rate: this.specialistForm.rate
     }
 
+    /* validate specialist */
+    if (!this.validateSpecialist(data)) return;
+
+    /* process save specialist */
     if (this.specialistForm.id) {
       this.historyData.specialist.findIndex((el, index) => {
         if (el.id == this.specialistForm.id) {
@@ -342,6 +371,7 @@ export class FormDokterComponent implements OnInit {
     } else {
       this.historyData.specialist.push(data);
     }
+    this.modalRef.hide();
   }
 
   deleteSpecialist(id: number) {
@@ -388,7 +418,11 @@ export class FormDokterComponent implements OnInit {
       education: this.educationForm.education,
       graduation_year: this.educationForm.graduation_year
     }
+    
+    /* validate education */
+    if (!this.validateEducation(data)) return;
 
+    /* process save education */
     if (this.educationForm.id) {
       this.historyData.education.findIndex((el, index) => {
         if (el.id == this.educationForm.id) {
@@ -398,6 +432,7 @@ export class FormDokterComponent implements OnInit {
     } else {
       this.historyData.education.push(data);
     }
+    this.modalRef.hide();
   }
 
   deleteEducation(id: number) {
@@ -481,6 +516,72 @@ export class FormDokterComponent implements OnInit {
     }
 
     this.isValid = true;
+    return true;
+  }
+
+  validateSpecialist(data: Specialist): boolean {
+    /* reset validation data */
+    this.specialistDataValidation = {
+      name: false,
+      rate: false
+    }
+
+    this.specialistDataValidationMessage = {
+      name: [],
+      rate: []
+    }
+
+    /* validation process */
+    let i = 0;
+    if (!data.name) {
+      this.specialistDataValidation.name = true;
+      this.specialistDataValidationMessage.name.push('Spesialis tidak boleh kosong');
+      i++;
+    }
+
+    if (!data.rate) {
+      this.specialistDataValidation.rate = true;
+      this.specialistDataValidationMessage.rate.push('Rate tidak boleh kosong');
+      i++;
+    }
+
+    if (i > 0) {
+      return false;
+    }
+
+    return true;
+  }
+
+  validateEducation(data: Education): boolean {
+    /* reset validation data */
+    this.educationDataValidation = {
+      education: false,
+      graduation_year: false
+    }
+
+    this.educationDataValidationMessage = {
+      education: [],
+      graduation_year: []
+    }
+
+    /* validation process */
+    let i = 0;
+    if (data.education == '') {
+      this.educationDataValidation.education = true;
+      this.educationDataValidationMessage.education.push('Nama universitas tidak boleh kosong');
+      i++;
+    }
+
+    if (data.graduation_year == '') {
+      this.educationDataValidation.graduation_year = true;
+      this.educationDataValidationMessage.graduation_year.push('Tahun lulus tidak boleh kosong');
+      i++
+    }
+
+    if (i > 0) {
+      return false;
+    }
+
     return true;
   }
 

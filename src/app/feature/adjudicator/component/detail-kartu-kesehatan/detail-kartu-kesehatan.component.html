@@ -1,11 +1,11 @@
 <div class="container-fluid detail-digital">
     <div class="d-flex justify-content-between top-header">
         <div class="d-flex justify-content-start align-items-center">
-            <!-- <svg [routerLink]="['/adjudicator/digital-id/kartu-kesehatan']"
+            <svg [routerLink]="['/adjudicator/digital-id/kartu-kesehatan']"
                 class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-33gu9c-MuiSvgIcon-root" focusable="false"
                 viewBox="0 0 24 24" aria-hidden="true" data-testid="ChevronLeftIcon">
                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
-            </svg> -->
+            </svg>
             <p class="title">
                 Perbandingan Data - {{docName}}
             </p>
@@ -33,7 +33,8 @@
                             {{isEditData ? 'Simpan' : 'Ubah'}}
                         </div>
                     </div>
-                    <div class="col-12 keyvalue bg-white" *ngFor="let row of listViewInfo[keyHeader]; index as i" [class.bg-white]="(i%2) == 1" [class.bg-second]="(i%2) == 0">
+                    <div class="col-12 keyvalue bg-white" *ngFor="let row of listViewInfo[keyHeader]; index as i"
+                        [class.bg-white]="(i%2) == 1" [class.bg-second]="(i%2) == 0">
                         <div class="row">
                             <div class="col-4 d-flex justify-content-between">
                                 <div>{{row['label']}}</div>
@@ -53,29 +54,34 @@
                                             ? 'Ditolak' : 'Anomali' }}</span>
                                 </div>
                                 <span *ngIf="!isEditData && row['type'] == 'date' && !row['isEdit']">
-                                    <!-- {{document[row['bind']] | date : 'dd-MM-yyyy' }} -->
+                                    {{document[row['bind']] | date : 'dd-MM-yyyy' }}
                                 </span>
                                 <div class="input-group"
                                     *ngIf="row['isEdit'] && row['type'] == 'date' || isEditData && row['type'] == 'date'">
                                     <!-- <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
                                         [(ngModel)]="document[row['bind']]" ngbDatepicker #d="ngbDatepicker"
-                                        (change)="d.toggle()" />
-                                    <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                                        (change)="d.toggle()" /> -->
+                                    <input type="text" class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                        #dp="bsDatepicker" [(ngModel)]="document[row['bind']]" bsDatepicker
+                                        (bsValueChange)="onDateChange($event)" #datepicker
+                                        [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        (click)="datepicker.click()">
                                         <img height="18px" src="https://cdn-icons-png.flaticon.com/24/55/55281.png"
                                             alt="">
-                                    </button> -->
+                                    </button>
                                 </div>
                                 <div class="input-group"
                                     *ngIf="row['isEdit'] && (row['type'] != 'date' || !row['type']) || isEditData && (row['type'] != 'date' || !row['type'])">
-                                    <!-- <input *ngIf="!row['type'] || row['type'] == 'text'" type="{{row['type']}}"
+                                    <input *ngIf="!row['type'] || row['type'] == 'text'" type="{{row['type']}}"
                                         class="form-control" [(ngModel)]="document[row['bind']]"
-                                        placeholder="{{row['label']}}" aria-describedby="basic-addon1" /> -->
+                                        placeholder="{{row['label']}}" aria-describedby="basic-addon1" />
                                 </div>
                                 <div class="input-group"
                                     *ngIf="row['isEdit'] && row['type'] == 'dropdown' || isEditData && row['type'] == 'dropdown'">
-                                    <!-- <ng-select class="custom" [items]="row['options']" bindLabel="label"
+                                    <ng-select class="custom" [items]="row['options']" bindLabel="label"
                                         bindValue="value" [(ngModel)]="document[row['bind']]" placeholder="Pilih Status"
-                                        [ngModelOptions]="{standalone:true}"></ng-select> -->
+                                        [ngModelOptions]="{standalone:true}"></ng-select>
                                 </div>
                             </div>
 
@@ -111,7 +117,7 @@
                             <div class="col-6 d-flex align-items-center" *ngIf="!isOperator">
                                 <div>
                                     <i
-                                        class="fa font-size-24 me-2 fa-{{ document[row['bind']] == 1 ? 'check-circle text-success' : 'times-circle  text-danger' }}"></i>
+                                        class="fa font-size-24 mr-2 fa-{{ document[row['bind']] == 1 ? 'check-circle text-success' : 'times-circle  text-danger' }}"></i>
                                 </div>
                                 <p class="mb-0">{{ document[row['bind']] == 1 ? 'Ya' : 'Tidak' }}</p>
                             </div>
@@ -147,7 +153,7 @@
                                 {{row['label']}}
                             </div>
                             <div class="col-6">
-                                <span class="me-3">:</span>
+                                <span class="mr-3">:</span>
                                 {{document[row['bind']]}}
                             </div>
                         </div>
@@ -171,27 +177,28 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <!-- <textarea class="catatan" *ngIf="isSupervisor"
+                                <textarea class="catatan" *ngIf="isSupervisor"
                                     placeholder="Cth: Data rumah sakit tidak valid" name=""
                                     [(ngModel)]="document['catatan_supervisor']"></textarea>
                                 <textarea class="catatan" *ngIf="isOperator"
                                     placeholder="Cth: Data rumah sakit tidak valid" name=""
-                                    [(ngModel)]="document['notes']"></textarea> -->
+                                    [(ngModel)]="document['notes']"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row info mt-3 px-3" *ngIf="isOperator || (isSupervisor && (document.adj_status == 2 || document.adj_status == 7 || document.adj_status == 8))">
+                <div class="row info mt-3 px-3"
+                    *ngIf="isOperator || (isSupervisor && (document.adj_status == 2 || document.adj_status == 7 || document.adj_status == 8))">
                     <div class="col-12 keyheader">
                         Keputusan
                     </div>
                     <div class="col-12 keyvalue" style="background-color: white;">
                         <div class="row">
                             <div class="col-md-8">
-                                <!-- <ng-select [placeholder]="'Pilih keputusan akhir'" [items]="listKeputusan"
+                                <ng-select [placeholder]="'Pilih keputusan akhir'" [items]="listKeputusan"
                                     bindLabel="label" bindValue="label" [(ngModel)]="document.keputusan">
-                                </ng-select> -->
+                                </ng-select>
                             </div>
                             <div class="col-md-4">
                                 <button *ngIf="isSupervisor" class="rounded-8 btn btn-primary w-100"
@@ -200,7 +207,8 @@
                                     Konfirmasi
                                 </button>
                                 <button *ngIf="isOperator" class="rounded-8 btn btn-primary w-100"
-                                    [disabled]="!document['notes'] || !document.keputusan || isEditData" (click)="verifData()">
+                                    [disabled]="!document['notes'] || !document.keputusan || isEditData"
+                                    (click)="verifData()">
                                     Konfirmasi
                                 </button>
                             </div>
@@ -215,7 +223,9 @@
                         <div>Kartu ID</div>
                     </div>
                     <div class="col-12 d-flex justify-content-center bg-white p-2">
-                        <img style="width: 100%;" [src]="document['doc_pict_secondary'] ? document['doc_pict_secondary'] : 'assets/images/emptyKRS.svg'" alt="">
+                        <img style="width: 100%;"
+                            [src]="document['doc_pict_secondary'] ? document['doc_pict_secondary'] : 'assets/images/emptyKRS.svg'"
+                            alt="">
                     </div>
                     <ng-container *ngIf="document['doc_pict_cropping']">
                         <div class="col-12 keyheader mt-3">
