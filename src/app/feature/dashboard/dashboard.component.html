@@ -23,7 +23,7 @@
         <h4 class="card-title">Transaction by Type</h4>
         <div class="card-body" style="position: relative">
           <img placement="auto"
-            ngbTooltip="Total user dihitung berdasarkan jumlah nomor handphone yang telah terverifikasi"
+            tooltip="Total user dihitung berdasarkan jumlah nomor handphone yang telah terverifikasi"
             class="attention-icon" src="assets/icons/attention.svg" [height]="24" [width]="24" alt="Attention Icon" />
             <app-pie-chart-card
                   id="1"
@@ -40,7 +40,7 @@
       <div class="card">
         <h4 class="card-title">Transaction KTP by Status</h4>
         <div class="card-body" style="position: relative">
-          <img placement="auto" ngbTooltip="Total digitalisasi KTP berdasarkan status ajudikasinya"
+          <img placement="auto" tooltip="Total digitalisasi KTP berdasarkan status ajudikasinya"
             class="attention-icon" src="assets/icons/attention.svg" [height]="24" [width]="24" alt="Attention Icon" />
             <app-pie-chart-card
               id="2"
@@ -57,7 +57,7 @@
       <div class="card">
         <h4 class="card-title">Digitized Cards by Type</h4>
         <div class="card-body" style="position: relative">
-          <img placement="auto" ngbTooltip="Total digitalisasi kartu berdasarkan jenis/tipe kartu"
+          <img placement="auto" tooltip="Total digitalisasi kartu berdasarkan jenis/tipe kartu"
             class="attention-icon" src="assets/icons/attention.svg" [height]="24" [width]="24" alt="Attention Icon" />
             <app-pie-chart-card
             id="2"
@@ -73,7 +73,7 @@
     <div class="col-12" *ngIf="checkRoles('web:dashboard:top10product:read')">
       <div class="card">
         <h4 class="card-title me-3">TOP 10 Products <span class="ms-2"><img placement="auto"
-              ngbTooltip="10 produk teratas yang memiliki jumlah transaksi terbanyak" src="assets/icons/attention.svg"
+              tooltip="10 produk teratas yang memiliki jumlah transaksi terbanyak" src="assets/icons/attention.svg"
               [height]="24" [width]="24" alt="Attention Icon" /></span></h4>
         <div class="card-body">
           <app-bar-chart [data]="penggunaBaruBarChart()" [id]="'demo-pengguna'"></app-bar-chart>

@@ -66,7 +66,6 @@ import { LineChartComponent } from '../component/line-chart/line-chart.component
         // NgSelectModule,
         TooltipModule,
         BsDatepickerModule
-
     ],
     providers: [
         // {

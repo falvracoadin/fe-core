@@ -49,7 +49,7 @@
                       class="text-primary font-weight-bold">
                       PAGE {{ idt + 1 }}
                       <span
-                        class="btn-close ms-2 fw-light"
+                        class="ms-2 fw-light"
                         (click)="closePage($event, idt)">
                         <i class="fas fa-times"></i>
                       </span>
@@ -1324,11 +1324,13 @@
 <!-- Flow save when back -->
 <ng-template #saveForm let-modal>
   <div class="modal-body text-center">
-    <div class="row">
-      <div class="col text-right">
-        <i
+    <div class="d-flex" style="justify-content: end;">
+        <div
+        type="button"
+        class="cursor-pointer"
           (click)="closeModal()"
-          class="fa fa-times font-size-20 cursor-pointer"></i>
+          aria-label="Close">
+          <i class="fa fa-times" style="font-size: 20px;"></i>
       </div>
     </div>
     <img src="assets/icons/checkedImage.svg" alt="" *ngIf="flowCondition == 2" class="mb-2" />

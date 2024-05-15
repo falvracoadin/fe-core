@@ -423,27 +423,27 @@ export class FormAllComponent implements OnInit {
     this.formulirStructure.is_draft = 0;
     this.flowCondition = 1;
     this.modals.show(modalId);
-    if (this.modePage == "add") {
-      this.formulirService
-        .addFormulir(this.formulirStructure)
-        .subscribe((res) => {
-          this.landaService.alertSuccess(
-            "Berhasil",
-            "Berhasil Menambahkan Formulir"
-          );
-          this.router.navigate(["/cms/formulir"]);
-        });
-    } else {
-      this.formulirService
-        .editFormulir(this.formulirStructure, this.paramId)
-        .subscribe((res) => {
-          this.landaService.alertSuccess(
-            "Berhasil",
-            "Berhasil Mengubah Formulir"
-          );
-          this.router.navigate(["/cms/formulir"]);
-        });
-    }
+    // if (this.modePage == "add") {
+    //   this.formulirService
+    //     .addFormulir(this.formulirStructure)
+    //     .subscribe((res) => {
+    //       this.landaService.alertSuccess(
+    //         "Berhasil",
+    //         "Berhasil Menambahkan Formulir"
+    //       );
+    //       this.router.navigate(["/cms/formulir"]);
+    //     });
+    // } else {
+    //   this.formulirService
+    //     .editFormulir(this.formulirStructure, this.paramId)
+    //     .subscribe((res) => {
+    //       this.landaService.alertSuccess(
+    //         "Berhasil",
+    //         "Berhasil Mengubah Formulir"
+    //       );
+    //       this.router.navigate(["/cms/formulir"]);
+    //     });
+    // }
   }
 
   // Form
