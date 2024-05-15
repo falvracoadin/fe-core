@@ -14,6 +14,8 @@ import { KelolaDokumenComponent } from './kelola-dokumen/kelola-dokumen.componen
 import { FormKelolaDokumenComponent } from './form-kelola-dokumen/form-kelola-dokumen.component';
 import { KelolaBannerComponent } from './kelola-banner/kelola-banner.component';
 import { FormKelolaBannerComponent } from './form-kelola-banner/form-kelola-banner.component';
+import { PopoverModule } from 'ngx-bootstrap/popover';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,10 @@ import { FormKelolaBannerComponent } from './form-kelola-banner/form-kelola-bann
         NgSelectModule,
         FormsModule,
         ReactiveFormsModule,
+        PopoverModule.forRoot(),
+        CdkAccordionModule,
+        // BrowserModule,
+        // BrowserAnimationsModule,
         // NgbAccordionModule,
         // NgbNavModule,
         // NgbPopoverModule,

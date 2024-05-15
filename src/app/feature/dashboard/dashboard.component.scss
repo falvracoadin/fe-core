@@ -131,3 +131,7 @@
   background-color: red; /* Change color based on status */
 }
 
+::ng-deep .popover-arrow.arrow{
+  display: none !important;
+}
+

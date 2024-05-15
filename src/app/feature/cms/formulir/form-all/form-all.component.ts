@@ -1,5 +1,5 @@
 /* tslint:disable:triple-equals prefer-for-of */
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, LOCALE_ID, HostListener, ElementRef } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { DndDropEvent } from 'ngx-drag-drop';
 //import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,6 +16,14 @@ import { LandaService } from 'src/app/core/services/landa.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class FormAllComponent implements OnInit {
+  // @HostListener('document:click', ['$event'])
+  // clickout(event : any) {
+  //   if(event.target.id == this.indexFormFocus[0]+1) {
+  //     console.log(event.target,'active')
+  //   } else {
+  //     this.indexFormFocus = [-1,-1]
+  //   }
+  // }
   // Form Data
   formulirStructure!: FormulirModel;
   formType!: string;
@@ -33,6 +41,15 @@ export class FormAllComponent implements OnInit {
   // Radio
   radioForm: any;
   stateReloadRadio = true;
+  radioDetail : number = 0;
+  changeRadioDetail(RadioIndex : number){
+    if(RadioIndex == this.radioDetail) {
+      console.log(RadioIndex)
+      this.radioDetail = 0
+    } else {
+      this.radioDetail = RadioIndex
+    }
+  }
 
   list!: any[];
   detail!: any[];
@@ -73,7 +90,8 @@ export class FormAllComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private formulirService: FormulirService,
-    private landaService : LandaService
+    private landaService : LandaService,
+    private eRef : ElementRef
   ) {}
 
   ngOnInit(): void {
@@ -333,38 +351,48 @@ export class FormAllComponent implements OnInit {
   }
 
   // Dropzone
-  formClick(i : any, j :any) {
+  formClick(i : any, j :any, event: any) {
     if (
       this.indexFormFocus[0] == i &&
-      this.indexFormFocus[1] == j &&
+      this.indexFormFocus[1] == j ||
       this.propertiStatus
     ) {
-      this.closePopover();
       this.propertiStatus = false;
       this.indexFormFocus = [-1, -1];
-    } else if (
-      this.indexFormFocus[0] == i &&
-      this.indexFormFocus[1] == j &&
-      !this.propertiStatus
-    ) {
-      this.propertiStatus = true;
+      this.changeRadioDetail(0);
+    } else if(this.indexFormFocus[0] != -1 && this.indexFormFocus[1] != -1){
       this.indexFormFocus = [i, j];
-      this.formChangeType =
-        this.list[this.sectionIndex][this.indexFormFocus[0]][
-          this.indexFormFocus[1]
-        ].type;
-    } else if (this.indexFormFocus[0] == -1 && this.indexFormFocus[1] == -1) {
       this.propertiStatus = true;
-      this.indexFormFocus = [i, j];
-      this.formChangeType =
-        this.list[this.sectionIndex][this.indexFormFocus[0]][
-          this.indexFormFocus[1]
-        ].type;
+      this.changeRadioDetail(0);
     } else {
-      this.closePopover();
-      this.propertiStatus = false;
-      this.indexFormFocus = [-1, -1];
+      this.indexFormFocus = [i, j];
+      this.propertiStatus = true;
+      this.changeRadioDetail(0);
     }
+    
+    // else if (
+    //   this.indexFormFocus[0] == i &&
+    //   this.indexFormFocus[1] == j &&
+    //   !this.propertiStatus
+    // ) {
+    //   this.propertiStatus = true;
+    //   this.indexFormFocus = [i, j];
+    //   this.formChangeType =
+    //     this.list[this.sectionIndex][this.indexFormFocus[0]][
+    //       this.indexFormFocus[1]
+    //     ].type;
+    // } else if (this.indexFormFocus[0] == -1 && this.indexFormFocus[1] == -1) {
+    //   this.propertiStatus = true;
+    //   this.indexFormFocus = [i, j];
+    //   this.formChangeType =
+    //     this.list[this.sectionIndex][this.indexFormFocus[0]][
+    //       this.indexFormFocus[1]
+    //     ].type;
+    // } else {
+    //   this.closePopover();
+    //   this.propertiStatus = false;
+    //   this.indexFormFocus = [-1, -1];
+    // }
   }
 
   changeMode(param :any) {
@@ -372,10 +400,11 @@ export class FormAllComponent implements OnInit {
   }
 
   closePopover() {
-    const els = document.querySelectorAll('.popover');
-    for (let i = 0; i < els.length; i++) {
-      els[i].setAttribute('hidden', 'true');
-    }
+    // const els = document.querySelectorAll('.popover');
+    // for (let i = 0; i < els.length; i++) {
+    //   els[i].setAttribute('hidden', 'true');
+    // }
+    this.propertiStatus = false;
   }
 
   // Search
@@ -465,18 +494,18 @@ export class FormAllComponent implements OnInit {
     }, 1);
   }
 
-  // onDropRadio(event: DndDropEvent, FilteredList?: any[]) {
-  //   console.log(event);
-  //   if (FilteredList && event.dropEffect === 'move') {
-  //     let index = event.index;
-  //     console.log('event', event);
+  onDropRadio(event: DndDropEvent, FilteredList?: any[]) {
+    console.log(event);
+    if (FilteredList && event.dropEffect === 'move') {
+      let index = event.index;
+      console.log('event', event);
 
-  //     if (typeof index === 'undefined') {
-  //       index = FilteredList.length;
-  //     }
-  //     FilteredList.splice(index, 0, event.data);
-  //   }
-  // }
+      if (typeof index === 'undefined') {
+        index = FilteredList.length;
+      }
+      FilteredList.splice(index, 0, event.data);
+    }
+  }
 
   checkMultipleSelectInNgSelect(list:any, option:any) {
     // tslint:disable-next-line:only-arrow-functions
