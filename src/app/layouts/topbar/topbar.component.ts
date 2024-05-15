@@ -14,8 +14,8 @@ import { AuthService } from 'src/app/feature/auth/services/auth.service';
  */
 export class TopbarComponent implements OnInit {
 
-  element : any;
-  configData : any;
+  element: any;
+  configData: any;
 
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -27,10 +27,10 @@ export class TopbarComponent implements OnInit {
   userPermission: any;
   isMobileMenuOpen: boolean = false;
 
-  openMobileMenu !: boolean;
+  openMobileMenu!: boolean;
   defaultPhoto = 'https://dummyimage.com/1000x1000/000/fff.png&text=';
 
-  @Input() photoProfile  !: string;
+  @Input() photoProfile!: string;
   @Output() settingsButtonClicked = new EventEmitter();
   @Output() mobileMenuButtonClicked = new EventEmitter();
 
@@ -71,6 +71,6 @@ export class TopbarComponent implements OnInit {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
     event.preventDefault();
     this.mobileMenuButtonClicked.emit();
-    
+
   }
 }

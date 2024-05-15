@@ -10,33 +10,41 @@
                         <div class="card-title">
                             Daftar Anggota
                         </div>
-                        <a href="https://dukcapil.kemendagri.go.id/" target="_blank" class="btn btn-outline-primary dukcapil rounded-8" *ngIf="!role.superadmin">
+                        <a href="https://dukcapil.kemendagri.go.id/" target="_blank"
+                            class="btn btn-outline-primary dukcapil rounded-8" *ngIf="!role.superadmin">
                             web portal dukcapil<i class="fa fa-random ms-2"></i>
                         </a>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between" style="padding-top: 0.5rem">
                         <div class="d-flex justify-content-start">
-                            <div class="row limit ps-3">
+                            <div class="row limit pl-3">
                                 <div class="d-flex">
-                                    <ng-select class="custom" bindLabel="title" bindValue="param" [(ngModel)]="filter.param" [items]="filterParam" placeholder="Pilih Parameter"></ng-select>
+                                    <ng-select class="custom" bindLabel="title" bindValue="param"
+                                        [(ngModel)]="filter.param" [items]="filterParam"
+                                        placeholder="Pilih Parameter"></ng-select>
                                     <div class="relative">
-                                        <input type="text" (input)="filterKTP($event)" placeholder="Cari berdasarkan parameter" class="search-input" style="height: 50px;" />
-                                        <i class="fa fa-search icon-search" style="margin-top: 6px;"></i>
+                                        <input type="text" (input)="filterKTP($event)"
+                                            placeholder="Cari berdasarkan parameter" class="search-input" />
+                                        <i class="fa fa-search icon-search"></i>
                                     </div>
                                 </div>
                             </div>
-                            <div class="btn btn-secondary ms-4 rounded-8 d-flex align-items-center" style="min-height: 48px; min-width: 48px; justify-content: center">
+                            <div class="btn btn-secondary ms-4 rounded-8 d-flex align-items-center"
+                                style="min-height: 48px; min-width: 48px; justify-content: center">
                                 <i class="fa fa-filter"></i>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end" *ngIf="role.superadmin">
                             <div class="dropdown" ngbDropdown>
-                                <button class="btn btn-outline-primary dropdown-toggle rounded-8" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+                                <button class="btn btn-outline-primary dropdown-toggle rounded-8" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" ngbDropdownToggle>
                                     <i class="text fa fa-download me-2" style="margin-top: 3px;"></i>
                                     Export
                                 </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" ngbDropdownMenu>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"
+                                    ngbDropdownMenu>
                                     <a class="dropdown-item" href="javascript: void(0);">Excel</a>
                                     <a class="dropdown-item" href="javascript: void(0);">PDF</a>
                                     <a class="dropdown-item" href="javascript: void(0);">CSV</a>
@@ -57,36 +65,86 @@
                                         <th class="text-center">Tipe Dok.</th>
                                         <th class="text-center">Tgl. Diterima</th>
                                         <th class="text-center">Status</th>
-                                        <th *ngIf="role.superadmin || role.supervisor" class="text-center">Pemberi Status</th>
-                                        <th *ngIf="role.superadmin || role.supervisor" class="text-center">Tgl. Status</th>
+                                        <th *ngIf="role.superadmin || role.supervisor" class="text-center">Pemberi
+                                            Status</th>
+                                        <th *ngIf="role.superadmin || role.supervisor" class="text-center">Tgl. Status
+                                        </th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let dokumen of listDokumen; index as i"  [class.bg-white]="(i % 2) == 0" [class.bg-second]="(i % 2) == 1">
+                                    <tr *ngFor="let dokumen of listDokumen; index as i" [class.bg-white]="(i % 2) == 0"
+                                        [class.bg-second]="(i % 2) == 1">
                                         <td class="text-center">{{i + 1}}</td>
                                         <td class="align-middle">{{dokumen.doc_no}}</td>
                                         <td *ngIf="role.operator" class="align-middle">{{dokumen.doc_name}}</td>
                                         <td class="align-middle text-center">E-KTP</td>
                                         <td class="align-middle">{{getDateFormat(dokumen.job_assign_date)}}</td>
                                         <td class="align-middle status_dokumen text-center">
-                                            <div class="{{ dokumen.adj_status == 3 ? 'status-semi' : dokumen.adj_status == 0 || dokumen.adj_status == undefined ? 'status-secondary' : dokumen.adj_status > 0 && dokumen.adj_status < 3 ? 'status-success' : dokumen.adj_status == 5 || dokumen.adj_status == 7 ? 'status-danger' : 'status-warning' }}">
-                                                <span>{{ dokumen.adj_status == 3 ? 'Disetujui' : dokumen.adj_status == 0 || dokumen.adj_status == undefined ? 'Diperiksa' : dokumen.adj_status > 0 && dokumen.adj_status < 3 ? 'Diverifikasi' : dokumen.adj_status == 5 || dokumen.adj_status == 7 ? 'Ditolak' : 'Anomali' }}</span>
+                                            <div
+                                                class="{{ dokumen.adj_status == 3 ? 'status-semi' : dokumen.adj_status == 0 || dokumen.adj_status == undefined ? 'status-secondary' : dokumen.adj_status > 0 && dokumen.adj_status < 3 ? 'status-success' : dokumen.adj_status == 5 || dokumen.adj_status == 7 ? 'status-danger' : 'status-warning' }}">
+                                                <span>{{ dokumen.adj_status == 3 ? 'Disetujui' : dokumen.adj_status == 0
+                                                    || dokumen.adj_status == undefined ? 'Diperiksa' :
+                                                    dokumen.adj_status > 0 && dokumen.adj_status < 3 ? 'Diverifikasi' :
+                                                        dokumen.adj_status==5 || dokumen.adj_status==7 ? 'Ditolak'
+                                                        : 'Anomali' }}</span>
                                             </div>
                                         </td>
                                         <td *ngIf="role.superadmin" class="align-middle text-center">
-                                            {{dokumen.doc_adj_approved_by ? dokumen.doc_adj_approved_by : '-'}}
+                                            <!-- jika masih dalam status diperiksa -->
+                                            <ng-container *ngIf="dokumen.adj_status == undefined">
+                                                -
+                                            </ng-container>
+
+                                            <!-- jika masih dalam status dilv3 -->
+                                            <ng-container *ngIf="dokumen.adj_status == 2">
+                                                {{dokumen.adj_validate_by ? dokumen.adj_validate_by : '-'}}
+                                            </ng-container>
+
+                                            <!-- jika masih dalam status dilv2 -->
+                                            <ng-container *ngIf="dokumen.adj_status == 3">
+                                                {{dokumen.doc_adj_approved_by ? dokumen.doc_adj_approved_by : '-'}}
+                                            </ng-container>
+
+                                            <!-- jika status ditolak -->
+                                            <ng-container *ngIf="dokumen.adj_status == 7 || dokumen.adj_status == 5">                                                
+                                                {{dokumen.doc_adj_rejected_by ? dokumen.doc_adj_rejected_by : '-'}}
+                                            </ng-container>
                                         </td>
                                         <td *ngIf="role.supervisor" class="align-middle text-center">
                                             {{dokumen.adj_validate_by ? dokumen.adj_validate_by : '-'}}
                                         </td>
-                                        <td *ngIf="role.superadmin" class="align-middle">{{dokumen.adj_validate_date ? getDateFormat(dokumen.adj_validate_date) : '-'}}</td>
-                                        <td *ngIf="role.supervisor" class="align-middle">{{dokumen.job_assign_date ? getDateFormat(dokumen.job_assign_date) : '-'}}</td>
+                                        <td *ngIf="role.superadmin" class="align-middle text-center">
+                                            <!-- jika masih dalam status diperiksa -->
+                                            <ng-container *ngIf="dokumen.adj_status == undefined">
+                                                -
+                                            </ng-container>
+
+                                            <!-- jika masih dalam status dilv3 -->
+                                            <ng-container *ngIf="dokumen.adj_status == 2">
+                                                {{dokumen.adj_validate_date ? getDateFormat(dokumen.adj_validate_date) : '-'}}
+                                            </ng-container>
+                                            
+                                            <!-- jika masih dalam status dilv2 -->
+                                            <ng-container *ngIf="dokumen.adj_status == 3">
+                                                {{dokumen.doc_adj_approved_date ? getDateFormat(dokumen.doc_adj_approved_date) : '-'}}
+                                            </ng-container>
+                                            
+                                            <!-- jika status ditolak -->
+                                            <ng-container *ngIf="dokumen.adj_status == 7 || dokumen.adj_status == 5">
+                                                {{dokumen.doc_adj_rejected_date ? getDateFormat(dokumen.doc_adj_rejected_date) : '-'}}
+                                            </ng-container>
+                                        </td>
+                                        <td *ngIf="role.supervisor" class="align-middle">{{dokumen.job_assign_date ?
+                                            getDateFormat(dokumen.job_assign_date) : '-'}}</td>
                                         <td class="align-middle action text-center">
-                                            <a *ngIf="role.superadmin" class="btn btn-outline-primary rounded-8" placement="left" container="body" ngbTooltip="Detail" [routerLink]="['/adjudicator/digital-id/ktp', dokumen.id]">
+                                            <a *ngIf="role.superadmin" class="btn btn-outline-primary rounded-8"
+                                                placement="left" container="body" ngbTooltip="Detail"
+                                                [routerLink]="['/adjudicator/digital-id/ktp', dokumen.id]">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a *ngIf="!role.superadmin" class="btn btn-outline-primary rounded-8" [routerLink]="['/adjudicator/digital-id/ktp', dokumen.id]">
+                                            <a *ngIf="!role.superadmin" class="btn btn-outline-primary rounded-8"
+                                                [routerLink]="['/adjudicator/digital-id/ktp', dokumen.id]">
                                                 Proses
                                             </a>
                                         </td>
@@ -99,18 +157,14 @@
                                 </tbody>
                             </table>
                             <div class="info-wrap-imi" *ngIf="totalRecord != 0">
-                                <div class="info-1">Tampilkan</div>
-                                <select
-                                  [(ngModel)]="limit"
-                                  id="inputLimit"
-                                  class="form-control info-2 relative z-100 m-1"
-                                  style="padding: 0.34rem 0.50rem !important; background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; width:50px; max-height: 30px"
-                                  name="showFilter"
-                                  (change)="clickLimit()">
-                                  <option value="10">10</option>
-                                  <option value="25">25</option>
-                                  <option value="50">50</option>
-                                  <option value="100">100</option>
+                                <div class="info-1 me-2">Tampilkan</div>
+                                <select [(ngModel)]="limit" id="inputLimit" class="info-2 me-2"
+                                    style=" background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; padding: 0.47rem 0.75rem"
+                                    name="showFilter" (change)="clickLimit()">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
                                 </select>
                                 <div class="info-3">dari {{ totalRecord }} data</div>
                             </div>

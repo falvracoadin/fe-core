@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataTableDirective } from 'angular-datatables';
 import { DoctorScheduleService } from '../../services/doctor-schedule/doctor-schedule.service';
-import { BsModalService } from 'ngx-bootstrap/modal'
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'
 
 
 @Component({
@@ -28,6 +28,7 @@ export class JadwalDokterComponent implements OnInit {
   totalRecord: any;
 
   /* modal configuration */
+  modalRef!: BsModalRef;
   titleModal!: string;
   dataForm: any = {};
 
@@ -116,13 +117,13 @@ export class JadwalDokterComponent implements OnInit {
   /* modal functions */
   create(modalId: any) {
     this.titleModal = 'Tambah Jadwal Dokter';
-    this.modalService.show(modalId, { class: 'modal-lg' });
+    this.modalRef = this.modalService.show(modalId, { class: 'modal-lg' });
   }
 
   update(modalId: any, data: any) {
     this.titleModal = 'Edit Jadwal Dokter';
     this.dataForm = { uuid: data.uuid, origin_data: data.origin_data };
-    this.modalService.show(modalId, { class: 'modal-lg' });
+    this.modalRef = this.modalService.show(modalId, { class: 'modal-lg' });
   }
 
   /* utils */

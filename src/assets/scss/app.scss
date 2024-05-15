@@ -45,6 +45,8 @@ File: Main Css File
 @import "custom/components/print";
 
 // Plugins
+@import "/node_modules/ngx-bootstrap/datepicker/bs-datepicker.scss";
+
 @import "custom/plugins/custom-scrollbar";
 @import "custom/plugins/calendar";
 @import "custom/plugins/calendar-full";

@@ -31,7 +31,7 @@
                     <hr />
                     <ng-container *ngIf="totalRecord != 0; else dataAvailable">
                         <div class="px-3 d-flex align-items-center" style="padding-top: .5rem;">
-                            <div class="row limit pl-3" style="height: 50px;">
+                            <div class="row limit ps-3" style="height: 50px;">
                                 <!-- <div class="d-flex"> -->
                                 <div class="relative">
                                     <input type="text" placeholder="Pencarian" class="search-input" />
@@ -45,44 +45,97 @@
                                     <table class="table table-hover" datatable [dtOptions]="dtOptions">
                                         <thead>
                                             <tr style="background-color: #E2E8F0 !important">
-                                                <th class="pl-3" style="width: 20%;">Nama</th>
-                                                <th class="text-center" style="width: 10%;">Minggu</th>
-                                                <th class="text-center" style="width: 10%;">Senin</th>
-                                                <th class="text-center" style="width: 10%;">Selasa</th>
-                                                <th class="text-center" style="width: 10%;">Rabu</th>
-                                                <th class="text-center" style="width: 10%;">Kamis</th>
-                                                <th class="text-center" style="width: 10%;">Jumat</th>
-                                                <th class="text-center" style="width: 10%;">Sabtu</th>
-                                                <th class="text-center" style="width: 10%;">Aksi</th>
+                                                <th class="ps-3" style="width: 15%;">Nama</th>
+                                                <th class="text-center py-3" style="width: 11%;">Minggu</th>
+                                                <th class="text-center py-3" style="width: 11%;">Senin</th>
+                                                <th class="text-center py-3" style="width: 11%;">Selasa</th>
+                                                <th class="text-center py-3" style="width: 11%;">Rabu</th>
+                                                <th class="text-center py-3" style="width: 11%;">Kamis</th>
+                                                <th class="text-center py-3" style="width: 11%;">Jumat</th>
+                                                <th class="text-center py-3" style="width: 11%;">Sabtu</th>
+                                                <th class="text-center py-3" style="width: 11%;">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let item of listJadwal; index as i"
                                                 [class.bg-white]="(i % 2) == 0" [class.bg-second]="(i % 2) == 1">
 
-                                                <td class="align-middle pl-3">
+                                                <td class="align-middle ps-3">
                                                     {{ item.full_name ? item.full_name : "-" }}
                                                 </td>
-                                                <td class="align-middle text-center">
-                                                    {{ displaySchedule(item.schedules['sunday']) }}
+                                                <td class="align-middle">
+                                                    <ng-container *ngFor="let item of item.schedules['sunday']">
+                                                        <p class="mb-0">{{ item }}</p>
+                                                    </ng-container>
                                                 </td>
-                                                <td class="align-middle text-center">
-                                                    {{ displaySchedule(item.schedules['monday']) }}
+                                                <td class="align-middle">
+                                                    <div *ngIf="item.schedules['monday'].length > 0">
+                                                        <ng-container *ngFor="let item of item.schedules['monday']">
+                                                            <p class="mb-0">{{ item }}</p>
+                                                        </ng-container>
+                                                    </div>
+
+                                                    <div *ngIf="item.schedules['monday'].length == 0">
+                                                        <div class="text-center">-</div>
+                                                    </div>
                                                 </td>
-                                                <td class="align-middle text-center">
-                                                    {{ displaySchedule(item.schedules['tuesday']) }}
+                                                <td class="align-middle">
+                                                    <!-- <ng-container *ngFor="let item of item.schedules['tuesday']">
+                                                        <p class="mb-0">{{ item }}</p>
+                                                    </ng-container> -->
+                                                    <div *ngIf="item.schedules['tuesday'].length > 0">
+                                                        <ng-container *ngFor="let item of item.schedules['tuesday']">
+                                                            <p class="mb-0">{{ item }}</p>
+                                                        </ng-container>
+                                                    </div>
+
+                                                    <div *ngIf="item.schedules['tuesday'].length == 0">
+                                                        <div class="text-center">-</div>
+                                                    </div>
                                                 </td>
-                                                <td class="align-middle text-center">{{
-                                                    displaySchedule(item.schedules['wednesday']) }}
+                                                <td class="align-middle">
+                                                    <div *ngIf="item.schedules['wednesday'].length > 0">
+                                                        <ng-container *ngFor="let item of item.schedules['wednesday']">
+                                                            <p class="mb-0">{{ item }}</p>
+                                                        </ng-container>
+                                                    </div>
+
+                                                    <div *ngIf="item.schedules['wednesday'].length == 0">
+                                                        <div class="text-center">-</div>
+                                                    </div>
                                                 </td>
-                                                <td class="align-middle text-center">{{
-                                                    displaySchedule(item.schedules['thursday']) }}
+                                                <td class="align-middle">
+                                                    <div *ngIf="item.schedules['thursday'].length > 0">
+                                                        <ng-container *ngFor="let item of item.schedules['thursday']">
+                                                            <p class="mb-0">{{ item }}</p>
+                                                        </ng-container>
+                                                    </div>
+
+                                                    <div *ngIf="item.schedules['thursday'].length == 0">
+                                                        <div class="text-center">-</div>
+                                                    </div>
                                                 </td>
-                                                <td class="align-middle text-center">{{
-                                                    displaySchedule(item.schedules['friday']) }}
+                                                <td class="align-middle">
+                                                    <div *ngIf="item.schedules['friday'].length > 0">
+                                                        <ng-container *ngFor="let item of item.schedules['friday']">
+                                                            <p class="mb-0">{{ item }}</p>
+                                                        </ng-container>
+                                                    </div>
+
+                                                    <div *ngIf="item.schedules['friday'].length == 0">
+                                                        <div class="text-center">-</div>
+                                                    </div>
                                                 </td>
-                                                <td class="align-middle text-center">{{
-                                                    displaySchedule(item.schedules['saturday']) }}
+                                                <td class="align-middle">
+                                                    <div *ngIf="item.schedules['saturday'].length > 0">
+                                                        <ng-container *ngFor="let item of item.schedules['saturday']">
+                                                            <p class="mb-0">{{ item }}</p>
+                                                        </ng-container>
+                                                    </div>
+
+                                                    <div *ngIf="item.schedules['saturday'].length == 0">
+                                                        <div class="text-center">-</div>
+                                                    </div>
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     <button class="btn btn-outline-primary" placement="left"
@@ -100,8 +153,8 @@
                                         </tr>
                                     </table>
                                     <div class="info-wrap-imi" *ngIf="totalRecord != 0">
-                                        <div class="info-1">Tampilkan</div>
-                                        <select [(ngModel)]="limit" id="inputLimit" class="form-control info-2"
+                                        <div class="info-1 me-2">Tampilkan</div>
+                                        <select [(ngModel)]="limit" id="inputLimit" class="info-2 me-2"
                                             style=" background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; padding: 0.47rem 0.75rem"
                                             name="showFilter" (change)="clickLimit()">
                                             <option value="10">10</option>
@@ -134,15 +187,12 @@
         <h4 class="modal-title my-auto font-weight-bold font-size-24">
             {{ titleModal }}
         </h4>
-        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modal?.hide()">
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()">
             <span aria-hidden="true" class="visually-hidden">&times;</span>
-        </button>
-        <button type="button" class="close my-auto" (click)="modal.close(); reloadDataTable()" aria-label="Close">
-            <i class="mdi mdi-close-thick"></i>
         </button>
     </div>
     <div class="modal-body">
-        <app-detail-jadwal-dokter [dataForm]="dataForm" (afterSave)="modal.close(); reloadDataTable()">
+        <app-detail-jadwal-dokter [dataForm]="dataForm" (afterSave)="modalRef.hide(); reloadDataTable()">
         </app-detail-jadwal-dokter>
     </div>
 </ng-template>

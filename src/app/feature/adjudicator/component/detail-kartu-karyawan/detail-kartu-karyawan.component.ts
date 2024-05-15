@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/feature/auth/services/auth.service';
 import Swal from 'sweetalert2';
 import { LandaService } from 'src/app/core/services/landa.service';
 import { WilayahService } from '../../services/wilayah/wilayah.service';
+import * as moment from 'moment';
 
 interface Wilayah {
     value: string;
@@ -208,7 +209,7 @@ export class DetailKartuKaryawanComponent implements OnInit {
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (!result.value) {
-                    return false;
+                    return;
                 }
                 const doc = this.prepareDoc();
                 doc.UserId = this.userIdDoc;
@@ -284,7 +285,6 @@ export class DetailKartuKaryawanComponent implements OnInit {
                     doc.CreatedDate = date.toISOString();
                 }
                 this.sendData(doc);
-                return
             });
 
         }
@@ -366,7 +366,7 @@ export class DetailKartuKaryawanComponent implements OnInit {
             }).then((result) => {
                 console.log("there")
                 if (!result.value) {
-                    return false;
+                    return;
                 }
                 console.log("this")
                 const doc = this.prepareDoc();
@@ -456,15 +456,15 @@ export class DetailKartuKaryawanComponent implements OnInit {
                 }
 
 
-                var keyValueObject : any = {};
-                this.data_form.forEach((item : any) => {
+                var keyValueObject: any = {};
+                this.data_form.forEach((item: any) => {
                     var key = item.key;
                     var value = item.value;
 
                     // Add the key-value pair to the object
                     keyValueObject[key] = value;
                 });
-                
+
                 var docAdjDetails = JSON.parse(doc.DocAdjDetails || "{}");
                 for (var key in keyValueObject) {
                     if (keyValueObject.hasOwnProperty(key)) {
@@ -474,12 +474,11 @@ export class DetailKartuKaryawanComponent implements OnInit {
                 doc.DocAdjDetails = JSON.stringify(docAdjDetails);
                 // console.log("Updated doc", doc);
                 this.sendData(doc);
-                return
             });
         }
     }
 
-    sendData(doc : any) {
+    sendData(doc: any) {
         this.digitalIdService.validateDocument(doc).subscribe((res: any) => {
             if (res.status_code === 200) {
                 this.landaService.alertSuccess('Success', res.message);
@@ -497,6 +496,10 @@ export class DetailKartuKaryawanComponent implements OnInit {
             doc[this.transformText(key)] = this.document[key];
         });
         return doc;
+    }
+
+    onDateChange(event: any, row: any) {
+        row.value = moment(event).format('YYYY-MM-DD')
     }
 
     transformText(text: string) {
@@ -613,7 +616,7 @@ export class DetailKartuKaryawanComponent implements OnInit {
             { label: 'Ustadz / Mubaligh', value: 'Ustadz / Mubaligh' },
             { label: 'Juru Masak', value: 'Juru Masak' },
             { label: 'Promotor Acara', value: 'Promotor Acara' },
-            { label: 'Anggota Dpe-RI', value: 'Anggota Dpe-RI' },
+            { label: 'Anggota DPR-RI', value: 'Anggota DPR-RI' },
             { label: 'Anggota DPD', value: 'Anggota DPD' },
             { label: 'Anggota BPK', value: 'Anggota BPK' },
             { label: 'Presiden', value: 'Presiden' },
@@ -708,7 +711,7 @@ export class DetailKartuKaryawanComponent implements OnInit {
                 this.answer = JSON.parse(res.data.doc_adj_details);
                 this.userIdDoc = this.answer.UserId
                 //foreach this.cms
-                this.cms?.data_form?.detail_sections["section-1"].forms.forEach((item :any) => {
+                this.cms?.data_form?.detail_sections["section-1"].forms.forEach((item: any) => {
                     var form = this.cms?.data_form?.forms[item];
                     var key = form.content[0]?.property?.label?.value;
                     var value = this.answer[key.toLowerCase().replace(/\s/g, '_')];
@@ -786,9 +789,9 @@ export class DetailKartuKaryawanComponent implements OnInit {
             return 'Invalid Date';
         }
     }
-    
 
-    getKeyObject(object : any) {
+
+    getKeyObject(object: any) {
         return Object.keys(object);
     }
 }

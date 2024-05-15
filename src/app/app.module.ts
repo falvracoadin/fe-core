@@ -25,6 +25,7 @@ import { GlobalErrorHandler } from "./core/handler/global-error-handler";
 import { DecryptionService } from "./core/services/decryption.service";
 // import { AuthModule, OidcConfigService } from "angular-auth-oidc-client";
 import { environment } from "src/environments/environment";
+import { setTheme } from "ngx-bootstrap/utils";
 
 // export function configureAuth(oidcConfigService: OidcConfigService) {
 //   return () =>
@@ -73,11 +74,11 @@ export class AppModule {
     private authService: AuthService,
     private decryptionService: DecryptionService
   ) {
-    const platformkey = localStorage.getItem("platformKey");
-    if (this.authService.getToken() !== null && platformkey) {
+    setTheme("bs5");
+    if (this.authService.getToken() !== null) {
       this.authService.saveUserLogin(
         this.decryptionService.GrabEnvironmentKey("mode"),
-        platformkey
+        localStorage.getItem("platformKey")
       );
     }
   }

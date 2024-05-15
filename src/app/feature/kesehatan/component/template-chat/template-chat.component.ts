@@ -54,12 +54,6 @@ export class TemplateChatComponent implements OnInit {
       searching: false,
       pageLength: this.limit,
       pagingType: 'full_numbers',
-      columns: [
-        {
-          title: 'Text',
-          data: 'text'
-        }
-      ],
       language: {
         paginate: {
           previous: '<i class="fa fa-chevron-left"></i>',
@@ -102,24 +96,25 @@ export class TemplateChatComponent implements OnInit {
     };
   }
 
-  createModal(modalId : any) {
+  createModal(modalId: any) {
     this.titleModal = 'Tambah Template Chat';
-    this.dataForm = {}    
-    this.modalService.show(modalId, { class : 'modal-lg' });
+    this.dataForm = {}
+    this.modalService.show(modalId, { class: 'modal-lg' });
 
   }
 
-  updateModal(modalId : any, data : any) {
+  updateModal(modalId: any, data: any) {
     this.titleModal = 'Edit Template Chat';
     this.dataForm = data;
-    this.modalService.show(modalId, { class : 'modal-lg' });
+    this.modalService.show(modalId, { class: 'modal-lg' });
   }
 
-  close(modalId : any = null){
+  close(modalId: any = null) {
+    console.log('close modal')
     this.modalService.hide(modalId ? modalId : undefined)
   }
 
-  deleteDokumen(userId : any) {
+  deleteDokumen(userId: any) {
     Swal.fire({
       title: 'Apakah kamu yakin?',
       text: 'Data akan dihapus permanen',
@@ -142,7 +137,7 @@ export class TemplateChatComponent implements OnInit {
     });
   }
 
-  changeLimit(val : any) {
+  changeLimit(val: any) {
     if (val == 10 || val == 25 || val == 50 || val == 100) {
       this.limit = val;
       this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {

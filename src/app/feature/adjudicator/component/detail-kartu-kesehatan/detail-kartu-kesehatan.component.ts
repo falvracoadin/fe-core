@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/feature/auth/services/auth.service';
 import Swal from 'sweetalert2';
 import { LandaService } from 'src/app/core/services/landa.service';
 import { WilayahService } from '../../services/wilayah/wilayah.service';
+import * as moment from 'moment';
 
 interface Wilayah {
   value: string;
@@ -202,7 +203,7 @@ export class DetailKartuKesehatanComponent implements OnInit {
         cancelButtonText: 'Batal'
       }).then((result) => {
         if (!result.value) {
-          return false;
+          return;
         }
         const doc = this.prepareDoc();
         doc.NIK = doc.Nik;
@@ -279,10 +280,13 @@ export class DetailKartuKesehatanComponent implements OnInit {
           doc.CreatedDate = date.toISOString();
         }
         this.sendData(doc);
-        return
       });
 
     }
+  }
+
+  onDateChange(event: any) {
+    this.document.doc_dob = moment(event).format('YYYY-MM-DD')
   }
 
   verifData() {
@@ -360,7 +364,7 @@ export class DetailKartuKesehatanComponent implements OnInit {
         cancelButtonText: 'Batal'
       }).then((result) => {
         if (!result.value) {
-          return false;
+          return
         }
         const doc = this.prepareDoc();
         doc.NIK = doc.Nik;
@@ -439,12 +443,11 @@ export class DetailKartuKesehatanComponent implements OnInit {
           doc.CreatedDate = date.toISOString();
         }
         this.sendData(doc);
-        return
       });
     }
   }
 
-  sendData(doc : any) {
+  sendData(doc: any) {
     this.digitalIdService.validateDocument(doc).subscribe((res: any) => {
       if (res.status_code === 200) {
         this.landaService.alertSuccess('Success', res.message);
@@ -578,7 +581,7 @@ export class DetailKartuKesehatanComponent implements OnInit {
       { label: 'Ustadz / Mubaligh', value: 'Ustadz / Mubaligh' },
       { label: 'Juru Masak', value: 'Juru Masak' },
       { label: 'Promotor Acara', value: 'Promotor Acara' },
-      { label: 'Anggota Dpe-RI', value: 'Anggota Dpe-RI' },
+      { label: 'Anggota DPR-RI', value: 'Anggota DPR-RI' },
       { label: 'Anggota DPD', value: 'Anggota DPD' },
       { label: 'Anggota BPK', value: 'Anggota BPK' },
       { label: 'Presiden', value: 'Presiden' },
@@ -658,7 +661,7 @@ export class DetailKartuKesehatanComponent implements OnInit {
 
     if (this.isSupervisor) { this.listKeputusan.push({ label: 'Kirim Kembali' }); }
   }
-  
+
   getDocument() {
     this.digitalIdService.getDocumentById(this.id).subscribe((res: any) => {
       if (res.status === 'success') {
@@ -681,7 +684,7 @@ export class DetailKartuKesehatanComponent implements OnInit {
     });
   }
 
-  getKeyObject(object : any) {
+  getKeyObject(object: any) {
     return Object.keys(object);
   }
 }

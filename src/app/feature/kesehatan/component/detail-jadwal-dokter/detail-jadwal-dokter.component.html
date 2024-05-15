@@ -3,42 +3,39 @@
         <div class="col-4">
             <label class="font-size-14 mb-0 font-weight-bold">Hari</label>
         </div>
-        <div class="col-8 mb-3">
-            <ng-select [(ngModel)]="selectedDay" [items]="indonesianDays" bindLabel="day" bindValue="day" placeholder="Pilih Hari"
-                (change)="onDaySelected($event)"></ng-select>
+        <div class="col-8 relative">
+            <ng-select [items]="scheduleDays" bindLabel="id" bindValue="en" placeholder="Pilih Hari"
+                [(ngModel)]="selectedDay" (change)="onDaySelected($event)">
+            </ng-select>
         </div>
     </div>
 
-    <div class="form-group row align-items-center">
+    <div class="form-group row" *ngIf="selectedSchedules.length > 0">
         <div class="col-4">
-            <label class="font-size-14 mb-0 font-weight-bold">Jadwal</label>
+            <label class="font-size-14 pt-2 mb-0 font-weight-bold">Jadwal</label>
         </div>
         <div class="col-8 d-flex flex-column">
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center mb-3" *ngFor="let item of selectedSchedules; index as i;">
                 <!-- Schedule Start Input -->
-                <!-- [(ngModel)]="formModel.schedule_start" -->
-                <input class="form-control form-schedule me-2" type="time" name="schedule_start" placeholder="Schedule Start" />
+                <input class="form-control form-schedule me-2" type="time" name="schedule_start_{{i}}"
+                    placeholder="Schedule Start" [(ngModel)]="item.start_time" />
 
                 <!-- Hyphen Separator -->
                 <span class="me-2">-</span>
 
                 <!-- Schedule End Input -->
-                <!-- [(ngModel)]="formModel.schedule_end" -->
-                <input class="form-control form-schedule" type="time" name="schedule_end" placeholder="Schedule End" />
+                <input class="form-control form-schedule" type="time" name="schedule_end_{{i}}"
+                    placeholder="Schedule End" [(ngModel)]="item.end_time" />
 
 
                 <!-- Add Button -->
-                <!-- (click)="addScheduleRow()" -->
-                <button type="button" class="btn btn-primary btn-sm ms-2"
-                    >
+                <button *ngIf="i == 0" class="btn btn-primary btn-sm ms-2" (click)="addScheduleRow()">
                     <i class="fa fa-plus"></i>
                 </button>
 
                 <!-- Remove Button -->
-                <!-- (click)="removeScheduleRow(i)" -->
-                <button type="button" class="btn btn-danger btn-sm ms-2"
-                    >
-                    <i class="fa fa-minus"></i>
+                <button *ngIf="i != 0" class="btn btn-outline-danger btn-sm ms-2" (click)="removeScheduleRow(i)">
+                    <i class="fa fa-trash"></i>
                 </button>
             </div>
         </div>
@@ -47,10 +44,10 @@
     <hr />
     <div class="form-group row">
         <div class="col text-center">
-            <button type="submit" class="btn btn-outline-primary btn-action me-2" (click)="afterSave.emit()">
+            <button type="submit" class="btn btn-outline-primary btn-action me-2" (click)="close()">
                 Batal
             </button>
-            <button type="submit" class="btn btn-primary btn-action">
+            <button type="submit" class="btn btn-primary btn-action" (click)="save()">
                 Simpan Perubahan
             </button>
         </div>

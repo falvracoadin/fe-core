@@ -1,199 +1,210 @@
-.title-page{
-    font-size: 28px;
-    font-weight: 700;
-    font-stretch: normal;
-    color: #231f20;
-    margin-bottom: 20px;
+.title-page {
+  font-size: 28px;
+  font-weight: 700;
+  font-stretch: normal;
+  color: #231f20;
+  margin-bottom: 20px;
 }
 
-.card-title{
-    width: 100%;
-    height: 29px;
-    font-size: 24px;
-    font-weight: 700;
-    color: #231f20;
-    margin: 16px 0;
+.card-title {
+  width: 100%;
+  height: 29px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #231f20;
+  margin: 16px 0;
 }
 
 .limit div:last-child span {
-    margin: 0 5px;
-    cursor: pointer;
+  margin: 0 5px;
+  cursor: pointer;
 }
 
 .limit div:last-child span:first-child {
-    margin-left: 0;
+  margin-left: 0;
 }
 
 .limit div:last-child span.active {
-    color: #21409A !important;
+  color: #21409a !important;
 }
 
 .input-container {
-    max-height: 36px;
-    display: flex;
-    flex-direction: row;
-    color: #495057;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    align-items: center;
-    box-sizing: border-box;
-    font-size: 11.5px;
-    min-height: 27px;
+  max-height: 36px;
+  display: flex;
+  flex-direction: row;
+  color: #495057;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 11.5px;
+  min-height: 27px;
 }
 
 .input-container img {
-    width: 16px;
-    height: 16px;
-    margin: 10px 12px;
-    opacity: 0.5;
+  width: 16px;
+  height: 16px;
+  margin: 10px 12px;
+  opacity: 0.5;
 }
 
-.input-container input.filter-input, .input-container input.filter-input:focus {
-    border: none;
-    outline: none;
+.input-container input.filter-input,
+.input-container input.filter-input:focus {
+  border: none;
+  outline: none;
 }
 
 .btn-filter {
-    width: 36px;
-    height: 36px;
-    margin: 0 8px;
-    padding: 0;
+  width: 36px;
+  height: 36px;
+  margin: 0 8px;
+  padding: 0;
 }
 
 .btn-filter svg {
-    margin: 6px;
+  margin: 6px;
 }
 
 .btn-eye {
-    background-color: white;
-    border: 1px solid #4e4751;
+  background-color: white;
+  border: 1px solid #4e4751;
 }
 
 .btn-eye:hover {
-    background-color: #4e4751;
+  background-color: #4e4751;
 }
 
 .btn-eye:hover g {
-    fill: #fff;
+  fill: #fff;
 }
 
-table, button, .dropdown-item{
-    font-size: 16px;
+table,
+button,
+.dropdown-item {
+  font-size: 16px;
 }
 
-table{
-    color: #495057;
-    font-weight: 500;
+table {
+  color: #495057;
+  font-weight: 500;
 }
 
-td.status_dokumen>div {
-    text-align: center;
-    font-size: 0.8125rem;
-    white-space: nowrap;
-    outline: 0;
-    padding: 0;
-    box-sizing: border-box;
-    border-radius: 30px;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    height: 30px;
-    max-width: 180px;
-    min-width: 180px;
-    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+td.status_dokumen > div {
+  text-align: center;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  outline: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 30px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 30px;
+  max-width: 180px;
+  min-width: 180px;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
 .status-success {
-    color: #2C8424;
-    border: 1px solid #2C8424;
-    background-color: #EDFFF5;
+  color: #2c8424;
+  border: 1px solid #2c8424;
+  background-color: #edfff5;
 }
 
 .status-warning {
-    color: #F2994A;
-    border: 1px solid #F2994A;
-    background-color: #FFF7EF;
+  color: #f2994a;
+  border: 1px solid #f2994a;
+  background-color: #fff7ef;
 }
 
-.status-secondary{
-    color: rgb(76, 70, 80);
-    border: 0.5px solid rgb(76, 70, 80);
-    background-color: #e6e6e6;
+.status-secondary {
+  color: rgb(76, 70, 80);
+  border: 0.5px solid rgb(76, 70, 80);
+  background-color: #e6e6e6;
 }
 
-.status-danger{
-    color: #EB5757;
-    border: 1px solid #EB5757;
-    background-color: #FFE8E8;
+.status-danger {
+  color: #eb5757;
+  border: 1px solid #eb5757;
+  background-color: #ffe8e8;
 }
 
-.status-semi{
-    color: rgb(76, 70, 80);
-    border: 0.5px solid rgb(76, 70, 80);
-    background-color: rgb(231, 244, 237);
+.status-semi {
+  color: rgb(76, 70, 80);
+  border: 0.5px solid rgb(76, 70, 80);
+  background-color: rgb(231, 244, 237);
 }
 
 .btn-warning {
-    background-color: #00A79D !important;
-    border: 0;
+  background-color: #00a79d !important;
+  border: 0;
 }
 
 .dukcapil {
-    text-transform: uppercase;
-    white-space: nowrap
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .rounded-8 {
-    border-radius: 8px;
+  border-radius: 8px;
 }
 
 .icon-search {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 10px;
-    font-size: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+  font-size: 20px;
 }
 
 .search-input {
-    padding-left: 40px;
-    height: 100%;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #CBD5E1;
-    border-radius: 8px;
-    width: 340px;
-    font-size: 14px;
+  padding-left: 40px;
+  height: 100%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #cbd5e1;
+  border-radius: 8px;
+  width: 340px;
+  font-size: 14px;
 }
 
 .search-input:focus {
-    outline: none;
+  outline: none;
 }
 
 .search-input::placeholder {
-    color: #64748B;
-    font-size: 14px;
+  color: #64748b;
+  font-size: 14px;
 }
 
 .ng-select.custom ::ng-deep .ng-select-container {
-    height: 50px !important;
-    border-radius:  8px 0 0 8px !important;
+  height: 50px !important;
+  border-radius: 8px 0 0 8px !important;
 }
 
-.ng-select.custom ::ng-deep .ng-value-label, .ng-select.custom ::ng-deep .ng-placeholder {
-    color: #64748B !important;
-    font-size: 14px;
+.ng-select.custom ::ng-deep .ng-value-label,
+.ng-select.custom ::ng-deep .ng-placeholder {
+  color: #64748b !important;
+  font-size: 14px;
 }
 
 .relative {
-    position: relative;
-    height: 50px;
+  position: relative;
+  height: 50px;
 }
 
 .bg-second {
-    background-color: #F8F8F8 !important;
+  background-color: #f8f8f8 !important;
 }
 
 .bg-white {
-    background-color: white !important;
+  background-color: white !important;
+}
+
+.info-wrap-imi {
+  width: fit-content;
+  position: relative;
+  z-index: 999;
 }

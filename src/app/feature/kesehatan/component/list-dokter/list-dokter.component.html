@@ -51,24 +51,33 @@
                                 <table class="table table-hover" datatable [dtOptions]="dtOptions">
                                     <thead>
                                         <tr style="background-color: #E2E8F0 !important">
-                                            <th class="py-4">No.STR</th>
-                                            <th class="py-4">Nama Dokter</th>
-                                            <th class="py-4">Email</th>
-                                            <th class="py-4">No. Hp</th>
-                                            <th class="py-4">Spesialis</th>
-                                            <th class="py-4 text-center">Aksi</th>
+                                            <th class="py-3">No.STR</th>
+                                            <th class="py-3">Nama Dokter</th>
+                                            <th class="py-3">Email</th>
+                                            <th class="py-3">No. Hp</th>
+                                            <th class="py-3">Spesialis</th>
+                                            <th class="py-3 text-center">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let dokter of listDokter; index as i"
                                             [class.bg-white]="(i % 2) == 0" [class.bg-second]="(i % 2) == 1">
-                                            <td class="align-middle pe-3">{{ dokter.no_str ? dokter.no_str : "-" }}
+                                            <td class="align-middle pe-3">
+                                                {{ dokter.no_str ? dokter.no_str : "-" }}
                                             </td>
-                                            <td class="align-middle">{{ dokter.name ? dokter.name : "-" }}</td>
-                                            <td class="align-middle">{{ dokter.email ? dokter.email : "-" }}</td>
-                                            <td class="align-middle">{{ dokter.phone_number ? dokter.phone_number : "-"
-                                                }}</td>
-                                            <td class="align-middle">{{ dokter.specialist ? dokter.specialist : "-" }}
+                                            <td class="align-middle">
+                                                {{ dokter.name ? dokter.name : "-" }}
+                                            </td>
+                                            <td class="align-middle">
+                                                {{ dokter.email ? dokter.email : "-" }}
+                                            </td>
+                                            <td class="align-middle">
+                                                {{ dokter.phone_number ? dokter.phone_number : "-" }}
+                                            </td>
+                                            <td class="align-middle">
+                                                <div class="text-ellipsis">
+                                                    {{ dokter.specialist ? dokter.specialist : "-" }}
+                                                </div>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <a class="btn btn-outline-primary" placement="left" container="body"
@@ -86,8 +95,8 @@
                                     </tr>
                                 </table>
                                 <div class="info-wrap-imi" *ngIf="totalRecord != 0">
-                                    <div class="info-1">Tampilkan</div>
-                                    <select [(ngModel)]="limit" id="inputLimit" class="info-2"
+                                    <div class="info-1 me-2">Tampilkan</div>
+                                    <select [(ngModel)]="limit" id="inputLimit" class="info-2 me-2"
                                         style=" background-color: #FEFEFE !important; border: 1px solid #CBD5E1 !important; padding: 0.47rem 0.75rem"
                                         name="showFilter" (change)="clickLimit()">
                                         <option value="10">10</option>

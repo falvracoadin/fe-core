@@ -430,7 +430,12 @@ export class AuthService extends StateService<any> {
    * Ambil token user dari localstorage
    */
   getToken(): UserModel {
-    return JSON.parse(localStorage.getItem("user") || "{}");
+    let user = localStorage.getItem("user");
+    if (!user) {
+      user = "{}";
+    }
+
+    return JSON.parse(user);
   }
 
   getProfilePhoto() {

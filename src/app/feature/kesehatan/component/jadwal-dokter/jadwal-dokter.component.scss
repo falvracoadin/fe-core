@@ -107,6 +107,7 @@ button,
 table {
   color: #495057;
   font-weight: 500;
+  width: auto;
 }
 
 td.status_dokumen > div > div {
@@ -223,7 +224,7 @@ td.status_dokumen > div > div {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 10px;
+  left: 25px;
   font-size: 20px;
 }
 
@@ -281,4 +282,10 @@ td.status_dokumen > div > div {
   margin: 0 auto; /* Center the description horizontally */
   text-align: center; /* Center the text within the container */
   word-wrap: break-word;
+}
+
+.info-wrap-imi {
+  width: fit-content;
+  position: relative;
+  z-index: 999;
 }

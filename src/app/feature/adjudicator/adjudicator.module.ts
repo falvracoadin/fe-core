@@ -24,6 +24,7 @@ import { KartuKaryawanComponent } from './component/kartu-karyawan/kartu-karyawa
 import { DetailKartuKaryawanComponent } from './component/detail-kartu-karyawan/detail-kartu-karyawan.component';
 import { KartuIdentitasAnakComponent } from './component/kartu-identitas-anak/kartu-identitas-anak.component';
 import { DetailKartuIdentitasAnakComponent } from './component/detail-kartu-identitas-anak/detail-kartu-identitas-anak.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 // const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -54,7 +55,8 @@ import { DetailKartuIdentitasAnakComponent } from './component/detail-kartu-iden
     DataTablesModule,
     NgSelectModule,
     FormsModule,
-    ImageCropperModule
+    ImageCropperModule,
+    BsDatepickerModule
   ],
   providers: [
     // {

@@ -8,6 +8,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { ImageCropperModule, ImageCropperComponent } from 'ngx-image-cropper';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask'
 
 import { KesehatanRoutingModule } from './kesehatan-routing.module';
 import { TemplateChatComponent } from './component/template-chat/template-chat.component';
@@ -30,7 +31,20 @@ import { ListBeliObatComponent } from './component/list-beli-obat/list-beli-obat
 
 
 @NgModule({
-  declarations: [TemplateChatComponent, JadwalDokterComponent, DetailTemplateChatComponent, DetailJadwalDokterComponent, ListDokterComponent, DetailDokterComponent, FormDokterComponent, ListKonsultasiComponent, LaporanKonsultasiComponent, DetailKonsultasiComponent, ListReservasiComponent, ListBeliObatComponent],
+  declarations: [
+    TemplateChatComponent,
+    JadwalDokterComponent,
+    DetailTemplateChatComponent,
+    DetailJadwalDokterComponent,
+    ListDokterComponent,
+    DetailDokterComponent,
+    FormDokterComponent,
+    ListKonsultasiComponent,
+    LaporanKonsultasiComponent,
+    DetailKonsultasiComponent,
+    ListReservasiComponent,
+    ListBeliObatComponent,
+  ],
   imports: [
     CommonModule,
     KesehatanRoutingModule,
@@ -42,13 +56,19 @@ import { ListBeliObatComponent } from './component/list-beli-obat/list-beli-obat
     NgSelectModule,
     FormsModule,
     ImageCropperModule,
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
   providers: [
     // {
     //     provide: PERFECT_SCROLLBAR_CONFIG,
     //     useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     // },
-    ImageCropperComponent
+    ImageCropperComponent,
+    provideNgxMask({
+      thousandSeparator: '.',
+      decimalMarker: ',',
+    })
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
