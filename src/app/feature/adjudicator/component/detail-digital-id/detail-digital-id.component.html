@@ -55,16 +55,19 @@
                                 </span>
 
                                 <div class="input-group" *ngIf="row['isEdit'] && row['type'] == 'date' || isEditData && row['type'] == 'date'">
-                                    <input class="form-control" placeholder="dd-mm-yyyy" name="dp"
-                                        [(ngModel)]="document[row['bind']]" ngbDatepicker type="date"/>
-                                    <!-- <input class="form-control" placeholder="dd-mm-yyyy" name="dp"
-                                        [(ngModel)]="document[row['bind']]" ngbDatepicker #d="ngbDatepicker"
-                                        [minDate]="{year: 1900, month: 1, day: 1}"
-                                        [maxDate]="{year: 2099, month: 12, day: 31}" (change)="d.toggle()" /> -->
-                                    <button class="btn btn-outline-secondary"  type="button">
+                                    <input 
+                                        [id]="row['label']"
+                                        type="text"
+                                        class="form-control"
+                                        style="height: 36.5px;"
+                                        [minDate]="minDate"
+                                        [maxDate]="maxDate"
+                                        #dp="bsDatepicker"
+                                        bsDatepicker [(bsValue)]="document[row['bind']]">
+                                    <label [for]="row['label']" class="btn btn-outline-secondary"  type="button">
                                         <img height="18px" src="https://cdn-icons-png.flaticon.com/24/55/55281.png"
                                             alt="">
-                                    </button>
+                                    </label>
                                 </div>
 
                                 <div class="input-group" *ngIf="row['isEdit'] && (row['type'] != 'date' || !row['type']) || isEditData && (row['type'] != 'date' || !row['type'])">
@@ -77,7 +80,8 @@
                                     <ng-select (search)="searchNgSelect($event, row)" class="custom"
                                         [items]="row['options']" bindLabel="label" bindValue="value"
                                         [(ngModel)]="document[row['bind']]" placeholder="Pilih Status"
-                                        [ngModelOptions]="{standalone:true}"></ng-select>
+                                        [ngModelOptions]="{standalone:true}"
+                                        style="min-width: 100% !important;"></ng-select>
                                 </div>
                             </div>
 
@@ -260,7 +264,7 @@
                         </div>
                     </div>
                     <div class="roundedbrl-8 col-12 d-flex justify-content-center bg-white p-2">
-                        <image-cropper *ngIf="cropperOpen" [imageBase64]="imgBase64"  [cropper]="cropperPosition" (imageLoaded)="imageLoaded()" (cropperReady)="imageLoaded()" [maintainAspectRatio]="true" [aspectRatio]="cropperRatio" format="png" (imageCropped)="cropImg($event)"></image-cropper>
+                        <image-cropper *ngIf="cropperOpen" [imageBase64]="imgBase64"  [cropper]="cropperPosition" (imageLoaded)="imageLoaded()" (cropperReady)="imageLoaded()" [maintainAspectRatio]="true" [aspectRatio]="cropperRatio" format="png" (imageCropped)="cropImg($event)" [transform]="transformImage"></image-cropper>
                         <img style="width: 100%;" *ngIf="!cropperOpen" [src]="document['doc_pict_secondary']" alt="">
                     </div>
 
@@ -269,7 +273,7 @@
                     </div>
                     <div class="roundedbrl-8 col-12 d-flex justify-content-center bg-white p-2">
                         <img *ngIf="!cropImgPreview" src="{{document['doc_pict_cropping']}}" alt="">
-                        <img *ngIf="cropImgPreview" [src]="cropImgPreview" alt="">
+                        <img *ngIf="cropImgPreview" [src]="viewImageCroped" alt="">
                     </div>
 
                     <div class="roundedtrl-8 col-12 keyheader mt-3 d-flex justify-content-between">

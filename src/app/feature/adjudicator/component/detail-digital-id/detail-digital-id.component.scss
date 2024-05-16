@@ -261,3 +261,8 @@ label {
     width: 100%;
     background-color: white;
 }
+
+.required:after {
+    content: "*";
+    color: red;
+}

@@ -1,13 +1,14 @@
 /* tslint:disable:max-line-length triple-equals */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CropperPosition, ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
+import { CropperPosition, ImageCroppedEvent, ImageCropperComponent, ImageTransform } from 'ngx-image-cropper';
 import { DigitalIdService } from '../../services/digital-id/digital-id.service';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/feature/auth/services/auth.service';
 import Swal from 'sweetalert2';
 import { LandaService } from 'src/app/core/services/landa.service';
 import { WilayahService } from '../../services/wilayah/wilayah.service';
+import { BlobToBase64Service } from 'src/app/core/services/blob-to-base64.service';
 // import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 interface Wilayah {
@@ -32,7 +33,14 @@ export class DetailDigitalIdComponent implements OnInit {
   cropperPosition: CropperPosition = { x1: 80.125, y1: 38.2, x2: 136.2, y2: 133 };
   iteration = 0;
   phone: any;
+  minDate !: Date;
+  maxDate : Date = new Date();
 
+  transformImage: ImageTransform = {
+    rotate: 0
+  };
+  rotation: number = 0;
+  
   isEditData: any;
   isOperator = false;
   isSupervisor = false;
@@ -67,6 +75,7 @@ export class DetailDigitalIdComponent implements OnInit {
     private landaService: LandaService,
     private router: Router,
     private wilayahService: WilayahService,
+    private blobToBase64Service: BlobToBase64Service
     // private dateOpt: NgbDatepickerModule
   ) { }
 
@@ -104,8 +113,23 @@ export class DetailDigitalIdComponent implements OnInit {
     });
   }
 
+  viewImageCroped : any;
+
   cropImg(e: ImageCroppedEvent) {
-    this.cropImgPreview = e.base64;
+    this.viewImageCroped = e.objectUrl
+    this.convertExampleBlob(e.blob);
+  }
+
+  async convertExampleBlob(blob : any) {
+    try {
+      const base64String = await this.blobToBase64Service.convertBlobToBase64(blob);
+      this.cropImgPreview = base64String;
+      console.log(base64String)
+      return base64String;
+    } catch (error) {
+      console.error('Conversion failed', error);
+      return
+    }
   }
 
   imageLoaded() {
@@ -119,7 +143,14 @@ export class DetailDigitalIdComponent implements OnInit {
   }
 
   rotateLeft() {
-    this.imageCropper.transform.rotate = 90;
+    this.rotation += 90;
+    if (this.rotation === 360) {
+      this.rotation = 0;
+    }
+    this.transformImage = {
+      ...this.transformImage,
+      rotate: this.rotation
+    };
   }
 
   toggleCropper() {
@@ -128,6 +159,12 @@ export class DetailDigitalIdComponent implements OnInit {
     }
     this.iteration = 0;
     this.cropperOpen = !this.cropperOpen;
+    setTimeout(()=>{
+      this.transformImage = {
+        ...this.transformImage,
+        rotate: 0
+      }
+    },100)
   }
 
   reset() {
@@ -413,7 +450,6 @@ export class DetailDigitalIdComponent implements OnInit {
         if (!result.value) {
           return false;
         }
-
         if (this.document.keputusan === 'Diterima') {
           if (this.document.doc_name == undefined || this.document.doc_name == '') {
             return this.alertError('Data Nama Lengkap harus diisi');
