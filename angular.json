@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "lazis-fe-webadmin": {
+    "health-fe-webadmin": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -96,7 +96,7 @@
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.production.ts"
+                  "with": "src/environments/environment.prod.ts"
                 }
               ]
             },
@@ -157,16 +157,16 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "lazis-fe-webadmin:build:production"
+              "browserTarget": "health-fe-webadmin:build:production"
             },
             "staging": {
-              "browserTarget": "lazis-fe-webadmin:build:staging"
+              "browserTarget": "health-fe-webadmin:build:staging"
             },
             "development": {
-              "browserTarget": "lazis-fe-webadmin:build:development"
+              "browserTarget": "health-fe-webadmin:build:development"
             },
             "local": {
-              "browserTarget": "lazis-fe-webadmin:build:local"
+              "browserTarget": "health-fe-webadmin:build:local"
             }
           },
           "defaultConfiguration": "local"
@@ -174,7 +174,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "lazis-fe-webadmin:build"
+            "browserTarget": "health-fe-webadmin:build"
           }
         },
         "test": {
